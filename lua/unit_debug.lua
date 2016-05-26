@@ -830,7 +830,7 @@ function wml_actions.gui_unit_debug ( cfg )
 
 		--note that the help won't show up if you haven't discovered that unit yet.
 		local unit_profile = function()
-			wesnoth.wml_actions.open_help ( {topic = "unit_" .. dialog_unit.type} )
+			wesnoth.wml_actions.open_help ( {topic = [[unit_]] .. dialog_unit.type} ) -- Literal string needed here or .po will have an error.
 		end
 		
 		local function preshow()
