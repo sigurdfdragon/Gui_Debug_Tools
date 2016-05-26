@@ -1,3 +1,6 @@
+-- #textdomain wesnoth-Gui_Debug_Tools
+local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
+
 local utils = {}
 
 local helper = wesnoth.require "lua/helper.lua"
@@ -52,8 +55,7 @@ function utils.trait_list()
 	local trait_loyal = { id="loyal", male_name=_"loyal", female_name=_"female^loyal",
 		description=_"Zero upkeep", { "effect", { apply_to="loyal" } } }
 	-- #textdomain wesnoth-Gui_Debug_Tools
-	_ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
-
+	local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 	-- add heroic trait (Props to the World Conquest add-on for the idea.)
 	-- This is The Great Quest version that has strong, resilient, quick & dextrous.
 	local trait_heroic = { id="heroic", male_name=_"heroic", female_name=_"female^heroic",

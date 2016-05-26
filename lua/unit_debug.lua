@@ -1,3 +1,6 @@
+-- #textdomain wesnoth-Gui_Debug_Tools
+local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
+
 local helper = wesnoth.require "lua/helper.lua"
 local gdt_utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/gdt_utils.lua"
 
@@ -6,10 +9,6 @@ local wml_actions = wesnoth.wml_actions
 
 -- metatable for GUI tags
 local T = helper.set_wml_tag_metatable {}
-
--- support for translatable strings, custom textdomain
-local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
--- #textdomain wesnoth-Gui_Debug_Tools
 
 -- [gui_unit_debug]
 -- This tag is meant for use inside a [set_menu_item], because it gets the unit at x1,y1

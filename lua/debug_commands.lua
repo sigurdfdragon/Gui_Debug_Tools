@@ -1,5 +1,4 @@
 -- #textdomain wesnoth-Gui_Debug_Tools
--- support for translatable strings, custom textdomain
 local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
 -- to make code shorter
