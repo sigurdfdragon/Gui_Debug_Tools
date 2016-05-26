@@ -299,11 +299,8 @@ function wml_actions.gui_side_debug ( cfg )
 							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
-							T.slider {
-								minimum_value = math.min( 0, dialog_side.gold ),
-								maximum_value = math.max( 1000, dialog_side.gold ),
-								step_size = 1,
-								id = "side_gold_slider",
+							T.text_box {
+								id = "gold_textbox",
 								tooltip = _ "The amount of gold the side has."
 							}
 						}
@@ -567,11 +564,11 @@ function wml_actions.gui_side_debug ( cfg )
 			wesnoth.set_dialog_value ( tostring(dialog_side.name), "name_label" ) -- name is nil in 1.13, so tostring is needed
 			wesnoth.set_dialog_value ( dialog_side.total_income, "total_income_label" )
 			-- sliders
-			wesnoth.set_dialog_value ( dialog_side.gold, "side_gold_slider" )
 			wesnoth.set_dialog_value ( dialog_side.village_gold, "side_village_gold_slider" )
 			wesnoth.set_dialog_value ( dialog_side.village_support, "side_village_support_slider" )
 			wesnoth.set_dialog_value ( dialog_side.base_income, "side_base_income_slider" )
 			-- text boxes
+			wesnoth.set_dialog_value ( dialog_side.gold, "gold_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.defeat_condition, "defeat_condition_textbox" )
 			local color_names = { "red", "blue", "green", "purple", "black", "brown", "orange", "white", "teal" }
 			local color_number = tonumber( dialog_side.color )
@@ -615,12 +612,12 @@ function wml_actions.gui_side_debug ( cfg )
 			local function postshow()
 				-- get widget values
 				-- sliders
-				temp_table.gold = wesnoth.get_dialog_value ( "side_gold_slider" )
 				temp_table.village_gold = wesnoth.get_dialog_value ( "side_village_gold_slider" )
 				temp_table.village_support = wesnoth.get_dialog_value ( "side_village_support_slider" )
 				temp_table.base_income = wesnoth.get_dialog_value ( "side_base_income_slider" )
 				temp_table.color = wesnoth.get_dialog_value ( "color_textbox" )
 				-- text boxes
+				temp_table.gold = wesnoth.get_dialog_value ( "gold_textbox" )
 				temp_table.defeat_condition = wesnoth.get_dialog_value ( "defeat_condition_textbox" )
 				temp_table.user_team_name = wesnoth.get_dialog_value ( "user_team_name_textbox" )
 				temp_table.team_name = wesnoth.get_dialog_value ( "team_name_textbox" )
