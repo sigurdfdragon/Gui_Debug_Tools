@@ -631,6 +631,28 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						}
 					},
+					-- attack
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
+								label = _ "Attack"
+							}
+						},
+						T.column {
+							vertical_grow = true,
+							horizontal_grow = true,
+							border = "all",
+							border_size = 5,
+							T.text_box {
+								id = "textbox_attack",
+								history = "other_attack",
+								tooltip = _ "The unit will receive the attack indicated. Specify a unit type and attack index to copy. Single space clears added attacks."
+							}
+						}
+					},
 					-- abilities
 					T.row {
 						T.column {
@@ -853,6 +875,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( table.concat( dialog_unit.extra_recruit, "," ), "textbox_extra_recruit" )
 			wesnoth.set_dialog_value ( table.concat( dialog_unit.advances_to, "," ), "textbox_advances_to" )
 			wesnoth.set_dialog_value ( dialog_unit.role, "textbox_role" )
+			wesnoth.set_dialog_value ( "", "textbox_attack" )
 			wesnoth.set_dialog_value ( "", "textbox_abilities" )
 			-- set traits textbox
 			local unit_modifications = helper.get_child ( dialog_unit.__cfg, "modifications" )
@@ -917,6 +940,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.advances_to = wesnoth.get_dialog_value "textbox_advances_to"
 				temp_table.extra_recruit = wesnoth.get_dialog_value "textbox_extra_recruit"
 				temp_table.role = wesnoth.get_dialog_value "textbox_role"
+				temp_table.attack = wesnoth.get_dialog_value "textbox_attack"
 				temp_table.abilities = wesnoth.get_dialog_value "textbox_abilities"
 				temp_table.traits = wesnoth.get_dialog_value "textbox_traits"
 				-- initial traits
@@ -1013,6 +1037,37 @@ function wml_actions.gui_unit_debug ( cfg )
 					wesnoth.transform_unit ( dialog_unit, temp_table.type )
 					dialog_unit.hitpoints = dialog_unit.max_hitpoints -- full heal, as that's the most common desired behavior
 					dialog_unit.moves = dialog_unit.max_moves
+				end
+				-- attacks - adds or removes new attacks via objects, does not affect attacks that come with the unit type
+				if temp_table.attack ~= "" then
+					if temp_table.attack == " " then -- user just wants to clear added object(s)
+						-- remove existing attack objects
+						local u = dialog_unit.__cfg -- traits need to be removed by editing a __cfg table
+						for tag = #u, 1, -1 do
+							if u[tag][1] == "modifications" then
+								for subtag = #u[tag][2], 1, -1 do
+									if u[tag][2][subtag][1] == "object" and u[tag][2][subtag][2].gdt_id == "attack" then
+										table.remove( u[tag][2], subtag )
+									end
+								end
+							end
+						end
+						wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
+						wesnoth.transform_unit ( dialog_unit, dialog_unit.type ) -- the above gets the [object], this gets the [attack] imparted by the object
+					else
+						-- chop user entered value
+						local attack_sources = { }
+						for value in gdt_utils.split( temp_table.attack ) do
+							table.insert ( attack_sources, gdt_utils.chop( value ) )
+						end
+						-- add new attack, copy from unit_type & attack index that has the desired attack
+						local new_attack = helper.get_nth_child(wesnoth.unit_types[attack_sources[1]].__cfg, "attack", attack_sources[2])
+						if new_attack then
+							new_attack.apply_to = "new_attack"
+							local new_object = { gdt_id = "attack", delayed_variable_substitution = true, { "effect", new_attack } }
+							wesnoth.add_modification ( dialog_unit, "object", new_object )
+						end
+					end
 				end
 				-- abilities change - adds or removes new abilities via objects, does not affect abilities that come with the unit type
 				if temp_table.abilities ~= "" then
