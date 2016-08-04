@@ -9,7 +9,7 @@ function wesnoth.wml_conditionals.debug_status ( cfg )
 end
 
 wml_actions.set_menu_item { id = "_1_inspect" ,
-	description = _ "Inspect" ,
+	description = _ "Gamestate Inspector" ,
 	{ "show_if" , {
 		{ "debug_status" }
 	}},
