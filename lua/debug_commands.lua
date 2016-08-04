@@ -12,7 +12,7 @@ function wml_actions.lua_console ( cfg )
 	return wesnoth.show_lua_console()
 end
 
-wml_actions.set_menu_item { id = "_1_inspect" ,
+wml_actions.set_menu_item { id = "_1_gamestate_inspector" ,
 	description = _ "Gamestate Inspector" ,
 	{ "show_if" , {
 		{ "debug_status" }
