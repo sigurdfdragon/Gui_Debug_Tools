@@ -8,6 +8,10 @@ function wesnoth.wml_conditionals.debug_status ( cfg )
 	return wesnoth.game_config.debug
 end
 
+function wml_actions.lua_console ( cfg )
+	return wesnoth.show_lua_console()
+end
+
 wml_actions.set_menu_item { id = "_1_inspect" ,
 	description = _ "Gamestate Inspector" ,
 	{ "show_if" , {
@@ -18,7 +22,17 @@ wml_actions.set_menu_item { id = "_1_inspect" ,
 	}}
 }
 
-wml_actions.set_menu_item { id = "_2_unit_debug" ,
+wml_actions.set_menu_item { id = "_2_lua_console" ,
+	description = _ "Lua Console" ,
+	{ "show_if" , {
+		{ "debug_status" }
+	}},
+	{ "command" , { 
+		{ "lua_console" }
+	}}
+}
+
+wml_actions.set_menu_item { id = "_3_unit_debug" ,
 	description = _ "Unit Debug" ,
 	{ "show_if" , {
 		{ "debug_status" },
@@ -29,7 +43,7 @@ wml_actions.set_menu_item { id = "_2_unit_debug" ,
 	}}
 }
 
-wml_actions.set_menu_item { id = "_3_side_debug" ,
+wml_actions.set_menu_item { id = "_4_side_debug" ,
 	description = _ "Side Debug" ,
 	{ "show_if" , {
 		{ "debug_status" },
