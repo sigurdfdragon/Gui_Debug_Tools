@@ -777,7 +777,7 @@ function wml_actions.gui_unit_debug ( cfg )
 						border_size = 5,
 						T.label {
 							definition = "title",
-							label = _ "Unit Debug Menu"
+							label = _ "Unit Debug"
 						}
 					}
 				},

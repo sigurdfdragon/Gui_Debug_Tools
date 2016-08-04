@@ -518,7 +518,7 @@ function wml_actions.gui_side_debug ( cfg )
 						border_size = 5,
 						T.label {
 							definition = "title",
-							label = _ "Side Debug Menu"
+							label = _ "Side Debug"
 						}
 					}
 				},
