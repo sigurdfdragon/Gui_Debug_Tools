@@ -200,6 +200,25 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Clear recall"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									id = "clear_recall_checkbutton",
+									tooltip = _ "All units will be removed from the side's recall list."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Seed recall"
 								}
 							},
@@ -585,7 +604,9 @@ function wml_actions.gui_side_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_side.fog, "fog_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_side.shroud, "shroud_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_side.hidden, "hidden_checkbutton" )
+			wesnoth.set_dialog_value ( false, "clear_recall_checkbutton" )
 			wesnoth.set_dialog_value ( false, "seed_recall_checkbutton" )
+
 			-- radiobutton
 			local temp_controller
 
@@ -627,6 +648,7 @@ function wml_actions.gui_side_debug ( cfg )
 				temp_table.fog = wesnoth.get_dialog_value ( "fog_checkbutton" )
 				temp_table.shroud = wesnoth.get_dialog_value ( "shroud_checkbutton" )
 				temp_table.hidden = wesnoth.get_dialog_value ( "hidden_checkbutton" )
+				temp_table.clear_recall = wesnoth.get_dialog_value ( "clear_recall_checkbutton" )
 				temp_table.seed_recall = wesnoth.get_dialog_value ( "seed_recall_checkbutton" )
 				-- radiobutton
 				local controllers = { "ai", "human", "idle", "network", "network_ai", "null" }
@@ -663,6 +685,10 @@ function wml_actions.gui_side_debug ( cfg )
 			dialog_side.recruit = temp_recruit
 			dialog_side.controller = temp_table.controller
 			wml_actions.modify_side( { side = dialog_side.side, color = temp_table.color } ) -- modify_side needed, otherwise the flag animation color is missed.
+			--clear recall list
+			if temp_table.clear_recall then
+				wml_actions.kill( { side = dialog_side.side, x = "recall", y = "recall" } )
+			end
 			--seed recall list
 			if temp_table.seed_recall then
 				if temp_recruit[1] ~= nil then
