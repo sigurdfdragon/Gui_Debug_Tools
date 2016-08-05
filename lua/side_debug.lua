@@ -717,7 +717,7 @@ function wml_actions.gui_side_debug ( cfg )
 					end
 				end
 				for i = 1, #temp_recruit do
-					wesnoth.put_recall_unit ( { type = temp_recruit[i] } )
+					wesnoth.put_recall_unit ( { type = temp_recruit[i], side = dialog_side.side } )
 				end
 			end
 			wml_actions.redraw ( { side = dialog_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud
