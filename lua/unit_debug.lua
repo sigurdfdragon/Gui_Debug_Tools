@@ -1156,15 +1156,16 @@ function wml_actions.gui_unit_debug ( cfg )
 				end
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, unrenamable = temp_table.unrenamable }
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, canrecruit = temp_table.canrecruit }
-				-- copy unit
+				-- -- copy unit & put to recall
 				if temp_table.copy_unit then
 					local new_unit = wesnoth.copy_unit ( dialog_unit )
 					local x, y = wesnoth.find_vacant_tile ( dialog_unit.x, dialog_unit.y, new_unit )
 					wesnoth.put_unit ( x, y, new_unit )
 					wml_actions.modify_unit { { "filter", { id = new_unit.id } }, name = "", generate_name = true }
-				end
-				-- put to recall
-				if temp_table.put_to_recall then
+					if temp_table.put_to_recall then -- doing both, put copy on recall list
+						wesnoth.put_recall_unit ( new_unit )
+					end
+				elseif temp_table.put_to_recall then -- no copy, put original on recall list
 					wesnoth.put_recall_unit ( dialog_unit )
 				end
 			end
