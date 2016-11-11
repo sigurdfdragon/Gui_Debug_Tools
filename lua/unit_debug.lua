@@ -250,7 +250,9 @@ function wml_actions.gui_unit_debug ( cfg )
 								horizontal_alignment = "left",
 								border = "all",
 								border_size = 5,
-								T.spacer {
+								T.toggle_button {
+									label = _ "Invulnerable",
+									id = "invulnerable_checkbutton"
 								}
 							}
 						},
@@ -895,6 +897,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_unit.status.poisoned, "poisoned_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.slowed, "slowed_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.petrified, "petrified_checkbutton" )
+			wesnoth.set_dialog_value ( dialog_unit.status.invulnerable, "invulnerable_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.uncovered, "uncovered_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.guardian, "guardian_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.unhealable, "unhealable_checkbutton" )
@@ -961,6 +964,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.poisoned = wesnoth.get_dialog_value "poisoned_checkbutton"
 				temp_table.slowed = wesnoth.get_dialog_value "slowed_checkbutton"
 				temp_table.petrified = wesnoth.get_dialog_value "petrified_checkbutton"
+				temp_table.invulnerable = wesnoth.get_dialog_value "invulnerable_checkbutton"
 				temp_table.uncovered = wesnoth.get_dialog_value "uncovered_checkbutton"
 				temp_table.guardian = wesnoth.get_dialog_value "guardian_checkbutton"
 				temp_table.unhealable = wesnoth.get_dialog_value "unhealable_checkbutton"
@@ -1017,6 +1021,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.status.poisoned = temp_table.poisoned
 			dialog_unit.status.slowed = temp_table.slowed
 			dialog_unit.status.petrified = temp_table.petrified
+			dialog_unit.status.invulnerable = temp_table.invulnerable
 			dialog_unit.status.uncovered = temp_table.uncovered
 			dialog_unit.status.guardian = temp_table.guardian
 			dialog_unit.status.unhealable = temp_table.unhealable
