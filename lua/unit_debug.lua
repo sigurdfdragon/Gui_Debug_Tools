@@ -1176,7 +1176,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			end
 			wml_actions.redraw ( { } ) -- to be sure of showing changes
 			wml_actions.print ( { text = _ "unit debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
-				size = 24, duration = 200, red = 255, green = 255, blue = 255 } )
+				size = 24, duration = 200, color = "255,255,255" } )
 		elseif return_value == 2 or return_value == -2 then -- if user pressed Cancel or Esc, nothing happens
 		else wesnoth.message( tostring( _ "Unit Debug" ), tostring( _ "Error, return value :" ) .. return_value ) end -- any unhandled case is handled here
 	-- if user clicks on empty hex, do nothing
