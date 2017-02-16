@@ -14,6 +14,7 @@ end
 
 wml_actions.set_menu_item { id = "_1_gamestate_inspector" ,
 	description = _ "Gamestate Inspector" ,
+	image = "magical.png",
 	{ "show_if" , {
 		{ "debug_status" }
 	}},
@@ -24,6 +25,7 @@ wml_actions.set_menu_item { id = "_1_gamestate_inspector" ,
 
 wml_actions.set_menu_item { id = "_2_lua_console" ,
 	description = _ "Lua Console" ,
+	image = "magical.png",
 	{ "show_if" , {
 		{ "debug_status" }
 	}},
@@ -34,6 +36,7 @@ wml_actions.set_menu_item { id = "_2_lua_console" ,
 
 wml_actions.set_menu_item { id = "_3_unit_debug" ,
 	description = _ "Unit Debug" ,
+	image = "magical.png",
 	{ "show_if" , {
 		{ "debug_status" },
 		{ "have_unit", { x = "$x1", y = "$y1" } }
@@ -45,6 +48,7 @@ wml_actions.set_menu_item { id = "_3_unit_debug" ,
 
 wml_actions.set_menu_item { id = "_4_side_debug" ,
 	description = _ "Side Debug" ,
+	image = "magical.png",
 	{ "show_if" , {
 		{ "debug_status" },
 		{ "have_unit", { x = "$x1", y = "$y1" } }
