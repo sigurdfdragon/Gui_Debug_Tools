@@ -699,6 +699,28 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						}
 					},
+					-- overlays
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
+								label = _ "Overlays"
+							}
+						},
+						T.column {
+							vertical_grow = true,
+							horizontal_grow = true,
+							border = "all",
+							border_size = 5,
+							T.text_box {
+								id = "textbox_overlays",
+								history = "other_overlays",
+								tooltip = _ "The unit's image will be altered by overlays listed here."
+							}
+						}
+					},
 					-- gender
 					T.row {
 						T.column {
@@ -888,6 +910,7 @@ function wml_actions.gui_unit_debug ( cfg )
 					end
 			end
 			wesnoth.set_dialog_value ( table.concat( unit_traits_ids, "," ), "textbox_traits" )
+			wesnoth.set_dialog_value ( dialog_unit.__cfg.overlays, "textbox_overlays" )
 			-- set checkbuttons
 			wesnoth.set_dialog_value ( dialog_unit.canrecruit, "canrecruit_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.unrenamable, "unrenamable_checkbutton" )
@@ -946,6 +969,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.attack = wesnoth.get_dialog_value "textbox_attack"
 				temp_table.abilities = wesnoth.get_dialog_value "textbox_abilities"
 				temp_table.traits = wesnoth.get_dialog_value "textbox_traits"
+				temp_table.overlays = wesnoth.get_dialog_value "textbox_overlays"
 				-- initial traits
 				local unit_modifications = helper.get_child ( dialog_unit.__cfg, "modifications" )
 				local unit_traits_ids = { }
@@ -1124,7 +1148,7 @@ function wml_actions.gui_unit_debug ( cfg )
 							end
 						end
 					end
-					if u.upkeep == "loyal" then -- in case loyal was present, overlay handled below
+					if u.upkeep == "loyal" then -- in case loyal was present
 						u.upkeep = "full" 
 					end
 					wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
@@ -1140,12 +1164,8 @@ function wml_actions.gui_unit_debug ( cfg )
 					wesnoth.transform_unit ( dialog_unit, dialog_unit.type ) -- refresh the unit with the new changes
 					dialog_unit.hitpoints = dialog_unit.max_hitpoints -- full heal, as that's the most common desired behavior
 					dialog_unit.moves = dialog_unit.max_moves -- restore moves, as adding quick or heroic are likely to be common choices
-					if dialog_unit.__cfg.upkeep == "loyal" then
-						wml_actions.unit_overlay ( { id = dialog_unit.id, image = "misc/loyal-icon.png" } )
-					else
-						wml_actions.remove_unit_overlay ( { id = dialog_unit.id, image = "misc/loyal-icon.png" } )
-					end
 				end -- /trait change
+				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, overlays = temp_table.overlays }
 				-- advance the unit if enough xp
 				dialog_unit.experience = temp_table.experience -- changing xp needs to be with xp check, as any modify_unit between can cause level-up
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } } } -- simple way to trigger level up if enough xp
