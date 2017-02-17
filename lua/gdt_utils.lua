@@ -63,6 +63,10 @@ function utils.trait_list()
 		{ "effect", { apply_to="hitpoints", increase_total=5 } },
 		{ "effect", { apply_to="hitpoints", times="per level", increase_total=1 } },
 		{ "effect", { apply_to="movement", increase=1 } } }
+		-- add expert trait - from The Great Quest
+	local trait_expert = { id="expert", male_name=_"expert", female_name=_"female^expert",
+		{ "effect", { apply_to="attack", increase_attacks=1 } },
+		{ "effect", { apply_to="attack", increase_damage=-1 } } }
 	-- add powerful trait
 	local trait_powerful = { id="powerful", male_name=_"powerful", female_name=_"female^powerful",
 		{ "effect", { apply_to="attack", increase_damage="20%" } } }
@@ -71,6 +75,7 @@ function utils.trait_list()
 	table.insert(trait_array, trait_feral)
 	table.insert(trait_array, trait_loyal)
 	table.insert(trait_array, trait_heroic)
+	table.insert(trait_array, trait_expert)
 	table.insert(trait_array, trait_powerful)
 	-- traverse through all the races and add traits by id that are not already present
 	for k,v in pairs(wesnoth.races) do
