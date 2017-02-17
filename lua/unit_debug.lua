@@ -1170,16 +1170,17 @@ function wml_actions.gui_unit_debug ( cfg )
 					if u.upkeep == "loyal" then -- in case loyal was present
 						u.upkeep = "full" 
 					end
-					wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
 					-- add new traits
 					for i = 1, #temp_new_traits do
 						for j = 1, #trait_table do 
 							if temp_new_traits[i] == trait_table[j].id then
-								wesnoth.add_modification ( dialog_unit, "trait", trait_table[j] )
+								local m = helper.get_child(u, "modifications")
+								table.insert ( m, { [1] = "trait", [2] = trait_table[j] } )
 								break
 							end
 						end
 					end
+					wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
 					wesnoth.transform_unit ( dialog_unit, dialog_unit.type ) -- refresh the unit with the new changes
 					dialog_unit.hitpoints = dialog_unit.max_hitpoints -- full heal, as that's the most common desired behavior
 					dialog_unit.moves = dialog_unit.max_moves -- restore moves, as adding quick or heroic are likely to be common choices
