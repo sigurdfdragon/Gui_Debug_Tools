@@ -739,6 +739,28 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						}
 					},
+					-- variables
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
+								label = _ "Variables"
+							}
+						},
+						T.column {
+							vertical_grow = true,
+							horizontal_grow = true,
+							border = "all",
+							border_size = 5,
+							T.text_box {
+								id = "textbox_variables",
+								history = "other_variables",
+								tooltip = _ "A unit top level variable can be set/changed using the form 'var=value'"
+							}
+						}
+					},
 					-- gender
 					T.row {
 						T.column {
@@ -930,6 +952,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			end
 			wesnoth.set_dialog_value ( table.concat( unit_traits_ids, "," ), "textbox_traits" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.overlays, "textbox_overlays" )
+			wesnoth.set_dialog_value ( "", "textbox_variables" )
 			-- set checkbuttons
 			wesnoth.set_dialog_value ( dialog_unit.canrecruit, "canrecruit_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.unrenamable, "unrenamable_checkbutton" )
@@ -989,6 +1012,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.abilities = wesnoth.get_dialog_value "textbox_abilities"
 				temp_table.traits = wesnoth.get_dialog_value "textbox_traits"
 				temp_table.overlays = wesnoth.get_dialog_value "textbox_overlays"
+				temp_table.variables = wesnoth.get_dialog_value "textbox_variables"
 				-- initial traits
 				local unit_modifications = helper.get_child ( dialog_unit.__cfg, "modifications" )
 				local unit_traits_ids = { }
@@ -1186,6 +1210,17 @@ function wml_actions.gui_unit_debug ( cfg )
 					dialog_unit.moves = dialog_unit.max_moves -- restore moves, as adding quick or heroic are likely to be common choices
 				end -- /trait change
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, overlays = temp_table.overlays }
+				-- variables
+				if temp_table.variables ~= "" then
+					local vstr = {}
+					for value in gdt_utils.split( temp_table.variables, "=" ) do
+						table.insert ( vstr, gdt_utils.chop( value ) )
+					end
+					if vstr[2] == nil then
+						vstr[2] = ""
+					end
+					dialog_unit.variables[vstr[1]] = vstr[2]
+				end
 				-- advance the unit if enough xp
 				dialog_unit.experience = temp_table.experience -- changing xp needs to be with xp check, as any modify_unit between can cause level-up
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } } } -- simple way to trigger level up if enough xp
