@@ -66,6 +66,24 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Underlying ID"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
+									id = "underlying_id_label"
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Type"
 								}
 							},
@@ -884,6 +902,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			-- set read_only labels
 			wesnoth.set_dialog_value ( string.format("%s~RC(magenta>%s)~XBRZ(2)", dialog_unit.__cfg.image or "", wesnoth.sides[dialog_unit.side].color ), "unit_image" )
 			wesnoth.set_dialog_callback ( unit_profile, "unit_profile_button" )
+			wesnoth.set_dialog_value ( dialog_unit.__cfg.underlying_id, "underlying_id_label" )
 			-- set sliders
 			wesnoth.set_dialog_value ( dialog_unit.side, "unit_side_slider" )
 			wesnoth.set_dialog_value ( dialog_unit.hitpoints, "unit_hitpoints_slider" )
