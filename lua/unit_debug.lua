@@ -144,6 +144,26 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Goto"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.text_box { --unit.x
+									id = "textbox_unit_goto",
+									history = "other_gotos",
+									tooltip = _ "The unit will move toward the coordinates specified. 0,0 & -999,-999 indicate no destination."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Can recruit"
 								}
 							},
@@ -933,6 +953,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_unit.attacks_left, "unit_attacks_slider" )
 			-- set textboxes
 			wesnoth.set_dialog_value ( dialog_unit.x .. "," .. dialog_unit.y, "textbox_unit_location" )
+			wesnoth.set_dialog_value ( dialog_unit.__cfg.goto_x .. "," .. dialog_unit.__cfg.goto_y, "textbox_unit_goto" )
 			wesnoth.set_dialog_value ( dialog_unit.id, "textbox_unit_id" )
 			wesnoth.set_dialog_value ( dialog_unit.type, "textbox_unit_type" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.variation, "textbox_unit_variation" )
@@ -1001,6 +1022,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.attacks_left = wesnoth.get_dialog_value ( "unit_attacks_slider" )
 				-- text boxes
 				temp_table.location = wesnoth.get_dialog_value "textbox_unit_location"
+				temp_table.goto_xy = wesnoth.get_dialog_value "textbox_unit_goto"
 				temp_table.id = wesnoth.get_dialog_value "textbox_unit_id"
 				temp_table.type = wesnoth.get_dialog_value "textbox_unit_type"
 				temp_table.variation = wesnoth.get_dialog_value "textbox_unit_variation"
@@ -1071,6 +1093,11 @@ function wml_actions.gui_unit_debug ( cfg )
 				table.insert ( location, gdt_utils.chop( value ) )
 			end
 			wesnoth.put_unit ( location[1], location[2], dialog_unit )
+			local goto_xy = { }
+			for value in gdt_utils.split ( temp_table.goto_xy ) do
+				table.insert ( goto_xy, gdt_utils.chop( value ) )
+			end
+			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
 			-- we do this empty table/gmatch/insert cycle, because get_dialog_value returns a string from a text_box, and the value required is a "table with unnamed indices holding strings"
 			-- moved here because synchronize_choice needs a WML object, and a table with unnamed indices isn't
 			local temp_advances_to = { }
