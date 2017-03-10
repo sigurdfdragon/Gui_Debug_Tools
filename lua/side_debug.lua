@@ -51,6 +51,24 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Side"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
+									id = "side_label"
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Current player"
 								}
 							},
@@ -597,6 +615,7 @@ function wml_actions.gui_side_debug ( cfg )
 		local function preshow()
 			-- set widget values
 			-- labels
+			wesnoth.set_dialog_value ( dialog_side.side, "side_label" )
 			wesnoth.set_dialog_value ( dialog_side.__cfg.current_player, "current_player_label" )
 			wesnoth.set_dialog_value ( tostring(dialog_side.name), "name_label" ) -- name is nil in 1.13, so tostring is needed
 			wesnoth.set_dialog_value ( dialog_side.total_income, "total_income_label" )
