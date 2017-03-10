@@ -231,6 +231,25 @@ function wml_actions.gui_side_debug ( cfg )
 									tooltip = _ "One random unit of every type on the recruit list and any advancements derived from those units will be added to the recall list."
 								}
 							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
+									label = _ "Heal units"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									id = "heal_units_checkbutton",
+									tooltip = _ "All the side's units on the map will be healed."
+								}
+							}
 						}
 					}
 
@@ -606,6 +625,7 @@ function wml_actions.gui_side_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_side.hidden, "hidden_checkbutton" )
 			wesnoth.set_dialog_value ( false, "clear_recall_checkbutton" )
 			wesnoth.set_dialog_value ( false, "seed_recall_checkbutton" )
+			wesnoth.set_dialog_value ( false, "heal_units_checkbutton" )
 
 			-- radiobutton
 			local temp_controller
@@ -650,6 +670,7 @@ function wml_actions.gui_side_debug ( cfg )
 				temp_table.hidden = wesnoth.get_dialog_value ( "hidden_checkbutton" )
 				temp_table.clear_recall = wesnoth.get_dialog_value ( "clear_recall_checkbutton" )
 				temp_table.seed_recall = wesnoth.get_dialog_value ( "seed_recall_checkbutton" )
+				temp_table.heal_units = wesnoth.get_dialog_value ( "heal_units_checkbutton" )
 				-- radiobutton
 				local controllers = { "ai", "human", "idle", "network", "network_ai", "null" }
 				temp_table.controller = controllers[ wesnoth.get_dialog_value ( "controller_listbox" ) ]
@@ -720,6 +741,7 @@ function wml_actions.gui_side_debug ( cfg )
 					wesnoth.put_recall_unit ( { type = temp_recruit[i], side = dialog_side.side } )
 				end
 			end
+			wml_actions.heal_unit { { "filter", { side = dialog_side.side } } }
 			wml_actions.redraw ( { side = dialog_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud
 			wml_actions.print ( { text = _ "side debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )
