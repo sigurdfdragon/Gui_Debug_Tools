@@ -782,7 +782,10 @@ function wml_actions.gui_side_debug ( cfg )
 				end
 			end
 			wml_actions.heal_unit { { "filter", { side = dialog_side.side } } }
-			wml_actions.kill { side = dialog_side.side, animate = "yes", fire_event = "yes" }
+			-- kill units
+			if temp_table.kill_units then
+				wml_actions.kill { side = dialog_side.side, animate = "yes", fire_event = "yes" }
+			end
 			wml_actions.redraw ( { side = dialog_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud
 			wml_actions.print ( { text = _ "side debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )
