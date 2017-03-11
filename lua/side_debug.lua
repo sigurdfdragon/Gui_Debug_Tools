@@ -781,7 +781,10 @@ function wml_actions.gui_side_debug ( cfg )
 					wesnoth.put_recall_unit ( { type = temp_recruit[i], side = dialog_side.side } )
 				end
 			end
-			wml_actions.heal_unit { { "filter", { side = dialog_side.side } } }
+			-- heal units
+			if temp_table.heal_units then
+				wml_actions.heal_unit { { "filter", { side = dialog_side.side } } }
+			end
 			-- kill units
 			if temp_table.kill_units then
 				wml_actions.kill { side = dialog_side.side, animate = "yes", fire_event = "yes" }
