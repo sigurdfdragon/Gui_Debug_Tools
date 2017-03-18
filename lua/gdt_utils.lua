@@ -44,6 +44,12 @@ function utils.convert_color( color )
 	end
 end
 
+function utils.clear_recall ( side, bool )
+	if bool then
+		wml_actions.kill( { side = side.side, x = "recall", y = "recall" } )
+	end
+end
+
 function utils.trait_list()
 	-- returns a list of all traits known to the engine
 	-- start with making a table and adding the global traits

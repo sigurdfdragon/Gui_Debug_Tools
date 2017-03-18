@@ -789,10 +789,7 @@ function wml_actions.gui_side_debug ( cfg )
 			end
 			dialog_side.recruit = temp_recruit
 			dialog_side.controller = temp_table.controller
-			--clear recall list
-			if temp_table.clear_recall then
-				wml_actions.kill( { side = dialog_side.side, x = "recall", y = "recall" } )
-			end
+			gdt_utils.clear_recall ( dialog_side, temp_table.clear_recall )
 			--seed recall list
 			if temp_table.seed_recall then
 				if temp_recruit[1] ~= nil then
