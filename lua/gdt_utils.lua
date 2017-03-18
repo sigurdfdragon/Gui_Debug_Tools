@@ -5,6 +5,9 @@ local utils = {}
 
 local helper = wesnoth.require "lua/helper.lua"
 
+-- to make code shorter
+local wml_actions = wesnoth.wml_actions
+
 --! Function removes the first child with a given name.
 --! melinath
 function utils.remove_child(cfg, name)
