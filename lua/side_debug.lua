@@ -689,13 +689,7 @@ function wml_actions.gui_side_debug ( cfg )
 			-- text boxes
 			wesnoth.set_dialog_value ( dialog_side.gold, "gold_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.defeat_condition, "defeat_condition_textbox" )
-			local color_names = { "red", "blue", "green", "purple", "black", "brown", "orange", "white", "teal" }
-			local color_number = tonumber( dialog_side.color )
-			if color_number then
-				wesnoth.set_dialog_value ( color_names[color_number], "color_textbox" )
-			else
-				wesnoth.set_dialog_value ( dialog_side.color, "color_textbox" )
-			end
+			wesnoth.set_dialog_value ( gdt_utils.convert_color( dialog_side.color ), "color_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.flag, "flag_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.flag_icon, "flag_icon_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.user_team_name, "user_team_name_textbox" )

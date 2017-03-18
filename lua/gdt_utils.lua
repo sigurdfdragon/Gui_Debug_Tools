@@ -30,6 +30,17 @@ function utils.chop( str )
 	return temp
 end
 
+function utils.convert_color( color )
+	-- if color is a number, convert it to the word form
+	local color_names = { "red", "blue", "green", "purple", "black", "brown", "orange", "white", "teal" }
+	local color_number = tonumber( color )
+	if color_number then
+		return color_names[color_number]
+	else
+		return color
+	end
+end
+
 function utils.trait_list()
 	-- returns a list of all traits known to the engine
 	-- start with making a table and adding the global traits
