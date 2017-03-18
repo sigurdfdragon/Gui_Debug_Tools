@@ -1253,9 +1253,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } } } -- simple way to trigger level up if enough xp
 				gdt_utils.gender ( dialog_unit, temp_table.gender )
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, name = temp_table.name }
-				if temp_table.generate_name then
-					wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, name = "", generate_name = true }
-				end
+				gdt_utils.generate_name ( dialog_unit, temp_table.generate_name )
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, unrenamable = temp_table.unrenamable }
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, canrecruit = temp_table.canrecruit }
 				-- -- copy unit & put to recall

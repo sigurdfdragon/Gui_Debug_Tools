@@ -181,4 +181,10 @@ function utils.gender ( unit, gender )
 		end
 end
 
+function utils.generate_name ( unit, bool )
+	if bool then
+		wml_actions.modify_unit { { "filter", { id = unit.id } }, name = "", generate_name = true }
+	end
+end
+
 return utils
