@@ -501,6 +501,50 @@ function wml_actions.gui_side_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
+								label = _ "Flag"
+							}
+						},
+						T.column {
+							vertical_grow = true,
+							horizontal_grow = true,
+							horizontal_alignment = "left",
+							border = "all",
+							border_size = 5,
+							T.text_box {
+								id = "flag_textbox",
+								history = "other_flags",
+								tooltip = _ "The flag that flies over villages that the side controls."
+							}
+						}
+					},
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
+								label = _ "Flag icon"
+							}
+						},
+						T.column {
+							vertical_grow = true,
+							horizontal_grow = true,
+							horizontal_alignment = "left",
+							border = "all",
+							border_size = 5,
+							T.text_box {
+								id = "flag_icon_textbox",
+								history = "other_flag_icons",
+								tooltip = _ "The flag icon that is displayed next to the turn counter for the side."
+							}
+						}
+					},
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
 								label = _ "User team name"
 							}
 						},
@@ -652,6 +696,8 @@ function wml_actions.gui_side_debug ( cfg )
 			else
 				wesnoth.set_dialog_value ( dialog_side.color, "color_textbox" )
 			end
+			wesnoth.set_dialog_value ( dialog_side.flag, "flag_textbox" )
+			wesnoth.set_dialog_value ( dialog_side.flag_icon, "flag_icon_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.user_team_name, "user_team_name_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.team_name, "team_name_textbox" )
 			wesnoth.set_dialog_value ( table.concat( dialog_side.recruit, "," ), "recruit_textbox" )
@@ -694,10 +740,12 @@ function wml_actions.gui_side_debug ( cfg )
 				temp_table.village_gold = wesnoth.get_dialog_value ( "side_village_gold_slider" )
 				temp_table.village_support = wesnoth.get_dialog_value ( "side_village_support_slider" )
 				temp_table.base_income = wesnoth.get_dialog_value ( "side_base_income_slider" )
-				temp_table.color = wesnoth.get_dialog_value ( "color_textbox" )
 				-- text boxes
 				temp_table.gold = wesnoth.get_dialog_value ( "gold_textbox" )
 				temp_table.defeat_condition = wesnoth.get_dialog_value ( "defeat_condition_textbox" )
+				temp_table.color = wesnoth.get_dialog_value ( "color_textbox" )
+				temp_table.flag = wesnoth.get_dialog_value ( "flag_textbox" )
+				temp_table.flag_icon = wesnoth.get_dialog_value ( "flag_icon_textbox" )
 				temp_table.user_team_name = wesnoth.get_dialog_value ( "user_team_name_textbox" )
 				temp_table.team_name = wesnoth.get_dialog_value ( "team_name_textbox" )
 				temp_table.recruit = wesnoth.get_dialog_value "recruit_textbox"
@@ -735,6 +783,8 @@ function wml_actions.gui_side_debug ( cfg )
 			dialog_side.village_support = temp_table.village_support
 			dialog_side.base_income = temp_table.base_income
 			dialog_side.defeat_condition = temp_table.defeat_condition
+			wesnoth.set_side_id(dialog_side.side, temp_table.flag, temp_table.color)
+			dialog_side.flag_icon = temp_table.flag_icon
 			dialog_side.user_team_name = temp_table.user_team_name
 			dialog_side.team_name = temp_table.team_name
 			-- we do this empty table/gmatch/insert cycle, because get_dialog_value returns a string from a text_box, and the value required is a "table with unnamed indices holding strings"
@@ -745,7 +795,6 @@ function wml_actions.gui_side_debug ( cfg )
 			end
 			dialog_side.recruit = temp_recruit
 			dialog_side.controller = temp_table.controller
-			wml_actions.modify_side( { side = dialog_side.side, color = temp_table.color } ) -- modify_side needed, otherwise the flag animation color is missed.
 			--clear recall list
 			if temp_table.clear_recall then
 				wml_actions.kill( { side = dialog_side.side, x = "recall", y = "recall" } )
