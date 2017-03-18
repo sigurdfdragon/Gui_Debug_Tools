@@ -44,6 +44,16 @@ function utils.convert_color( color )
 	end
 end
 
+function utils.recruit ( recruit_str )
+	-- we do this empty table/gmatch/insert cycle, because get_dialog_value returns a string from a text_box, and the value required is a "table with unnamed indices holding strings"
+	-- moved here because synchronize_choice needs a WML object, and a table with unnamed indices isn't
+	local recruit = {}
+	for value in utils.split( recruit_str ) do
+		table.insert( recruit, utils.chop( value ) )
+	end
+	return recruit
+end
+
 function utils.seed_recall ( side, bool )
 	if bool then
 		if side.recruit[1] ~= nil then

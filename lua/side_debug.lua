@@ -781,13 +781,7 @@ function wml_actions.gui_side_debug ( cfg )
 			dialog_side.flag_icon = temp_table.flag_icon
 			dialog_side.user_team_name = temp_table.user_team_name
 			dialog_side.team_name = temp_table.team_name
-			-- we do this empty table/gmatch/insert cycle, because get_dialog_value returns a string from a text_box, and the value required is a "table with unnamed indices holding strings"
-			-- moved here because synchronize_choice needs a WML object, and a table with unnamed indices isn't
-			local temp_recruit = {}
-			for value in gdt_utils.split( temp_table.recruit ) do
-				table.insert( temp_recruit, gdt_utils.chop( value ) )
-			end
-			dialog_side.recruit = temp_recruit
+			dialog_side.recruit = gdt_utils.recruit ( temp_table.recruit )
 			dialog_side.controller = temp_table.controller
 			gdt_utils.clear_recall ( dialog_side, temp_table.clear_recall )
 			gdt_utils.seed_recall ( dialog_side, temp_table.seed_recall )
