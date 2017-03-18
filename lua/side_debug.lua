@@ -726,9 +726,9 @@ function wml_actions.gui_side_debug ( cfg )
 
 		if return_value == 1 or return_value == -1 then -- if used pressed OK or Enter, modify side
 			dialog_side.scroll_to_leader = temp_table.scroll_to_leader
-			wml_actions.modify_side( { side = dialog_side.side, suppress_end_turn_confirmation = temp_table.suppress_end_turn_confirmation } )
-			wml_actions.modify_side( { side = dialog_side.side, fog = temp_table.fog } ) -- modify_side needed, can't change directly
-			wml_actions.modify_side( { side = dialog_side.side, shroud = temp_table.shroud } ) -- modify_side needed, can't change directly
+			dialog_side.suppress_end_turn_confirmation = temp_table.suppress_end_turn_confirmation
+			dialog_side.fog = temp_table.fog
+			dialog_side.shroud = temp_table.shroud
 			dialog_side.hidden = temp_table.hidden
 			dialog_side.gold = temp_table.gold
 			dialog_side.village_gold = temp_table.village_gold
