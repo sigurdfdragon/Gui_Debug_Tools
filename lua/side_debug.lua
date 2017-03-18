@@ -790,37 +790,7 @@ function wml_actions.gui_side_debug ( cfg )
 			dialog_side.recruit = temp_recruit
 			dialog_side.controller = temp_table.controller
 			gdt_utils.clear_recall ( dialog_side, temp_table.clear_recall )
-			--seed recall list
-			if temp_table.seed_recall then
-				if temp_recruit[1] ~= nil then
-					local u = 1
-					while temp_recruit[u] do
-						if wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to and wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to ~= "null" then
-							local advances = {}
-							for value in gdt_utils.split( wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to ) do
-								table.insert ( advances, gdt_utils.chop( value ) )
-							end
-							local a = 1
-							while advances[a] do
-								local is_present = false
-								for i = 1, #temp_recruit do
-									if advances[a] == temp_recruit[i] then
-										is_present = true; break
-									end
-								end
-								if is_present == false then
-									table.insert ( temp_recruit, advances[a] )
-								end
-								a = a + 1
-							end
-						end
-						u = u + 1
-					end
-				end
-				for i = 1, #temp_recruit do
-					wesnoth.put_recall_unit ( { type = temp_recruit[i], side = dialog_side.side } )
-				end
-			end
+			gdt_utils.seed_recall ( dialog_side, temp_table.seed_recall )
 			-- heal units
 			if temp_table.heal_units then
 				wml_actions.heal_unit { { "filter", { side = dialog_side.side } } }
