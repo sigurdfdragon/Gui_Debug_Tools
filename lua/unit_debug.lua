@@ -1130,13 +1130,8 @@ function wml_actions.gui_unit_debug ( cfg )
 			if dialog_unit.hitpoints <= 0 then -- check if killing the unit before doing any complex stuff
 				wml_actions.kill ( { id = dialog_unit.id, animate = true, fire_event = true } )
 			else
-				-- type / variation change
-				if temp_table.type ~= dialog_unit.type or temp_table.variation ~= dialog_unit.__cfg.variation then
-					wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, variation = temp_table.variation }
-					wesnoth.transform_unit ( dialog_unit, temp_table.type )
-					dialog_unit.hitpoints = dialog_unit.max_hitpoints -- full heal, as that's the most common desired behavior
-					dialog_unit.moves = dialog_unit.max_moves
-				end
+				gdt_utils.unit_type ( dialog_unit, temp_table.type )
+				gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
 				-- attacks - adds or removes new attacks via objects, does not affect attacks that come with the unit type
 				if temp_table.attack ~= "" then
 					if temp_table.attack == " " then -- user just wants to clear added object(s)

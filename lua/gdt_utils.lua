@@ -109,6 +109,27 @@ function utils.kill_units ( side, bool )
 	end
 end
 
+function utils.unit_type ( unit, utype )
+	-- consider just converting this into wesnoth.transform_unit ( unit, type )\
+	-- and removing the if guard
+	if utype ~= unit.type then
+		wesnoth.transform_unit ( unit, utype )
+		unit.hitpoints = unit.max_hitpoints -- full heal, as that's the most common desired behavior
+		unit.moves = unit.max_moves
+	end
+end
+
+function utils.unit_variation ( unit, variation )
+	-- can this simply be a modify unit without all the rest of the code if this occurs
+	-- before the unit_type transformation?
+	if variation ~= unit.__cfg.variation then
+		wml_actions.modify_unit { { "filter", { id = unit.id } }, variation = variation }
+		wesnoth.transform_unit ( unit, unit.type ) -- so the variation change will take
+		unit.hitpoints = unit.max_hitpoints -- full heal, as that's the most common desired behavior
+		unit.moves = unit.max_moves
+	end
+end
+
 function utils.trait_list()
 	-- returns a list of all traits known to the engine
 	-- start with making a table and adding the global traits
