@@ -1133,37 +1133,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				gdt_utils.unit_type ( dialog_unit, temp_table.type )
 				gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
 				gdt_utils.unit_attack ( dialog_unit, temp_table.attack )
-				-- abilities change - adds or removes new abilities via objects, does not affect abilities that come with the unit type
-				if temp_table.abilities ~= "" then
-					-- remove existing ability objects
-					local u = dialog_unit.__cfg -- traits need to be removed by editing a __cfg table
-					for tag = #u, 1, -1 do
-						if u[tag][1] == "modifications" then
-							for subtag = #u[tag][2], 1, -1 do
-								if u[tag][2][subtag][1] == "object" and u[tag][2][subtag][2].gdt_id ~= nil then
-									table.remove( u[tag][2], subtag )
-								end
-							end
-						end
-					end
-					wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
-					wesnoth.transform_unit ( dialog_unit, dialog_unit.type ) -- the above gets the [object], this gets the [abilities] imparted by the object
-					if temp_table.abilities ~= " " then -- a shortcut if user just wants to clear added objects
-						-- chop user entered value
-						local ability_sources = { }
-						for value in gdt_utils.split( temp_table.abilities ) do
-							table.insert ( ability_sources, gdt_utils.chop( value ) )
-						end
-						-- add new abilities, copy from unit_types that have desired abilities
-						for i = 1, #ability_sources do
-							local new_ability = helper.get_child(wesnoth.unit_types[ability_sources[i]].__cfg, "abilities")
-							if new_ability then
-								local new_object = { gdt_id = i, delayed_variable_substitution = true, { "effect", { apply_to = "new_ability", { "abilities", new_ability } } } }
-								wesnoth.add_modification ( dialog_unit, "object", new_object )
-							end
-						end
-					end
-				end
+				gdt_utils.unit_abilities ( dialog_unit, temp_table.abilities )
 				-- trait change - must be after transform to handle undead->human changes according to most likely user expectations.
 				if temp_table.traits ~= temp_table.traits_initial then
 					local trait_table = gdt_utils.trait_list()
