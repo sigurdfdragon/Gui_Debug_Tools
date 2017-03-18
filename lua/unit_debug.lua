@@ -689,7 +689,7 @@ function wml_actions.gui_unit_debug ( cfg )
 							T.text_box {
 								id = "textbox_attack",
 								history = "other_attack",
-								tooltip = _ "The unit will receive the attack indicated. Specify a unit type and attack index to copy. Single space clears added attacks."
+								tooltip = _ "The unit will receive the attack indicated. Use form 'Unit Type,Attack Index'. Single space clears added attacks."
 							}
 						}
 					},
