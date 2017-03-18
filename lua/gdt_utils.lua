@@ -173,4 +173,12 @@ function utils.trait_list()
 	return trait_array
 end
 
+function utils.gender ( unit, gender )
+		if gender ~= dialog_unit.__cfg.gender then -- if there are custom portraits, they are lost.
+			wml_actions.modify_unit { { "filter", { id = unit.id } }, profile = "", small_profile = "", gender = gender }
+			wesnoth.transform_unit ( unit, unit.type ) -- transform refills the profile keys
+			unit.hitpoints = unit.max_hitpoints -- to fix hp lowering bug that can occur when gender change is done on a run after a trait change
+		end
+end
+
 return utils

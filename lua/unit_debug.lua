@@ -1251,12 +1251,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				-- advance the unit if enough xp
 				dialog_unit.experience = temp_table.experience -- changing xp needs to be with xp check, as any modify_unit between can cause level-up
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } } } -- simple way to trigger level up if enough xp
-				-- gender change
-				if temp_table.gender ~= dialog_unit.__cfg.gender then -- if there are custom portraits, they are lost.
-					wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, profile = "", small_profile = "", gender = temp_table.gender }
-					wesnoth.transform_unit ( dialog_unit, dialog_unit.type ) -- transform refills the profile keys
-					dialog_unit.hitpoints = dialog_unit.max_hitpoints -- to fix hp lowering bug that can occur when gender change is done on a run after a trait change
-				end
+				gdt_utils.gender ( dialog_unit, temp_table.gender )
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, name = temp_table.name }
 				if temp_table.generate_name then
 					wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, name = "", generate_name = true }
