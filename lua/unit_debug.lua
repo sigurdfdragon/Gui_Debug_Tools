@@ -1237,17 +1237,7 @@ function wml_actions.gui_unit_debug ( cfg )
 					dialog_unit.moves = dialog_unit.max_moves -- restore moves, as adding quick or heroic are likely to be common choices
 				end -- /trait change
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, overlays = temp_table.overlays }
-				-- variables
-				if temp_table.variables ~= "" then
-					local vstr = {}
-					for value in gdt_utils.split( temp_table.variables, "=" ) do
-						table.insert ( vstr, gdt_utils.chop( value ) )
-					end
-					if vstr[2] == nil then
-						vstr[2] = ""
-					end
-					dialog_unit.variables[vstr[1]] = vstr[2]
-				end
+				gdt_utils.unit_variables ( dialog_unit, temp_table.variables )
 				-- advance the unit if enough xp
 				dialog_unit.experience = temp_table.experience -- changing xp needs to be with xp check, as any modify_unit between can cause level-up
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } } } -- simple way to trigger level up if enough xp

@@ -173,6 +173,19 @@ function utils.trait_list()
 	return trait_array
 end
 
+function utils.unit_variables ( unit, variables )
+	if variables ~= "" then
+		local vstr = {}
+		for value in utils.split( variables, "=" ) do
+			table.insert ( vstr, utils.chop( value ) )
+		end
+		if vstr[2] == nil then
+			vstr[2] = ""
+		end
+		unit.variables[vstr[1]] = vstr[2]
+	end
+end
+
 function utils.gender ( unit, gender )
 		if gender ~= unit.__cfg.gender then -- if there are custom portraits, they are lost.
 			wml_actions.modify_unit { { "filter", { id = unit.id } }, profile = "", small_profile = "", gender = gender }
