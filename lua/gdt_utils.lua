@@ -103,6 +103,12 @@ function utils.heal_units ( side, bool )
 	end
 end
 
+function utils.kill_units ( side, bool )
+	if bool then
+		wml_actions.kill { side = side.side, animate = true, fire_event = true }
+	end
+end
+
 function utils.trait_list()
 	-- returns a list of all traits known to the engine
 	-- start with making a table and adding the global traits
