@@ -97,6 +97,12 @@ function utils.clear_recall ( side, bool )
 	end
 end
 
+function utils.heal_units ( side, bool )
+	if bool then
+		wml_actions.heal_unit { { "filter", { side = side.side } } }
+	end
+end
+
 function utils.trait_list()
 	-- returns a list of all traits known to the engine
 	-- start with making a table and adding the global traits

@@ -785,10 +785,7 @@ function wml_actions.gui_side_debug ( cfg )
 			dialog_side.controller = temp_table.controller
 			gdt_utils.clear_recall ( dialog_side, temp_table.clear_recall )
 			gdt_utils.seed_recall ( dialog_side, temp_table.seed_recall )
-			-- heal units
-			if temp_table.heal_units then
-				wml_actions.heal_unit { { "filter", { side = dialog_side.side } } }
-			end
+			gdt_utils.heal_units ( dialog_side, temp_table.heal_units )
 			-- kill units
 			if temp_table.kill_units then
 				wml_actions.kill { side = dialog_side.side, animate = true, fire_event = true }
