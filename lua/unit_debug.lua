@@ -1088,11 +1088,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.attacks_left = temp_table.attacks_left
 			-- text boxes
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, id = temp_table.id }
-			local location = { }
-			for value in gdt_utils.split ( temp_table.location ) do
-				table.insert ( location, gdt_utils.chop( value ) )
-			end
-			wesnoth.put_unit ( location[1], location[2], dialog_unit )
+			gdt_utils.location ( dialog_unit, temp_table.location )
 			gdt_utils.goto_xy ( dialog_unit, temp_table.goto_xy )
 			dialog_unit.advances_to = gdt_utils.advances_to ( temp_table.advances_to )
 			dialog_unit.extra_recruit = gdt_utils.extra_recruit ( temp_table.extra_recruit )

@@ -109,6 +109,14 @@ function utils.kill_units ( side, bool )
 	end
 end
 
+function utils.location ( unit, str )
+	local location = { }
+	for value in utils.split ( str ) do
+		table.insert ( location, utils.chop( value ) )
+	end
+	wesnoth.put_unit ( location[1], location[2], unit )
+end
+
 function utils.goto_xy ( unit, str )
 		local goto_xy = { }
 		for value in utils.split ( str ) do
