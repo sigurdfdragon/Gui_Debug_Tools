@@ -109,6 +109,17 @@ function utils.kill_units ( side, bool )
 	end
 end
 
+function utils.advances_to ( advances_to_str )
+	-- we do this empty table/gmatch/insert cycle, because get_dialog_value returns a string from a text_box,
+	-- and the value required is a "table with unnamed indices holding strings"
+	-- moved here because synchronize_choice needs a WML object, and a table with unnamed indices isn't
+	local advances_to = {}
+	for value in utils.split( advances_to_str ) do
+		table.insert( advances_to, utils.chop( value ) )
+	end
+	return advances_to
+end
+
 function utils.extra_recruit ( recruit_str )
 	local recruit = {}
 	for value in utils.split( recruit_str ) do

@@ -1098,13 +1098,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				table.insert ( goto_xy, gdt_utils.chop( value ) )
 			end
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
-			-- we do this empty table/gmatch/insert cycle, because get_dialog_value returns a string from a text_box, and the value required is a "table with unnamed indices holding strings"
-			-- moved here because synchronize_choice needs a WML object, and a table with unnamed indices isn't
-			local temp_advances_to = { }
-			for value in gdt_utils.split( temp_table.advances_to ) do
-				table.insert( temp_advances_to, gdt_utils.chop( value ) )
-			end
-			dialog_unit.advances_to = temp_advances_to
+			dialog_unit.advances_to = gdt_utils.advances_to ( temp_table.advances_to )
 			dialog_unit.extra_recruit = gdt_utils.extra_recruit ( temp_table.extra_recruit )
 			dialog_unit.role = temp_table.role
 			-- checkbuttons
