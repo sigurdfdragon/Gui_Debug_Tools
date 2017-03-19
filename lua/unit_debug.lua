@@ -1155,9 +1155,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				end -- /trait change
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, overlays = temp_table.overlays }
 				gdt_utils.unit_variables ( dialog_unit, temp_table.variables )
-				-- advance the unit if enough xp
-				dialog_unit.experience = temp_table.experience -- changing xp needs to be with xp check, as any modify_unit between can cause level-up
-				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } } } -- simple way to trigger level up if enough xp
+				dialog_unit.experience = temp_table.experience ; wesnoth.advance_unit ( dialog_unit, true, true )
 				gdt_utils.gender ( dialog_unit, temp_table.gender )
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, name = temp_table.name }
 				gdt_utils.generate_name ( dialog_unit, temp_table.generate_name )
