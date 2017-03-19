@@ -1105,11 +1105,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				table.insert( temp_advances_to, gdt_utils.chop( value ) )
 			end
 			dialog_unit.advances_to = temp_advances_to
-			local temp_extra_recruit = { }
-			for value in gdt_utils.split( temp_table.extra_recruit ) do
-				table.insert ( temp_extra_recruit, gdt_utils.chop( value ) )
-			end
-			dialog_unit.extra_recruit = temp_extra_recruit
+			dialog_unit.extra_recruit = gdt_utils.extra_recruit ( temp_table.extra_recruit )
 			dialog_unit.role = temp_table.role
 			-- checkbuttons
 			dialog_unit.status.poisoned = temp_table.poisoned

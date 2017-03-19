@@ -109,6 +109,14 @@ function utils.kill_units ( side, bool )
 	end
 end
 
+function utils.extra_recruit ( recruit_str )
+	local recruit = {}
+	for value in utils.split( recruit_str ) do
+		table.insert( recruit, utils.chop( value ) )
+	end
+	return recruit
+end
+
 function utils.unit_type ( unit, utype )
 	-- consider just converting this into wesnoth.transform_unit ( unit, type )\
 	-- and removing the if guard
