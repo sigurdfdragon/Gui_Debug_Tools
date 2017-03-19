@@ -109,6 +109,14 @@ function utils.kill_units ( side, bool )
 	end
 end
 
+function utils.goto_xy ( unit, str )
+		local goto_xy = { }
+		for value in utils.split ( str ) do
+			table.insert ( goto_xy, utils.chop( value ) )
+		end
+		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
+end
+
 function utils.advances_to ( advances_to_str )
 	-- we do this empty table/gmatch/insert cycle, because get_dialog_value returns a string from a text_box,
 	-- and the value required is a "table with unnamed indices holding strings"
