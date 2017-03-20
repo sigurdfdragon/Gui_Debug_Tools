@@ -314,6 +314,45 @@ function utils.trait_list()
 	return trait_array
 end
 
+function utils.unit_traits ( unit, str_new, str_current )
+	if str_new ~= str_current then
+		local trait_table = utils.trait_list()
+		-- chop user entered value
+		local temp_new_traits = { }
+		for value in utils.split( str_new ) do
+			table.insert ( temp_new_traits, utils.chop( value ) )
+		end
+		-- remove existing traits
+		local u = unit.__cfg -- traits need to be removed by editing a __cfg table
+		for tag = #u, 1, -1 do
+			if u[tag][1] == "modifications" then
+				for subtag = #u[tag][2], 1, -1 do
+					if u[tag][2][subtag][1] == "trait" then
+						table.remove( u[tag][2], subtag )
+					end
+				end
+			end
+		end
+		if u.upkeep == "loyal" then -- in case loyal was present
+			u.upkeep = "full"
+		end
+		-- add new traits
+		for i = 1, #temp_new_traits do
+			for j = 1, #trait_table do
+				if temp_new_traits[i] == trait_table[j].id then
+					local m = helper.get_child(u, "modifications")
+					table.insert ( m, { [1] = "trait", [2] = trait_table[j] } )
+					break
+				end
+			end
+		end
+		wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
+		wesnoth.transform_unit ( unit, unit.type ) -- refresh the unit with the new changes
+		unit.hitpoints = unit.max_hitpoints -- full heal, as that's the most common desired behavior
+		unit.moves = unit.max_moves -- restore moves, as adding quick or heroic are likely to be common choices
+	end
+end
+
 function utils.unit_variables ( unit, variables )
 	if variables ~= "" then
 		local vstr = {}
