@@ -109,6 +109,17 @@ function utils.kill_units ( side, bool )
 	end
 end
 
+function utils.get_traits_string ( dialog_unit )
+	local unit_modifications = helper.get_child ( dialog_unit.__cfg, "modifications" )
+	local trait_ids = { }
+	for trait in helper.child_range ( unit_modifications, "trait" ) do
+			if trait.id ~= nil then
+				table.insert ( trait_ids, trait.id )
+			end
+	end
+	return table.concat( trait_ids, "," )
+end
+
 function utils.location ( unit, str )
 	local location = { }
 	for value in utils.split ( str ) do

@@ -944,15 +944,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_unit.role, "textbox_role" )
 			wesnoth.set_dialog_value ( "", "textbox_attack" )
 			wesnoth.set_dialog_value ( "", "textbox_abilities" )
-			-- set traits textbox
-			local unit_modifications = helper.get_child ( dialog_unit.__cfg, "modifications" )
-			local unit_traits_ids = { }
-			for traits in helper.child_range ( unit_modifications, "trait" ) do
-					if traits.id ~= nil then
-						table.insert ( unit_traits_ids, traits.id )
-					end
-			end
-			wesnoth.set_dialog_value ( table.concat( unit_traits_ids, "," ), "textbox_traits" )
+			wesnoth.set_dialog_value ( gdt_utils.get_traits_string ( dialog_unit ), "textbox_traits" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.overlays, "textbox_overlays" )
 			wesnoth.set_dialog_value ( "", "textbox_variables" )
 			-- set checkbuttons
