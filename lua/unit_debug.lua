@@ -554,7 +554,7 @@ function wml_actions.gui_unit_debug ( cfg )
 							T.slider {
 								minimum_value = 0,
 								-- to avoid crashing if max_moves == 0
-								maximum_value = math.max(1, dialog_unit.max_moves * oversize_factor, dialog_unit.moves),
+								maximum_value = math.max(100, dialog_unit.max_moves * oversize_factor, dialog_unit.moves),
 								step_size = 1,
 								id = "unit_moves_slider", --unit.moves
 								tooltip = _ "The amount of move points the unit has."
