@@ -501,13 +501,13 @@ function wml_actions.gui_unit_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.slider {
-								minimum_value = math.min(0, dialog_unit.hitpoints),
+								minimum_value = math.min(1, dialog_unit.hitpoints),
 								maximum_value = math.max(dialog_unit.max_hitpoints * oversize_factor, dialog_unit.hitpoints),
-								minimum_value_label = _ "Kill",
+								--minimum_value_label = _ "Kill",
 								--maximum_value_label = _ "Full health",
 								step_size = 1,
 								id = "unit_hitpoints_slider", --unit.hitpoints
-								tooltip = _ "The amount of hitpoints the unit has. Setting this to 0 will kill the unit."
+								tooltip = _ "The amount of hitpoints the unit has."
 							}
 						}
 					},
@@ -1069,28 +1069,22 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.resting = temp_table.resting
 			dialog_unit.hidden = temp_table.hidden
 			dialog_unit.hitpoints = temp_table.hitpoints
-			-- for some reason, without this delay the death animation isn't played
-			wesnoth.delay(1)
-			if dialog_unit.hitpoints <= 0 then -- check if killing the unit before doing any complex stuff
-				wml_actions.kill ( { id = dialog_unit.id, animate = true, fire_event = true } )
-			else
-				gdt_utils.unit_type ( dialog_unit, temp_table.type )
-				gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
-				gdt_utils.unit_attack ( dialog_unit, temp_table.attack )
-				gdt_utils.unit_abilities ( dialog_unit, temp_table.abilities )
-				-- trait change - must be after transform to handle undead->human changes according to most likely user expectations.
-				gdt_utils.unit_traits ( dialog_unit, temp_table.traits, temp_table.traits_initial )
-				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, overlays = temp_table.overlays }
-				gdt_utils.unit_variables ( dialog_unit, temp_table.variables )
-				dialog_unit.experience = temp_table.experience ; wesnoth.advance_unit ( dialog_unit, true, true )
-				gdt_utils.gender ( dialog_unit, temp_table.gender )
-				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, name = temp_table.name }
-				gdt_utils.generate_name ( dialog_unit, temp_table.generate_name )
-				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, unrenamable = temp_table.unrenamable }
-				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, canrecruit = temp_table.canrecruit }
-				gdt_utils.location ( dialog_unit, temp_table.location )
-				gdt_utils.copy_unit ( dialog_unit, temp_table.copy_unit )
-			end
+			gdt_utils.unit_type ( dialog_unit, temp_table.type )
+			gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
+			gdt_utils.unit_attack ( dialog_unit, temp_table.attack )
+			gdt_utils.unit_abilities ( dialog_unit, temp_table.abilities )
+			-- trait change - must be after transform to handle undead->human changes according to most likely user expectations.
+			gdt_utils.unit_traits ( dialog_unit, temp_table.traits, temp_table.traits_initial )
+			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, overlays = temp_table.overlays }
+			gdt_utils.unit_variables ( dialog_unit, temp_table.variables )
+			dialog_unit.experience = temp_table.experience ; wesnoth.advance_unit ( dialog_unit, true, true )
+			gdt_utils.gender ( dialog_unit, temp_table.gender )
+			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, name = temp_table.name }
+			gdt_utils.generate_name ( dialog_unit, temp_table.generate_name )
+			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, unrenamable = temp_table.unrenamable }
+			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, canrecruit = temp_table.canrecruit }
+			gdt_utils.location ( dialog_unit, temp_table.location )
+			gdt_utils.copy_unit ( dialog_unit, temp_table.copy_unit )
 			wml_actions.redraw ( { } ) -- to be sure of showing changes
 			wml_actions.print ( { text = _ "unit debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )
