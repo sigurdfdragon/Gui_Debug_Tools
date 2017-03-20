@@ -114,7 +114,13 @@ function utils.location ( unit, str )
 	for value in utils.split ( str ) do
 		table.insert ( location, utils.chop( value ) )
 	end
-	wesnoth.put_unit ( location[1], location[2], unit )
+	if location[1] == "0" and location[2] == "0" then
+		-- do it this way as wml_action.put_to_recall doesn't cover petrified or unhealable
+		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
+		wesnoth.put_recall_unit ( unit )
+	else
+		wesnoth.put_unit ( location[1], location[2], unit )
+	end
 end
 
 function utils.goto_xy ( unit, str )
@@ -321,6 +327,22 @@ end
 function utils.generate_name ( unit, bool )
 	if bool then
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, name = "", generate_name = true }
+	end
+end
+
+function utils.copy_unit ( unit, bool )
+		-- do it this way instead of using wesnoth.copy_unit as
+		-- it doesn't handle specified ids (ie, 'Konrad') in
+		-- the way that we want it to
+	if bool then
+		local copy = unit.__cfg
+		copy.id, copy.underlying_id = nil, nil
+		if copy.x == "recall" and copy.y == "recall" then
+			wesnoth.put_recall_unit ( copy )
+		else
+			local x, y = wesnoth.find_vacant_tile ( copy.x, copy.y, copy )
+			wesnoth.put_unit ( x, y, copy )
+		end
 	end
 end
 

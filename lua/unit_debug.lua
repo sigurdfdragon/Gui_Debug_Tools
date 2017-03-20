@@ -134,7 +134,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								T.text_box { --unit.x
 									id = "textbox_unit_location",
 									history = "other_locations",
-									tooltip = _ "The coordinates on the map where the unit is located."
+									tooltip = _ "The coordinates on the map where the unit is located. Use 0,0 to place on the recall list."
 								}
 							}
 						},
@@ -230,26 +230,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									id = "copy_unit_checkbutton",
-									tooltip = _ "A copy of the unit will be created at the nearest passable hex."
-								}
-							}
-						},
-						T.row {
-							T.column {
-								horizontal_alignment = "left",
-								border = "all",
-								border_size = 5,
-								T.label {
-									label = _ "Put to recall"
-								}
-							},
-							T.column {
-								horizontal_alignment = "left",
-								border = "all",
-								border_size = 5,
-								T.toggle_button {
-									id = "put_to_recall_checkbutton",
-									tooltip = _ "Places the unit on the recall list."
+									tooltip = _ "A copy of the unit will be created. Will be identical except for ids."
 								}
 							}
 						}
@@ -979,7 +960,6 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.unrenamable, "unrenamable_checkbutton" )
 			wesnoth.set_dialog_value ( false, "generate_name_checkbutton" )
 			wesnoth.set_dialog_value ( false, "copy_unit_checkbutton" )
-			wesnoth.set_dialog_value ( false, "put_to_recall_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.poisoned, "poisoned_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.slowed, "slowed_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.petrified, "petrified_checkbutton" )
@@ -1049,7 +1029,6 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.canrecruit = wesnoth.get_dialog_value "canrecruit_checkbutton"
 				temp_table.generate_name = wesnoth.get_dialog_value "generate_name_checkbutton"
 				temp_table.copy_unit = wesnoth.get_dialog_value "copy_unit_checkbutton"
-				temp_table.put_to_recall = wesnoth.get_dialog_value "put_to_recall_checkbutton"
 				temp_table.poisoned = wesnoth.get_dialog_value "poisoned_checkbutton"
 				temp_table.slowed = wesnoth.get_dialog_value "slowed_checkbutton"
 				temp_table.petrified = wesnoth.get_dialog_value "petrified_checkbutton"
@@ -1088,7 +1067,6 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.attacks_left = temp_table.attacks_left
 			-- text boxes
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, id = temp_table.id }
-			gdt_utils.location ( dialog_unit, temp_table.location )
 			gdt_utils.goto_xy ( dialog_unit, temp_table.goto_xy )
 			dialog_unit.advances_to = gdt_utils.advances_to ( temp_table.advances_to )
 			dialog_unit.extra_recruit = gdt_utils.extra_recruit ( temp_table.extra_recruit )
@@ -1161,18 +1139,8 @@ function wml_actions.gui_unit_debug ( cfg )
 				gdt_utils.generate_name ( dialog_unit, temp_table.generate_name )
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, unrenamable = temp_table.unrenamable }
 				wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, canrecruit = temp_table.canrecruit }
-				-- -- copy unit & put to recall
-				if temp_table.copy_unit then
-					local new_unit = wesnoth.copy_unit ( dialog_unit )
-					local x, y = wesnoth.find_vacant_tile ( dialog_unit.x, dialog_unit.y, new_unit )
-					wesnoth.put_unit ( x, y, new_unit )
-					wml_actions.modify_unit { { "filter", { id = new_unit.id } }, name = "", generate_name = true }
-					if temp_table.put_to_recall then -- doing both, put copy on recall list
-						wesnoth.put_recall_unit ( new_unit )
-					end
-				elseif temp_table.put_to_recall then -- no copy, put original on recall list
-					wesnoth.put_recall_unit ( dialog_unit )
-				end
+				gdt_utils.location ( dialog_unit, temp_table.location )
+				gdt_utils.copy_unit ( dialog_unit, temp_table.copy_unit )
 			end
 			wml_actions.redraw ( { } ) -- to be sure of showing changes
 			wml_actions.print ( { text = _ "unit debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
