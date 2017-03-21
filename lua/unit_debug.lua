@@ -714,7 +714,7 @@ function wml_actions.gui_unit_debug ( cfg )
 							T.text_box {
 								id = "textbox_traits",
 								history = "other_traits",
-								tooltip = _ "The unit's base stats will be altered by the traits listed."
+								tooltip = _ "The unit will be altered by the traits listed. Valid traits are all in mainline, and any the unit could receive or currently has."
 							}
 						}
 					},

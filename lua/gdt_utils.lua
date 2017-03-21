@@ -336,11 +336,65 @@ end
 function utils.unit_traits ( unit, str_new, str_current )
 	if str_new ~= str_current then
 		local trait_table = utils.trait_list()
+		-- add the unit's race, unit_type, and current traits to the array
+		-- overwriting any with same id that are already in the array
+		-- race traits
+		for temp_trait in helper.child_range(wesnoth.races[unit.race].__cfg, "trait") do
+			local trait_is_present = false
+			for j = 1, #trait_table do
+				if temp_trait.id == trait_table[j].id then
+					trait_is_present = true
+					trait_table[j] = temp_trait
+					break
+				end
+			end
+			if trait_is_present == false then
+				table.insert(trait_table, temp_trait)
+			end
+		end
+		-- unit_type traits
+		for temp_trait in helper.child_range(wesnoth.unit_types[unit.type].__cfg, "trait") do
+			local trait_is_present = false
+			for j = 1, #trait_table do
+				if temp_trait.id == trait_table[j].id then
+					trait_is_present = true
+					trait_table[j] = temp_trait
+					break
+				end
+			end
+			if trait_is_present == false then
+				table.insert(trait_table, temp_trait)
+			end
+		end
+		-- unit's current traits
+		local u_mods = helper.get_child(unit.__cfg, "modifications")
+		for temp_trait in helper.child_range(u_mods, "trait") do
+			local trait_is_present = false
+			for j = 1, #trait_table do
+				if temp_trait.id == trait_table[j].id then
+					trait_is_present = true
+					trait_table[j] = temp_trait
+					break
+				end
+			end
+			if trait_is_present == false then
+				table.insert(trait_table, temp_trait)
+			end
+		end
+		-- now that all the traits to pick from have been assembled
+		-- take user entered values and use to set the unit's traits
 		-- chop user entered value
 		local temp_new_traits = { }
 		for value in utils.split( str_new ) do
 			table.insert ( temp_new_traits, utils.chop( value ) )
 		end
+		-- remove undead status keys, in case undead trait is being removed
+		-- it is easier to remove these keys from proxy than a __cfg
+		-- TODO: may not be best handling, find better handling for this and removal of loyal?
+		unit.status.not_living = nil
+		unit.status.undrainable = nil
+		unit.status.unplaugeable = nil
+		unit.status.unpoisonable = nil
 		-- remove existing traits
 		local u = unit.__cfg -- traits need to be removed by editing a __cfg table
 		for tag = #u, 1, -1 do
