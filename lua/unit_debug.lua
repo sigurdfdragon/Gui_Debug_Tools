@@ -1046,13 +1046,18 @@ function wml_actions.gui_unit_debug ( cfg )
 			if wesnoth.sides[temp_table.side] then
 				dialog_unit.side = temp_table.side
 			end
-			dialog_unit.moves = temp_table.moves
-			dialog_unit.attacks_left = temp_table.attacks_left
-			-- text boxes
+			-- order of actions below is important, some use wesnoth.transform_unit, which can affect things
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, id = temp_table.id }
 			gdt_utils.goto_xy ( dialog_unit, temp_table.goto_xy )
 			dialog_unit.advances_to = gdt_utils.advances_to ( temp_table.advances_to )
 			dialog_unit.extra_recruit = gdt_utils.extra_recruit ( temp_table.extra_recruit )
+			gdt_utils.unit_type ( dialog_unit, temp_table.type )
+			gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
+			gdt_utils.unit_attack ( dialog_unit, temp_table.attack )
+			gdt_utils.unit_abilities ( dialog_unit, temp_table.abilities )
+			-- trait change - must be after transform to handle undead->human changes according to most likely user expectations.
+			gdt_utils.unit_traits ( dialog_unit, temp_table.traits )
+			gdt_utils.gender ( dialog_unit, temp_table.gender )
 			dialog_unit.role = temp_table.role
 			-- checkbuttons
 			dialog_unit.status.poisoned = temp_table.poisoned
@@ -1068,16 +1073,11 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.resting = temp_table.resting
 			dialog_unit.hidden = temp_table.hidden
 			dialog_unit.hitpoints = temp_table.hitpoints
-			gdt_utils.unit_type ( dialog_unit, temp_table.type )
-			gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
-			gdt_utils.unit_attack ( dialog_unit, temp_table.attack )
-			gdt_utils.unit_abilities ( dialog_unit, temp_table.abilities )
-			-- trait change - must be after transform to handle undead->human changes according to most likely user expectations.
-			gdt_utils.unit_traits ( dialog_unit, temp_table.traits )
+			dialog_unit.experience = temp_table.experience ; wesnoth.advance_unit ( dialog_unit, true, true )
+			dialog_unit.moves = temp_table.moves
+			dialog_unit.attacks_left = temp_table.attacks_left
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, overlays = temp_table.overlays }
 			gdt_utils.unit_variables ( dialog_unit, temp_table.variables )
-			dialog_unit.experience = temp_table.experience ; wesnoth.advance_unit ( dialog_unit, true, true )
-			gdt_utils.gender ( dialog_unit, temp_table.gender )
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, name = temp_table.name }
 			gdt_utils.generate_name ( dialog_unit, temp_table.generate_name )
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, unrenamable = temp_table.unrenamable }
