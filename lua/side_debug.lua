@@ -781,7 +781,7 @@ function wml_actions.gui_side_debug ( cfg )
 			dialog_side.flag_icon = temp_table.flag_icon
 			dialog_side.user_team_name = temp_table.user_team_name
 			dialog_side.team_name = temp_table.team_name
-			dialog_side.recruit = gdt_utils.recruit ( temp_table.recruit )
+			dialog_side.recruit = gdt_utils.string_split ( temp_table.recruit, "," )
 			dialog_side.controller = temp_table.controller
 			gdt_utils.clear_recall ( dialog_side, temp_table.clear_recall )
 			gdt_utils.seed_recall ( dialog_side, temp_table.seed_recall )

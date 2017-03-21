@@ -33,6 +33,14 @@ function utils.chop( str )
 	return temp
 end
 
+function utils.string_split ( str, char )
+	local t = {}
+	for value in utils.split( str, char ) do
+		table.insert( t, utils.chop( value ) )
+	end
+	return t
+end
+
 function utils.convert_color( color )
 	-- if color is a number, convert it to the word form
 	local color_names = { "red", "blue", "green", "purple", "black", "brown", "orange", "white", "teal" }
@@ -42,16 +50,6 @@ function utils.convert_color( color )
 	else
 		return color
 	end
-end
-
-function utils.recruit ( recruit_str )
-	-- we do this empty table/gmatch/insert cycle, because get_dialog_value returns a string from a text_box, and the value required is a "table with unnamed indices holding strings"
-	-- moved here because synchronize_choice needs a WML object, and a table with unnamed indices isn't
-	local recruit = {}
-	for value in utils.split( recruit_str ) do
-		table.insert( recruit, utils.chop( value ) )
-	end
-	return recruit
 end
 
 function utils.seed_recall ( side, bool )
@@ -140,25 +138,6 @@ function utils.goto_xy ( unit, str )
 			table.insert ( goto_xy, utils.chop( value ) )
 		end
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
-end
-
-function utils.advances_to ( advances_to_str )
-	-- we do this empty table/gmatch/insert cycle, because get_dialog_value returns a string from a text_box,
-	-- and the value required is a "table with unnamed indices holding strings"
-	-- moved here because synchronize_choice needs a WML object, and a table with unnamed indices isn't
-	local advances_to = {}
-	for value in utils.split( advances_to_str ) do
-		table.insert( advances_to, utils.chop( value ) )
-	end
-	return advances_to
-end
-
-function utils.extra_recruit ( recruit_str )
-	local recruit = {}
-	for value in utils.split( recruit_str ) do
-		table.insert( recruit, utils.chop( value ) )
-	end
-	return recruit
 end
 
 function utils.unit_type ( unit, utype )

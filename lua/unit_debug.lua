@@ -1070,8 +1070,8 @@ function wml_actions.gui_unit_debug ( cfg )
 			-- order of actions below is important, some use wesnoth.transform_unit, which can affect things
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, id = temp_table.id }
 			gdt_utils.goto_xy ( dialog_unit, temp_table.goto_xy )
-			dialog_unit.advances_to = gdt_utils.advances_to ( temp_table.advances_to )
-			dialog_unit.extra_recruit = gdt_utils.extra_recruit ( temp_table.extra_recruit )
+			dialog_unit.advances_to = gdt_utils.string_split ( temp_table.advances_to, ",")
+			dialog_unit.extra_recruit = gdt_utils.string_split ( temp_table.extra_recruit, "," )
 			gdt_utils.unit_type ( dialog_unit, temp_table.type )
 			gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
 			gdt_utils.unit_attack ( dialog_unit, temp_table.attack )
