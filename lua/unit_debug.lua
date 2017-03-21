@@ -1005,7 +1005,6 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.attack = wesnoth.get_dialog_value "textbox_attack"
 				temp_table.abilities = wesnoth.get_dialog_value "textbox_abilities"
 				temp_table.traits = wesnoth.get_dialog_value "textbox_traits"
-				temp_table.traits_initial = gdt_utils.get_traits_string ( dialog_unit )
 				temp_table.overlays = wesnoth.get_dialog_value "textbox_overlays"
 				temp_table.variables = wesnoth.get_dialog_value "textbox_variables"
 				-- checkbuttons
@@ -1074,7 +1073,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			gdt_utils.unit_attack ( dialog_unit, temp_table.attack )
 			gdt_utils.unit_abilities ( dialog_unit, temp_table.abilities )
 			-- trait change - must be after transform to handle undead->human changes according to most likely user expectations.
-			gdt_utils.unit_traits ( dialog_unit, temp_table.traits, temp_table.traits_initial )
+			gdt_utils.unit_traits ( dialog_unit, temp_table.traits )
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, overlays = temp_table.overlays }
 			gdt_utils.unit_variables ( dialog_unit, temp_table.variables )
 			dialog_unit.experience = temp_table.experience ; wesnoth.advance_unit ( dialog_unit, true, true )

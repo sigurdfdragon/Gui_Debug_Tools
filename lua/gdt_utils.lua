@@ -333,8 +333,8 @@ function utils.trait_list()
 	return trait_array
 end
 
-function utils.unit_traits ( unit, str_new, str_current )
-	if str_new ~= str_current then
+function utils.unit_traits ( unit, trait_str )
+	if trait_str ~= utils.get_traits_string ( unit ) then
 		local trait_table = utils.trait_list()
 		-- add the unit's race, unit_type, and current traits to the array
 		-- overwriting any with same id that are already in the array
@@ -385,7 +385,7 @@ function utils.unit_traits ( unit, str_new, str_current )
 		-- take user entered values and use to set the unit's traits
 		-- chop user entered value
 		local temp_new_traits = { }
-		for value in utils.split( str_new ) do
+		for value in utils.split( trait_str ) do
 			table.insert ( temp_new_traits, utils.chop( value ) )
 		end
 		-- remove undead status keys, in case undead trait is being removed
@@ -421,8 +421,6 @@ function utils.unit_traits ( unit, str_new, str_current )
 		end
 		wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
 		wesnoth.transform_unit ( unit, unit.type ) -- refresh the unit with the new changes
-		unit.hitpoints = unit.max_hitpoints -- full heal, as that's the most common desired behavior
-		unit.moves = unit.max_moves -- restore moves, as adding quick or heroic are likely to be common choices
 	end
 end
 
