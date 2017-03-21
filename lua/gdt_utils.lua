@@ -166,8 +166,6 @@ function utils.unit_type ( unit, utype )
 	-- and removing the if guard
 	if utype ~= unit.type then
 		wesnoth.transform_unit ( unit, utype )
-		unit.hitpoints = unit.max_hitpoints -- full heal, as that's the most common desired behavior
-		unit.moves = unit.max_moves
 	end
 end
 
@@ -177,8 +175,6 @@ function utils.unit_variation ( unit, variation )
 	if variation ~= unit.__cfg.variation then
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, variation = variation }
 		wesnoth.transform_unit ( unit, unit.type ) -- so the variation change will take
-		unit.hitpoints = unit.max_hitpoints -- full heal, as that's the most common desired behavior
-		unit.moves = unit.max_moves
 	end
 end
 
@@ -441,13 +437,18 @@ function utils.gender ( unit, gender )
 		if gender ~= unit.__cfg.gender then -- if there are custom portraits, they are lost.
 			wml_actions.modify_unit { { "filter", { id = unit.id } }, profile = "", small_profile = "", gender = gender }
 			wesnoth.transform_unit ( unit, unit.type ) -- transform refills the profile keys
-			unit.hitpoints = unit.max_hitpoints -- to fix hp lowering bug that can occur when gender change is done on a run after a trait change
 		end
 end
 
 function utils.generate_name ( unit, bool )
 	if bool then
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, name = "", generate_name = true }
+	end
+end
+
+function utils.heal_unit ( unit, bool )
+	if bool then
+		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
 	end
 end
 

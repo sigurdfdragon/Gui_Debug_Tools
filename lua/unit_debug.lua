@@ -221,6 +221,25 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Heal unit"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									id = "heal_unit_checkbutton",
+									tooltip = _ "The unit will be fully restored, regardless of other settings in this dialog."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Copy unit"
 								}
 							},
@@ -951,6 +970,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_unit.canrecruit, "canrecruit_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.unrenamable, "unrenamable_checkbutton" )
 			wesnoth.set_dialog_value ( false, "generate_name_checkbutton" )
+			wesnoth.set_dialog_value ( false, "heal_unit_checkbutton" )
 			wesnoth.set_dialog_value ( false, "copy_unit_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.poisoned, "poisoned_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.slowed, "slowed_checkbutton" )
@@ -1011,6 +1031,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.unrenamable = wesnoth.get_dialog_value "unrenamable_checkbutton"
 				temp_table.canrecruit = wesnoth.get_dialog_value "canrecruit_checkbutton"
 				temp_table.generate_name = wesnoth.get_dialog_value "generate_name_checkbutton"
+				temp_table.heal_unit = wesnoth.get_dialog_value "heal_unit_checkbutton"
 				temp_table.copy_unit = wesnoth.get_dialog_value "copy_unit_checkbutton"
 				temp_table.poisoned = wesnoth.get_dialog_value "poisoned_checkbutton"
 				temp_table.slowed = wesnoth.get_dialog_value "slowed_checkbutton"
@@ -1083,6 +1104,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, unrenamable = temp_table.unrenamable }
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, canrecruit = temp_table.canrecruit }
 			gdt_utils.location ( dialog_unit, temp_table.location )
+			gdt_utils.heal_unit ( dialog_unit, temp_table.heal_unit )
 			gdt_utils.copy_unit ( dialog_unit, temp_table.copy_unit )
 			wml_actions.redraw ( { } ) -- to be sure of showing changes
 			wml_actions.print ( { text = _ "unit debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
