@@ -20,7 +20,7 @@ function utils.remove_child(cfg, name)
 	end
 end
 
--- two support functions for handling strings
+-- support functions for handling strings
 function utils.split( str, char )
 	local char = char or ","
 	local pattern = "[^" .. char .. "]+"

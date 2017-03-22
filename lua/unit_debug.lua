@@ -2,7 +2,7 @@
 local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
 local helper = wesnoth.require "lua/helper.lua"
-local gdt_utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/gdt_utils.lua"
+local utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/utils.lua"
 local gdt_unit = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/unit_utils.lua"
 
 -- to make code shorter
@@ -1076,7 +1076,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			gdt_unit.gender ( dialog_unit, temp_table.gender )
 			gdt_unit.variation ( dialog_unit, temp_table.variation )
 			gdt_unit.type_advances_to ( dialog_unit, temp_table.type, temp_table.advances_to )
-			dialog_unit.extra_recruit = gdt_utils.string_split ( temp_table.extra_recruit, "," )
+			dialog_unit.extra_recruit = utils.string_split ( temp_table.extra_recruit, "," )
 			dialog_unit.role = temp_table.role
 			-- checkbuttons
 			dialog_unit.status.poisoned = temp_table.poisoned

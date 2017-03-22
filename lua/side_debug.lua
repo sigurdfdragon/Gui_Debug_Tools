@@ -2,7 +2,7 @@
 local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
 local helper = wesnoth.require "lua/helper.lua"
-local gdt_utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/gdt_utils.lua"
+local utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/utils.lua"
 local gdt_side = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/side_utils.lua"
 
 -- to make code shorter
@@ -782,7 +782,7 @@ function wml_actions.gui_side_debug ( cfg )
 			dialog_side.flag_icon = temp_table.flag_icon
 			dialog_side.user_team_name = temp_table.user_team_name
 			dialog_side.team_name = temp_table.team_name
-			dialog_side.recruit = gdt_utils.string_split ( temp_table.recruit, "," )
+			dialog_side.recruit = utils.string_split ( temp_table.recruit, "," )
 			dialog_side.controller = temp_table.controller
 			gdt_side.clear_recall ( dialog_side, temp_table.clear_recall )
 			gdt_side.seed_recall ( dialog_side, temp_table.seed_recall )
