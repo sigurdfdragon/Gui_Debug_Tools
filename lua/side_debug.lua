@@ -3,6 +3,7 @@ local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
 local helper = wesnoth.require "lua/helper.lua"
 local gdt_utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/gdt_utils.lua"
+local gdt_side = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/side_utils.lua"
 
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
@@ -689,7 +690,7 @@ function wml_actions.gui_side_debug ( cfg )
 			-- text boxes
 			wesnoth.set_dialog_value ( dialog_side.gold, "gold_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.defeat_condition, "defeat_condition_textbox" )
-			wesnoth.set_dialog_value ( gdt_utils.convert_color( dialog_side.color ), "color_textbox" )
+			wesnoth.set_dialog_value ( gdt_side.convert_color( dialog_side.color ), "color_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.flag, "flag_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.flag_icon, "flag_icon_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.user_team_name, "user_team_name_textbox" )
@@ -783,10 +784,10 @@ function wml_actions.gui_side_debug ( cfg )
 			dialog_side.team_name = temp_table.team_name
 			dialog_side.recruit = gdt_utils.string_split ( temp_table.recruit, "," )
 			dialog_side.controller = temp_table.controller
-			gdt_utils.clear_recall ( dialog_side, temp_table.clear_recall )
-			gdt_utils.seed_recall ( dialog_side, temp_table.seed_recall )
-			gdt_utils.heal_units ( dialog_side, temp_table.heal_units )
-			gdt_utils.kill_units ( dialog_side, temp_table.kill_units )
+			gdt_side.clear_recall ( dialog_side, temp_table.clear_recall )
+			gdt_side.seed_recall ( dialog_side, temp_table.seed_recall )
+			gdt_side.heal_units ( dialog_side, temp_table.heal_units )
+			gdt_side.kill_units ( dialog_side, temp_table.kill_units )
 			wml_actions.redraw ( { side = dialog_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud
 			wml_actions.print ( { text = _ "side debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )
