@@ -428,7 +428,7 @@ end
 
 function utils.heal_unit ( unit, bool )
 	if bool then
-		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
+		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full" }
 	end
 end
 

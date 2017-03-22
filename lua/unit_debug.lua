@@ -230,7 +230,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									id = "heal_unit_checkbutton",
-									tooltip = _ "The unit will be fully restored, regardless of other settings in this dialog."
+									tooltip = _ "The unit will be healed with moves restored, regardless of other settings in this dialog."
 								}
 							}
 						},
