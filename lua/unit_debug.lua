@@ -3,6 +3,7 @@ local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
 local helper = wesnoth.require "lua/helper.lua"
 local gdt_utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/gdt_utils.lua"
+local gdt_unit = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/unit_utils.lua"
 
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
@@ -963,7 +964,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_unit.role, "textbox_role" )
 			wesnoth.set_dialog_value ( "", "textbox_attack" )
 			wesnoth.set_dialog_value ( "", "textbox_abilities" )
-			wesnoth.set_dialog_value ( gdt_utils.get_traits_string ( dialog_unit ), "textbox_traits" )
+			wesnoth.set_dialog_value ( gdt_unit.get_traits_string ( dialog_unit ), "textbox_traits" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.overlays, "textbox_overlays" )
 			wesnoth.set_dialog_value ( "", "textbox_variables" )
 			-- set checkbuttons
@@ -1069,12 +1070,12 @@ function wml_actions.gui_unit_debug ( cfg )
 			end
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, id = temp_table.id }
 			-- order of actions below is important, some use wesnoth.transform_unit, which can affect things
-			gdt_utils.unit_attack ( dialog_unit, temp_table.attack )
-			gdt_utils.unit_abilities ( dialog_unit, temp_table.abilities )
-			gdt_utils.unit_traits ( dialog_unit, temp_table.traits )
-			gdt_utils.gender ( dialog_unit, temp_table.gender )
-			gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
-			gdt_utils.type_advances_to ( dialog_unit, temp_table.type, temp_table.advances_to )
+			gdt_unit.attack ( dialog_unit, temp_table.attack )
+			gdt_unit.abilities ( dialog_unit, temp_table.abilities )
+			gdt_unit.traits ( dialog_unit, temp_table.traits )
+			gdt_unit.gender ( dialog_unit, temp_table.gender )
+			gdt_unit.variation ( dialog_unit, temp_table.variation )
+			gdt_unit.type_advances_to ( dialog_unit, temp_table.type, temp_table.advances_to )
 			dialog_unit.extra_recruit = gdt_utils.string_split ( temp_table.extra_recruit, "," )
 			dialog_unit.role = temp_table.role
 			-- checkbuttons
@@ -1095,15 +1096,15 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.moves = temp_table.moves
 			dialog_unit.attacks_left = temp_table.attacks_left
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, overlays = temp_table.overlays }
-			gdt_utils.unit_variables ( dialog_unit, temp_table.variables )
+			gdt_unit.variables ( dialog_unit, temp_table.variables )
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, name = temp_table.name }
-			gdt_utils.generate_name ( dialog_unit, temp_table.generate_name )
+			gdt_unit.generate_name ( dialog_unit, temp_table.generate_name )
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, unrenamable = temp_table.unrenamable }
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, canrecruit = temp_table.canrecruit }
-			gdt_utils.goto_xy ( dialog_unit, temp_table.goto_xy )
-			gdt_utils.location ( dialog_unit, temp_table.location )
-			gdt_utils.heal_unit ( dialog_unit, temp_table.heal_unit )
-			gdt_utils.copy_unit ( dialog_unit, temp_table.copy_unit )
+			gdt_unit.goto_xy ( dialog_unit, temp_table.goto_xy )
+			gdt_unit.location ( dialog_unit, temp_table.location )
+			gdt_unit.heal_unit ( dialog_unit, temp_table.heal_unit )
+			gdt_unit.copy_unit ( dialog_unit, temp_table.copy_unit )
 			wml_actions.redraw ( { } ) -- to be sure of showing changes
 			wml_actions.print ( { text = _ "unit debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )
