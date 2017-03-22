@@ -1067,18 +1067,16 @@ function wml_actions.gui_unit_debug ( cfg )
 			if wesnoth.sides[temp_table.side] then
 				dialog_unit.side = temp_table.side
 			end
-			-- order of actions below is important, some use wesnoth.transform_unit, which can affect things
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, id = temp_table.id }
-			gdt_utils.goto_xy ( dialog_unit, temp_table.goto_xy )
-			dialog_unit.advances_to = gdt_utils.string_split ( temp_table.advances_to, ",")
-			dialog_unit.extra_recruit = gdt_utils.string_split ( temp_table.extra_recruit, "," )
-			gdt_utils.unit_type ( dialog_unit, temp_table.type )
-			gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
+			-- order of actions below is important, some use wesnoth.transform_unit, which can affect things
 			gdt_utils.unit_attack ( dialog_unit, temp_table.attack )
 			gdt_utils.unit_abilities ( dialog_unit, temp_table.abilities )
-			-- trait change - must be after transform to handle undead->human changes according to most likely user expectations.
 			gdt_utils.unit_traits ( dialog_unit, temp_table.traits )
 			gdt_utils.gender ( dialog_unit, temp_table.gender )
+			gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
+			dialog_unit.advances_to = gdt_utils.string_split ( temp_table.advances_to, ",")
+			gdt_utils.unit_type ( dialog_unit, temp_table.type )
+			dialog_unit.extra_recruit = gdt_utils.string_split ( temp_table.extra_recruit, "," )
 			dialog_unit.role = temp_table.role
 			-- checkbuttons
 			dialog_unit.status.poisoned = temp_table.poisoned
@@ -1103,6 +1101,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			gdt_utils.generate_name ( dialog_unit, temp_table.generate_name )
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, unrenamable = temp_table.unrenamable }
 			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, canrecruit = temp_table.canrecruit }
+			gdt_utils.goto_xy ( dialog_unit, temp_table.goto_xy )
 			gdt_utils.location ( dialog_unit, temp_table.location )
 			gdt_utils.heal_unit ( dialog_unit, temp_table.heal_unit )
 			gdt_utils.copy_unit ( dialog_unit, temp_table.copy_unit )
