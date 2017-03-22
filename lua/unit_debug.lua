@@ -1068,7 +1068,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			if wesnoth.sides[temp_table.side] then
 				dialog_unit.side = temp_table.side
 			end
-			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, id = temp_table.id }
+			gdt_unit.attribute ( dialog_unit, "id", temp_table.id )
 			-- order of actions below is important, some use wesnoth.transform_unit, which can affect things
 			gdt_unit.attack ( dialog_unit, temp_table.attack )
 			gdt_unit.abilities ( dialog_unit, temp_table.abilities )
@@ -1095,12 +1095,12 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.experience = temp_table.experience ; wesnoth.advance_unit ( dialog_unit, true, true )
 			dialog_unit.moves = temp_table.moves
 			dialog_unit.attacks_left = temp_table.attacks_left
-			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, overlays = temp_table.overlays }
+			gdt_unit.attribute ( dialog_unit, "overlays", temp_table.overlays )
 			gdt_unit.variables ( dialog_unit, temp_table.variables )
-			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, name = temp_table.name }
+			gdt_unit.attribute ( dialog_unit, "name", temp_table.name )
 			gdt_unit.generate_name ( dialog_unit, temp_table.generate_name )
-			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, unrenamable = temp_table.unrenamable }
-			wml_actions.modify_unit { { "filter", { id = dialog_unit.id } }, canrecruit = temp_table.canrecruit }
+			gdt_unit.attribute ( dialog_unit, "unrenamable", temp_table.unrenamable )
+			gdt_unit.attribute ( dialog_unit, "canrecruit", temp_table.canrecruit )
 			gdt_unit.goto_xy ( dialog_unit, temp_table.goto_xy )
 			gdt_unit.location ( dialog_unit, temp_table.location )
 			gdt_unit.heal_unit ( dialog_unit, temp_table.heal_unit )

@@ -20,6 +20,10 @@ function gdt_unit.get_traits_string ( dialog_unit )
 	return table.concat( trait_ids, "," )
 end
 
+function gdt_unit.attribute ( unit, key, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, [key] = value }
+end
+
 function gdt_unit.location ( unit, str )
 	local location = { }
 	for value in utils.split ( str ) do
