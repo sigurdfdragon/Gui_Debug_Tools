@@ -1074,8 +1074,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			gdt_utils.unit_traits ( dialog_unit, temp_table.traits )
 			gdt_utils.gender ( dialog_unit, temp_table.gender )
 			gdt_utils.unit_variation ( dialog_unit, temp_table.variation )
-			dialog_unit.advances_to = gdt_utils.string_split ( temp_table.advances_to, ",")
-			gdt_utils.unit_type ( dialog_unit, temp_table.type )
+			gdt_utils.type_advances_to ( dialog_unit, temp_table.type, temp_table.advances_to )
 			dialog_unit.extra_recruit = gdt_utils.string_split ( temp_table.extra_recruit, "," )
 			dialog_unit.role = temp_table.role
 			-- checkbuttons

@@ -140,11 +140,12 @@ function utils.goto_xy ( unit, str )
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
 end
 
-function utils.unit_type ( unit, utype )
-	-- consider just converting this into wesnoth.transform_unit ( unit, type )\
-	-- and removing the if guard
-	if utype ~= unit.type then
-		wesnoth.transform_unit ( unit, utype )
+function utils.type_advances_to ( unit, unit_type, advances_to )
+	-- only when type is changing do we want to disregard what is entered for advances_to
+	if unit.type ~= unit_type then
+		wesnoth.transform_unit ( unit, unit_type )
+	else
+		unit.advances_to = utils.string_split ( advances_to, "," )
 	end
 end
 
