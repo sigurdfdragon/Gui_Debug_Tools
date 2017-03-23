@@ -1092,7 +1092,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.resting = temp_table.resting
 			dialog_unit.hidden = temp_table.hidden
 			dialog_unit.hitpoints = temp_table.hitpoints
-			dialog_unit.experience = temp_table.experience ; wesnoth.advance_unit ( dialog_unit, true, true )
+			dialog_unit.experience = temp_table.experience ; dialog_unit:advance ( true, true )
 			dialog_unit.moves = temp_table.moves
 			dialog_unit.attacks_left = temp_table.attacks_left
 			gdt_unit.attribute ( dialog_unit, "overlays", temp_table.overlays )
