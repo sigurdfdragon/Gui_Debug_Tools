@@ -147,6 +147,7 @@ function gdt_unit.location ( unit, str )
 	if location[1] == "0" and location[2] == "0" then
 		-- do it this way as wml_action.put_to_recall doesn't cover petrified or unhealable
 		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
+		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = 0, goto_y = 0 }
 		wesnoth.put_recall_unit ( unit )
 	else
 		wesnoth.put_unit ( location[1], location[2], unit )
