@@ -1064,19 +1064,8 @@ function wml_actions.gui_unit_debug ( cfg )
 		local temp_table = helper.get_child ( return_table, "temp_table" )
 
 		if return_value == 1 or return_value == -1 then -- if used pressed OK or Enter, modify unit
-			-- sliders
-			dialog_unit.side = temp_table.side
-			gdt_unit.id ( dialog_unit, temp_table.id )
-			-- order of actions below is important, some use wesnoth.transform_unit, which can affect things
-			gdt_unit.attack ( dialog_unit, temp_table.attack )
-			gdt_unit.abilities ( dialog_unit, temp_table.abilities )
-			gdt_unit.traits ( dialog_unit, temp_table.traits )
-			gdt_unit.gender ( dialog_unit, temp_table.gender )
-			gdt_unit.variation ( dialog_unit, temp_table.variation )
-			gdt_unit.type_advances_to ( dialog_unit, temp_table.type, temp_table.advances_to )
-			dialog_unit.extra_recruit = utils.string_split ( temp_table.extra_recruit, "," )
-			dialog_unit.role = temp_table.role
-			-- checkbuttons
+			dialog_unit.side = temp_table.side -- first, for proper look on map with other actions
+			-- statuses, need to be before transforms, so poison can be removed from undead if a transform is used
 			dialog_unit.status.poisoned = temp_table.poisoned
 			dialog_unit.status.slowed = temp_table.slowed
 			dialog_unit.status.petrified = temp_table.petrified
@@ -1085,22 +1074,36 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.status.guardian = temp_table.guardian
 			dialog_unit.status.unhealable = temp_table.unhealable
 			dialog_unit.status.stunned = temp_table.stunned
+			-- transform_unit based actions, all at least require the field to change to trigger a transform
+			-- type_advances_to must be after all other transforms, to handle advances_to as expected
+			gdt_unit.attack ( dialog_unit, temp_table.attack )
+			gdt_unit.abilities ( dialog_unit, temp_table.abilities )
+			gdt_unit.gender ( dialog_unit, temp_table.gender )
+			gdt_unit.traits ( dialog_unit, temp_table.traits )
+			gdt_unit.variation ( dialog_unit, temp_table.variation )
+			gdt_unit.type_advances_to ( dialog_unit, temp_table.type, temp_table.advances_to )
+			-- misc, these don't need to be anywhere in particular
 			dialog_unit.facing = temp_table.facing
-			-- misc; checkbuttons
-			dialog_unit.resting = temp_table.resting
+			dialog_unit.extra_recruit = utils.string_split ( temp_table.extra_recruit, "," )
+			dialog_unit.role = temp_table.role
 			dialog_unit.hidden = temp_table.hidden
-			dialog_unit.hitpoints = temp_table.hitpoints
-			dialog_unit.experience = temp_table.experience ; dialog_unit:advance ( true, true )
-			dialog_unit.moves = temp_table.moves
-			dialog_unit.attacks_left = temp_table.attacks_left
+			dialog_unit.resting = temp_table.resting
+			gdt_unit.canrecruit ( dialog_unit, temp_table.canrecruit )
+			gdt_unit.goto_xy ( dialog_unit, temp_table.goto_xy ) -- needs to be before location
+			gdt_unit.id ( dialog_unit, temp_table.id )
 			gdt_unit.overlays ( dialog_unit, temp_table.overlays )
-			gdt_unit.variables ( dialog_unit, temp_table.variables )
-			gdt_unit.name ( dialog_unit, temp_table.name )
+			gdt_unit.name ( dialog_unit, temp_table.name ) -- needs to be before generate_name
 			gdt_unit.generate_name ( dialog_unit, temp_table.generate_name )
 			gdt_unit.unrenamable ( dialog_unit, temp_table.unrenamable )
-			gdt_unit.canrecruit ( dialog_unit, temp_table.canrecruit )
-			gdt_unit.goto_xy ( dialog_unit, temp_table.goto_xy )
-			gdt_unit.location ( dialog_unit, temp_table.location )
+			gdt_unit.variables ( dialog_unit, temp_table.variables )
+			-- these values need to after transforms to maintain their values
+			dialog_unit.attacks_left = temp_table.attacks_left
+			dialog_unit.hitpoints = temp_table.hitpoints
+			dialog_unit.moves = temp_table.moves
+			-- needs to be after transforms, we don't want the unit advancing before they are done
+			dialog_unit.experience = temp_table.experience ; dialog_unit:advance ( true, true )
+			-- these need to be last, as they involve healing or copying the unit
+			gdt_unit.location ( dialog_unit, temp_table.location ) -- healed if put to recall
 			gdt_unit.heal_unit ( dialog_unit, temp_table.heal_unit )
 			gdt_unit.copy_unit ( dialog_unit, temp_table.copy_unit )
 			wml_actions.redraw ( { } ) -- to be sure of showing changes
