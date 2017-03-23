@@ -110,8 +110,8 @@ function gdt_unit.generate_name ( unit, bool )
 	end
 end
 
-function gdt_unit.get_traits_string ( dialog_unit )
-	local unit_modifications = helper.get_child ( dialog_unit.__cfg, "modifications" )
+function gdt_unit.get_traits_string ( unit )
+	local unit_modifications = helper.get_child ( unit.__cfg, "modifications" )
 	local trait_ids = { }
 	for trait in helper.child_range ( unit_modifications, "trait" ) do
 			if trait.id ~= nil then
