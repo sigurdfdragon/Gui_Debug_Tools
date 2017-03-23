@@ -712,7 +712,7 @@ function wml_actions.gui_unit_debug ( cfg )
 							T.text_box {
 								id = "textbox_abilities",
 								history = "other_abilities",
-								tooltip = _ "The unit will have the abilities of the unit types entered. Does not affect the unit's base abilities. Single space clears added abilities."
+								tooltip = _ "The unit will receive the abilities of the unit types entered. Single space clears added abilities."
 							}
 						}
 					},
