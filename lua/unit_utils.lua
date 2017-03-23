@@ -132,137 +132,131 @@ function gdt_unit.abilities ( unit, abilities )
 	end
 end
 
-function gdt_unit.trait_list()
-	-- returns a list of all mainline traits plus bonus traits
-	-- start with making a table and adding the global traits
-	-- quick, resilient, strong, intelligent
-	local trait_array = {}
-	local trait_t = wesnoth.get_traits()
-	local i = 1
-	for k,v in pairs(trait_t) do
-		trait_array[i] = v
-		i = i + 1
-	end
-
-	-- traverse through specified races and units to add more mainline traits
-	-- healthy, dextrous, weak, slow, dim, mechanical, fearless, undead
-	local race_array = { "dwarf", "elf", "goblin", "mechanical", "troll", "undead" }
-	-- feral, elemental
-	local unit_array = { "Vampire Bat", "Mudcrawler" }
-
-	for i,v in ipairs(race_array) do
-		for temp_trait in helper.child_range(wesnoth.races[v].__cfg, "trait") do
-			local trait_is_present = false
-			for j = 1, #trait_array do
-				if temp_trait.id == trait_array[j].id then
-					trait_is_present = true; break
-				end
-			end
-			if trait_is_present == false then
-				table.insert(trait_array, temp_trait)
-			end
-		end
-	end
-
-	for i,v  in ipairs(unit_array) do
-		for temp_trait in helper.child_range(wesnoth.unit_types[v].__cfg, "trait") do
-			local trait_is_present = false
-			for j = 1, #trait_array do
-				if temp_trait.id == trait_array[j].id then
-					trait_is_present = true; break
-				end
-			end
-			if trait_is_present == false then
-				table.insert(trait_array, temp_trait)
-			end
-		end
-	end
-
-	-- add aged, & loyal as none of the races or units in mainline cover them
-	-- #textdomain wesnoth-help
-	local _ = wesnoth.textdomain "wesnoth-help"
-	local trait_aged = { id="aged", male_name=_"aged", female_name=_"female^aged",
-		{ "effect", { apply_to="hitpoints", increase_total=-8 } }, 
-		{ "effect", { apply_to="movement", increase=-1 } }, 
-		{ "effect", { apply_to="attack", range="melee", increase_damage=-1 } } }
-	local trait_loyal = { id="loyal", male_name=_"loyal", female_name=_"female^loyal",
-		description=_"Zero upkeep", { "effect", { apply_to="loyal" } } }
-
-	-- add bonus traits expert, heroic, & powerful
-	-- #textdomain wesnoth-Gui_Debug_Tools
-	local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
-	-- expert trait - from The Great Quest
-	local trait_expert = { id="expert", male_name=_"expert", female_name=_"female^expert",
-		{ "effect", { apply_to="attack", increase_attacks=1 } },
-		{ "effect", { apply_to="attack", increase_damage=-1 } } }
-	-- heroic trait (Props to the World Conquest add-on for the idea.)
-	-- This is The Great Quest version that has strong, resilient, quick & dextrous.
-	local trait_heroic = { id="heroic", male_name=_"heroic", female_name=_"female^heroic",
-		{ "effect", { apply_to="attack", increase_damage=1 } },
-		{ "effect", { apply_to="hitpoints", increase_total=5 } },
-		{ "effect", { apply_to="hitpoints", times="per level", increase_total=1 } },
-		{ "effect", { apply_to="movement", increase=1 } } }
-	-- powerful trait - from Random Campaign
-	local trait_powerful = { id="powerful", male_name=_"powerful", female_name=_"female^powerful",
-		{ "effect", { apply_to="attack", increase_damage="20%" } } }
-	_ = nil
-	table.insert(trait_array, trait_aged)
-	table.insert(trait_array, trait_loyal)
-	table.insert(trait_array, trait_expert)
-	table.insert(trait_array, trait_heroic)
-	table.insert(trait_array, trait_powerful)
-
-	return trait_array
-end
-
 function gdt_unit.traits ( unit, trait_str )
 	if trait_str ~= gdt_unit.get_traits_string ( unit ) then
-		local trait_table = gdt_unit.trait_list()
+		-- returns a list of all mainline traits plus bonus traits
+		-- start with making a table and adding the global traits
+		-- quick, resilient, strong, intelligent
+		local trait_array = {}
+		local trait_t = wesnoth.get_traits()
+		local i = 1
+		for k,v in pairs(trait_t) do
+			trait_array[i] = v
+			i = i + 1
+		end
+
+		-- traverse through specified races and units to add more mainline traits
+		-- healthy, dextrous, weak, slow, dim, mechanical, fearless, undead
+		local race_array = { "dwarf", "elf", "goblin", "mechanical", "troll", "undead" }
+		-- feral, elemental
+		local unit_array = { "Vampire Bat", "Mudcrawler" }
+		for i,v in ipairs(race_array) do
+			for temp_trait in helper.child_range(wesnoth.races[v].__cfg, "trait") do
+				local trait_is_present = false
+				for j = 1, #trait_array do
+					if temp_trait.id == trait_array[j].id then
+						trait_is_present = true; break
+					end
+				end
+				if trait_is_present == false then
+					table.insert(trait_array, temp_trait)
+				end
+			end
+		end
+		for i,v  in ipairs(unit_array) do
+			for temp_trait in helper.child_range(wesnoth.unit_types[v].__cfg, "trait") do
+				local trait_is_present = false
+				for j = 1, #trait_array do
+					if temp_trait.id == trait_array[j].id then
+						trait_is_present = true; break
+					end
+				end
+				if trait_is_present == false then
+					table.insert(trait_array, temp_trait)
+				end
+			end
+		end
+
+		-- add aged, & loyal as none of the races or units in mainline cover them
+		-- #textdomain wesnoth-help
+		local _ = wesnoth.textdomain "wesnoth-help"
+		local trait_aged = { id="aged", male_name=_"aged", female_name=_"female^aged",
+			{ "effect", { apply_to="hitpoints", increase_total=-8 } },
+			{ "effect", { apply_to="movement", increase=-1 } },
+			{ "effect", { apply_to="attack", range="melee", increase_damage=-1 } } }
+		local trait_loyal = { id="loyal", male_name=_"loyal", female_name=_"female^loyal",
+			description=_"Zero upkeep", { "effect", { apply_to="loyal" } } }
+		table.insert(trait_array, trait_aged)
+		table.insert(trait_array, trait_loyal)
+
+		-- add bonus traits expert, heroic, & powerful
+		-- #textdomain wesnoth-Gui_Debug_Tools
+		local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
+		-- expert trait - from The Great Quest
+		local trait_expert = { id="expert", male_name=_"expert", female_name=_"female^expert",
+			{ "effect", { apply_to="attack", increase_attacks=1 } },
+			{ "effect", { apply_to="attack", increase_damage=-1 } } }
+		-- heroic trait (Props to the World Conquest add-on for the idea.)
+		-- This is The Great Quest version that has strong, resilient, quick & dextrous.
+		local trait_heroic = { id="heroic", male_name=_"heroic", female_name=_"female^heroic",
+			{ "effect", { apply_to="attack", increase_damage=1 } },
+			{ "effect", { apply_to="hitpoints", increase_total=5 } },
+			{ "effect", { apply_to="hitpoints", times="per level", increase_total=1 } },
+			{ "effect", { apply_to="movement", increase=1 } } }
+		-- powerful trait - from Random Campaign
+		local trait_powerful = { id="powerful", male_name=_"powerful", female_name=_"female^powerful",
+			{ "effect", { apply_to="attack", increase_damage="20%" } } }
+		table.insert(trait_array, trait_expert)
+		table.insert(trait_array, trait_heroic)
+		table.insert(trait_array, trait_powerful)
+		_ = nil
+
 		-- add the unit's race, unit_type, and current traits to the array
 		-- overwriting any with same id that are already in the array
 		-- race traits
 		for temp_trait in helper.child_range(wesnoth.races[unit.race].__cfg, "trait") do
 			local trait_is_present = false
-			for j = 1, #trait_table do
-				if temp_trait.id == trait_table[j].id then
+			for j = 1, #trait_array do
+				if temp_trait.id == trait_array[j].id then
 					trait_is_present = true
-					trait_table[j] = temp_trait
+					trait_array[j] = temp_trait
 					break
 				end
 			end
 			if trait_is_present == false then
-				table.insert(trait_table, temp_trait)
+				table.insert(trait_array, temp_trait)
 			end
 		end
 		-- unit_type traits
 		for temp_trait in helper.child_range(wesnoth.unit_types[unit.type].__cfg, "trait") do
 			local trait_is_present = false
-			for j = 1, #trait_table do
-				if temp_trait.id == trait_table[j].id then
+			for j = 1, #trait_array do
+				if temp_trait.id == trait_array[j].id then
 					trait_is_present = true
-					trait_table[j] = temp_trait
+					trait_array[j] = temp_trait
 					break
 				end
 			end
 			if trait_is_present == false then
-				table.insert(trait_table, temp_trait)
+				table.insert(trait_array, temp_trait)
 			end
 		end
 		-- unit's current traits
 		local u_mods = helper.get_child(unit.__cfg, "modifications")
 		for temp_trait in helper.child_range(u_mods, "trait") do
 			local trait_is_present = false
-			for j = 1, #trait_table do
-				if temp_trait.id == trait_table[j].id then
+			for j = 1, #trait_array do
+				if temp_trait.id == trait_array[j].id then
 					trait_is_present = true
-					trait_table[j] = temp_trait
+					trait_array[j] = temp_trait
 					break
 				end
 			end
 			if trait_is_present == false then
-				table.insert(trait_table, temp_trait)
+				table.insert(trait_array, temp_trait)
 			end
 		end
+
 		-- now that all the traits to pick from have been assembled
 		-- take user entered values and use to set the unit's traits
 		-- chop user entered value
@@ -293,10 +287,10 @@ function gdt_unit.traits ( unit, trait_str )
 		end
 		-- add new traits
 		for i = 1, #temp_new_traits do
-			for j = 1, #trait_table do
-				if temp_new_traits[i] == trait_table[j].id then
+			for j = 1, #trait_array do
+				if temp_new_traits[i] == trait_array[j].id then
 					local m = helper.get_child(u, "modifications")
-					table.insert ( m, { [1] = "trait", [2] = trait_table[j] } )
+					table.insert ( m, { [1] = "trait", [2] = trait_array[j] } )
 					break
 				end
 			end
