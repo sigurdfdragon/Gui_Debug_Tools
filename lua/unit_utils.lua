@@ -9,74 +9,37 @@ local utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/utils.lua"
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
 
-function gdt_unit.get_traits_string ( dialog_unit )
-	local unit_modifications = helper.get_child ( dialog_unit.__cfg, "modifications" )
-	local trait_ids = { }
-	for trait in helper.child_range ( unit_modifications, "trait" ) do
-			if trait.id ~= nil then
-				table.insert ( trait_ids, trait.id )
+function gdt_unit.abilities ( unit, abilities )
+	-- abilities change - adds or removes new abilities via objects, does not affect abilities that come with the unit type
+	if abilities ~= "" then
+		-- remove existing ability objects
+		local u = unit.__cfg -- traits need to be removed by editing a __cfg table
+		for tag = #u, 1, -1 do
+			if u[tag][1] == "modifications" then
+				for subtag = #u[tag][2], 1, -1 do
+					if u[tag][2][subtag][1] == "object" and u[tag][2][subtag][2].gdt_id ~= nil then
+						table.remove( u[tag][2], subtag )
+					end
+				end
 			end
-	end
-	return table.concat( trait_ids, "," )
-end
-
-function gdt_unit.id ( unit, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, id = value }
-end
-
-function gdt_unit.overlays ( unit, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, overlays = value }
-end
-
-function gdt_unit.name ( unit, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, name = value }
-end
-
-function gdt_unit.unrenamable ( unit, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, unrenamable = value }
-end
-
-function gdt_unit.canrecruit ( unit, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, canrecruit = value }
-end
-
-function gdt_unit.location ( unit, str )
-	local location = { }
-	for value in utils.split ( str ) do
-		table.insert ( location, utils.chop( value ) )
-	end
-	if location[1] == "0" and location[2] == "0" then
-		-- do it this way as wml_action.put_to_recall doesn't cover petrified or unhealable
-		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
-		wesnoth.put_recall_unit ( unit )
-	else
-		wesnoth.put_unit ( location[1], location[2], unit )
-	end
-end
-
-function gdt_unit.goto_xy ( unit, str )
-		local goto_xy = { }
-		for value in utils.split ( str ) do
-			table.insert ( goto_xy, utils.chop( value ) )
 		end
-		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
-end
-
-function gdt_unit.type_advances_to ( unit, unit_type, advances_to )
-	-- only when type is changing do we want to disregard what is entered for advances_to
-	if unit.type ~= unit_type then
-		wesnoth.transform_unit ( unit, unit_type )
-	else
-		unit.advances_to = utils.string_split ( advances_to, "," )
-	end
-end
-
-function gdt_unit.variation ( unit, variation )
-	-- can this simply be a modify unit without all the rest of the code if this occurs
-	-- before the unit_type transformation?
-	if variation ~= unit.__cfg.variation then
-		wml_actions.modify_unit { { "filter", { id = unit.id } }, variation = variation }
-		wesnoth.transform_unit ( unit, unit.type ) -- so the variation change will take
+		wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
+		wesnoth.transform_unit ( unit, unit.type ) -- the above gets the [object], this gets the [abilities] imparted by the object
+		if abilities ~= " " then -- a shortcut if user just wants to clear added objects
+			-- chop user entered value
+			local ability_sources = { }
+			for value in utils.split( abilities ) do
+				table.insert ( ability_sources, utils.chop( value ) )
+			end
+			-- add new abilities, copy from unit_types that have desired abilities
+			for i = 1, #ability_sources do
+				local new_ability = helper.get_child(wesnoth.unit_types[ability_sources[i]].__cfg, "abilities")
+				if new_ability then
+					local new_object = { gdt_id = i, delayed_variable_substitution = true, { "effect", { apply_to = "new_ability", { "abilities", new_ability } } } }
+					wesnoth.add_modification ( unit, "object", new_object )
+				end
+			end
+		end
 	end
 end
 
@@ -114,38 +77,88 @@ function gdt_unit.attack ( unit, attack )
 	end
 end
 
-function gdt_unit.abilities ( unit, abilities )
-	-- abilities change - adds or removes new abilities via objects, does not affect abilities that come with the unit type
-	if abilities ~= "" then
-		-- remove existing ability objects
-		local u = unit.__cfg -- traits need to be removed by editing a __cfg table
-		for tag = #u, 1, -1 do
-			if u[tag][1] == "modifications" then
-				for subtag = #u[tag][2], 1, -1 do
-					if u[tag][2][subtag][1] == "object" and u[tag][2][subtag][2].gdt_id ~= nil then
-						table.remove( u[tag][2], subtag )
-					end
-				end
-			end
-		end
-		wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
-		wesnoth.transform_unit ( unit, unit.type ) -- the above gets the [object], this gets the [abilities] imparted by the object
-		if abilities ~= " " then -- a shortcut if user just wants to clear added objects
-			-- chop user entered value
-			local ability_sources = { }
-			for value in utils.split( abilities ) do
-				table.insert ( ability_sources, utils.chop( value ) )
-			end
-			-- add new abilities, copy from unit_types that have desired abilities
-			for i = 1, #ability_sources do
-				local new_ability = helper.get_child(wesnoth.unit_types[ability_sources[i]].__cfg, "abilities")
-				if new_ability then
-					local new_object = { gdt_id = i, delayed_variable_substitution = true, { "effect", { apply_to = "new_ability", { "abilities", new_ability } } } }
-					wesnoth.add_modification ( unit, "object", new_object )
-				end
-			end
+function gdt_unit.canrecruit ( unit, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, canrecruit = value }
+end
+
+function gdt_unit.copy_unit ( unit, bool )
+		-- do it this way instead of using wesnoth.copy_unit as
+		-- it doesn't handle specified ids (ie, 'Konrad') in
+		-- the way that we want it to
+	if bool then
+		local copy = unit.__cfg
+		copy.id, copy.underlying_id = nil, nil
+		if copy.x == "recall" and copy.y == "recall" then
+			wesnoth.put_recall_unit ( copy )
+		else
+			local x, y = wesnoth.find_vacant_tile ( copy.x, copy.y, copy )
+			wesnoth.put_unit ( x, y, copy )
 		end
 	end
+end
+
+function gdt_unit.gender ( unit, gender )
+		if gender ~= unit.__cfg.gender then -- if there are custom portraits, they are lost.
+			wml_actions.modify_unit { { "filter", { id = unit.id } }, profile = "", small_profile = "", gender = gender }
+			wesnoth.transform_unit ( unit, unit.type ) -- transform refills the profile keys
+		end
+end
+
+function gdt_unit.generate_name ( unit, bool )
+	if bool then
+		wml_actions.modify_unit { { "filter", { id = unit.id } }, name = "", generate_name = true }
+	end
+end
+
+function gdt_unit.get_traits_string ( dialog_unit )
+	local unit_modifications = helper.get_child ( dialog_unit.__cfg, "modifications" )
+	local trait_ids = { }
+	for trait in helper.child_range ( unit_modifications, "trait" ) do
+			if trait.id ~= nil then
+				table.insert ( trait_ids, trait.id )
+			end
+	end
+	return table.concat( trait_ids, "," )
+end
+
+function gdt_unit.goto_xy ( unit, str )
+		local goto_xy = { }
+		for value in utils.split ( str ) do
+			table.insert ( goto_xy, utils.chop( value ) )
+		end
+		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
+end
+
+function gdt_unit.heal_unit ( unit, bool )
+	if bool then
+		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full" }
+	end
+end
+
+function gdt_unit.id ( unit, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, id = value }
+end
+
+function gdt_unit.location ( unit, str )
+	local location = { }
+	for value in utils.split ( str ) do
+		table.insert ( location, utils.chop( value ) )
+	end
+	if location[1] == "0" and location[2] == "0" then
+		-- do it this way as wml_action.put_to_recall doesn't cover petrified or unhealable
+		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
+		wesnoth.put_recall_unit ( unit )
+	else
+		wesnoth.put_unit ( location[1], location[2], unit )
+	end
+end
+
+function gdt_unit.name ( unit, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, name = value }
+end
+
+function gdt_unit.overlays ( unit, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, overlays = value }
 end
 
 function gdt_unit.traits ( unit, trait_str )
@@ -316,6 +329,19 @@ function gdt_unit.traits ( unit, trait_str )
 	end
 end
 
+function gdt_unit.type_advances_to ( unit, unit_type, advances_to )
+	-- only when type is changing do we want to disregard what is entered for advances_to
+	if unit.type ~= unit_type then
+		wesnoth.transform_unit ( unit, unit_type )
+	else
+		unit.advances_to = utils.string_split ( advances_to, "," )
+	end
+end
+
+function gdt_unit.unrenamable ( unit, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, unrenamable = value }
+end
+
 function gdt_unit.variables ( unit, variables )
 	if variables ~= "" then
 		local vstr = {}
@@ -329,38 +355,12 @@ function gdt_unit.variables ( unit, variables )
 	end
 end
 
-function gdt_unit.gender ( unit, gender )
-		if gender ~= unit.__cfg.gender then -- if there are custom portraits, they are lost.
-			wml_actions.modify_unit { { "filter", { id = unit.id } }, profile = "", small_profile = "", gender = gender }
-			wesnoth.transform_unit ( unit, unit.type ) -- transform refills the profile keys
-		end
-end
-
-function gdt_unit.generate_name ( unit, bool )
-	if bool then
-		wml_actions.modify_unit { { "filter", { id = unit.id } }, name = "", generate_name = true }
-	end
-end
-
-function gdt_unit.heal_unit ( unit, bool )
-	if bool then
-		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full" }
-	end
-end
-
-function gdt_unit.copy_unit ( unit, bool )
-		-- do it this way instead of using wesnoth.copy_unit as
-		-- it doesn't handle specified ids (ie, 'Konrad') in
-		-- the way that we want it to
-	if bool then
-		local copy = unit.__cfg
-		copy.id, copy.underlying_id = nil, nil
-		if copy.x == "recall" and copy.y == "recall" then
-			wesnoth.put_recall_unit ( copy )
-		else
-			local x, y = wesnoth.find_vacant_tile ( copy.x, copy.y, copy )
-			wesnoth.put_unit ( x, y, copy )
-		end
+function gdt_unit.variation ( unit, variation )
+	-- can this simply be a modify unit without all the rest of the code if this occurs
+	-- before the unit_type transformation?
+	if variation ~= unit.__cfg.variation then
+		wml_actions.modify_unit { { "filter", { id = unit.id } }, variation = variation }
+		wesnoth.transform_unit ( unit, unit.type ) -- so the variation change will take
 	end
 end
 
