@@ -20,8 +20,24 @@ function gdt_unit.get_traits_string ( dialog_unit )
 	return table.concat( trait_ids, "," )
 end
 
-function gdt_unit.attribute ( unit, key, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, [key] = value }
+function gdt_unit.id ( unit, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, id = value }
+end
+
+function gdt_unit.overlays ( unit, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, overlays = value }
+end
+
+function gdt_unit.name ( unit, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, name = value }
+end
+
+function gdt_unit.unrenamable ( unit, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, unrenamable = value }
+end
+
+function gdt_unit.canrecruit ( unit, value )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, canrecruit = value }
 end
 
 function gdt_unit.location ( unit, str )

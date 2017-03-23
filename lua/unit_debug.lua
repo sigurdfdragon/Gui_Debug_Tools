@@ -1068,7 +1068,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			if wesnoth.sides[temp_table.side] then
 				dialog_unit.side = temp_table.side
 			end
-			gdt_unit.attribute ( dialog_unit, "id", temp_table.id )
+			gdt_unit.id ( dialog_unit, temp_table.id )
 			-- order of actions below is important, some use wesnoth.transform_unit, which can affect things
 			gdt_unit.attack ( dialog_unit, temp_table.attack )
 			gdt_unit.abilities ( dialog_unit, temp_table.abilities )
@@ -1095,12 +1095,12 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.experience = temp_table.experience ; dialog_unit:advance ( true, true )
 			dialog_unit.moves = temp_table.moves
 			dialog_unit.attacks_left = temp_table.attacks_left
-			gdt_unit.attribute ( dialog_unit, "overlays", temp_table.overlays )
+			gdt_unit.overlays ( dialog_unit, temp_table.overlays )
 			gdt_unit.variables ( dialog_unit, temp_table.variables )
-			gdt_unit.attribute ( dialog_unit, "name", temp_table.name )
+			gdt_unit.name ( dialog_unit, temp_table.name )
 			gdt_unit.generate_name ( dialog_unit, temp_table.generate_name )
-			gdt_unit.attribute ( dialog_unit, "unrenamable", temp_table.unrenamable )
-			gdt_unit.attribute ( dialog_unit, "canrecruit", temp_table.canrecruit )
+			gdt_unit.unrenamable ( dialog_unit, temp_table.unrenamable )
+			gdt_unit.canrecruit ( dialog_unit, temp_table.canrecruit )
 			gdt_unit.goto_xy ( dialog_unit, temp_table.goto_xy )
 			gdt_unit.location ( dialog_unit, temp_table.location )
 			gdt_unit.heal_unit ( dialog_unit, temp_table.heal_unit )
