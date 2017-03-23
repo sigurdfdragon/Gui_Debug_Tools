@@ -443,7 +443,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.column {
-									label = _ "male"
+									label = _ "Male"
 								}
 							},
 							T.row {
@@ -451,7 +451,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.column {
-									label = _ "female"
+									label = _ "Female"
 								}
 							}
 						}
