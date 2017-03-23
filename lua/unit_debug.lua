@@ -498,7 +498,7 @@ function wml_actions.gui_unit_debug ( cfg )
 							border_size = 5,
 							T.slider {
 								minimum_value = 1,
-								maximum_value = math.max( 2, #wesnoth.sides ), -- to avoid crash if there is only one side
+								maximum_value = #wesnoth.sides,
 								step_size = 1,
 								id = "unit_side_slider", --unit.side
 								tooltip = _ "The side the unit belongs to."
@@ -1065,9 +1065,7 @@ function wml_actions.gui_unit_debug ( cfg )
 
 		if return_value == 1 or return_value == -1 then -- if used pressed OK or Enter, modify unit
 			-- sliders
-			if wesnoth.sides[temp_table.side] then
-				dialog_unit.side = temp_table.side
-			end
+			dialog_unit.side = temp_table.side
 			gdt_unit.id ( dialog_unit, temp_table.id )
 			-- order of actions below is important, some use wesnoth.transform_unit, which can affect things
 			gdt_unit.attack ( dialog_unit, temp_table.attack )
