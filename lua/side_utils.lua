@@ -9,6 +9,12 @@ local utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/utils.lua"
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
 
+function gdt_side.clear_recall ( side, bool )
+	if bool then
+		wml_actions.kill( { side = side.side, x = "recall", y = "recall" } )
+	end
+end
+
 function gdt_side.convert_color( color )
 	-- if color is a number, convert it to the word form
 	local color_names = { "red", "blue", "green", "purple", "black", "brown", "orange", "white", "teal" }
@@ -17,6 +23,18 @@ function gdt_side.convert_color( color )
 		return color_names[color_number]
 	else
 		return color
+	end
+end
+
+function gdt_side.heal_units ( side, bool )
+	if bool then
+		wml_actions.heal_unit { { "filter", { side = side.side } } }
+	end
+end
+
+function gdt_side.kill_units ( side, bool )
+	if bool then
+		wml_actions.kill { side = side.side, animate = true, fire_event = true }
 	end
 end
 
@@ -54,24 +72,6 @@ function gdt_side.seed_recall ( side, bool )
 		for i = 1, #temp_recruit do
 			wesnoth.put_recall_unit ( { type = temp_recruit[i], side = side.side } )
 		end
-	end
-end
-
-function gdt_side.clear_recall ( side, bool )
-	if bool then
-		wml_actions.kill( { side = side.side, x = "recall", y = "recall" } )
-	end
-end
-
-function gdt_side.heal_units ( side, bool )
-	if bool then
-		wml_actions.heal_unit { { "filter", { side = side.side } } }
-	end
-end
-
-function gdt_side.kill_units ( side, bool )
-	if bool then
-		wml_actions.kill { side = side.side, animate = true, fire_event = true }
 	end
 end
 
