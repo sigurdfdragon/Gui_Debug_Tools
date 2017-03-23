@@ -409,7 +409,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Resting",
-									id = "resting_checkbutton" --unit.resting
+									id = "resting_checkbutton", --unit.resting
+									tooltip = _ "If the unit is resting, it will receive rest healing at the start of its next turn."
 								}
 							},
 							T.column {
