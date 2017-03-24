@@ -428,7 +428,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Hidden",
-									id = "hidden_checkbutton" --unit.hidden
+									id = "hidden_checkbutton", --unit.hidden
+									tooltip = _ "If the unit has been hidden using [hide_unit]. This is not the same as a [hides] ability."
 								}
 							}
 						}
