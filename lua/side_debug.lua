@@ -90,24 +90,6 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Name"
-								}
-							},
-							T.column {
-								horizontal_alignment = "left",
-								border = "all",
-								border_size = 5,
-								T.label {
-									id = "name_label"
-								}
-							}
-						},
-						T.row {
-							T.column {
-								horizontal_alignment = "left",
-								border = "all",
-								border_size = 5,
-								T.label {
 									label = _ "Total income"
 								}
 							},
@@ -684,7 +666,6 @@ function wml_actions.gui_side_debug ( cfg )
 			-- labels
 			wesnoth.set_dialog_value ( dialog_side.side, "side_label" )
 			wesnoth.set_dialog_value ( dialog_side.__cfg.current_player, "current_player_label" )
-			wesnoth.set_dialog_value ( tostring(dialog_side.name), "name_label" ) -- name is nil in 1.13, so tostring is needed
 			wesnoth.set_dialog_value ( dialog_side.total_income, "total_income_label" )
 			-- sliders
 			wesnoth.set_dialog_value ( dialog_side.village_gold, "side_village_gold_slider" )
