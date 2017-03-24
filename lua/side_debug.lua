@@ -285,7 +285,7 @@ function wml_actions.gui_side_debug ( cfg )
 							T.column {
 								T.toggle_button {
 									id = "controller_radiobutton",
-									tooltip = _ "How moves for this side are inputted."
+									tooltip = _ "The type of entity that enters moves for the side."
 								}
 							}
 						}
