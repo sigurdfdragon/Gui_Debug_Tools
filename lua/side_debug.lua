@@ -623,7 +623,8 @@ function wml_actions.gui_side_debug ( cfg )
 						border_size = 5,
 						T.label {
 							definition = "title",
-							label = _ "Side Debug"
+							label = _ "Side Debug",
+							tooltip = _ "GUI Debug Tools" .. " " .. wesnoth.dofile '~add-ons/Gui_Debug_Tools/dist/version'
 						}
 					}
 				},
