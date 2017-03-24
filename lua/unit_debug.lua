@@ -57,7 +57,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								T.text_box {
 									id = "textbox_unit_id",
 									history = "other_ids",
-									tooltip = _ "The internal designation for the unit. Each unit's ID should be unique."
+									tooltip = _ "The internal WML designation for the unit. Each unit ID needs to be unique."
 								}
 							}
 						},
@@ -75,7 +75,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									id = "underlying_id_label"
+									id = "underlying_id_label",
+									tooltip = _ "The internal C++ designation for the unit."
 								}
 							}
 						},
@@ -264,7 +265,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Poisoned",
-									id = "poisoned_checkbutton"
+									id = "poisoned_checkbutton",
+									tooltip = _ "The unit loses HP each turn."
 								}
 							},
 							T.column {
@@ -273,7 +275,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Slowed",
-									id = "slowed_checkbutton"
+									id = "slowed_checkbutton",
+									tooltip = _ "The unit has 50% of its normal movement and does half damage."
 								}
 							},
 							T.column {
@@ -282,7 +285,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Petrified",
-									id = "petrified_checkbutton"
+									id = "petrified_checkbutton",
+									tooltip = _ "The unit cannot move, attack, or be attacked."
 								}
 							},
 							T.column {
@@ -291,7 +295,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Invulnerable",
-									id = "invulnerable_checkbutton"
+									id = "invulnerable_checkbutton",
+									tooltip = _ "Attacks can't hit the unit."
 								}
 							}
 						},
@@ -302,7 +307,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Uncovered",
-									id = "uncovered_checkbutton"
+									id = "uncovered_checkbutton",
+									tooltip = _ "The unit has performed an action (e.g. attacking) that causes it to no longer be hidden until the next turn."
 								}
 							},
 							T.column {
@@ -311,7 +317,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Guardian",
-									id = "guardian_checkbutton"
+									id = "guardian_checkbutton",
+									tooltip = _ "The unit will not move, except to attack something in immediate range."
 								}
 							},
 							T.column {
@@ -320,7 +327,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Unhealable",
-									id = "unhealable_checkbutton"
+									id = "unhealable_checkbutton",
+									tooltip = _ "The unit cannot be healed."
 								}
 							},
 							T.column {
@@ -329,7 +337,8 @@ function wml_actions.gui_unit_debug ( cfg )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Stunned",
-									id = "stunned_checkbutton"
+									id = "stunned_checkbutton",
+									tooltip = _ "The unit has lost its zone of control until next turn. This status is only available in some campaigns and add-ons."
 								}
 							}
 						}
@@ -893,7 +902,8 @@ function wml_actions.gui_unit_debug ( cfg )
 												border = "all",
 												border_size = 5,
 												T.image {
-													id = "unit_image" -- unit sprite
+													id = "unit_image", -- unit sprite
+													tooltip = _ "The image of the unit."
 												}
 											}
 										},
@@ -906,7 +916,8 @@ function wml_actions.gui_unit_debug ( cfg )
 												border_size = 5,
 												T.button {
 													id = "unit_profile_button",
-													label = _ "Profile"
+													label = _ "Profile",
+													tooltip = _ "Displays the help entry for the unit."
 												}
 											}
 										},

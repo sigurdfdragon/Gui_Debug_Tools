@@ -60,7 +60,8 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									id = "side_label"
+									id = "side_label",
+									tooltip = _ "The number of the side."
 								}
 							}
 						},
@@ -78,7 +79,8 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									id = "current_player_label"
+									id = "current_player_label",
+									tooltip = _ "The name of the entity controlling the side."
 								}
 							}
 						},
@@ -114,7 +116,8 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									id = "total_income_label"
+									id = "total_income_label",
+									tooltip = _ "The total of base + village income that the side receives each turn."
 								}
 							}
 						},
