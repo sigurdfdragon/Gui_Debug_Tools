@@ -645,7 +645,26 @@ function wml_actions.gui_side_debug ( cfg )
 							T.row {
 								T.column {
 									vertical_alignment = "top",
-									read_only_panel
+									T.grid {
+										T.row {
+											T.column {
+												vertical_alignment = "center",
+												horizontal_alignment = "center",
+												border = "all",
+												border_size = 5,
+												T.image {
+													id = "flag_image", -- flag sprite
+													tooltip = _ "The flag of the side."
+												}
+											}
+										},
+										T.row {
+											T.column {
+												vertical_alignment = "top",
+												read_only_panel
+											}
+										}
+									}
 								},
 								T.column {
 									modify_panel
@@ -665,6 +684,7 @@ function wml_actions.gui_side_debug ( cfg )
 		local function preshow()
 			-- set widget values
 			-- labels
+			wesnoth.set_dialog_value ( string.format("%s~RC(flag_green>%s)~XBRZ(2)", dialog_side.flag_icon or "", wesnoth.sides[dialog_side.side].color ), "flag_image" )
 			wesnoth.set_dialog_value ( dialog_side.side, "side_label" )
 			wesnoth.set_dialog_value ( dialog_side.__cfg.current_player, "current_player_label" )
 			wesnoth.set_dialog_value ( dialog_side.total_income, "total_income_label" )
