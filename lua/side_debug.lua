@@ -71,7 +71,7 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Current player"
+									label = _ "Current Player"
 								}
 							},
 							T.column {
@@ -90,7 +90,7 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Total income"
+									label = _ "Total Income"
 								}
 							},
 							T.column {
@@ -109,7 +109,7 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Scroll to leader"
+									label = _ "Scroll to Leader"
 								}
 							},
 							T.column {
@@ -128,7 +128,7 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "S.e.t.c.",
+									label = _ "S.E.T.C.",
 								}
 							},
 							T.column {
@@ -204,7 +204,7 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Clear recall"
+									label = _ "Clear Recall"
 								}
 							},
 							T.column {
@@ -223,7 +223,7 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Seed recall"
+									label = _ "Seed Rrecall"
 								}
 							},
 							T.column {
@@ -242,7 +242,7 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Heal units"
+									label = _ "Heal Units"
 								}
 							},
 							T.column {
@@ -261,7 +261,7 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Kill units"
+									label = _ "Kill Units"
 								}
 							},
 							T.column {
@@ -371,7 +371,7 @@ function wml_actions.gui_side_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Village gold"
+								label = _ "Village Gold"
 							}
 						},
 						T.column {
@@ -395,7 +395,7 @@ function wml_actions.gui_side_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Village support"
+								label = _ "Village Support"
 							}
 						},
 						T.column {
@@ -419,7 +419,7 @@ function wml_actions.gui_side_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Base income"
+								label = _ "Base Income"
 							}
 						},
 						T.column {
@@ -443,7 +443,7 @@ function wml_actions.gui_side_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Defeat condition"
+								label = _ "Defeat Condition"
 							}
 						},
 						T.column {
@@ -509,7 +509,7 @@ function wml_actions.gui_side_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Flag icon"
+								label = _ "Flag Icon"
 							}
 						},
 						T.column {
@@ -531,7 +531,7 @@ function wml_actions.gui_side_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "User team name"
+								label = _ "User Team Name"
 							}
 						},
 						T.column {
@@ -553,7 +553,7 @@ function wml_actions.gui_side_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Team name"
+								label = _ "Team Name"
 							}
 						},
 						T.column {

@@ -166,7 +166,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Can recruit"
+									label = _ "Can Recruit"
 								}
 							},
 							T.column {
@@ -204,7 +204,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Generate name"
+									label = _ "Generate Name"
 								}
 							},
 							T.column {
@@ -223,7 +223,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Heal unit"
+									label = _ "Heal Unit"
 								}
 							},
 							T.column {
@@ -242,7 +242,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Copy unit"
+									label = _ "Copy Unit"
 								}
 							},
 							T.column {
@@ -599,7 +599,7 @@ function wml_actions.gui_unit_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Attacks left"
+								label = _ "Attacks Left"
 							}
 						},
 						T.column {
@@ -624,7 +624,7 @@ function wml_actions.gui_unit_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Extra recruit"
+								label = _ "Extra Recruit"
 							}
 						},
 						T.column {
@@ -646,7 +646,7 @@ function wml_actions.gui_unit_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Advances to"
+								label = _ "Advances To"
 							}
 						},
 						T.column {
