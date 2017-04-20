@@ -111,7 +111,7 @@ function gdt_unit.generate_name ( unit, bool )
 end
 
 function gdt_unit.get_traits_string ( unit )
-	local unit_modifications = helper.get_child ( unit.__cfg, "modifications" )
+	local unit_modifications = helper.get_child ( unit.__cfg, "modifications" ) or {}
 	local trait_ids = { }
 	for trait in helper.child_range ( unit_modifications, "trait" ) do
 			if trait.id ~= nil then
@@ -272,7 +272,7 @@ function gdt_unit.traits ( unit, trait_str )
 			end
 		end
 		-- unit's current traits
-		local u_mods = helper.get_child(unit.__cfg, "modifications")
+		local u_mods = helper.get_child(unit.__cfg, "modifications") or {}
 		for temp_trait in helper.child_range(u_mods, "trait") do
 			local trait_is_present = false
 			for j = 1, #trait_array do
@@ -319,7 +319,10 @@ function gdt_unit.traits ( unit, trait_str )
 		for i = 1, #temp_new_traits do
 			for j = 1, #trait_array do
 				if temp_new_traits[i] == trait_array[j].id then
-					local m = helper.get_child(u, "modifications")
+					if helper.get_child( u, "modifications" ) == nil then
+						utils.add_child( u, "modifications" )
+					end
+					local m = helper.get_child( u, "modifications" )
 					table.insert ( m, { [1] = "trait", [2] = trait_array[j] } )
 					break
 				end

@@ -20,6 +20,10 @@ function utils.remove_child(cfg, name)
 	end
 end
 
+function utils.add_child( cfg, tag_name )
+	table.insert(cfg, { [1] = tag_name, [2] = {} } )
+end
+
 -- support functions for handling strings
 function utils.split( str, char )
 	local char = char or ","
