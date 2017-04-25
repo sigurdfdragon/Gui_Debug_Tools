@@ -320,7 +320,7 @@ function gdt_unit.traits ( unit, trait_str )
 			for j = 1, #trait_array do
 				if temp_new_traits[i] == trait_array[j].id then
 					if helper.get_child( u, "modifications" ) == nil then
-						utils.add_child( u, "modifications" )
+						utils.add_empty_child( u, "modifications" )
 					end
 					local m = helper.get_child( u, "modifications" )
 					table.insert ( m, { [1] = "trait", [2] = trait_array[j] } )

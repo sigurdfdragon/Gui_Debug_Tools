@@ -20,7 +20,7 @@ function utils.remove_child(cfg, name)
 	end
 end
 
-function utils.add_child( cfg, tag_name )
+function utils.add_empty_child( cfg, tag_name )
 	table.insert(cfg, { [1] = tag_name, [2] = {} } )
 end
 
