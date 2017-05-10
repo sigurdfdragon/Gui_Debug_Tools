@@ -223,7 +223,7 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Seed Rrecall"
+									label = _ "Seed Recall"
 								}
 							},
 							T.column {
