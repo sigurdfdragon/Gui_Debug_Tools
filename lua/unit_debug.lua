@@ -491,7 +491,7 @@ function wml_actions.gui_unit_debug ( cfg )
 					}
 				}
 
-		-- left side entries
+		-- right side entries
 		local modify_panel = T.grid { -- side slider
 					T.row {
 						T.column {
