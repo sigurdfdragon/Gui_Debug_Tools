@@ -503,7 +503,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -527,7 +526,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -553,7 +551,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -578,7 +575,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -603,7 +599,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -628,7 +623,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -650,7 +644,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -672,7 +665,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -694,7 +686,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -716,7 +707,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -738,7 +728,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -760,7 +749,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,
@@ -782,7 +770,6 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
 							border = "all",
 							border_size = 5,

@@ -354,9 +354,7 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.text_box {
@@ -375,9 +373,7 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.slider {
@@ -399,9 +395,7 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.slider {
@@ -423,9 +417,8 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
+							-- vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.slider {
@@ -447,9 +440,7 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.text_box {
@@ -469,9 +460,7 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.text_box {
@@ -491,9 +480,7 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.text_box {
@@ -513,9 +500,7 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.text_box {
@@ -535,9 +520,7 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.text_box {
@@ -557,9 +540,7 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.text_box {
@@ -579,9 +560,7 @@ function wml_actions.gui_side_debug ( cfg )
 							}
 						},
 						T.column {
-							vertical_grow = true,
 							horizontal_grow = true,
-							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
 							T.text_box {
