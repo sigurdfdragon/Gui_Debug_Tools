@@ -423,7 +423,7 @@ function wml_actions.gui_side_debug ( cfg )
 							border_size = 5,
 							T.slider {
 								minimum_value = math.min( -2, dialog_side.base_income ),
-								maximum_value = math.max( 18, dialog_side.base_income ),
+								maximum_value = math.max( 98, dialog_side.base_income ),
 								step_size = 1,
 								id = "side_base_income_slider",
 								tooltip = _ "The amount of income the side receives per turn."
