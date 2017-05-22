@@ -28,7 +28,7 @@ end
 
 function gdt_side.heal_units ( side, bool )
 	if bool then
-		wml_actions.heal_unit { { "filter", { side = side.side } } }
+		wml_actions.heal_unit { { "filter", { side = side.side } }, moves = "full", restore_attacks = true }
 	end
 end
 

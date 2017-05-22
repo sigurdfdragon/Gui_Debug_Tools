@@ -131,7 +131,7 @@ end
 
 function gdt_unit.heal_unit ( unit, bool )
 	if bool then
-		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full" }
+		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
 	end
 end
 
