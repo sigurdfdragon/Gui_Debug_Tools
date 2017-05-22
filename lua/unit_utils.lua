@@ -122,11 +122,11 @@ function gdt_unit.get_traits_string ( unit )
 end
 
 function gdt_unit.goto_xy ( unit, str )
-		local goto_xy = { }
-		for value in utils.split ( str ) do
-			table.insert ( goto_xy, utils.chop( value ) )
-		end
-		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
+	local goto_xy = { }
+	for value in utils.split ( str ) do
+		table.insert ( goto_xy, utils.chop( value ) )
+	end
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
 end
 
 function gdt_unit.heal_unit ( unit, bool )
