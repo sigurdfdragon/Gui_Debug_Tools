@@ -75,4 +75,15 @@ function gdt_side.seed_recall ( side, bool )
 	end
 end
 
+function gdt_side.super_heal_units ( side, bool )
+	if bool then
+		local units = wesnoth.get_units { side = side.side }
+		for i = 1, #units do
+			units[i].hitpoints = math.max(units[i].max_hitpoints * 20, 1000)
+			units[i].moves = math.max(units[i].max_moves * 20, 100)
+			units[i].attacks_left = math.max(units[i].max_attacks * 20, 20)
+		end
+	end
+end
+
 return gdt_side

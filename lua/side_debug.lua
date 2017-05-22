@@ -261,6 +261,25 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Super Heal Units"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									id = "super_heal_units_checkbutton",
+									tooltip = _ "All the side's units on the map will be super healed."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Kill Units"
 								}
 							},
@@ -689,6 +708,7 @@ function wml_actions.gui_side_debug ( cfg )
 			wesnoth.set_dialog_value ( false, "clear_recall_checkbutton" )
 			wesnoth.set_dialog_value ( false, "seed_recall_checkbutton" )
 			wesnoth.set_dialog_value ( false, "heal_units_checkbutton" )
+			wesnoth.set_dialog_value ( false, "super_heal_units_checkbutton" )
 			wesnoth.set_dialog_value ( false, "kill_units_checkbutton" )
 
 			-- radiobutton
@@ -737,6 +757,7 @@ function wml_actions.gui_side_debug ( cfg )
 				temp_table.clear_recall = wesnoth.get_dialog_value ( "clear_recall_checkbutton" )
 				temp_table.seed_recall = wesnoth.get_dialog_value ( "seed_recall_checkbutton" )
 				temp_table.heal_units = wesnoth.get_dialog_value ( "heal_units_checkbutton" )
+				temp_table.super_heal_units = wesnoth.get_dialog_value ( "super_heal_units_checkbutton" )
 				temp_table.kill_units = wesnoth.get_dialog_value ( "kill_units_checkbutton" )
 				-- radiobutton
 				local controllers = { "ai", "human", "idle", "network", "network_ai", "null" }
@@ -771,6 +792,7 @@ function wml_actions.gui_side_debug ( cfg )
 			gdt_side.clear_recall ( dialog_side, temp_table.clear_recall )
 			gdt_side.seed_recall ( dialog_side, temp_table.seed_recall )
 			gdt_side.heal_units ( dialog_side, temp_table.heal_units )
+			gdt_side.super_heal_units ( dialog_side, temp_table.super_heal_units )
 			gdt_side.kill_units ( dialog_side, temp_table.kill_units )
 			wml_actions.redraw ( { side = dialog_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud
 			wml_actions.print ( { text = _ "side debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
