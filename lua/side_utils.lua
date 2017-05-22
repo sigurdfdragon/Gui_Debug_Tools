@@ -26,6 +26,16 @@ function gdt_side.convert_color( color )
 	end
 end
 
+function gdt_side.goto_xy ( side, str )
+	if str ~= "" then
+		local goto_xy = { }
+		for value in utils.split ( str ) do
+			table.insert ( goto_xy, utils.chop( value ) )
+		end
+		wml_actions.modify_unit { { "filter", { side = side.side } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
+	end
+end
+
 function gdt_side.heal_units ( side, bool )
 	if bool then
 		wml_actions.heal_unit { { "filter", { side = side.side } }, moves = "full", restore_attacks = true }

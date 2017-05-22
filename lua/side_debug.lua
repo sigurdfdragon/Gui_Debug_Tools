@@ -280,6 +280,26 @@ function wml_actions.gui_side_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Goto"
+								}
+							},
+							T.column {
+								horizontal_grow = true,
+								border = "all",
+								border_size = 5,
+								T.text_box {
+									id = "goto_textbox",
+									history = "other_gotos",
+									tooltip = _ "All units of the side will move toward the coordinates specified. 0,0 & -999,-999 indicate no destination."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Kill Units"
 								}
 							},
@@ -691,6 +711,7 @@ function wml_actions.gui_side_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_side.village_support, "side_village_support_slider" )
 			wesnoth.set_dialog_value ( dialog_side.base_income, "side_base_income_slider" )
 			-- text boxes
+			wesnoth.set_dialog_value ( "", "goto_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.gold, "gold_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.defeat_condition, "defeat_condition_textbox" )
 			wesnoth.set_dialog_value ( gdt_side.convert_color( dialog_side.color ), "color_textbox" )
@@ -740,6 +761,7 @@ function wml_actions.gui_side_debug ( cfg )
 				temp_table.village_support = wesnoth.get_dialog_value ( "side_village_support_slider" )
 				temp_table.base_income = wesnoth.get_dialog_value ( "side_base_income_slider" )
 				-- text boxes
+				temp_table.goto_xy = wesnoth.get_dialog_value "goto_textbox"
 				temp_table.gold = wesnoth.get_dialog_value ( "gold_textbox" )
 				temp_table.defeat_condition = wesnoth.get_dialog_value ( "defeat_condition_textbox" )
 				temp_table.color = wesnoth.get_dialog_value ( "color_textbox" )
@@ -793,6 +815,7 @@ function wml_actions.gui_side_debug ( cfg )
 			gdt_side.seed_recall ( dialog_side, temp_table.seed_recall )
 			gdt_side.heal_units ( dialog_side, temp_table.heal_units )
 			gdt_side.super_heal_units ( dialog_side, temp_table.super_heal_units )
+			gdt_side.goto_xy ( dialog_side, temp_table.goto_xy )
 			gdt_side.kill_units ( dialog_side, temp_table.kill_units )
 			wml_actions.redraw ( { side = dialog_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud
 			wml_actions.print ( { text = _ "side debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
