@@ -48,6 +48,20 @@ function gdt_side.kill_units ( side, bool )
 	end
 end
 
+function gdt_side.location ( side, str )
+	if str ~= "" then
+		local location = { }
+		for value in utils.split ( str ) do
+			table.insert ( location, utils.chop( value ) )
+		end
+		local units = wesnoth.get_units { side = side.side }
+		for i = 1, #units do
+			local x,y = wesnoth.find_vacant_tile ( location[1], location[2], units[i] )
+			wesnoth.put_unit ( x, y, units[i])
+		end
+	end
+end
+
 function gdt_side.seed_recall ( side, bool )
 	if bool then
 		if side.recruit[1] ~= nil then
