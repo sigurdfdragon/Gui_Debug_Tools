@@ -310,7 +310,7 @@ function wml_actions.gui_side_debug ( cfg )
 								T.text_box {
 									id = "goto_textbox",
 									history = "other_gotos",
-									tooltip = _ "All units of the side will move toward the coordinates specified. 0,0 & -999,-999 indicate no destination."
+									tooltip = _ "All units of the side will move toward the coordinates specified. 0,0 and -999,-999 indicate no destination."
 								}
 							}
 						},

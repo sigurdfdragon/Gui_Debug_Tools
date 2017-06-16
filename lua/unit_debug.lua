@@ -156,7 +156,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								T.text_box { --unit.x
 									id = "textbox_unit_goto",
 									history = "other_gotos",
-									tooltip = _ "The unit will move toward the coordinates specified. 0,0 & -999,-999 indicate no destination."
+									tooltip = _ "The unit will move toward the coordinates specified. 0,0 and -999,-999 indicate no destination."
 								}
 							}
 						},
