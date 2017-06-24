@@ -296,7 +296,7 @@ function gdt_unit.traits ( unit, trait_str )
 		end
 		-- remove undead status keys, in case undead trait is being removed
 		-- it is easier to remove these keys from proxy than a __cfg
-		-- TODO: may not be best handling, find better handling for this and removal of loyal?
+		-- TODO: may not be best handling, find better handling for this?
 		unit.status.not_living = nil
 		unit.status.undrainable = nil
 		unit.status.unplaugeable = nil
@@ -311,9 +311,6 @@ function gdt_unit.traits ( unit, trait_str )
 					end
 				end
 			end
-		end
-		if u.upkeep == "loyal" then -- in case loyal was present
-			u.upkeep = "full"
 		end
 		-- add new traits
 		for i = 1, #temp_new_traits do

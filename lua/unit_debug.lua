@@ -166,6 +166,26 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Upkeep"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.text_box {
+									id = "textbox_unit_upkeep",
+									history = "other_upkeeps",
+									tooltip = _ "The unit will have the upkeep specified."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Can Recruit"
 								}
 							},
@@ -956,6 +976,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			-- set textboxes
 			wesnoth.set_dialog_value ( dialog_unit.x .. "," .. dialog_unit.y, "textbox_unit_location" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.goto_x .. "," .. dialog_unit.__cfg.goto_y, "textbox_unit_goto" )
+			wesnoth.set_dialog_value ( dialog_unit.upkeep, "textbox_unit_upkeep" )
 			wesnoth.set_dialog_value ( dialog_unit.id, "textbox_unit_id" )
 			wesnoth.set_dialog_value ( dialog_unit.type, "textbox_unit_type" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.variation, "textbox_unit_variation" )
@@ -1017,6 +1038,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				-- text boxes
 				temp_table.location = wesnoth.get_dialog_value "textbox_unit_location"
 				temp_table.goto_xy = wesnoth.get_dialog_value "textbox_unit_goto"
+				temp_table.upkeep = wesnoth.get_dialog_value "textbox_unit_upkeep"
 				temp_table.id = wesnoth.get_dialog_value "textbox_unit_id"
 				temp_table.type = wesnoth.get_dialog_value "textbox_unit_type"
 				temp_table.variation = wesnoth.get_dialog_value "textbox_unit_variation"
@@ -1075,6 +1097,8 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.status.guardian = temp_table.guardian
 			dialog_unit.status.unhealable = temp_table.unhealable
 			dialog_unit.status.stunned = temp_table.stunned
+			-- upkeep should be before traits, so addition of trait_loyal can override this value
+			dialog_unit.upkeep = temp_table.upkeep -- need to fix bug in wesnoth before this can be activated
 			-- transform_unit based actions, all at least require the field to change to trigger a transform
 			-- type_advances_to must be after all other transforms, to handle advances_to as expected
 			gdt_unit.attack ( dialog_unit, temp_table.attack )
