@@ -1097,8 +1097,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.status.guardian = temp_table.guardian
 			dialog_unit.status.unhealable = temp_table.unhealable
 			dialog_unit.status.stunned = temp_table.stunned
-			-- upkeep should be before traits, so addition of trait_loyal can override this value
-			dialog_unit.upkeep = temp_table.upkeep -- need to fix bug in wesnoth before this can be activated
+			dialog_unit.upkeep = temp_table.upkeep -- upkeep must be before traits, so adding a loyal trait can override this value
 			-- transform_unit based actions, all at least require the field to change to trigger a transform
 			-- type_advances_to must be after all other transforms, to handle advances_to as expected
 			gdt_unit.attack ( dialog_unit, temp_table.attack )
