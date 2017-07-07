@@ -307,7 +307,18 @@ function gdt_unit.traits ( unit, trait_str )
 			if u[tag][1] == "modifications" then
 				for subtag = #u[tag][2], 1, -1 do
 					if u[tag][2][subtag][1] == "trait" then
-						table.remove( u[tag][2], subtag )
+						local removed_trait = table.remove( u[tag][2], subtag )
+						-- scan removed trait for apply_to=loyal
+						for eff in helper.child_range(removed_trait[2], "effect") do
+							if eff.apply_to == "loyal" then
+								-- if a trait applied upkeep=loyal, remove it with that trait
+								if u.upkeep == "loyal" then
+									-- only change if upkeep is still loyal, player may
+									-- have already changed it along with trait removal
+									u.upkeep = "full"
+								end
+							end
+						end
 					end
 				end
 			end
