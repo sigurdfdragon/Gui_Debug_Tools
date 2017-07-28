@@ -269,9 +269,12 @@ function wml_actions.gui_unit_debug ( cfg )
 								horizontal_alignment = "left",
 								border = "all",
 								border_size = 5,
-								T.toggle_button {
-									id = "copy_unit_checkbutton",
-									tooltip = _ "A copy of the unit will be created. Will be identical except for ids."
+								T.slider {
+									minimum_value = 0,
+									maximum_value = 10,
+									step_size = 1,
+									id = "unit_copy_slider",
+									tooltip = _ "Copies of the unit will be created. Will be identical except for ids."
 								}
 							}
 						}
@@ -968,6 +971,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_callback ( unit_profile, "unit_profile_button" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.underlying_id, "underlying_id_label" )
 			-- set sliders
+			wesnoth.set_dialog_value ( 0, "unit_copy_slider" )
 			wesnoth.set_dialog_value ( dialog_unit.side, "unit_side_slider" )
 			wesnoth.set_dialog_value ( dialog_unit.hitpoints, "unit_hitpoints_slider" )
 			wesnoth.set_dialog_value ( dialog_unit.experience, "unit_experience_slider" )
@@ -994,7 +998,6 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.unrenamable, "unrenamable_checkbutton" )
 			wesnoth.set_dialog_value ( false, "generate_name_checkbutton" )
 			wesnoth.set_dialog_value ( false, "heal_unit_checkbutton" )
-			wesnoth.set_dialog_value ( false, "copy_unit_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.poisoned, "poisoned_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.slowed, "slowed_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.petrified, "petrified_checkbutton" )
@@ -1030,6 +1033,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			local function postshow()
 				-- here get all the widget values in variables; store them in temp variables
 				-- sliders
+				temp_table.copy_unit = wesnoth.get_dialog_value "unit_copy_slider"
 				temp_table.side = wesnoth.get_dialog_value ( "unit_side_slider" )
 				temp_table.hitpoints = wesnoth.get_dialog_value ( "unit_hitpoints_slider" )
 				temp_table.experience = wesnoth.get_dialog_value ( "unit_experience_slider" )
@@ -1056,7 +1060,6 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.canrecruit = wesnoth.get_dialog_value "canrecruit_checkbutton"
 				temp_table.generate_name = wesnoth.get_dialog_value "generate_name_checkbutton"
 				temp_table.heal_unit = wesnoth.get_dialog_value "heal_unit_checkbutton"
-				temp_table.copy_unit = wesnoth.get_dialog_value "copy_unit_checkbutton"
 				temp_table.poisoned = wesnoth.get_dialog_value "poisoned_checkbutton"
 				temp_table.slowed = wesnoth.get_dialog_value "slowed_checkbutton"
 				temp_table.petrified = wesnoth.get_dialog_value "petrified_checkbutton"

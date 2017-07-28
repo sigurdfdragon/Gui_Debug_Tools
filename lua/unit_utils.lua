@@ -81,18 +81,20 @@ function gdt_unit.canrecruit ( unit, value )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, canrecruit = value }
 end
 
-function gdt_unit.copy_unit ( unit, bool )
-		-- do it this way instead of using wesnoth.copy_unit as
-		-- it doesn't handle specified ids (ie, 'Konrad') in
-		-- the way that we want it to
-	if bool then
-		local copy = unit.__cfg
-		copy.id, copy.underlying_id = nil, nil
-		if copy.x == "recall" and copy.y == "recall" then
-			wesnoth.put_recall_unit ( copy )
-		else
-			local x, y = wesnoth.find_vacant_tile ( copy.x, copy.y, copy )
-			wesnoth.put_unit ( x, y, copy )
+function gdt_unit.copy_unit ( unit, int )
+	-- do it this way instead of using wesnoth.copy_unit as
+	-- it doesn't handle specified ids (ie, 'Konrad') in
+	-- the way that we want it to
+	if int ~= 0 then
+		for i = 1, int do
+			local copy = unit.__cfg
+			copy.id, copy.underlying_id = nil, nil -- so custom ids are not duplicated & generic ids will match uid
+			if copy.x == "recall" and copy.y == "recall" then
+				wesnoth.put_recall_unit ( copy )
+			else
+				local x, y = wesnoth.find_vacant_tile ( copy.x, copy.y, copy )
+				wesnoth.put_unit ( x, y, copy )
+			end
 		end
 	end
 end
