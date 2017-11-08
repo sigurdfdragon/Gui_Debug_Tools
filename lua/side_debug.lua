@@ -230,8 +230,11 @@ function wml_actions.gui_side_debug ( cfg )
 								horizontal_alignment = "left",
 								border = "all",
 								border_size = 5,
-								T.toggle_button {
-									id = "seed_recall_checkbutton",
+								T.slider {
+									minimum_value = 0,
+									maximum_value = 10,
+									step_size = 1,
+									id = "seed_recall_slider",
 									tooltip = _ "One random unit of every type on the recruit list and any advancements derived from those units will be added to the recall list."
 								}
 							}
@@ -727,6 +730,7 @@ function wml_actions.gui_side_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_side.__cfg.current_player, "current_player_label" )
 			wesnoth.set_dialog_value ( dialog_side.total_income, "total_income_label" )
 			-- sliders
+			wesnoth.set_dialog_value ( 0, "seed_recall_slider" )
 			wesnoth.set_dialog_value ( dialog_side.village_gold, "side_village_gold_slider" )
 			wesnoth.set_dialog_value ( dialog_side.village_support, "side_village_support_slider" )
 			wesnoth.set_dialog_value ( dialog_side.base_income, "side_base_income_slider" )
@@ -748,7 +752,6 @@ function wml_actions.gui_side_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_side.shroud, "shroud_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_side.hidden, "hidden_checkbutton" )
 			wesnoth.set_dialog_value ( false, "clear_recall_checkbutton" )
-			wesnoth.set_dialog_value ( false, "seed_recall_checkbutton" )
 			wesnoth.set_dialog_value ( false, "heal_units_checkbutton" )
 			wesnoth.set_dialog_value ( false, "super_heal_units_checkbutton" )
 			wesnoth.set_dialog_value ( false, "kill_units_checkbutton" )
@@ -778,6 +781,7 @@ function wml_actions.gui_side_debug ( cfg )
 			local function postshow()
 				-- get widget values
 				-- sliders
+				temp_table.seed_recall = wesnoth.get_dialog_value ( "seed_recall_slider" )
 				temp_table.village_gold = wesnoth.get_dialog_value ( "side_village_gold_slider" )
 				temp_table.village_support = wesnoth.get_dialog_value ( "side_village_support_slider" )
 				temp_table.base_income = wesnoth.get_dialog_value ( "side_base_income_slider" )
@@ -799,7 +803,6 @@ function wml_actions.gui_side_debug ( cfg )
 				temp_table.shroud = wesnoth.get_dialog_value ( "shroud_checkbutton" )
 				temp_table.hidden = wesnoth.get_dialog_value ( "hidden_checkbutton" )
 				temp_table.clear_recall = wesnoth.get_dialog_value ( "clear_recall_checkbutton" )
-				temp_table.seed_recall = wesnoth.get_dialog_value ( "seed_recall_checkbutton" )
 				temp_table.heal_units = wesnoth.get_dialog_value ( "heal_units_checkbutton" )
 				temp_table.super_heal_units = wesnoth.get_dialog_value ( "super_heal_units_checkbutton" )
 				temp_table.kill_units = wesnoth.get_dialog_value ( "kill_units_checkbutton" )
