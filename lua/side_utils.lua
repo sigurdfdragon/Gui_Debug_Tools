@@ -95,7 +95,7 @@ function gdt_side.seed_recall ( side, int )
 				end
 			end
 			for i = 1, #temp_recruit do
-				wesnoth.put_recall_unit ( { type = temp_recruit[i], side = side.side } )
+				wesnoth.put_recall_unit ( { type = temp_recruit[i], side = side.side, random_gender = true } )
 			end
 		end
 	end
