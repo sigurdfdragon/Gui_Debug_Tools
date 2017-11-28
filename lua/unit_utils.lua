@@ -180,8 +180,8 @@ function gdt_unit.traits ( unit, trait_str )
 		-- traverse through specified races and units to add more mainline traits
 		-- healthy, dextrous, weak, slow, dim, mechanical, fearless, undead
 		local race_array = { "dwarf", "elf", "goblin", "mechanical", "troll", "undead" }
-		-- feral, elemental
-		local unit_array = { "Vampire Bat", "Mudcrawler" }
+		-- feral, elemental, aged, loyal
+		local unit_array = { "Vampire Bat", "Mudcrawler", "Fog Clearer" }
 		for i,v in ipairs(race_array) do
 			for temp_trait in helper.child_range(wesnoth.races[v].__cfg, "trait") do
 				local trait_is_present = false
@@ -208,18 +208,6 @@ function gdt_unit.traits ( unit, trait_str )
 				end
 			end
 		end
-
-		-- add aged, & loyal as none of the races or units in mainline cover them
-		-- #textdomain wesnoth-help
-		local _ = wesnoth.textdomain "wesnoth-help"
-		local trait_aged = { id="aged", male_name=_"aged", female_name=_"female^aged",
-			{ "effect", { apply_to="hitpoints", increase_total=-8 } },
-			{ "effect", { apply_to="movement", increase=-1 } },
-			{ "effect", { apply_to="attack", range="melee", increase_damage=-1 } } }
-		local trait_loyal = { id="loyal", male_name=_"loyal", female_name=_"female^loyal",
-			description=_"Zero upkeep", { "effect", { apply_to="loyal" } } }
-		table.insert(trait_array, trait_aged)
-		table.insert(trait_array, trait_loyal)
 
 		-- add bonus traits expert, heroic, & powerful
 		-- #textdomain wesnoth-Gui_Debug_Tools
