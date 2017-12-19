@@ -143,10 +143,14 @@ end
 
 function gdt_unit.location ( unit, str )
 	local location = { }
-	for value in utils.split ( str ) do
-		table.insert ( location, utils.chop( value ) )
+	if str == "" then
+		location = nil
+	else
+		for value in utils.split ( str ) do
+			table.insert ( location, utils.chop( value ) )
+		end
 	end
-	if location[1] == "0" and location[2] == "0" then
+	if location == nil or (location[1] == "0" and location[2] == "0") then
 		-- do it this way as wml_action.put_to_recall doesn't cover petrified or unhealable
 		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = 0, goto_y = 0 }

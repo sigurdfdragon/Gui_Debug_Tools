@@ -136,7 +136,7 @@ function wml_actions.gui_unit_debug ( cfg )
 								T.text_box { --unit.x
 									id = "textbox_unit_location",
 									history = "other_locations",
-									tooltip = _ "The coordinates on the map where the unit is located. Use 0,0 to place on the recall list."
+									tooltip = _ "The coordinates on the map where the unit is located. Use 0,0 or an empty string to place on the recall list."
 								}
 							}
 						},
