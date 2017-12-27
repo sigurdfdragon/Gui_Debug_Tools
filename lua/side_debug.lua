@@ -725,7 +725,7 @@ function wml_actions.gui_side_debug ( cfg )
 		local function preshow()
 			-- set widget values
 			-- labels
-			wesnoth.set_dialog_value ( string.format("%s~RC(flag_green>%s)~XBRZ(2)", dialog_side.flag_icon or "", wesnoth.sides[dialog_side.side].color ), "flag_image" )
+			wesnoth.set_dialog_value ( string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dialog_side.flag_icon or "", wesnoth.sides[dialog_side.side].color ), "flag_image" )
 			wesnoth.set_dialog_value ( dialog_side.side, "side_label" )
 			wesnoth.set_dialog_value ( dialog_side.__cfg.current_player, "current_player_label" )
 			wesnoth.set_dialog_value ( dialog_side.total_income, "total_income_label" )

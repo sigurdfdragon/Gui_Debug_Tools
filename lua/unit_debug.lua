@@ -967,7 +967,7 @@ function wml_actions.gui_unit_debug ( cfg )
 		local function preshow()
 			-- here set all widget starting values
 			-- set read_only labels
-			wesnoth.set_dialog_value ( string.format("%s~RC(magenta>%s)~XBRZ(2)~SCALE_INTO(144,144)", dialog_unit.__cfg.image or "", wesnoth.sides[dialog_unit.side].color ), "unit_image" )
+			wesnoth.set_dialog_value ( string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dialog_unit.__cfg.image or "", wesnoth.sides[dialog_unit.side].color ), "unit_image" )
 			wesnoth.set_dialog_callback ( unit_profile, "unit_profile_button" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.underlying_id, "underlying_id_label" )
 			-- set sliders
