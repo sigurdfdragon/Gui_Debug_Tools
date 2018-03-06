@@ -93,7 +93,7 @@ function gdt_unit.copy_unit ( unit, int )
 				wesnoth.put_recall_unit ( copy )
 			else
 				local x, y = wesnoth.find_vacant_tile ( copy.x, copy.y, copy )
-				wesnoth.put_unit ( x, y, copy )
+				wesnoth.put_unit ( copy, x, y )
 			end
 		end
 	end
