@@ -65,9 +65,9 @@ end
 function gdt_side.seed_recall ( side, int )
 	if int ~= 0 then
 		for seed = 1, int do
+			local temp_recruit = {}
 			if side.recruit[1] ~= nil then
 				local u = 1
-				temp_recruit = {}
 				for i = 1, #side.recruit do
 					table.insert ( temp_recruit, side.recruit[i] )
 				end
