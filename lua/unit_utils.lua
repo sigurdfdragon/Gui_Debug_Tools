@@ -89,6 +89,7 @@ function gdt_unit.copy_unit ( unit, int )
 		for i = 1, int do
 			local copy = unit.__cfg
 			copy.id, copy.underlying_id = nil, nil -- so custom ids are not duplicated & generic ids will match uid
+			copy.name, copy.generate_name = nil, true --so copies have different names
 			if copy.x == "recall" and copy.y == "recall" then
 				wesnoth.put_recall_unit ( copy )
 			else
