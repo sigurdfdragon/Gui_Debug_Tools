@@ -9,7 +9,7 @@ local gdt_unit = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/unit_utils.lua"
 local wml_actions = wesnoth.wml_actions
 
 -- metatable for GUI tags
-local T = helper.set_wml_tag_metatable {}
+local T = wml.tag
 
 -- [gui_unit_debug]
 -- This tag is meant for use inside a [set_menu_item], because it gets the unit at x1,y1
