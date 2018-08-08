@@ -157,7 +157,7 @@ function gdt_unit.location ( unit, str )
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = 0, goto_y = 0 }
 		wesnoth.put_recall_unit ( unit )
 	else
-		wesnoth.put_unit ( location[1], location[2], unit )
+		wesnoth.put_unit ( unit, location[1], location[2] )
 	end
 end
 

@@ -57,7 +57,7 @@ function gdt_side.location ( side, str )
 		local units = wesnoth.get_units { side = side.side }
 		for i = 1, #units do
 			local x,y = wesnoth.find_vacant_tile ( location[1], location[2], units[i] )
-			wesnoth.put_unit ( x, y, units[i])
+			wesnoth.put_unit ( units[i], x, y )
 		end
 	end
 end
