@@ -364,6 +364,48 @@ function wml_actions.gui_unit_debug ( cfg )
 									tooltip = _ "The unit has lost its zone of control until next turn. This status is only available in some campaigns and add-ons."
 								}
 							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Not Living",
+									id = "not_living_checkbutton",
+									tooltip = _ "If checked, the unit will gain undrainable, unplagueable, and unpoisonable. If those three are checked, the unit will gain not_living"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Undrainable",
+									id = "undrainable_checkbutton",
+									tooltip = _ "The unit will not give life to another unit if the drain special is used against it."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Unplagueable",
+									id = "unplagueable_checkbutton",
+									tooltip = _ "The unit is immune to the plague special."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Unpoisonable",
+									id = "unpoisonable_checkbutton",
+									tooltip = _ "The unit cannot be poisoned."
+								}
+							}
 						}
 					}
 
@@ -1006,6 +1048,10 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_unit.status.guardian, "guardian_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.unhealable, "unhealable_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_unit.status.stunned, "stunned_checkbutton" )
+			wesnoth.set_dialog_value ( dialog_unit.status.not_living, "not_living_checkbutton" )
+			wesnoth.set_dialog_value ( dialog_unit.status.undrainable, "undrainable_checkbutton" )
+			wesnoth.set_dialog_value ( dialog_unit.status.unplagueable, "unplagueable_checkbutton" )
+			wesnoth.set_dialog_value ( dialog_unit.status.unpoisonable, "unpoisonable_checkbutton" )
 			-- set radiobutton for facing
 			local temp_facing
 			if dialog_unit.facing == "nw" then temp_facing = 1
@@ -1068,6 +1114,10 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.guardian = wesnoth.get_dialog_value "guardian_checkbutton"
 				temp_table.unhealable = wesnoth.get_dialog_value "unhealable_checkbutton"
 				temp_table.stunned = wesnoth.get_dialog_value "stunned_checkbutton"
+				temp_table.not_living = wesnoth.get_dialog_value "not_living_checkbutton"
+				temp_table.undrainable = wesnoth.get_dialog_value "undrainable_checkbutton"
+				temp_table.unplagueable = wesnoth.get_dialog_value "unplagueable_checkbutton"
+				temp_table.unpoisonable = wesnoth.get_dialog_value "unpoisonable_checkbutton"
 				-- put facing here
 				local facings = { "nw", "ne", "n", "sw", "se", "s" }
 				-- wesnoth.get_dialog_value ( "facing_listbox" ) returns a number, that was 2 for the second radiobutton and 5 for the fifth, hence the table above
@@ -1100,6 +1150,10 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.status.guardian = temp_table.guardian
 			dialog_unit.status.unhealable = temp_table.unhealable
 			dialog_unit.status.stunned = temp_table.stunned
+			dialog_unit.status.not_living = temp_table.not_living -- must be before undrainable, unplagueable, and unpoisonable to work correctly
+			dialog_unit.status.undrainable = temp_table.undrainable
+			dialog_unit.status.unplagueable = temp_table.unplagueable
+			dialog_unit.status.unpoisonable = temp_table.unpoisonable
 			dialog_unit.upkeep = temp_table.upkeep -- upkeep must be before traits, so adding a loyal trait can override this value
 			-- transform_unit based actions, all at least require the field to change to trigger a transform
 			-- type_advances_to must be after all other transforms, to handle advances_to as expected
