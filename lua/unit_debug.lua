@@ -841,7 +841,7 @@ function wml_actions.gui_unit_debug ( cfg )
 							T.text_box {
 								id = "textbox_variables",
 								history = "other_variables",
-								tooltip = _ "A unit top level variable can be set/changed using the form 'var=value'"
+								tooltip = _ "Unit variables and sub-containers can be set/changed using the form 'var=value'"
 							}
 						}
 					},
