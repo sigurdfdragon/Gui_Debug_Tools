@@ -142,6 +142,33 @@ function gdt_unit.id ( unit, value )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, id = value }
 end
 
+function gdt_unit.level_type_advances_to ( unit, level, unit_type, advances_to )
+-- only when type is changed directly do we want to disregard what is entered for level & advances_to
+	if unit.type ~= unit_type then
+		wesnoth.transform_unit ( unit, unit_type )
+	else
+		unit.advances_to = utils.string_split ( advances_to, "," )
+		if unit.level ~= level then
+			if unit.level < level then -- leveling up
+				local count = level - unit.level
+				for i = 1, count do
+					if unit.advances_to[1] ~= nil then
+						unit.experience = unit.max_experience ; unit:advance ( true, true )
+					end
+				end
+			elseif unit.level > level then -- leveling down
+				local count = unit.level - level
+				for i = 1, count do
+					if wesnoth.unit_types[unit.type].advances_from[1] ~= nil then
+						unit.advances_to = wesnoth.unit_types[unit.type].advances_from
+						unit.experience = unit.max_experience ; unit:advance ( true, true )
+					end
+				end
+			end
+		end
+	end
+end
+
 function gdt_unit.location ( unit, str )
 	local location = { }
 	if str == "" then
@@ -333,15 +360,6 @@ function gdt_unit.traits ( unit, trait_str )
 		end
 		wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
 		wesnoth.transform_unit ( unit, unit.type ) -- refresh the unit with the new changes
-	end
-end
-
-function gdt_unit.type_advances_to ( unit, unit_type, advances_to )
-	-- only when type is changing do we want to disregard what is entered for advances_to
-	if unit.type ~= unit_type then
-		wesnoth.transform_unit ( unit, unit_type )
-	else
-		unit.advances_to = utils.string_split ( advances_to, "," )
 	end
 end
 

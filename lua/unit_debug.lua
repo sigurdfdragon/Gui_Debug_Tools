@@ -86,6 +86,28 @@ function wml_actions.gui_unit_debug ( cfg )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Level"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.slider {
+									minimum_value = 0,
+									maximum_value = math.max(10, dialog_unit.level + 5),
+									step_size = 1,
+									id = "unit_level_slider",
+									tooltip = _ "The unit will be advanced or declined to the specified level."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Type"
 								}
 							},
@@ -1013,6 +1035,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_callback ( unit_profile, "unit_profile_button" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.underlying_id, "underlying_id_label" )
 			-- set sliders
+			wesnoth.set_dialog_value ( dialog_unit.level, "unit_level_slider" )
 			wesnoth.set_dialog_value ( 0, "unit_copy_slider" )
 			wesnoth.set_dialog_value ( dialog_unit.side, "unit_side_slider" )
 			wesnoth.set_dialog_value ( dialog_unit.hitpoints, "unit_hitpoints_slider" )
@@ -1079,6 +1102,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			local function postshow()
 				-- here get all the widget values in variables; store them in temp variables
 				-- sliders
+				temp_table.level = wesnoth.get_dialog_value "unit_level_slider"
 				temp_table.copy_unit = wesnoth.get_dialog_value "unit_copy_slider"
 				temp_table.side = wesnoth.get_dialog_value ( "unit_side_slider" )
 				temp_table.hitpoints = wesnoth.get_dialog_value ( "unit_hitpoints_slider" )
@@ -1162,7 +1186,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			gdt_unit.gender ( dialog_unit, temp_table.gender )
 			gdt_unit.traits ( dialog_unit, temp_table.traits )
 			gdt_unit.variation ( dialog_unit, temp_table.variation )
-			gdt_unit.type_advances_to ( dialog_unit, temp_table.type, temp_table.advances_to )
+			gdt_unit.level_type_advances_to ( dialog_unit, temp_table.level, temp_table.type, temp_table.advances_to )
 			-- misc, these don't need to be anywhere in particular
 			dialog_unit.facing = temp_table.facing
 			dialog_unit.extra_recruit = utils.string_split ( temp_table.extra_recruit, "," )
