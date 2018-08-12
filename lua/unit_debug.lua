@@ -699,6 +699,29 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						}
 					},
+					-- amla slider
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
+								label = _ "Amla"
+							}
+						},
+						T.column {
+							horizontal_grow = true,
+							border = "all",
+							border_size = 5,
+							T.slider {
+								minimum_value = 0,
+								maximum_value = 100,
+								step_size = 1,
+								id = "unit_amla_slider",
+								tooltip = _ "If the unit is at the maximum level, this number of amlas will be applied."
+							}
+						}
+					},
 					-- extra recruit
 					T.row {
 						T.column {
@@ -1042,6 +1065,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_unit.experience, "unit_experience_slider" )
 			wesnoth.set_dialog_value ( dialog_unit.moves, "unit_moves_slider" )
 			wesnoth.set_dialog_value ( dialog_unit.attacks_left, "unit_attacks_slider" )
+			wesnoth.set_dialog_value ( 0, "unit_amla_slider" )
 			-- set textboxes
 			wesnoth.set_dialog_value ( dialog_unit.x .. "," .. dialog_unit.y, "textbox_unit_location" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.goto_x .. "," .. dialog_unit.__cfg.goto_y, "textbox_unit_goto" )
@@ -1109,6 +1133,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.experience = wesnoth.get_dialog_value ( "unit_experience_slider" )
 				temp_table.moves = wesnoth.get_dialog_value ( "unit_moves_slider" )
 				temp_table.attacks_left = wesnoth.get_dialog_value ( "unit_attacks_slider" )
+				temp_table.amla = wesnoth.get_dialog_value ( "unit_amla_slider" )
 				-- text boxes
 				temp_table.location = wesnoth.get_dialog_value "textbox_unit_location"
 				temp_table.goto_xy = wesnoth.get_dialog_value "textbox_unit_goto"
@@ -1187,6 +1212,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			gdt_unit.traits ( dialog_unit, temp_table.traits )
 			gdt_unit.variation ( dialog_unit, temp_table.variation )
 			gdt_unit.level_type_advances_to ( dialog_unit, temp_table.level, temp_table.type, temp_table.advances_to )
+			gdt_unit.amla (dialog_unit, temp_table.amla)
 			-- misc, these don't need to be anywhere in particular
 			dialog_unit.facing = temp_table.facing
 			dialog_unit.extra_recruit = utils.string_split ( temp_table.extra_recruit, "," )

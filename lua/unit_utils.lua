@@ -43,6 +43,15 @@ function gdt_unit.abilities ( unit, abilities )
 	end
 end
 
+function gdt_unit.amla ( unit, int )
+	if int > 0 and unit.advances_to[1] == nil then
+		for i = 1, int do
+			-- since large values can slow things down, no animation here
+			unit.experience = unit.max_experience ; unit:advance ( false, true )
+		end
+	end
+end
+
 function gdt_unit.attack ( unit, attack )
 	-- attacks - adds or removes new attacks via objects, does not affect attacks that come with the unit type
 	if attack ~= "" then
