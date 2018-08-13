@@ -1204,6 +1204,10 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.status.unplagueable = temp_table.unplagueable
 			dialog_unit.status.unpoisonable = temp_table.unpoisonable
 			dialog_unit.upkeep = temp_table.upkeep -- upkeep must be before traits, so adding a loyal trait can override this value
+			-- these values need to before transforms so level/type changes work better
+			dialog_unit.attacks_left = temp_table.attacks_left
+			dialog_unit.hitpoints = temp_table.hitpoints
+			dialog_unit.moves = temp_table.moves
 			-- transform_unit based actions, all at least require the field to change to trigger a transform
 			-- type_advances_to must be after all other transforms, to handle advances_to as expected
 			gdt_unit.attack ( dialog_unit, temp_table.attack )
@@ -1211,7 +1215,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			gdt_unit.gender ( dialog_unit, temp_table.gender )
 			gdt_unit.traits ( dialog_unit, temp_table.traits )
 			gdt_unit.variation ( dialog_unit, temp_table.variation )
-			gdt_unit.level_type_advances_to ( dialog_unit, temp_table.level, temp_table.type, temp_table.advances_to )
+			gdt_unit.level_type_advances_to_xp ( dialog_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
 			gdt_unit.amla (dialog_unit, temp_table.amla)
 			-- misc, these don't need to be anywhere in particular
 			dialog_unit.facing = temp_table.facing
@@ -1227,12 +1231,6 @@ function wml_actions.gui_unit_debug ( cfg )
 			gdt_unit.generate_name ( dialog_unit, temp_table.generate_name )
 			gdt_unit.unrenamable ( dialog_unit, temp_table.unrenamable )
 			gdt_unit.variables ( dialog_unit, temp_table.variables )
-			-- these values need to after transforms to maintain their values
-			dialog_unit.attacks_left = temp_table.attacks_left
-			dialog_unit.hitpoints = temp_table.hitpoints
-			dialog_unit.moves = temp_table.moves
-			-- needs to be after transforms, we don't want the unit advancing before they are done
-			dialog_unit.experience = temp_table.experience ; dialog_unit:advance ( true, true )
 			-- these need to be last, as they involve healing or copying the unit
 			gdt_unit.location ( dialog_unit, temp_table.location ) -- healed if put to recall
 			gdt_unit.heal_unit ( dialog_unit, temp_table.heal_unit )

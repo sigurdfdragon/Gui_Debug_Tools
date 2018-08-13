@@ -151,13 +151,15 @@ function gdt_unit.id ( unit, value )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, id = value }
 end
 
-function gdt_unit.level_type_advances_to ( unit, level, unit_type, advances_to )
--- only when type is changed directly do we want to disregard what is entered for level & advances_to
+function gdt_unit.level_type_advances_to_xp ( unit, level, unit_type, advances_to, experience )
 	if unit.type ~= unit_type then
+		-- disregard what is entered for level, advances_to, & experience
 		wesnoth.transform_unit ( unit, unit_type )
+		unit.experience = 0
 	else
 		unit.advances_to = utils.string_split ( advances_to, "," )
 		if unit.level ~= level then
+			-- disregarding experience here to avoid interfering with what player is intending
 			if unit.level < level then -- leveling up
 				local count = level - unit.level
 				for i = 1, count do
@@ -174,6 +176,8 @@ function gdt_unit.level_type_advances_to ( unit, level, unit_type, advances_to )
 					end
 				end
 			end
+		else -- since unit type & level wasn't adjusted, make xp adjustment
+			unit.experience = experience ; unit:advance ( true, true )
 		end
 	end
 end
