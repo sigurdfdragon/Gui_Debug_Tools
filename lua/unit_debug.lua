@@ -1209,7 +1209,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			dialog_unit.hitpoints = temp_table.hitpoints
 			dialog_unit.moves = temp_table.moves
 			-- transform_unit based actions, all at least require the field to change to trigger a transform
-			-- type_advances_to must be after all other transforms, to handle advances_to as expected
+			-- level_type_advances_to_xp must be after all other transforms, to handle the values as expected
 			gdt_unit.attack ( dialog_unit, temp_table.attack )
 			gdt_unit.abilities ( dialog_unit, temp_table.abilities )
 			gdt_unit.gender ( dialog_unit, temp_table.gender )
