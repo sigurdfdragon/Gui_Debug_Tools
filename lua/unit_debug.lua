@@ -1216,8 +1216,8 @@ function wml_actions.gui_unit_debug ( cfg )
 			gdt_unit.traits ( dialog_unit, temp_table.traits )
 			gdt_unit.variation ( dialog_unit, temp_table.variation )
 			gdt_unit.level_type_advances_to_xp ( dialog_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
-			gdt_unit.amla (dialog_unit, temp_table.amla)
 			-- misc, these don't need to be anywhere in particular
+			gdt_unit.amla (dialog_unit, temp_table.amla)
 			dialog_unit.facing = temp_table.facing
 			dialog_unit.extra_recruit = utils.string_split ( temp_table.extra_recruit, "," )
 			dialog_unit.role = temp_table.role
