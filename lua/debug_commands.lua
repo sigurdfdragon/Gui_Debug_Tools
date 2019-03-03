@@ -1,8 +1,9 @@
 -- #textdomain wesnoth-Gui_Debug_Tools
 local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
-
--- to make code shorter
 local wml_actions = wesnoth.wml_actions
+
+wesnoth.require '~add-ons/Gui_Debug_Tools/lua/unit_debug.lua'
+wesnoth.require '~add-ons/Gui_Debug_Tools/lua/side_debug.lua'
 
 wml_actions.set_menu_item { id = "_1_gamestate_inspector" ,
 	description = _ "Gamestate Inspector" ,
