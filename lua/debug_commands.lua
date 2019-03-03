@@ -4,10 +4,6 @@ local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
 
-function wml_actions.lua_console ( cfg )
-	return wesnoth.show_lua_console()
-end
-
 wml_actions.set_menu_item { id = "_1_gamestate_inspector" ,
 	description = _ "Gamestate Inspector" ,
 	image = "magical.png",
@@ -26,7 +22,7 @@ wml_actions.set_menu_item { id = "_2_lua_console" ,
 		{ "lua", { code=[[return wesnoth.game_config.debug]] } }
 	}},
 	{ "command" , { 
-		{ "lua_console" }
+		{ "lua", { code=[[wesnoth.show_lua_console()]] } }
 	}}
 }
 
