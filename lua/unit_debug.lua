@@ -980,7 +980,7 @@ function wml_actions.gui_unit_debug ( cfg )
 		local debug_dialog = {
 			T.helptip { id="tooltip_large" }, -- mandatory field
 			T.tooltip { id="tooltip_large" }, -- mandatory field
-			maximum_height = 800,
+			maximum_height = 840,
 			maximum_width = 1000,
 			T.grid { -- Title
 				T.row {
