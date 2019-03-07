@@ -827,6 +827,27 @@ function wml_actions.gui_unit_debug ( cfg )
 							}
 						}
 					},
+					-- modifications
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
+								label = _ "Modifications"
+							}
+						},
+						T.column {
+							horizontal_grow = true,
+							border = "all",
+							border_size = 5,
+							T.text_box {
+								id = "textbox_modifications",
+								history = "other_modifications",
+								tooltip = _ "The unit will receive the modification indicated. Use form 'Unit Id,Mod Type,Index'. Single space clears all objects and advancements."
+							}
+						}
+					},
 					-- traits
 					T.row {
 						T.column {
@@ -1079,6 +1100,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_unit.role, "textbox_role" )
 			wesnoth.set_dialog_value ( "", "textbox_attack" )
 			wesnoth.set_dialog_value ( "", "textbox_abilities" )
+			wesnoth.set_dialog_value ( "", "textbox_modifications" )
 			wesnoth.set_dialog_value ( gdt_unit.get_traits_string ( dialog_unit ), "textbox_traits" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.overlays, "textbox_overlays" )
 			wesnoth.set_dialog_value ( "", "textbox_variables" )
@@ -1147,6 +1169,7 @@ function wml_actions.gui_unit_debug ( cfg )
 				temp_table.role = wesnoth.get_dialog_value "textbox_role"
 				temp_table.attack = wesnoth.get_dialog_value "textbox_attack"
 				temp_table.abilities = wesnoth.get_dialog_value "textbox_abilities"
+				temp_table.modifications = wesnoth.get_dialog_value "textbox_modifications"
 				temp_table.traits = wesnoth.get_dialog_value "textbox_traits"
 				temp_table.overlays = wesnoth.get_dialog_value "textbox_overlays"
 				temp_table.variables = wesnoth.get_dialog_value "textbox_variables"
@@ -1214,6 +1237,7 @@ function wml_actions.gui_unit_debug ( cfg )
 			gdt_unit.abilities ( dialog_unit, temp_table.abilities )
 			gdt_unit.gender ( dialog_unit, temp_table.gender )
 			gdt_unit.traits ( dialog_unit, temp_table.traits )
+			gdt_unit.modifications ( dialog_unit, temp_table.modifications ) -- must be after traits, as it could be adding a trait
 			gdt_unit.variation ( dialog_unit, temp_table.variation )
 			gdt_unit.level_type_advances_to_xp ( dialog_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
 			-- misc, these don't need to be anywhere in particular
