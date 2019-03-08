@@ -214,7 +214,8 @@ function gdt_unit.modifications ( unit, str )
 				table.insert ( mod_source, utils.chop( value ) )
 			end
 			-- add new modification, copy from unit specified by id, mod type, & index
-			local modifications = helper.get_child( wesnoth.get_unit(mod_source[1] ).__cfg, "modifications" )
+			local u = wesnoth.get_unit(mod_source[1] ) or wesnoth.get_recall_units( { id=mod_source[1] } )[1]
+			local modifications = helper.get_child( u.__cfg, "modifications" )
 			local new_mod = helper.get_nth_child( modifications, mod_source[2], mod_source[3] )
 			if new_mod then
 				unit:add_modification ( mod_source[2], new_mod )
