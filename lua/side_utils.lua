@@ -62,6 +62,15 @@ function gdt_side.location ( side, str )
 	end
 end
 
+function gdt_side.recall_unit ( side, str )
+	if str ~= "" then
+		local unit = wesnoth.get_recall_units( { side = side.side, id = str } )[1]
+		local x, y = wesnoth.current.event_context.x1, wesnoth.current.event_context.y1
+		x, y = wesnoth.find_vacant_tile( x, y, unit )
+		unit:to_map( x, y )
+	end
+end
+
 function gdt_side.seed_recall ( side, int )
 	if int ~= 0 then
 		for seed = 1, int do

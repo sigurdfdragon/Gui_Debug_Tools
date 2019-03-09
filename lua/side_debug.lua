@@ -638,6 +638,26 @@ function wml_actions.gui_side_debug ( cfg )
 							border = "all",
 							border_size = 5,
 							T.label {
+								label = _ "Recall Unit"
+							}
+						},
+						T.column {
+							horizontal_grow = true,
+							border = "all",
+							border_size = 5,
+							T.text_box {
+								id = "recall_unit_textbox",
+								history = "other_recall_units",
+								tooltip = _ "The unit with the specified ID will be recalled."
+							}
+						}
+					},
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
 								label = _ "Controller"
 							}
 						},
@@ -745,6 +765,7 @@ function wml_actions.gui_side_debug ( cfg )
 			wesnoth.set_dialog_value ( dialog_side.user_team_name, "user_team_name_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.team_name, "team_name_textbox" )
 			wesnoth.set_dialog_value ( table.concat( dialog_side.recruit, "," ), "recruit_textbox" )
+			wesnoth.set_dialog_value ( "", "recall_unit_textbox" )
 			-- checkbutton
 			wesnoth.set_dialog_value ( dialog_side.__cfg.suppress_end_turn_confirmation, "suppress_end_turn_confirmation_checkbutton" )
 			wesnoth.set_dialog_value ( dialog_side.scroll_to_leader, "scroll_to_leader_checkbutton" )
@@ -796,6 +817,7 @@ function wml_actions.gui_side_debug ( cfg )
 				temp_table.user_team_name = wesnoth.get_dialog_value ( "user_team_name_textbox" )
 				temp_table.team_name = wesnoth.get_dialog_value ( "team_name_textbox" )
 				temp_table.recruit = wesnoth.get_dialog_value "recruit_textbox"
+				temp_table.recall_unit = wesnoth.get_dialog_value "recall_unit_textbox"
 				-- checkbutton
 				temp_table.suppress_end_turn_confirmation = wesnoth.get_dialog_value ( "suppress_end_turn_confirmation_checkbutton" )
 				temp_table.scroll_to_leader = wesnoth.get_dialog_value ( "scroll_to_leader_checkbutton" )
@@ -836,6 +858,7 @@ function wml_actions.gui_side_debug ( cfg )
 			dialog_side.team_name = temp_table.team_name
 			dialog_side.recruit = utils.string_split ( temp_table.recruit, "," )
 			dialog_side.controller = temp_table.controller
+			gdt_side.recall_unit ( dialog_side, temp_table.recall_unit )
 			gdt_side.clear_recall ( dialog_side, temp_table.clear_recall )
 			gdt_side.seed_recall ( dialog_side, temp_table.seed_recall )
 			gdt_side.heal_units ( dialog_side, temp_table.heal_units )
