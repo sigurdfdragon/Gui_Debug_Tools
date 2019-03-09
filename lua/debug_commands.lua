@@ -2,9 +2,6 @@
 local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 local wml_actions = wesnoth.wml_actions
 
-wesnoth.require '~add-ons/Gui_Debug_Tools/lua/unit_debug.lua'
-wesnoth.require '~add-ons/Gui_Debug_Tools/lua/side_debug.lua'
-
 wml_actions.set_menu_item { id = "_1_gamestate_inspector" ,
 	description = _ "Gamestate Inspector" ,
 	image = "magical.png",
@@ -35,7 +32,7 @@ wml_actions.set_menu_item { id = "_3_unit_debug" ,
 		{ "have_unit", { x = "$x1", y = "$y1" } }
 	}},
 	{ "command" , { 
-		{ "gui_unit_debug" }
+		{ "lua", { code=[[wesnoth.dofile( '~add-ons/Gui_Debug_Tools/lua/unit_debug.lua' )]] } }
 	}}
 }
 
@@ -47,6 +44,6 @@ wml_actions.set_menu_item { id = "_4_side_debug" ,
 		{ "have_unit", { x = "$x1", y = "$y1" } }
 	}},
 	{ "command" , { 
-		{ "gui_side_debug" }
+		{ "lua", { code=[[wesnoth.dofile( '~add-ons/Gui_Debug_Tools/lua/side_debug.lua' )]] } }
 	}}
 }

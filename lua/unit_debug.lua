@@ -2,8 +2,8 @@
 local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
 local helper = wesnoth.require "lua/helper.lua"
-local utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/utils.lua"
-local gdt_unit = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/unit_utils.lua"
+local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
+local gdt_unit = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/unit_utils.lua"
 
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
@@ -11,9 +11,8 @@ local wml_actions = wesnoth.wml_actions
 -- metatable for GUI tags
 local T = wml.tag
 
--- [gui_unit_debug]
--- This tag is meant for use inside a [set_menu_item], because it gets the unit at x1,y1
-function wml_actions.gui_unit_debug ( cfg )
+-- This code is meant for use inside a [set_menu_item], because it gets the unit at x1,y1
+local function gui_unit_debug ( )
 	-- acquire unit with get_units, if unit.valid show dialog
 	local dialog_unit = wesnoth.get_units ( { x = wesnoth.current.event_context.x1, y = wesnoth.current.event_context.y1 } )[1] -- clearly, at x1,y1 there could be only one unit
 	local oversize_factor = 10 -- make it possible to increase over unit.max_attacks; no idea what would be a sensible value
@@ -1267,3 +1266,5 @@ function wml_actions.gui_unit_debug ( cfg )
 	-- if user clicks on empty hex, do nothing
 	end
 end
+
+gui_unit_debug ( )

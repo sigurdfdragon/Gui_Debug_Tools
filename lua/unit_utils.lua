@@ -4,7 +4,7 @@ local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 local gdt_unit = {}
 
 local helper = wesnoth.require "lua/helper.lua"
-local utils = wesnoth.require "~add-ons/Gui_Debug_Tools/lua/utils.lua"
+local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
 
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
