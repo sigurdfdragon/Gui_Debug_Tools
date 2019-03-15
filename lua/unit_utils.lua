@@ -213,12 +213,17 @@ function gdt_unit.modifications ( unit, str )
 			for value in utils.split( str ) do
 				table.insert ( mod_source, utils.chop( value ) )
 			end
-			-- add new modification, copy from unit specified by id, mod type, & index
-			local u = wesnoth.get_unit(mod_source[1] ) or wesnoth.get_recall_units( { id=mod_source[1] } )[1]
-			local modifications = helper.get_child( u.__cfg, "modifications" )
-			local new_mod = helper.get_nth_child( modifications, mod_source[2], mod_source[3] )
-			if new_mod then
-				unit:add_modification ( mod_source[2], new_mod )
+			if mod_source[1] == "remove" then
+			-- remove modification specified by filterwml key=value - ex: remove,object,duration,forever
+				unit:remove_modifications( { [mod_source[3]] = mod_source[4] }, mod_source[2] )
+			else
+				-- add new modification, copy from unit specified by id, mod type, & index
+				local u = wesnoth.get_unit(mod_source[1] ) or wesnoth.get_recall_units( { id=mod_source[1] } )[1]
+				local modifications = helper.get_child( u.__cfg, "modifications" )
+				local new_mod = helper.get_nth_child( modifications, mod_source[2], mod_source[3] )
+				if new_mod then
+					unit:add_modification ( mod_source[2], new_mod )
+				end
 			end
 		end
 	end

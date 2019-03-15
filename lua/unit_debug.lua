@@ -843,7 +843,7 @@ local function gui_unit_debug ( )
 							T.text_box {
 								id = "textbox_modifications",
 								history = "other_modifications",
-								tooltip = _ "The unit will receive the modification indicated. Use form 'Unit Id,Mod Type,Index'. Single space clears all objects and advancements."
+								tooltip = _ "Copy: 'Unit Id,Mod Type,Index' - Remove: 'remove,Mod Type,Key,Value' - Single space clears all objects and advancements."
 							}
 						}
 					},
