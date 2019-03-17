@@ -38,6 +38,7 @@ function utils.chop( str )
 end
 
 function utils.string_split ( str, char )
+	local char = char or ","
 	local t = {}
 	for value in utils.split( str, char ) do
 		table.insert( t, utils.chop( value ) )
