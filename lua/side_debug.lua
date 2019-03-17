@@ -12,7 +12,7 @@ local wml_actions = wesnoth.wml_actions
 local T = wml.tag
 
 -- This code is meant for use inside a [set_menu_item], because it gets the unit at x1,y1
-local function gui_side_debug ( )
+local function side_debug ( )
 	local side_unit = wesnoth.get_units ( { x = wesnoth.current.event_context.x1, y = wesnoth.current.event_context.y1 } )[1]
 	if side_unit and side_unit.valid then
 		local side_number = side_unit.side -- clearly, at x1,y1 there could be only one unit
@@ -874,4 +874,4 @@ local function gui_side_debug ( )
 	end
 end
 
-gui_side_debug()
+side_debug()

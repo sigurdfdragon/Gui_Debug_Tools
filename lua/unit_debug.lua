@@ -12,7 +12,7 @@ local wml_actions = wesnoth.wml_actions
 local T = wml.tag
 
 -- This code is meant for use inside a [set_menu_item], because it gets the unit at x1,y1
-local function gui_unit_debug ( )
+local function unit_debug ( )
 	-- acquire unit with get_units, if unit.valid show dialog
 	local dialog_unit = wesnoth.get_units ( { x = wesnoth.current.event_context.x1, y = wesnoth.current.event_context.y1 } )[1] -- clearly, at x1,y1 there could be only one unit
 	local oversize_factor = 10 -- make it possible to increase over unit.max_attacks; no idea what would be a sensible value
@@ -1267,4 +1267,4 @@ local function gui_unit_debug ( )
 	end
 end
 
-gui_unit_debug ( )
+unit_debug ( )
