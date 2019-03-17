@@ -183,21 +183,14 @@ function gdt_unit.level_type_advances_to_xp ( unit, level, unit_type, advances_t
 end
 
 function gdt_unit.location ( unit, str )
-	local location = { }
 	if str == "" then
-		location = nil
-	else
-		for value in utils.split ( str ) do
-			table.insert ( location, utils.chop( value ) )
-		end
-	end
-	if location == nil or (location[1] == "0" and location[2] == "0") then
 		-- do it this way as wml_action.put_to_recall doesn't cover petrified or unhealable
 		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = 0, goto_y = 0 }
-		wesnoth.put_recall_unit ( unit )
+		unit:to_recall()
 	else
-		wesnoth.put_unit ( unit, location[1], location[2] )
+		local loc = utils.string_split ( str )
+		unit:to_map( loc[1], loc[2] )
 	end
 end
 
