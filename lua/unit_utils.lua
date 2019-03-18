@@ -86,8 +86,8 @@ function gdt_unit.attack ( unit, attack )
 	end
 end
 
-function gdt_unit.canrecruit ( unit, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, canrecruit = value }
+function gdt_unit.canrecruit ( unit, bool )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, canrecruit = bool }
 end
 
 function gdt_unit.copy_unit ( unit, int )
@@ -112,7 +112,7 @@ end
 function gdt_unit.gender ( unit, gender )
 		if gender ~= unit.__cfg.gender then -- if there are custom portraits, they are lost.
 			wml_actions.modify_unit { { "filter", { id = unit.id } }, profile = "", small_profile = "", gender = gender }
-			wesnoth.transform_unit ( unit, unit.type ) -- transform refills the profile keys
+			unit:transform( unit.type ) -- transform refills the profile keys
 		end
 end
 
@@ -144,8 +144,8 @@ function gdt_unit.heal_unit ( unit, bool )
 	end
 end
 
-function gdt_unit.id ( unit, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, id = value }
+function gdt_unit.id ( unit, str )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, id = str }
 end
 
 function gdt_unit.level_type_advances_to_xp ( unit, level, unit_type, advances_to, experience )
@@ -223,12 +223,12 @@ function gdt_unit.modifications ( unit, str )
 	end
 end
 
-function gdt_unit.name ( unit, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, name = value }
+function gdt_unit.name ( unit, str )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, name = str }
 end
 
-function gdt_unit.overlays ( unit, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, overlays = value }
+function gdt_unit.overlays ( unit, str )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, overlays = str }
 end
 
 function gdt_unit.traits ( unit, trait_str )
@@ -398,8 +398,8 @@ function gdt_unit.traits ( unit, trait_str )
 	end
 end
 
-function gdt_unit.unrenamable ( unit, value )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, unrenamable = value }
+function gdt_unit.unrenamable ( unit, bool )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, unrenamable = bool }
 end
 
 function gdt_unit.variables ( unit, variables )
