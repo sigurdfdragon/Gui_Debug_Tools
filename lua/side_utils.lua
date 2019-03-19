@@ -28,11 +28,8 @@ end
 
 function side_ops.goto_xy ( side, str )
 	if str ~= "" then
-		local goto_xy = { }
-		for value in utils.split ( str ) do
-			table.insert ( goto_xy, utils.chop( value ) )
-		end
-		wml_actions.modify_unit { { "filter", { side = side.side } }, goto_x = goto_xy[1], goto_y = goto_xy[2]}
+		local loc = utils.split_to_table ( str )
+		wml_actions.modify_unit { { "filter", { side = side.side } }, goto_x = loc[1], goto_y = loc[2]}
 	end
 end
 
@@ -50,14 +47,11 @@ end
 
 function side_ops.location ( side, str )
 	if str ~= "" then
-		local location = { }
-		for value in utils.split ( str ) do
-			table.insert ( location, utils.chop( value ) )
-		end
+		local loc = utils.split_to_table ( str )
 		local units = wesnoth.get_units { side = side.side }
 		for i = 1, #units do
-			local x,y = wesnoth.find_vacant_tile ( location[1], location[2], units[i] )
-			wesnoth.put_unit ( units[i], x, y )
+			local x, y = wesnoth.find_vacant_tile ( loc[1], loc[2], units[i] )
+			units[i]:to_map ( x, y )
 		end
 	end
 end
