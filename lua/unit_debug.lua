@@ -3,7 +3,7 @@ local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
 local helper = wesnoth.require "lua/helper.lua"
 local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
-local gdt_unit = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/unit_utils.lua"
+local unit_ops = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/unit_utils.lua"
 
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
@@ -1100,7 +1100,7 @@ local function unit_debug ( )
 			wesnoth.set_dialog_value ( "", "textbox_attack" )
 			wesnoth.set_dialog_value ( "", "textbox_abilities" )
 			wesnoth.set_dialog_value ( "", "textbox_modifications" )
-			wesnoth.set_dialog_value ( gdt_unit.get_traits_string ( dialog_unit ), "textbox_traits" )
+			wesnoth.set_dialog_value ( unit_ops.get_traits_string ( dialog_unit ), "textbox_traits" )
 			wesnoth.set_dialog_value ( dialog_unit.__cfg.overlays, "textbox_overlays" )
 			wesnoth.set_dialog_value ( "", "textbox_variables" )
 			-- set checkbuttons
@@ -1232,32 +1232,32 @@ local function unit_debug ( )
 			dialog_unit.moves = temp_table.moves
 			-- transform_unit based actions, all at least require the field to change to trigger a transform
 			-- level_type_advances_to_xp must be after all other transforms, to handle the values as expected
-			gdt_unit.attack ( dialog_unit, temp_table.attack )
-			gdt_unit.abilities ( dialog_unit, temp_table.abilities )
-			gdt_unit.gender ( dialog_unit, temp_table.gender )
-			gdt_unit.traits ( dialog_unit, temp_table.traits )
-			gdt_unit.modifications ( dialog_unit, temp_table.modifications ) -- must be after traits, as it could be adding a trait
-			gdt_unit.variation ( dialog_unit, temp_table.variation )
-			gdt_unit.level_type_advances_to_xp ( dialog_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
+			unit_ops.attack ( dialog_unit, temp_table.attack )
+			unit_ops.abilities ( dialog_unit, temp_table.abilities )
+			unit_ops.gender ( dialog_unit, temp_table.gender )
+			unit_ops.traits ( dialog_unit, temp_table.traits )
+			unit_ops.modifications ( dialog_unit, temp_table.modifications ) -- must be after traits, as it could be adding a trait
+			unit_ops.variation ( dialog_unit, temp_table.variation )
+			unit_ops.level_type_advances_to_xp ( dialog_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
 			-- misc, these don't need to be anywhere in particular
-			gdt_unit.amla (dialog_unit, temp_table.amla)
+			unit_ops.amla (dialog_unit, temp_table.amla)
 			dialog_unit.facing = temp_table.facing
 			dialog_unit.extra_recruit = utils.string_split ( temp_table.extra_recruit, "," )
 			dialog_unit.role = temp_table.role
 			dialog_unit.hidden = temp_table.hidden
 			dialog_unit.resting = temp_table.resting
-			gdt_unit.canrecruit ( dialog_unit, temp_table.canrecruit )
-			gdt_unit.goto_xy ( dialog_unit, temp_table.goto_xy ) -- needs to be before location
-			gdt_unit.id ( dialog_unit, temp_table.id )
-			gdt_unit.overlays ( dialog_unit, temp_table.overlays )
-			gdt_unit.name ( dialog_unit, temp_table.name ) -- needs to be before generate_name
-			gdt_unit.generate_name ( dialog_unit, temp_table.generate_name )
-			gdt_unit.unrenamable ( dialog_unit, temp_table.unrenamable )
-			gdt_unit.variables ( dialog_unit, temp_table.variables )
+			unit_ops.canrecruit ( dialog_unit, temp_table.canrecruit )
+			unit_ops.goto_xy ( dialog_unit, temp_table.goto_xy ) -- needs to be before location
+			unit_ops.id ( dialog_unit, temp_table.id )
+			unit_ops.overlays ( dialog_unit, temp_table.overlays )
+			unit_ops.name ( dialog_unit, temp_table.name ) -- needs to be before generate_name
+			unit_ops.generate_name ( dialog_unit, temp_table.generate_name )
+			unit_ops.unrenamable ( dialog_unit, temp_table.unrenamable )
+			unit_ops.variables ( dialog_unit, temp_table.variables )
 			-- these need to be last, as they involve healing or copying the unit
-			gdt_unit.location ( dialog_unit, temp_table.location ) -- healed if put to recall
-			gdt_unit.heal_unit ( dialog_unit, temp_table.heal_unit )
-			gdt_unit.copy_unit ( dialog_unit, temp_table.copy_unit )
+			unit_ops.location ( dialog_unit, temp_table.location ) -- healed if put to recall
+			unit_ops.heal_unit ( dialog_unit, temp_table.heal_unit )
+			unit_ops.copy_unit ( dialog_unit, temp_table.copy_unit )
 			wml_actions.redraw ( { } ) -- to be sure of showing changes
 			wml_actions.print ( { text = _ "unit debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )

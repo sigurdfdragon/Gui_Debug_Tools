@@ -1,7 +1,7 @@
 -- #textdomain wesnoth-Gui_Debug_Tools
 local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
-local gdt_unit = {}
+local unit_ops = {}
 
 local helper = wesnoth.require "lua/helper.lua"
 local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
@@ -9,7 +9,7 @@ local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
 
-function gdt_unit.abilities ( unit, abilities )
+function unit_ops.abilities ( unit, abilities )
 	-- abilities change - adds or removes new abilities via objects, does not affect abilities that come with the unit type
 	if abilities ~= "" then
 		-- remove existing ability objects
@@ -43,7 +43,7 @@ function gdt_unit.abilities ( unit, abilities )
 	end
 end
 
-function gdt_unit.amla ( unit, int )
+function unit_ops.amla ( unit, int )
 	if int > 0 and unit.advances_to[1] == nil then
 		for i = 1, int do
 			-- since large values can slow things down, no animation here
@@ -52,7 +52,7 @@ function gdt_unit.amla ( unit, int )
 	end
 end
 
-function gdt_unit.attack ( unit, attack )
+function unit_ops.attack ( unit, attack )
 	-- attacks - adds or removes new attacks via objects, does not affect attacks that come with the unit type
 	if attack ~= "" then
 		if attack == " " then -- user just wants to clear added object(s)
@@ -86,11 +86,11 @@ function gdt_unit.attack ( unit, attack )
 	end
 end
 
-function gdt_unit.canrecruit ( unit, bool )
+function unit_ops.canrecruit ( unit, bool )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, canrecruit = bool }
 end
 
-function gdt_unit.copy_unit ( unit, int )
+function unit_ops.copy_unit ( unit, int )
 	-- do it this way instead of using wesnoth.copy_unit as
 	-- it doesn't handle specified ids (ie, 'Konrad') in
 	-- the way that we want it to
@@ -109,20 +109,20 @@ function gdt_unit.copy_unit ( unit, int )
 	end
 end
 
-function gdt_unit.gender ( unit, gender )
+function unit_ops.gender ( unit, gender )
 		if gender ~= unit.__cfg.gender then -- if there are custom portraits, they are lost.
 			wml_actions.modify_unit { { "filter", { id = unit.id } }, profile = "", small_profile = "", gender = gender }
 			unit:transform( unit.type ) -- transform refills the profile keys
 		end
 end
 
-function gdt_unit.generate_name ( unit, bool )
+function unit_ops.generate_name ( unit, bool )
 	if bool then
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, name = "", generate_name = true }
 	end
 end
 
-function gdt_unit.get_traits_string ( unit )
+function unit_ops.get_traits_string ( unit )
 	local unit_modifications = helper.get_child ( unit.__cfg, "modifications" ) or {}
 	local trait_ids = { }
 	for trait in helper.child_range ( unit_modifications, "trait" ) do
@@ -133,22 +133,22 @@ function gdt_unit.get_traits_string ( unit )
 	return table.concat( trait_ids, "," )
 end
 
-function gdt_unit.goto_xy ( unit, str )
+function unit_ops.goto_xy ( unit, str )
 	local loc = utils.string_split ( str )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = loc[1], goto_y = loc[2]}
 end
 
-function gdt_unit.heal_unit ( unit, bool )
+function unit_ops.heal_unit ( unit, bool )
 	if bool then
 		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
 	end
 end
 
-function gdt_unit.id ( unit, str )
+function unit_ops.id ( unit, str )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, id = str }
 end
 
-function gdt_unit.level_type_advances_to_xp ( unit, level, unit_type, advances_to, experience )
+function unit_ops.level_type_advances_to_xp ( unit, level, unit_type, advances_to, experience )
 	if unit.type ~= unit_type then
 		-- disregard what is entered for level, advances_to, & experience
 		wesnoth.transform_unit ( unit, unit_type )
@@ -179,7 +179,7 @@ function gdt_unit.level_type_advances_to_xp ( unit, level, unit_type, advances_t
 	end
 end
 
-function gdt_unit.location ( unit, str )
+function unit_ops.location ( unit, str )
 	if str == "" then
 		-- do it this way as wml_action.put_to_recall doesn't cover petrified or unhealable
 		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
@@ -191,7 +191,7 @@ function gdt_unit.location ( unit, str )
 	end
 end
 
-function gdt_unit.modifications ( unit, str )
+function unit_ops.modifications ( unit, str )
 	-- modifications - copies any modification or removes objects & advancements
 	if str ~= "" then
 		if str == " " then -- remove all existing objects or advancements
@@ -223,16 +223,16 @@ function gdt_unit.modifications ( unit, str )
 	end
 end
 
-function gdt_unit.name ( unit, str )
+function unit_ops.name ( unit, str )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, name = str }
 end
 
-function gdt_unit.overlays ( unit, str )
+function unit_ops.overlays ( unit, str )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, overlays = str }
 end
 
-function gdt_unit.traits ( unit, trait_str )
-	if trait_str ~= gdt_unit.get_traits_string ( unit ) then
+function unit_ops.traits ( unit, trait_str )
+	if trait_str ~= unit_ops.get_traits_string ( unit ) then
 		-- returns a list of all mainline traits plus bonus traits
 		-- start with making a table and adding the global traits
 		-- quick, resilient, strong, intelligent
@@ -398,11 +398,11 @@ function gdt_unit.traits ( unit, trait_str )
 	end
 end
 
-function gdt_unit.unrenamable ( unit, bool )
+function unit_ops.unrenamable ( unit, bool )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, unrenamable = bool }
 end
 
-function gdt_unit.variables ( unit, variables )
+function unit_ops.variables ( unit, variables )
 	if variables ~= "" then
 		local vstr = {}
 		for value in utils.split( variables, "=" ) do
@@ -415,7 +415,7 @@ function gdt_unit.variables ( unit, variables )
 	end
 end
 
-function gdt_unit.variation ( unit, variation )
+function unit_ops.variation ( unit, variation )
 	-- can this simply be a modify unit without all the rest of the code if this occurs
 	-- before the unit_type transformation?
 	if variation ~= unit.__cfg.variation then
@@ -424,4 +424,4 @@ function gdt_unit.variation ( unit, variation )
 	end
 end
 
-return gdt_unit
+return unit_ops
