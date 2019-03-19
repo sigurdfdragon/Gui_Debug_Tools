@@ -852,7 +852,7 @@ local function side_debug ( )
 			dbg_side.flag_icon = temp_table.flag_icon
 			dbg_side.user_team_name = temp_table.user_team_name
 			dbg_side.team_name = temp_table.team_name
-			dbg_side.recruit = utils.string_split ( temp_table.recruit, "," )
+			dbg_side.recruit = utils.split_to_table ( temp_table.recruit, "," )
 			dbg_side.controller = temp_table.controller
 			side_ops.recall_unit ( dbg_side, temp_table.recall_unit )
 			side_ops.clear_recall ( dbg_side, temp_table.clear_recall )

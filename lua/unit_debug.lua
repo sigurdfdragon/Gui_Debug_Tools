@@ -1241,7 +1241,7 @@ local function unit_debug ( )
 			-- misc, these don't need to be anywhere in particular
 			unit_ops.amla (dbg_unit, temp_table.amla)
 			dbg_unit.facing = temp_table.facing
-			dbg_unit.extra_recruit = utils.string_split ( temp_table.extra_recruit, "," )
+			dbg_unit.extra_recruit = utils.split_to_table ( temp_table.extra_recruit, "," )
 			dbg_unit.role = temp_table.role
 			dbg_unit.hidden = temp_table.hidden
 			dbg_unit.resting = temp_table.resting

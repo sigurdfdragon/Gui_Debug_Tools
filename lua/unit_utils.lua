@@ -134,7 +134,7 @@ function unit_ops.get_traits_string ( unit )
 end
 
 function unit_ops.goto_xy ( unit, str )
-	local loc = utils.string_split ( str )
+	local loc = utils.split_to_table ( str )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = loc[1], goto_y = loc[2]}
 end
 
@@ -154,7 +154,7 @@ function unit_ops.level_type_advances_to_xp ( unit, level, unit_type, advances_t
 		wesnoth.transform_unit ( unit, unit_type )
 		unit.experience = 0
 	else
-		unit.advances_to = utils.string_split ( advances_to, "," )
+		unit.advances_to = utils.split_to_table ( advances_to, "," )
 		if unit.level ~= level then
 			-- disregarding experience here to avoid interfering with what player is intending
 			if unit.level < level then -- leveling up
@@ -186,7 +186,7 @@ function unit_ops.location ( unit, str )
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = 0, goto_y = 0 }
 		unit:to_recall()
 	else
-		local loc = utils.string_split ( str )
+		local loc = utils.split_to_table ( str )
 		unit:to_map( loc[1], loc[2] )
 	end
 end

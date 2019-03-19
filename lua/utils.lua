@@ -37,7 +37,7 @@ function utils.chop( str )
 	return temp
 end
 
-function utils.string_split ( str, char )
+function utils.split_to_table ( str, char )
 	local char = char or ","
 	local t = {}
 	for value in utils.split( str, char ) do
