@@ -154,7 +154,7 @@ function unit_ops.level_type_advances_to_xp ( unit, level, unit_type, advances_t
 		wesnoth.transform_unit ( unit, unit_type )
 		unit.experience = 0
 	else
-		unit.advances_to = utils.split_to_table ( advances_to, "," )
+		unit.advances_to = utils.split_to_table ( advances_to )
 		if unit.level ~= level then
 			-- disregarding experience here to avoid interfering with what player is intending
 			if unit.level < level then -- leveling up
