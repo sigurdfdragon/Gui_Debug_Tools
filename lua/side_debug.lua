@@ -13,12 +13,9 @@ local T = wml.tag
 
 -- This code is meant for use inside a [set_menu_item], because it gets the unit at x1,y1
 local function side_debug ( )
-	local side_unit = wesnoth.get_units ( { x = wesnoth.current.event_context.x1, y = wesnoth.current.event_context.y1 } )[1]
-	if side_unit and side_unit.valid then
-		local side_number = side_unit.side -- clearly, at x1,y1 there could be only one unit
-
-		local dbg_side = wesnoth.sides[side_number]
-
+	local side_unit = wesnoth.get_unit ( wesnoth.current.event_context.x1, wesnoth.current.event_context.y1 )
+	if side_unit and side_unit.valid then -- to avoid indexing a nil value
+		local dbg_side = wesnoth.sides[side_unit.side]
 		-- experimenting with macrowidgets... sort of
 		--buttonbox
 		local buttonbox = T.grid {
