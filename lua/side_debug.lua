@@ -3,7 +3,7 @@ local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
 local helper = wesnoth.require "lua/helper.lua"
 local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
-local gdt_side = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/side_utils.lua"
+local side_ops = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/side_utils.lua"
 
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
@@ -758,7 +758,7 @@ local function side_debug ( )
 			wesnoth.set_dialog_value ( "", "goto_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.gold, "gold_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.defeat_condition, "defeat_condition_textbox" )
-			wesnoth.set_dialog_value ( gdt_side.convert_color( dialog_side.color ), "color_textbox" )
+			wesnoth.set_dialog_value ( side_ops.convert_color( dialog_side.color ), "color_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.flag, "flag_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.flag_icon, "flag_icon_textbox" )
 			wesnoth.set_dialog_value ( dialog_side.user_team_name, "user_team_name_textbox" )
@@ -857,14 +857,14 @@ local function side_debug ( )
 			dialog_side.team_name = temp_table.team_name
 			dialog_side.recruit = utils.string_split ( temp_table.recruit, "," )
 			dialog_side.controller = temp_table.controller
-			gdt_side.recall_unit ( dialog_side, temp_table.recall_unit )
-			gdt_side.clear_recall ( dialog_side, temp_table.clear_recall )
-			gdt_side.seed_recall ( dialog_side, temp_table.seed_recall )
-			gdt_side.heal_units ( dialog_side, temp_table.heal_units )
-			gdt_side.super_heal_units ( dialog_side, temp_table.super_heal_units )
-			gdt_side.location ( dialog_side, temp_table.location )
-			gdt_side.goto_xy ( dialog_side, temp_table.goto_xy )
-			gdt_side.kill_units ( dialog_side, temp_table.kill_units )
+			side_ops.recall_unit ( dialog_side, temp_table.recall_unit )
+			side_ops.clear_recall ( dialog_side, temp_table.clear_recall )
+			side_ops.seed_recall ( dialog_side, temp_table.seed_recall )
+			side_ops.heal_units ( dialog_side, temp_table.heal_units )
+			side_ops.super_heal_units ( dialog_side, temp_table.super_heal_units )
+			side_ops.location ( dialog_side, temp_table.location )
+			side_ops.goto_xy ( dialog_side, temp_table.goto_xy )
+			side_ops.kill_units ( dialog_side, temp_table.kill_units )
 			wml_actions.redraw ( { side = dialog_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud
 			wml_actions.print ( { text = _ "side debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )

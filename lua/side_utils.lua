@@ -1,7 +1,7 @@
 -- #textdomain wesnoth-Gui_Debug_Tools
 local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
-local gdt_side = {}
+local side_ops = {}
 
 local helper = wesnoth.require "lua/helper.lua"
 local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
@@ -9,13 +9,13 @@ local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
 
-function gdt_side.clear_recall ( side, bool )
+function side_ops.clear_recall ( side, bool )
 	if bool then
 		wml_actions.kill( { side = side.side, x = "recall", y = "recall" } )
 	end
 end
 
-function gdt_side.convert_color( color )
+function side_ops.convert_color( color )
 	-- if color is a number, convert it to the word form
 	local color_names = { "red", "blue", "green", "purple", "black", "brown", "orange", "white", "teal" }
 	local color_number = tonumber( color )
@@ -26,7 +26,7 @@ function gdt_side.convert_color( color )
 	end
 end
 
-function gdt_side.goto_xy ( side, str )
+function side_ops.goto_xy ( side, str )
 	if str ~= "" then
 		local goto_xy = { }
 		for value in utils.split ( str ) do
@@ -36,19 +36,19 @@ function gdt_side.goto_xy ( side, str )
 	end
 end
 
-function gdt_side.heal_units ( side, bool )
+function side_ops.heal_units ( side, bool )
 	if bool then
 		wml_actions.heal_unit { { "filter", { side = side.side } }, moves = "full", restore_attacks = true }
 	end
 end
 
-function gdt_side.kill_units ( side, bool )
+function side_ops.kill_units ( side, bool )
 	if bool then
 		wml_actions.kill { side = side.side, animate = true, fire_event = true }
 	end
 end
 
-function gdt_side.location ( side, str )
+function side_ops.location ( side, str )
 	if str ~= "" then
 		local location = { }
 		for value in utils.split ( str ) do
@@ -62,7 +62,7 @@ function gdt_side.location ( side, str )
 	end
 end
 
-function gdt_side.recall_unit ( side, str )
+function side_ops.recall_unit ( side, str )
 	if str ~= "" then
 		local unit = wesnoth.get_recall_units( { side = side.side, id = str } )[1]
 		local x, y = wesnoth.current.event_context.x1, wesnoth.current.event_context.y1
@@ -71,7 +71,7 @@ function gdt_side.recall_unit ( side, str )
 	end
 end
 
-function gdt_side.seed_recall ( side, int )
+function side_ops.seed_recall ( side, int )
 	if int ~= 0 then
 		for seed = 1, int do
 			local temp_recruit = {}
@@ -110,7 +110,7 @@ function gdt_side.seed_recall ( side, int )
 	end
 end
 
-function gdt_side.super_heal_units ( side, bool )
+function side_ops.super_heal_units ( side, bool )
 	if bool then
 		local units = wesnoth.get_units { side = side.side }
 		for i = 1, #units do
@@ -121,4 +121,4 @@ function gdt_side.super_heal_units ( side, bool )
 	end
 end
 
-return gdt_side
+return side_ops
