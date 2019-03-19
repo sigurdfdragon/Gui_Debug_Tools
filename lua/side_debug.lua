@@ -17,7 +17,7 @@ local function side_debug ( )
 	if side_unit and side_unit.valid then
 		local side_number = side_unit.side -- clearly, at x1,y1 there could be only one unit
 
-		local dialog_side = wesnoth.sides[side_number]
+		local dbg_side = wesnoth.sides[side_number]
 
 		-- experimenting with macrowidgets... sort of
 		--buttonbox
@@ -438,8 +438,8 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.slider {
-								minimum_value = math.min( 0, dialog_side.village_gold ),
-								maximum_value = math.max( 10, dialog_side.village_gold ),
+								minimum_value = math.min( 0, dbg_side.village_gold ),
+								maximum_value = math.max( 10, dbg_side.village_gold ),
 								step_size = 1,
 								id = "side_village_gold_slider",
 								tooltip = _ "Each village controlled by the side will yield this amount of income."
@@ -460,8 +460,8 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.slider {
-								minimum_value = math.min( 0, dialog_side.village_support ),
-								maximum_value = math.max( 10, dialog_side.village_support ),
+								minimum_value = math.min( 0, dbg_side.village_support ),
+								maximum_value = math.max( 10, dbg_side.village_support ),
 								step_size = 1,
 								id = "side_village_support_slider",
 								tooltip = _ "Each village controlled by the side will support this number of unit levels."
@@ -483,8 +483,8 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.slider {
-								minimum_value = math.min( -2, dialog_side.base_income ),
-								maximum_value = math.max( 98, dialog_side.base_income ),
+								minimum_value = math.min( -2, dbg_side.base_income ),
+								maximum_value = math.max( 98, dbg_side.base_income ),
 								step_size = 1,
 								id = "side_base_income_slider",
 								tooltip = _ "The amount of income the side receives per turn."
@@ -744,33 +744,33 @@ local function side_debug ( )
 		local function preshow()
 			-- set widget values
 			-- labels
-			wesnoth.set_dialog_value ( string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dialog_side.flag_icon or "", wesnoth.sides[dialog_side.side].color ), "flag_image" )
-			wesnoth.set_dialog_value ( dialog_side.side, "side_label" )
-			wesnoth.set_dialog_value ( dialog_side.__cfg.current_player, "current_player_label" )
-			wesnoth.set_dialog_value ( dialog_side.total_income, "total_income_label" )
+			wesnoth.set_dialog_value ( string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dbg_side.flag_icon or "", wesnoth.sides[dbg_side.side].color ), "flag_image" )
+			wesnoth.set_dialog_value ( dbg_side.side, "side_label" )
+			wesnoth.set_dialog_value ( dbg_side.__cfg.current_player, "current_player_label" )
+			wesnoth.set_dialog_value ( dbg_side.total_income, "total_income_label" )
 			-- sliders
 			wesnoth.set_dialog_value ( 0, "seed_recall_slider" )
-			wesnoth.set_dialog_value ( dialog_side.village_gold, "side_village_gold_slider" )
-			wesnoth.set_dialog_value ( dialog_side.village_support, "side_village_support_slider" )
-			wesnoth.set_dialog_value ( dialog_side.base_income, "side_base_income_slider" )
+			wesnoth.set_dialog_value ( dbg_side.village_gold, "side_village_gold_slider" )
+			wesnoth.set_dialog_value ( dbg_side.village_support, "side_village_support_slider" )
+			wesnoth.set_dialog_value ( dbg_side.base_income, "side_base_income_slider" )
 			-- text boxes
 			wesnoth.set_dialog_value ( "", "location_textbox" )
 			wesnoth.set_dialog_value ( "", "goto_textbox" )
-			wesnoth.set_dialog_value ( dialog_side.gold, "gold_textbox" )
-			wesnoth.set_dialog_value ( dialog_side.defeat_condition, "defeat_condition_textbox" )
-			wesnoth.set_dialog_value ( side_ops.convert_color( dialog_side.color ), "color_textbox" )
-			wesnoth.set_dialog_value ( dialog_side.flag, "flag_textbox" )
-			wesnoth.set_dialog_value ( dialog_side.flag_icon, "flag_icon_textbox" )
-			wesnoth.set_dialog_value ( dialog_side.user_team_name, "user_team_name_textbox" )
-			wesnoth.set_dialog_value ( dialog_side.team_name, "team_name_textbox" )
-			wesnoth.set_dialog_value ( table.concat( dialog_side.recruit, "," ), "recruit_textbox" )
+			wesnoth.set_dialog_value ( dbg_side.gold, "gold_textbox" )
+			wesnoth.set_dialog_value ( dbg_side.defeat_condition, "defeat_condition_textbox" )
+			wesnoth.set_dialog_value ( side_ops.convert_color( dbg_side.color ), "color_textbox" )
+			wesnoth.set_dialog_value ( dbg_side.flag, "flag_textbox" )
+			wesnoth.set_dialog_value ( dbg_side.flag_icon, "flag_icon_textbox" )
+			wesnoth.set_dialog_value ( dbg_side.user_team_name, "user_team_name_textbox" )
+			wesnoth.set_dialog_value ( dbg_side.team_name, "team_name_textbox" )
+			wesnoth.set_dialog_value ( table.concat( dbg_side.recruit, "," ), "recruit_textbox" )
 			wesnoth.set_dialog_value ( "", "recall_unit_textbox" )
 			-- checkbutton
-			wesnoth.set_dialog_value ( dialog_side.__cfg.suppress_end_turn_confirmation, "suppress_end_turn_confirmation_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_side.scroll_to_leader, "scroll_to_leader_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_side.fog, "fog_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_side.shroud, "shroud_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_side.hidden, "hidden_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_side.__cfg.suppress_end_turn_confirmation, "suppress_end_turn_confirmation_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_side.scroll_to_leader, "scroll_to_leader_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_side.fog, "fog_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_side.shroud, "shroud_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_side.hidden, "hidden_checkbutton" )
 			wesnoth.set_dialog_value ( false, "clear_recall_checkbutton" )
 			wesnoth.set_dialog_value ( false, "heal_units_checkbutton" )
 			wesnoth.set_dialog_value ( false, "super_heal_units_checkbutton" )
@@ -779,17 +779,17 @@ local function side_debug ( )
 			-- radiobutton
 			local temp_controller
 
-			if dialog_side.controller == "ai" then
+			if dbg_side.controller == "ai" then
 				temp_controller = 1
-			elseif dialog_side.controller == "human" then
+			elseif dbg_side.controller == "human" then
 				temp_controller = 2
-			elseif dialog_side.controller == "idle" then
+			elseif dbg_side.controller == "idle" then
 				temp_controller = 3
-			elseif dialog_side.controller == "network" then
+			elseif dbg_side.controller == "network" then
 				temp_controller = 4
-			elseif dialog_side.controller == "network_ai" then
+			elseif dbg_side.controller == "network_ai" then
 				temp_controller = 5
-			elseif dialog_side.controller == "null" then
+			elseif dbg_side.controller == "null" then
 				temp_controller = 6
 			end
 			wesnoth.set_dialog_value ( temp_controller, "controller_listbox" )
@@ -841,31 +841,31 @@ local function side_debug ( )
 		local temp_table = helper.get_child(return_table, "temp_table")
 
 		if return_value == 1 or return_value == -1 then -- if used pressed OK or Enter, modify side
-			dialog_side.scroll_to_leader = temp_table.scroll_to_leader
-			dialog_side.suppress_end_turn_confirmation = temp_table.suppress_end_turn_confirmation
-			dialog_side.fog = temp_table.fog
-			dialog_side.shroud = temp_table.shroud
-			dialog_side.hidden = temp_table.hidden
-			dialog_side.gold = temp_table.gold
-			dialog_side.village_gold = temp_table.village_gold
-			dialog_side.village_support = temp_table.village_support
-			dialog_side.base_income = temp_table.base_income
-			dialog_side.defeat_condition = temp_table.defeat_condition
-			wesnoth.set_side_id(dialog_side.side, temp_table.flag, temp_table.color)
-			dialog_side.flag_icon = temp_table.flag_icon
-			dialog_side.user_team_name = temp_table.user_team_name
-			dialog_side.team_name = temp_table.team_name
-			dialog_side.recruit = utils.string_split ( temp_table.recruit, "," )
-			dialog_side.controller = temp_table.controller
-			side_ops.recall_unit ( dialog_side, temp_table.recall_unit )
-			side_ops.clear_recall ( dialog_side, temp_table.clear_recall )
-			side_ops.seed_recall ( dialog_side, temp_table.seed_recall )
-			side_ops.heal_units ( dialog_side, temp_table.heal_units )
-			side_ops.super_heal_units ( dialog_side, temp_table.super_heal_units )
-			side_ops.location ( dialog_side, temp_table.location )
-			side_ops.goto_xy ( dialog_side, temp_table.goto_xy )
-			side_ops.kill_units ( dialog_side, temp_table.kill_units )
-			wml_actions.redraw ( { side = dialog_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud
+			dbg_side.scroll_to_leader = temp_table.scroll_to_leader
+			dbg_side.suppress_end_turn_confirmation = temp_table.suppress_end_turn_confirmation
+			dbg_side.fog = temp_table.fog
+			dbg_side.shroud = temp_table.shroud
+			dbg_side.hidden = temp_table.hidden
+			dbg_side.gold = temp_table.gold
+			dbg_side.village_gold = temp_table.village_gold
+			dbg_side.village_support = temp_table.village_support
+			dbg_side.base_income = temp_table.base_income
+			dbg_side.defeat_condition = temp_table.defeat_condition
+			wesnoth.set_side_id(dbg_side.side, temp_table.flag, temp_table.color)
+			dbg_side.flag_icon = temp_table.flag_icon
+			dbg_side.user_team_name = temp_table.user_team_name
+			dbg_side.team_name = temp_table.team_name
+			dbg_side.recruit = utils.string_split ( temp_table.recruit, "," )
+			dbg_side.controller = temp_table.controller
+			side_ops.recall_unit ( dbg_side, temp_table.recall_unit )
+			side_ops.clear_recall ( dbg_side, temp_table.clear_recall )
+			side_ops.seed_recall ( dbg_side, temp_table.seed_recall )
+			side_ops.heal_units ( dbg_side, temp_table.heal_units )
+			side_ops.super_heal_units ( dbg_side, temp_table.super_heal_units )
+			side_ops.location ( dbg_side, temp_table.location )
+			side_ops.goto_xy ( dbg_side, temp_table.goto_xy )
+			side_ops.kill_units ( dbg_side, temp_table.kill_units )
+			wml_actions.redraw ( { side = dbg_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud
 			wml_actions.print ( { text = _ "side debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )
 		elseif return_value == 2 or return_value == -2 then -- if user pressed Cancel or Esc, nothing happens
