@@ -14,9 +14,9 @@ local T = wml.tag
 -- This code is meant for use inside a [set_menu_item], because it gets the unit at x1,y1
 local function unit_debug ( )
 	-- acquire unit with get_units, if unit.valid show dialog
-	local dialog_unit = wesnoth.get_units ( { x = wesnoth.current.event_context.x1, y = wesnoth.current.event_context.y1 } )[1] -- clearly, at x1,y1 there could be only one unit
+	local dbg_unit = wesnoth.get_units ( { x = wesnoth.current.event_context.x1, y = wesnoth.current.event_context.y1 } )[1] -- clearly, at x1,y1 there could be only one unit
 	local oversize_factor = 10 -- make it possible to increase over unit.max_attacks; no idea what would be a sensible value
-	if dialog_unit and dialog_unit.valid then -- to avoid indexing a nil value
+	if dbg_unit and dbg_unit.valid then -- to avoid indexing a nil value
 		--creating dialog here
 		-- right side entries
 		local read_only_panel = T.grid {
@@ -94,7 +94,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.slider {
 									minimum_value = 0,
-									maximum_value = math.max(10, dialog_unit.level + 5),
+									maximum_value = math.max(10, dbg_unit.level + 5),
 									step_size = 1,
 									id = "unit_level_slider",
 									tooltip = _ "The unit will be advanced or declined to the specified level."
@@ -616,8 +616,8 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.slider {
-								minimum_value = math.min(1, dialog_unit.hitpoints),
-								maximum_value = math.max(dialog_unit.max_hitpoints * oversize_factor, dialog_unit.hitpoints),
+								minimum_value = math.min(1, dbg_unit.hitpoints),
+								maximum_value = math.max(dbg_unit.max_hitpoints * oversize_factor, dbg_unit.hitpoints),
 								--minimum_value_label = _ "Kill",
 								--maximum_value_label = _ "Full health",
 								step_size = 1,
@@ -641,8 +641,8 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.slider {
-								minimum_value = math.min(0, dialog_unit.experience),
-								maximum_value = math.max(dialog_unit.max_experience * oversize_factor, dialog_unit.experience),
+								minimum_value = math.min(0, dbg_unit.experience),
+								maximum_value = math.max(dbg_unit.max_experience * oversize_factor, dbg_unit.experience),
 								--maximum_value_label = _ "Level up",
 								step_size = 1,
 								id = "unit_experience_slider", --unit.experience
@@ -667,7 +667,7 @@ local function unit_debug ( )
 							T.slider {
 								minimum_value = 0,
 								-- to avoid crashing if max_moves == 0
-								maximum_value = math.max(100, dialog_unit.max_moves * oversize_factor, dialog_unit.moves),
+								maximum_value = math.max(100, dbg_unit.max_moves * oversize_factor, dbg_unit.moves),
 								step_size = 1,
 								id = "unit_moves_slider", --unit.moves
 								tooltip = _ "The amount of move points the unit has."
@@ -691,7 +691,7 @@ local function unit_debug ( )
 							T.slider {
 								minimum_value = 0,
 								-- to avoid crashing if unit has max_attacks == 0
-								maximum_value = math.max(1, dialog_unit.max_attacks * oversize_factor, dialog_unit.attacks_left),
+								maximum_value = math.max(1, dbg_unit.max_attacks * oversize_factor, dbg_unit.attacks_left),
 								step_size = 1,
 								id = "unit_attacks_slider", --unit.attacks_left
 								tooltip = _ "The number of attacks the unit can make on the current turn."
@@ -1068,75 +1068,75 @@ local function unit_debug ( )
 
 		--note that the help won't show up if you haven't discovered that unit yet.
 		local unit_profile = function()
-			wesnoth.wml_actions.open_help ( {topic = [[unit_]] .. dialog_unit.type} ) -- Literal string needed here or .po will have an error.
+			wesnoth.wml_actions.open_help ( {topic = [[unit_]] .. dbg_unit.type} ) -- Literal string needed here or .po will have an error.
 		end
 		
 		local function preshow()
 			-- here set all widget starting values
 			-- set read_only labels
-			wesnoth.set_dialog_value ( string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dialog_unit.__cfg.image or "", wesnoth.sides[dialog_unit.side].color ), "unit_image" )
+			wesnoth.set_dialog_value ( string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dbg_unit.__cfg.image or "", wesnoth.sides[dbg_unit.side].color ), "unit_image" )
 			wesnoth.set_dialog_callback ( unit_profile, "unit_profile_button" )
-			wesnoth.set_dialog_value ( dialog_unit.__cfg.underlying_id, "underlying_id_label" )
+			wesnoth.set_dialog_value ( dbg_unit.__cfg.underlying_id, "underlying_id_label" )
 			-- set sliders
-			wesnoth.set_dialog_value ( dialog_unit.level, "unit_level_slider" )
+			wesnoth.set_dialog_value ( dbg_unit.level, "unit_level_slider" )
 			wesnoth.set_dialog_value ( 0, "unit_copy_slider" )
-			wesnoth.set_dialog_value ( dialog_unit.side, "unit_side_slider" )
-			wesnoth.set_dialog_value ( dialog_unit.hitpoints, "unit_hitpoints_slider" )
-			wesnoth.set_dialog_value ( dialog_unit.experience, "unit_experience_slider" )
-			wesnoth.set_dialog_value ( dialog_unit.moves, "unit_moves_slider" )
-			wesnoth.set_dialog_value ( dialog_unit.attacks_left, "unit_attacks_slider" )
+			wesnoth.set_dialog_value ( dbg_unit.side, "unit_side_slider" )
+			wesnoth.set_dialog_value ( dbg_unit.hitpoints, "unit_hitpoints_slider" )
+			wesnoth.set_dialog_value ( dbg_unit.experience, "unit_experience_slider" )
+			wesnoth.set_dialog_value ( dbg_unit.moves, "unit_moves_slider" )
+			wesnoth.set_dialog_value ( dbg_unit.attacks_left, "unit_attacks_slider" )
 			wesnoth.set_dialog_value ( 0, "unit_amla_slider" )
 			-- set textboxes
-			wesnoth.set_dialog_value ( dialog_unit.x .. "," .. dialog_unit.y, "textbox_unit_location" )
-			wesnoth.set_dialog_value ( dialog_unit.__cfg.goto_x .. "," .. dialog_unit.__cfg.goto_y, "textbox_unit_goto" )
-			wesnoth.set_dialog_value ( dialog_unit.upkeep, "textbox_unit_upkeep" )
-			wesnoth.set_dialog_value ( dialog_unit.id, "textbox_unit_id" )
-			wesnoth.set_dialog_value ( dialog_unit.type, "textbox_unit_type" )
-			wesnoth.set_dialog_value ( dialog_unit.__cfg.variation, "textbox_unit_variation" )
-			wesnoth.set_dialog_value ( dialog_unit.name, "textbox_unit_name" )
-			wesnoth.set_dialog_value ( table.concat( dialog_unit.extra_recruit, "," ), "textbox_extra_recruit" )
-			wesnoth.set_dialog_value ( table.concat( dialog_unit.advances_to, "," ), "textbox_advances_to" )
-			wesnoth.set_dialog_value ( dialog_unit.role, "textbox_role" )
+			wesnoth.set_dialog_value ( dbg_unit.x .. "," .. dbg_unit.y, "textbox_unit_location" )
+			wesnoth.set_dialog_value ( dbg_unit.__cfg.goto_x .. "," .. dbg_unit.__cfg.goto_y, "textbox_unit_goto" )
+			wesnoth.set_dialog_value ( dbg_unit.upkeep, "textbox_unit_upkeep" )
+			wesnoth.set_dialog_value ( dbg_unit.id, "textbox_unit_id" )
+			wesnoth.set_dialog_value ( dbg_unit.type, "textbox_unit_type" )
+			wesnoth.set_dialog_value ( dbg_unit.__cfg.variation, "textbox_unit_variation" )
+			wesnoth.set_dialog_value ( dbg_unit.name, "textbox_unit_name" )
+			wesnoth.set_dialog_value ( table.concat( dbg_unit.extra_recruit, "," ), "textbox_extra_recruit" )
+			wesnoth.set_dialog_value ( table.concat( dbg_unit.advances_to, "," ), "textbox_advances_to" )
+			wesnoth.set_dialog_value ( dbg_unit.role, "textbox_role" )
 			wesnoth.set_dialog_value ( "", "textbox_attack" )
 			wesnoth.set_dialog_value ( "", "textbox_abilities" )
 			wesnoth.set_dialog_value ( "", "textbox_modifications" )
-			wesnoth.set_dialog_value ( unit_ops.get_traits_string ( dialog_unit ), "textbox_traits" )
-			wesnoth.set_dialog_value ( dialog_unit.__cfg.overlays, "textbox_overlays" )
+			wesnoth.set_dialog_value ( unit_ops.get_traits_string ( dbg_unit ), "textbox_traits" )
+			wesnoth.set_dialog_value ( dbg_unit.__cfg.overlays, "textbox_overlays" )
 			wesnoth.set_dialog_value ( "", "textbox_variables" )
 			-- set checkbuttons
-			wesnoth.set_dialog_value ( dialog_unit.canrecruit, "canrecruit_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.__cfg.unrenamable, "unrenamable_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.canrecruit, "canrecruit_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.__cfg.unrenamable, "unrenamable_checkbutton" )
 			wesnoth.set_dialog_value ( false, "generate_name_checkbutton" )
 			wesnoth.set_dialog_value ( false, "heal_unit_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.poisoned, "poisoned_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.slowed, "slowed_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.petrified, "petrified_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.invulnerable, "invulnerable_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.uncovered, "uncovered_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.guardian, "guardian_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.unhealable, "unhealable_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.stunned, "stunned_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.not_living, "not_living_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.undrainable, "undrainable_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.unplagueable, "unplagueable_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.status.unpoisonable, "unpoisonable_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.poisoned, "poisoned_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.slowed, "slowed_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.petrified, "petrified_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.invulnerable, "invulnerable_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.uncovered, "uncovered_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.guardian, "guardian_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.unhealable, "unhealable_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.stunned, "stunned_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.not_living, "not_living_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.undrainable, "undrainable_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.unplagueable, "unplagueable_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.status.unpoisonable, "unpoisonable_checkbutton" )
 			-- set radiobutton for facing
 			local temp_facing
-			if dialog_unit.facing == "nw" then temp_facing = 1
-			elseif dialog_unit.facing == "ne" then temp_facing = 2
-			elseif dialog_unit.facing == "n" then temp_facing = 3
-			elseif dialog_unit.facing == "sw" then temp_facing = 4
-			elseif dialog_unit.facing == "se" then temp_facing = 5
-			elseif dialog_unit.facing == "s" then temp_facing = 6
+			if dbg_unit.facing == "nw" then temp_facing = 1
+			elseif dbg_unit.facing == "ne" then temp_facing = 2
+			elseif dbg_unit.facing == "n" then temp_facing = 3
+			elseif dbg_unit.facing == "sw" then temp_facing = 4
+			elseif dbg_unit.facing == "se" then temp_facing = 5
+			elseif dbg_unit.facing == "s" then temp_facing = 6
 			end
 			wesnoth.set_dialog_value ( temp_facing, "facing_listbox" )
 			-- other checkbuttons
-			wesnoth.set_dialog_value ( dialog_unit.resting, "resting_checkbutton" )
-			wesnoth.set_dialog_value ( dialog_unit.hidden, "hidden_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.resting, "resting_checkbutton" )
+			wesnoth.set_dialog_value ( dbg_unit.hidden, "hidden_checkbutton" )
 			-- set radiobutton for gender
 			local temp_gender
-			if dialog_unit.__cfg.gender == "male" then temp_gender = 1
-			elseif dialog_unit.__cfg.gender == "female" then temp_gender = 2
+			if dbg_unit.__cfg.gender == "male" then temp_gender = 1
+			elseif dbg_unit.__cfg.gender == "female" then temp_gender = 2
 			end
 			wesnoth.set_dialog_value ( temp_gender, "gender_listbox" )
 		end
@@ -1211,53 +1211,53 @@ local function unit_debug ( )
 		local temp_table = helper.get_child ( return_table, "temp_table" )
 
 		if return_value == 1 or return_value == -1 then -- if used pressed OK or Enter, modify unit
-			dialog_unit.side = temp_table.side -- first, for proper look on map with other actions
+			dbg_unit.side = temp_table.side -- first, for proper look on map with other actions
 			-- statuses, need to be before transforms, so poison can be removed from undead if a transform is used
-			dialog_unit.status.poisoned = temp_table.poisoned
-			dialog_unit.status.slowed = temp_table.slowed
-			dialog_unit.status.petrified = temp_table.petrified
-			dialog_unit.status.invulnerable = temp_table.invulnerable
-			dialog_unit.status.uncovered = temp_table.uncovered
-			dialog_unit.status.guardian = temp_table.guardian
-			dialog_unit.status.unhealable = temp_table.unhealable
-			dialog_unit.status.stunned = temp_table.stunned
-			dialog_unit.status.not_living = temp_table.not_living -- must be before undrainable, unplagueable, and unpoisonable to work correctly
-			dialog_unit.status.undrainable = temp_table.undrainable
-			dialog_unit.status.unplagueable = temp_table.unplagueable
-			dialog_unit.status.unpoisonable = temp_table.unpoisonable
-			dialog_unit.upkeep = temp_table.upkeep -- upkeep must be before traits, so adding a loyal trait can override this value
+			dbg_unit.status.poisoned = temp_table.poisoned
+			dbg_unit.status.slowed = temp_table.slowed
+			dbg_unit.status.petrified = temp_table.petrified
+			dbg_unit.status.invulnerable = temp_table.invulnerable
+			dbg_unit.status.uncovered = temp_table.uncovered
+			dbg_unit.status.guardian = temp_table.guardian
+			dbg_unit.status.unhealable = temp_table.unhealable
+			dbg_unit.status.stunned = temp_table.stunned
+			dbg_unit.status.not_living = temp_table.not_living -- must be before undrainable, unplagueable, and unpoisonable to work correctly
+			dbg_unit.status.undrainable = temp_table.undrainable
+			dbg_unit.status.unplagueable = temp_table.unplagueable
+			dbg_unit.status.unpoisonable = temp_table.unpoisonable
+			dbg_unit.upkeep = temp_table.upkeep -- upkeep must be before traits, so adding a loyal trait can override this value
 			-- these values need to before transforms so level/type changes work better
-			dialog_unit.attacks_left = temp_table.attacks_left
-			dialog_unit.hitpoints = temp_table.hitpoints
-			dialog_unit.moves = temp_table.moves
+			dbg_unit.attacks_left = temp_table.attacks_left
+			dbg_unit.hitpoints = temp_table.hitpoints
+			dbg_unit.moves = temp_table.moves
 			-- transform_unit based actions, all at least require the field to change to trigger a transform
 			-- level_type_advances_to_xp must be after all other transforms, to handle the values as expected
-			unit_ops.attack ( dialog_unit, temp_table.attack )
-			unit_ops.abilities ( dialog_unit, temp_table.abilities )
-			unit_ops.gender ( dialog_unit, temp_table.gender )
-			unit_ops.traits ( dialog_unit, temp_table.traits )
-			unit_ops.modifications ( dialog_unit, temp_table.modifications ) -- must be after traits, as it could be adding a trait
-			unit_ops.variation ( dialog_unit, temp_table.variation )
-			unit_ops.level_type_advances_to_xp ( dialog_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
+			unit_ops.attack ( dbg_unit, temp_table.attack )
+			unit_ops.abilities ( dbg_unit, temp_table.abilities )
+			unit_ops.gender ( dbg_unit, temp_table.gender )
+			unit_ops.traits ( dbg_unit, temp_table.traits )
+			unit_ops.modifications ( dbg_unit, temp_table.modifications ) -- must be after traits, as it could be adding a trait
+			unit_ops.variation ( dbg_unit, temp_table.variation )
+			unit_ops.level_type_advances_to_xp ( dbg_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
 			-- misc, these don't need to be anywhere in particular
-			unit_ops.amla (dialog_unit, temp_table.amla)
-			dialog_unit.facing = temp_table.facing
-			dialog_unit.extra_recruit = utils.string_split ( temp_table.extra_recruit, "," )
-			dialog_unit.role = temp_table.role
-			dialog_unit.hidden = temp_table.hidden
-			dialog_unit.resting = temp_table.resting
-			unit_ops.canrecruit ( dialog_unit, temp_table.canrecruit )
-			unit_ops.goto_xy ( dialog_unit, temp_table.goto_xy ) -- needs to be before location
-			unit_ops.id ( dialog_unit, temp_table.id )
-			unit_ops.overlays ( dialog_unit, temp_table.overlays )
-			unit_ops.name ( dialog_unit, temp_table.name ) -- needs to be before generate_name
-			unit_ops.generate_name ( dialog_unit, temp_table.generate_name )
-			unit_ops.unrenamable ( dialog_unit, temp_table.unrenamable )
-			unit_ops.variables ( dialog_unit, temp_table.variables )
+			unit_ops.amla (dbg_unit, temp_table.amla)
+			dbg_unit.facing = temp_table.facing
+			dbg_unit.extra_recruit = utils.string_split ( temp_table.extra_recruit, "," )
+			dbg_unit.role = temp_table.role
+			dbg_unit.hidden = temp_table.hidden
+			dbg_unit.resting = temp_table.resting
+			unit_ops.canrecruit ( dbg_unit, temp_table.canrecruit )
+			unit_ops.goto_xy ( dbg_unit, temp_table.goto_xy ) -- needs to be before location
+			unit_ops.id ( dbg_unit, temp_table.id )
+			unit_ops.overlays ( dbg_unit, temp_table.overlays )
+			unit_ops.name ( dbg_unit, temp_table.name ) -- needs to be before generate_name
+			unit_ops.generate_name ( dbg_unit, temp_table.generate_name )
+			unit_ops.unrenamable ( dbg_unit, temp_table.unrenamable )
+			unit_ops.variables ( dbg_unit, temp_table.variables )
 			-- these need to be last, as they involve healing or copying the unit
-			unit_ops.location ( dialog_unit, temp_table.location ) -- healed if put to recall
-			unit_ops.heal_unit ( dialog_unit, temp_table.heal_unit )
-			unit_ops.copy_unit ( dialog_unit, temp_table.copy_unit )
+			unit_ops.location ( dbg_unit, temp_table.location ) -- healed if put to recall
+			unit_ops.heal_unit ( dbg_unit, temp_table.heal_unit )
+			unit_ops.copy_unit ( dbg_unit, temp_table.copy_unit )
 			wml_actions.redraw ( { } ) -- to be sure of showing changes
 			wml_actions.print ( { text = _ "unit debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )
