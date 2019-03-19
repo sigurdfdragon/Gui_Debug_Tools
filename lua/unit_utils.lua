@@ -194,29 +194,27 @@ end
 function unit_ops.modifications ( unit, str )
 	-- modifications - copies any modification or removes objects & advancements
 	if str ~= "" then
-		if str == " " then -- remove all existing objects or advancements
+		if str == " " then -- remove all existing objects and advancements
 			unit:remove_modifications( {}, "object" )
 			unit:remove_modifications( {}, "advancement" )
 		else
-			-- chop user entered value - ex: Delfador,object,1
-			local mod_source = { }
-			for value in utils.split( str ) do
-				table.insert ( mod_source, utils.chop( value ) )
-			end
-			if mod_source[1] == "remove" then
-			-- remove modification specified by magic word, mod_type, & index - ex: remove,advancement,2
-				local modifications = helper.get_child( unit.__cfg, "modifications" )
-				local unit_mod = helper.get_nth_child( modifications, mod_source[2], mod_source[3] )
-				if unit_mod then
-					unit:remove_modifications( unit_mod, mod_source[2] )
+			local t = utils.split_to_table ( str )
+			if t[1] == "remove" then
+				-- remove modification specified by magic word, mod_type, & index - ex: remove,advancement,2
+				local mtype, index = t[2], t[3]
+				local umods = helper.get_child( unit.__cfg, "modifications" )
+				local modification = helper.get_nth_child( umods, mtype, index )
+				if modification then
+					unit:remove_modifications( modification, mtype )
 				end
 			else
-				-- add new modification, copy from unit specified by id, mod type, & index
-				local u = wesnoth.get_unit(mod_source[1] ) or wesnoth.get_recall_units( { id=mod_source[1] } )[1]
-				local modifications = helper.get_child( u.__cfg, "modifications" )
-				local new_mod = helper.get_nth_child( modifications, mod_source[2], mod_source[3] )
-				if new_mod then
-					unit:add_modification ( mod_source[2], new_mod )
+				-- copy modification specified by unit id, mod type, & index - ex: Delfador,object,1
+				local id, mtype, index = t[1], t[2], t[3]
+				local u = wesnoth.get_unit( id ) or wesnoth.get_recall_units( { id = id } )[1]
+				local umods = helper.get_child( u.__cfg, "modifications" )
+				local modification = helper.get_nth_child( umods, mtype, index )
+				if modification then
+					unit:add_modification ( mtype, modification )
 				end
 			end
 		end
