@@ -38,35 +38,21 @@ function unit_ops.amla ( unit, int )
 	end
 end
 
-function unit_ops.attack ( unit, attack )
-	-- attacks - adds or removes new attacks via objects, does not affect attacks that come with the unit type
-	if attack ~= "" then
-		if attack == " " then -- user just wants to clear added object(s)
+function unit_ops.attack ( unit, str )
+	-- adds or removes new attacks via objects, does not affect attacks that come with the unit type
+	if str ~= "" then
+		if str == " " then
 			-- remove existing attack objects
-			local u = unit.__cfg -- traits need to be removed by editing a __cfg table
-			for tag = #u, 1, -1 do
-				if u[tag][1] == "modifications" then
-					for subtag = #u[tag][2], 1, -1 do
-						if u[tag][2][subtag][1] == "object" and u[tag][2][subtag][2].gdt_id == "attack" then
-							table.remove( u[tag][2], subtag )
-						end
-					end
-				end
-			end
-			wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
-			wesnoth.transform_unit ( unit, unit.type ) -- the above gets the [object], this gets the [attack] imparted by the object
+			unit:remove_modifications ( { item_id = "gdt_attack" }, "object")
 		else
-			-- chop user entered value
-			local attack_sources = { }
-			for value in utils.split( attack ) do
-				table.insert ( attack_sources, utils.chop( value ) )
-			end
-			-- add new attack, copy from unit_type & attack index that has the desired attack
-			local new_attack = helper.get_nth_child(wesnoth.unit_types[attack_sources[1]].__cfg, "attack", attack_sources[2])
-			if new_attack then
-				new_attack.apply_to = "new_attack"
-				local new_object = { gdt_id = "attack", delayed_variable_substitution = true, { "effect", new_attack } }
-				wesnoth.add_modification ( unit, "object", new_object )
+			-- copy attack from specified unit_type & attack index
+			local t = utils.split_to_table ( str )
+			local utype, index = t[1], t[2]
+			local attack = helper.get_nth_child(wesnoth.unit_types[utype].__cfg, "attack", index)
+			if attack then
+				attack.apply_to = "new_attack"
+				local object = { item_id = "gdt_attack", delayed_variable_substitution = true, { "effect", attack } }
+				unit:add_modification ( "object", object )
 			end
 		end
 	end
