@@ -282,7 +282,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Copy Unit"
+									label = _ "Copy"
 								}
 							},
 							T.column {
@@ -294,7 +294,7 @@ local function unit_debug ( )
 									maximum_value = 10,
 									step_size = 1,
 									id = "unit_copy_slider",
-									tooltip = _ "Copies of the unit will be created. Will be identical except for ids."
+									tooltip = _ "Copies of the unit will be created. Will be identical except for id and name."
 								}
 							}
 						}
@@ -1147,7 +1147,7 @@ local function unit_debug ( )
 				-- here get all the widget values in variables; store them in temp variables
 				-- sliders
 				temp_table.level = wesnoth.get_dialog_value "unit_level_slider"
-				temp_table.copy_unit = wesnoth.get_dialog_value "unit_copy_slider"
+				temp_table.copy = wesnoth.get_dialog_value "unit_copy_slider"
 				temp_table.side = wesnoth.get_dialog_value ( "unit_side_slider" )
 				temp_table.hitpoints = wesnoth.get_dialog_value ( "unit_hitpoints_slider" )
 				temp_table.experience = wesnoth.get_dialog_value ( "unit_experience_slider" )
@@ -1256,7 +1256,7 @@ local function unit_debug ( )
 			-- these need to be last, as they involve healing or copying the unit
 			unit_ops.location ( dbg_unit, temp_table.location ) -- healed if put to recall
 			unit_ops.heal_unit ( dbg_unit, temp_table.heal_unit )
-			unit_ops.copy_unit ( dbg_unit, temp_table.copy_unit )
+			unit_ops.copy ( dbg_unit, temp_table.copy )
 			wml_actions.redraw ( { } ) -- to be sure of showing changes
 			wml_actions.print ( { text = _ "unit debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )

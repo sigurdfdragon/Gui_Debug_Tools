@@ -90,7 +90,7 @@ function unit_ops.canrecruit ( unit, bool )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, canrecruit = bool }
 end
 
-function unit_ops.copy_unit ( unit, int )
+function unit_ops.copy ( unit, int )
 	-- do it this way instead of using wesnoth.copy_unit as
 	-- it doesn't handle specified ids (ie, 'Konrad') in
 	-- the way that we want it to
