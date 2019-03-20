@@ -123,7 +123,7 @@ end
 function unit_ops.level_type_advances_to_xp ( unit, level, unit_type, advances_to, experience )
 	if unit.type ~= unit_type then
 		-- disregard what is entered for level, advances_to, & experience
-		wesnoth.transform_unit ( unit, unit_type )
+		unit:transform ( unit_type )
 		unit.experience = 0
 	else
 		unit.advances_to = utils.split_to_table ( advances_to )
@@ -390,7 +390,7 @@ function unit_ops.variation ( unit, variation )
 	-- before the unit_type transformation?
 	if variation ~= unit.__cfg.variation then
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, variation = variation }
-		wesnoth.transform_unit ( unit, unit.type ) -- so the variation change will take
+		unit:transform ( unit.type ) -- so the variation change will take
 	end
 end
 
