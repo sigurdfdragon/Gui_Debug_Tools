@@ -385,11 +385,9 @@ function unit_ops.variables ( unit, variables )
 	end
 end
 
-function unit_ops.variation ( unit, variation )
-	-- can this simply be a modify unit without all the rest of the code if this occurs
-	-- before the unit_type transformation?
-	if variation ~= unit.__cfg.variation then
-		wml_actions.modify_unit { { "filter", { id = unit.id } }, variation = variation }
+function unit_ops.variation ( unit, str )
+	if str ~= unit.__cfg.variation then
+		wml_actions.modify_unit { { "filter", { id = unit.id } }, variation = str }
 		unit:transform ( unit.type ) -- so the variation change will take
 	end
 end
