@@ -91,19 +91,19 @@ function unit_ops.canrecruit ( unit, bool )
 end
 
 function unit_ops.copy ( unit, int )
-	-- do it this way instead of using wesnoth.copy_unit as
-	-- it doesn't handle specified ids (ie, 'Konrad') in
-	-- the way that we want it to
+	-- do it this way instead of using wesnoth.copy_unit as it doesn't
+	-- handle specified ids (ie, 'Konrad') the way we want it to.
 	if int ~= 0 then
 		for i = 1, int do
 			local copy = unit.__cfg
 			copy.id, copy.underlying_id = nil, nil -- so custom ids are not duplicated & generic ids will match uid
 			copy.name, copy.generate_name = nil, true --so copies have different names
-			if copy.x == "recall" and copy.y == "recall" then
-				wesnoth.put_recall_unit ( copy )
+			copy = wesnoth.create_unit( copy )
+			if unit.valid == "recall" then
+				copy:to_recall ( )
 			else
-				local x, y = wesnoth.find_vacant_tile ( copy.x, copy.y, copy )
-				wesnoth.put_unit ( copy, x, y )
+				local x, y = wesnoth.find_vacant_tile ( unit.x, unit.y, copy )
+				copy:to_map ( x, y )
 			end
 		end
 	end
