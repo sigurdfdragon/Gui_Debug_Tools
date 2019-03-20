@@ -138,7 +138,7 @@ function unit_ops.goto_xy ( unit, str )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = loc[1], goto_y = loc[2]}
 end
 
-function unit_ops.heal_unit ( unit, bool )
+function unit_ops.heal ( unit, bool )
 	if bool then
 		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
 	end

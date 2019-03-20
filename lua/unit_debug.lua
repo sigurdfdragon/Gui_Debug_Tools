@@ -263,7 +263,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Heal Unit"
+									label = _ "Heal"
 								}
 							},
 							T.column {
@@ -1175,7 +1175,7 @@ local function unit_debug ( )
 				temp_table.unrenamable = wesnoth.get_dialog_value "unrenamable_checkbutton"
 				temp_table.canrecruit = wesnoth.get_dialog_value "canrecruit_checkbutton"
 				temp_table.generate_name = wesnoth.get_dialog_value "generate_name_checkbutton"
-				temp_table.heal_unit = wesnoth.get_dialog_value "heal_unit_checkbutton"
+				temp_table.heal = wesnoth.get_dialog_value "heal_unit_checkbutton"
 				temp_table.poisoned = wesnoth.get_dialog_value "poisoned_checkbutton"
 				temp_table.slowed = wesnoth.get_dialog_value "slowed_checkbutton"
 				temp_table.petrified = wesnoth.get_dialog_value "petrified_checkbutton"
@@ -1255,7 +1255,7 @@ local function unit_debug ( )
 			unit_ops.variables ( dbg_unit, temp_table.variables )
 			-- these need to be last, as they involve healing or copying the unit
 			unit_ops.location ( dbg_unit, temp_table.location ) -- healed if put to recall
-			unit_ops.heal_unit ( dbg_unit, temp_table.heal_unit )
+			unit_ops.heal ( dbg_unit, temp_table.heal )
 			unit_ops.copy ( dbg_unit, temp_table.copy )
 			wml_actions.redraw ( { } ) -- to be sure of showing changes
 			wml_actions.print ( { text = _ "unit debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
