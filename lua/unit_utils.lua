@@ -14,12 +14,12 @@ function unit_ops.abilities ( unit, str )
 	if str ~= "" then
 		if str == " " then
 			-- remove existing ability objects
-			unit:remove_modifications ( { item_id = "gdt_ability" }, "object")
+			unit:remove_modifications ( { item_id = "gdt_ability" }, "object" )
 		else
 			-- copy abilities from specified unit_types
 			local sources = utils.split_to_table ( str )
 			for i = 1, #sources do
-				local ability = helper.get_child(wesnoth.unit_types[sources[i]].__cfg, "abilities")
+				local ability = helper.get_child ( wesnoth.unit_types[sources[i]].__cfg, "abilities" )
 				if ability then
 					local object = { item_id = "gdt_ability", delayed_variable_substitution = true, { "effect", { apply_to = "new_ability", { "abilities", ability } } } }
 					unit:add_modification ( "object", object )
@@ -43,12 +43,12 @@ function unit_ops.attack ( unit, str )
 	if str ~= "" then
 		if str == " " then
 			-- remove existing attack objects
-			unit:remove_modifications ( { item_id = "gdt_attack" }, "object")
+			unit:remove_modifications ( { item_id = "gdt_attack" }, "object" )
 		else
 			-- copy attack from specified unit_type & attack index
 			local t = utils.split_to_table ( str )
 			local utype, index = t[1], t[2]
-			local attack = helper.get_nth_child(wesnoth.unit_types[utype].__cfg, "attack", index)
+			local attack = helper.get_nth_child ( wesnoth.unit_types[utype].__cfg, "attack", index )
 			if attack then
 				attack.apply_to = "new_attack"
 				local object = { item_id = "gdt_attack", delayed_variable_substitution = true, { "effect", attack } }
