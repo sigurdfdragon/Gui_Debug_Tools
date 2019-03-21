@@ -372,16 +372,11 @@ function unit_ops.unrenamable ( unit, bool )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, unrenamable = bool }
 end
 
-function unit_ops.variables ( unit, variables )
-	if variables ~= "" then
-		local vstr = {}
-		for value in utils.split( variables, "=" ) do
-			table.insert ( vstr, utils.chop( value ) )
-		end
-		if vstr[2] == nil then
-			vstr[2] = ""
-		end
-		unit.variables[vstr[1]] = vstr[2]
+function unit_ops.variables ( unit, str )
+	if str ~= "" then
+		local t = utils.split_to_table ( str, "=" )
+		key, value = t[1], t[2]
+		unit.variables[key] = value
 	end
 end
 
