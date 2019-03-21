@@ -201,8 +201,8 @@ function unit_ops.overlays ( unit, str )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, overlays = str }
 end
 
-function unit_ops.traits ( unit, trait_str )
-	if trait_str ~= unit_ops.get_traits_string ( unit ) then
+function unit_ops.traits ( unit, str )
+	if str ~= unit_ops.get_traits_string ( unit ) then
 		-- returns a list of all mainline traits plus bonus traits
 		-- start with making a table and adding the global traits
 		-- quick, resilient, strong, intelligent
@@ -316,11 +316,7 @@ function unit_ops.traits ( unit, trait_str )
 
 		-- now that all the traits to pick from have been assembled
 		-- take user entered values and use to set the unit's traits
-		-- chop user entered value
-		local temp_new_traits = { }
-		for value in utils.split( trait_str ) do
-			table.insert ( temp_new_traits, utils.chop( value ) )
-		end
+		local new_traits = utils.split_to_table ( str )
 		-- remove undead status keys, in case undead trait is being removed
 		-- it is easier to remove these keys from proxy than a __cfg
 		-- TODO: may not be best handling, find better handling for this?
@@ -351,9 +347,9 @@ function unit_ops.traits ( unit, trait_str )
 			end
 		end
 		-- add new traits
-		for i = 1, #temp_new_traits do
+		for i = 1, #new_traits do
 			for j = 1, #trait_array do
-				if temp_new_traits[i] == trait_array[j].id then
+				if new_traits[i] == trait_array[j].id then
 					if helper.get_child( u, "modifications" ) == nil then
 						utils.add_empty_child( u, "modifications" )
 					end
@@ -364,7 +360,7 @@ function unit_ops.traits ( unit, trait_str )
 			end
 		end
 		wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
-		wesnoth.transform_unit ( unit, unit.type ) -- refresh the unit with the new changes
+		unit:transform ( unit.type ) -- refresh the unit with the new changes
 	end
 end
 
