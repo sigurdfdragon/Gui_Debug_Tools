@@ -241,7 +241,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Heal Units"
+									label = _ "Heal"
 								}
 							},
 							T.column {
@@ -249,7 +249,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "heal_units_checkbutton",
+									id = "heal_checkbutton",
 									tooltip = _ "All the side's units on the map will be healed."
 								}
 							}
@@ -260,7 +260,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Super Heal Units"
+									label = _ "Super Heal"
 								}
 							},
 							T.column {
@@ -268,7 +268,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "super_heal_units_checkbutton",
+									id = "super_heal_checkbutton",
 									tooltip = _ "All the side's units on the map will be super healed."
 								}
 							}
@@ -319,7 +319,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Kill Units"
+									label = _ "Kill"
 								}
 							},
 							T.column {
@@ -327,7 +327,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "kill_units_checkbutton",
+									id = "kill_checkbutton",
 									tooltip = _ "All the side's units will be killed."
 								}
 							}
@@ -769,9 +769,9 @@ local function side_debug ( )
 			wesnoth.set_dialog_value ( dbg_side.shroud, "shroud_checkbutton" )
 			wesnoth.set_dialog_value ( dbg_side.hidden, "hidden_checkbutton" )
 			wesnoth.set_dialog_value ( false, "clear_recall_checkbutton" )
-			wesnoth.set_dialog_value ( false, "heal_units_checkbutton" )
-			wesnoth.set_dialog_value ( false, "super_heal_units_checkbutton" )
-			wesnoth.set_dialog_value ( false, "kill_units_checkbutton" )
+			wesnoth.set_dialog_value ( false, "heal_checkbutton" )
+			wesnoth.set_dialog_value ( false, "super_heal_checkbutton" )
+			wesnoth.set_dialog_value ( false, "kill_checkbutton" )
 
 			-- radiobutton
 			local temp_controller
@@ -821,9 +821,9 @@ local function side_debug ( )
 				temp_table.shroud = wesnoth.get_dialog_value ( "shroud_checkbutton" )
 				temp_table.hidden = wesnoth.get_dialog_value ( "hidden_checkbutton" )
 				temp_table.clear_recall = wesnoth.get_dialog_value ( "clear_recall_checkbutton" )
-				temp_table.heal_units = wesnoth.get_dialog_value ( "heal_units_checkbutton" )
-				temp_table.super_heal_units = wesnoth.get_dialog_value ( "super_heal_units_checkbutton" )
-				temp_table.kill_units = wesnoth.get_dialog_value ( "kill_units_checkbutton" )
+				temp_table.heal = wesnoth.get_dialog_value ( "heal_checkbutton" )
+				temp_table.super_heal = wesnoth.get_dialog_value ( "super_heal_checkbutton" )
+				temp_table.kill = wesnoth.get_dialog_value ( "kill_checkbutton" )
 				-- radiobutton
 				local controllers = { "ai", "human", "idle", "network", "network_ai", "null" }
 				temp_table.controller = controllers[ wesnoth.get_dialog_value ( "controller_listbox" ) ]
@@ -857,11 +857,11 @@ local function side_debug ( )
 			side_ops.recall_unit ( dbg_side, temp_table.recall_unit )
 			side_ops.clear_recall ( dbg_side, temp_table.clear_recall )
 			side_ops.seed_recall ( dbg_side, temp_table.seed_recall )
-			side_ops.heal_units ( dbg_side, temp_table.heal_units )
-			side_ops.super_heal_units ( dbg_side, temp_table.super_heal_units )
+			side_ops.heal ( dbg_side, temp_table.heal )
+			side_ops.super_heal ( dbg_side, temp_table.super_heal )
 			side_ops.location ( dbg_side, temp_table.location )
 			side_ops.goto_xy ( dbg_side, temp_table.goto_xy )
-			side_ops.kill_units ( dbg_side, temp_table.kill_units )
+			side_ops.kill ( dbg_side, temp_table.kill )
 			wml_actions.redraw ( { side = dbg_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud
 			wml_actions.print ( { text = _ "side debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )

@@ -33,13 +33,13 @@ function side_ops.goto_xy ( side, str )
 	end
 end
 
-function side_ops.heal_units ( side, bool )
+function side_ops.heal ( side, bool )
 	if bool then
 		wml_actions.heal_unit { { "filter", { side = side.side } }, moves = "full", restore_attacks = true }
 	end
 end
 
-function side_ops.kill_units ( side, bool )
+function side_ops.kill ( side, bool )
 	if bool then
 		wml_actions.kill { side = side.side, animate = true, fire_event = true }
 	end
@@ -101,7 +101,7 @@ function side_ops.seed_recall ( side, int )
 	end
 end
 
-function side_ops.super_heal_units ( side, bool )
+function side_ops.super_heal ( side, bool )
 	if bool then
 		local units = wesnoth.get_units { side = side.side }
 		for i = 1, #units do
