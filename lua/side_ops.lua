@@ -76,10 +76,7 @@ function side_ops.seed_recall ( side, int )
 				end
 				while temp_recruit[u] do
 					if wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to and wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to ~= "null" then
-						local advances = { }
-						for value in utils.split( wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to ) do
-							table.insert ( advances, utils.chop ( value ) )
-						end
+						local advances = utils.split_to_table ( wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to )
 						local a = 1
 						while advances[a] do
 							local is_present = false
