@@ -11,14 +11,14 @@ local wml_actions = wesnoth.wml_actions
 
 function side_ops.clear_recall ( side, bool )
 	if bool then
-		wml_actions.kill( { side = side.side, x = "recall", y = "recall" } )
+		wml_actions.kill ( { side = side.side, x = "recall", y = "recall" } )
 	end
 end
 
-function side_ops.convert_color( color )
+function side_ops.convert_color ( color )
 	-- if color is a number, convert it to the word form
 	local color_names = { "red", "blue", "green", "purple", "black", "brown", "orange", "white", "teal" }
-	local color_number = tonumber( color )
+	local color_number = tonumber ( color )
 	if color_number then
 		return color_names[color_number]
 	else
@@ -58,10 +58,10 @@ end
 
 function side_ops.recall_unit ( side, str )
 	if str ~= "" then
-		local unit = wesnoth.get_recall_units( { side = side.side, id = str } )[1]
+		local unit = wesnoth.get_recall_units ( { side = side.side, id = str } )[1]
 		local x, y = wesnoth.current.event_context.x1, wesnoth.current.event_context.y1
-		x, y = wesnoth.find_vacant_tile( x, y, unit )
-		unit:to_map( x, y )
+		x, y = wesnoth.find_vacant_tile ( x, y, unit )
+		unit:to_map ( x, y )
 	end
 end
 
@@ -76,9 +76,9 @@ function side_ops.seed_recall ( side, int )
 				end
 				while temp_recruit[u] do
 					if wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to and wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to ~= "null" then
-						local advances = {}
+						local advances = { }
 						for value in utils.split( wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to ) do
-							table.insert ( advances, utils.chop( value ) )
+							table.insert ( advances, utils.chop ( value ) )
 						end
 						local a = 1
 						while advances[a] do
