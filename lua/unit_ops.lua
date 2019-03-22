@@ -317,50 +317,29 @@ function unit_ops.traits ( unit, str )
 		-- now that all the traits to pick from have been assembled
 		-- take user entered values and use to set the unit's traits
 		local new_traits = utils.split_to_table ( str )
+		-- since musthaves are automatically reapplied, temporary turn unit
+		-- into one without traits so accidental dupes are avoided and order respected
+		local utype, hitpoints, moves = unit.type, unit.hitpoints, unit.moves
+		unit:transform ( "Fog Clearer" ) -- if removed, replace with low move unit
+		-- remove existing traits
+		unit:remove_modifications( {}, "trait" )
 		-- remove undead status keys, in case undead trait is being removed
-		-- it is easier to remove these keys from proxy than a __cfg
-		-- TODO: may not be best handling, find better handling for this?
 		unit.status.not_living = nil
 		unit.status.undrainable = nil
 		unit.status.unplaugeable = nil
 		unit.status.unpoisonable = nil
-		-- remove existing traits
-		local u = unit.__cfg -- traits need to be removed by editing a __cfg table
-		for tag = #u, 1, -1 do
-			if u[tag][1] == "modifications" then
-				for subtag = #u[tag][2], 1, -1 do
-					if u[tag][2][subtag][1] == "trait" then
-						local removed_trait = table.remove( u[tag][2], subtag )
-						-- scan removed trait for apply_to=loyal
-						for eff in helper.child_range(removed_trait[2], "effect") do
-							if eff.apply_to == "loyal" then
-								-- if a trait applied upkeep=loyal, remove it with that trait
-								if u.upkeep == "loyal" then
-									-- only change if upkeep is still loyal, player may
-									-- have already changed it along with trait removal
-									u.upkeep = "full"
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-		-- add new traits
+		-- add the user specified traits
 		for i = 1, #new_traits do
 			for j = 1, #trait_array do
 				if new_traits[i] == trait_array[j].id then
-					if helper.get_child( u, "modifications" ) == nil then
-						utils.add_empty_child( u, "modifications" )
-					end
-					local m = helper.get_child( u, "modifications" )
-					table.insert ( m, { [1] = "trait", [2] = trait_array[j] } )
+					unit:add_modification ( "trait", trait_array[j] )
 					break
 				end
 			end
 		end
-		wesnoth.put_unit ( u ) -- overwrites original that's still there, preserves underlying_id & proxy access
-		unit:transform ( unit.type ) -- refresh the unit with the new changes
+		-- restore unit to correct type
+		unit:transform ( utype )
+		unit.hitpoints, unit.moves = hitpoints, moves
 	end
 end
 
