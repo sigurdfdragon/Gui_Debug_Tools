@@ -634,7 +634,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Recall Unit"
+								label = _ "Recall Units"
 							}
 						},
 						T.column {
@@ -642,9 +642,9 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "recall_unit_textbox",
+								id = "recall_units_textbox",
 								history = "other_recall_units",
-								tooltip = _ "The unit with the specified ID will be recalled."
+								tooltip = _ "The units with the specified IDs will be recalled."
 							}
 						}
 					},
@@ -761,7 +761,7 @@ local function side_debug ( )
 			wesnoth.set_dialog_value ( dbg_side.user_team_name, "user_team_name_textbox" )
 			wesnoth.set_dialog_value ( dbg_side.team_name, "team_name_textbox" )
 			wesnoth.set_dialog_value ( table.concat( dbg_side.recruit, "," ), "recruit_textbox" )
-			wesnoth.set_dialog_value ( "", "recall_unit_textbox" )
+			wesnoth.set_dialog_value ( "", "recall_units_textbox" )
 			-- checkbutton
 			wesnoth.set_dialog_value ( dbg_side.__cfg.suppress_end_turn_confirmation, "suppress_end_turn_confirmation_checkbutton" )
 			wesnoth.set_dialog_value ( dbg_side.scroll_to_leader, "scroll_to_leader_checkbutton" )
@@ -813,7 +813,7 @@ local function side_debug ( )
 				temp_table.user_team_name = wesnoth.get_dialog_value ( "user_team_name_textbox" )
 				temp_table.team_name = wesnoth.get_dialog_value ( "team_name_textbox" )
 				temp_table.recruit = wesnoth.get_dialog_value "recruit_textbox"
-				temp_table.recall_unit = wesnoth.get_dialog_value "recall_unit_textbox"
+				temp_table.recall_units = wesnoth.get_dialog_value "recall_units_textbox"
 				-- checkbutton
 				temp_table.suppress_end_turn_confirmation = wesnoth.get_dialog_value ( "suppress_end_turn_confirmation_checkbutton" )
 				temp_table.scroll_to_leader = wesnoth.get_dialog_value ( "scroll_to_leader_checkbutton" )
@@ -854,7 +854,7 @@ local function side_debug ( )
 			dbg_side.team_name = temp_table.team_name
 			dbg_side.recruit = utils.split_to_table ( temp_table.recruit )
 			dbg_side.controller = temp_table.controller
-			side_ops.recall_unit ( dbg_side, temp_table.recall_unit )
+			side_ops.recall_units ( dbg_side, temp_table.recall_units )
 			side_ops.clear_recall ( dbg_side, temp_table.clear_recall )
 			side_ops.seed_recall ( dbg_side, temp_table.seed_recall )
 			side_ops.heal ( dbg_side, temp_table.heal )
