@@ -70,35 +70,42 @@ end
 
 function side_ops.seed_recall ( side, int )
 	if int ~= 0 then
-		for seed = 1, int do
-			local temp_recruit = {}
-			if side.recruit[1] ~= nil then
-				local u = 1
-				for i = 1, #side.recruit do
-					table.insert ( temp_recruit, side.recruit[i] )
-				end
-				while temp_recruit[u] do
-					if wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to and wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to ~= "null" then
-						local advances = utils.split_to_table ( wesnoth.unit_types[temp_recruit[u]].__cfg.advances_to )
-						local a = 1
-						while advances[a] do
-							local is_present = false
-							for i = 1, #temp_recruit do
-								if advances[a] == temp_recruit[i] then
-									is_present = true; break
-								end
-							end
-							if is_present == false then
-								table.insert ( temp_recruit, advances[a] )
-							end
-							a = a + 1
-						end
-					end
-					u = u + 1
-				end
+		-- assemble an array of unit types and their advancements from side.recruit and leader.extra_recruit
+		local utypes = { }
+		-- add the side's recruits
+		for i = 1, #side.recruit do
+			table.insert ( utypes, side.recruit[i] )
+		end
+		-- add each leader's extra recruit
+		local leaders = wesnoth.get_units ( { side = side.side, canrecruit = true } )
+		for i = 1, #leaders do
+			for j = 1, #leaders[i].extra_recruit do
+				table.insert ( utypes, leaders[i].extra_recruit[j] )
 			end
-			for i = 1, #temp_recruit do
-				wesnoth.put_recall_unit ( { type = temp_recruit[i], side = side.side, random_gender = true } )
+		end
+		-- add advancements from each unit type
+		-- additions are added to the back of the array and processed when they are reached
+		local i = 1
+		while utypes[i] do
+			for j = 1, #wesnoth.unit_types[utypes[i]].advances_to do
+				table.insert ( utypes, wesnoth.unit_types[utypes[i]].advances_to[j] )
+			end
+			i = i + 1
+		end
+		-- purge array of duplicates
+		local hash, result = { }, { }
+		for _, value in ipairs ( utypes ) do
+			 if not hash[value] then
+					 result[#result+1] = value
+					 hash[value] = true
+			 end
+		end
+		utypes = result
+		-- go through array int times, creating one of each unit
+		for i = 1, int do
+			for j = 1, #utypes do
+				local unit = wesnoth.create_unit ( { type = utypes[j], random_gender = true } )
+				unit:to_recall ( side.side )
 			end
 		end
 	end
