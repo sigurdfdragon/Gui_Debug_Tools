@@ -67,6 +67,25 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Starting Location"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
+									id = "starting_location_label",
+									tooltip = _ "The coordinates for the starting location of the side."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Current Player"
 								}
 							},
@@ -743,6 +762,7 @@ local function side_debug ( )
 			-- labels
 			wesnoth.set_dialog_value ( string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dbg_side.flag_icon or "", wesnoth.sides[dbg_side.side].color ), "flag_image" )
 			wesnoth.set_dialog_value ( dbg_side.side, "side_label" )
+			wesnoth.set_dialog_value ( table.concat( wesnoth.get_starting_location ( dbg_side.side ), "," ), "starting_location_label" )
 			wesnoth.set_dialog_value ( dbg_side.__cfg.current_player, "current_player_label" )
 			wesnoth.set_dialog_value ( dbg_side.total_income, "total_income_label" )
 			-- sliders
