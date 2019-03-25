@@ -298,7 +298,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Location"
+									label = _ "Teleport"
 								}
 							},
 							T.column {
@@ -306,9 +306,9 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.text_box {
-									id = "location_textbox",
-									history = "other_locations",
-									tooltip = _ "All on map units of the side will be moved to the coordinates specified."
+									id = "teleport_textbox",
+									history = "other_teleports",
+									tooltip = _ "All on map units of the side will be placed at the coordinates specified. Single spaces places all non-leaders on the recall list."
 								}
 							}
 						},
@@ -771,7 +771,7 @@ local function side_debug ( )
 			wesnoth.set_dialog_value ( dbg_side.village_support, "side_village_support_slider" )
 			wesnoth.set_dialog_value ( dbg_side.base_income, "side_base_income_slider" )
 			-- text boxes
-			wesnoth.set_dialog_value ( "", "location_textbox" )
+			wesnoth.set_dialog_value ( "", "teleport_textbox" )
 			wesnoth.set_dialog_value ( "", "goto_textbox" )
 			wesnoth.set_dialog_value ( dbg_side.gold, "gold_textbox" )
 			wesnoth.set_dialog_value ( dbg_side.defeat_condition, "defeat_condition_textbox" )
@@ -823,7 +823,7 @@ local function side_debug ( )
 				temp_table.village_support = wesnoth.get_dialog_value ( "side_village_support_slider" )
 				temp_table.base_income = wesnoth.get_dialog_value ( "side_base_income_slider" )
 				-- text boxes
-				temp_table.location = wesnoth.get_dialog_value "location_textbox"
+				temp_table.teleport = wesnoth.get_dialog_value "teleport_textbox"
 				temp_table.goto_xy = wesnoth.get_dialog_value "goto_textbox"
 				temp_table.gold = wesnoth.get_dialog_value ( "gold_textbox" )
 				temp_table.defeat_condition = wesnoth.get_dialog_value ( "defeat_condition_textbox" )
@@ -879,7 +879,7 @@ local function side_debug ( )
 			side_ops.seed_recall ( dbg_side, temp_table.seed_recall )
 			side_ops.heal ( dbg_side, temp_table.heal )
 			side_ops.super_heal ( dbg_side, temp_table.super_heal )
-			side_ops.location ( dbg_side, temp_table.location )
+			side_ops.teleport ( dbg_side, temp_table.teleport )
 			side_ops.goto_xy ( dbg_side, temp_table.goto_xy )
 			side_ops.kill ( dbg_side, temp_table.kill )
 			wml_actions.redraw ( { side = dbg_side.side } ) -- redraw to be sure of showing changes. needed for turning on fog or shroud

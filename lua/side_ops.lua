@@ -45,17 +45,6 @@ function side_ops.kill ( side, bool )
 	end
 end
 
-function side_ops.location ( side, str )
-	if str ~= "" then
-		local loc = utils.split_to_table ( str )
-		local units = wesnoth.get_units { side = side.side }
-		for i = 1, #units do
-			local x, y = wesnoth.find_vacant_tile ( loc[1], loc[2], units[i] )
-			units[i]:to_map ( x, y )
-		end
-	end
-end
-
 function side_ops.recall_units ( side, str )
 	if str ~= "" then
 		local ids = utils.split_to_table ( str )
@@ -118,6 +107,26 @@ function side_ops.super_heal ( side, bool )
 			units[i].hitpoints = math.max(units[i].max_hitpoints * 20, 1000)
 			units[i].moves = math.max(units[i].max_moves * 20, 100)
 			units[i].attacks_left = math.max(units[i].max_attacks * 20, 20)
+		end
+	end
+end
+
+function side_ops.teleport ( side, str )
+	if str ~= "" then
+		if str == " " then
+			local units = wesnoth.get_units ( { side = side.side, canrecruit = false } )
+			for i = 1, #units do
+				wml_actions.heal_unit { { "filter", { id = units[i].id } }, moves = "full", restore_attacks = true }
+				wml_actions.modify_unit { { "filter", { id = units[i].id } }, goto_x = 0, goto_y = 0 }
+				units[i]:to_recall ( )
+			end
+		else
+			local loc = utils.split_to_table ( str )
+			local units = wesnoth.get_units { side = side.side }
+			for i = 1, #units do
+				local x, y = wesnoth.find_vacant_tile ( loc[1], loc[2], units[i] )
+				units[i]:to_map ( x, y )
+			end
 		end
 	end
 end
