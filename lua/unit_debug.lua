@@ -842,7 +842,7 @@ local function unit_debug ( )
 							T.text_box {
 								id = "textbox_modifications",
 								history = "other_modifications",
-								tooltip = _ "Copy: 'Unit Id,Mod Type,Index' - Remove: 'remove,Mod Type,Index' - Single space clears all objects and advancements."
+								tooltip = _ "Copy: 'Unit Id,Mod Type,Index' - Remove all copies of a mod: 'remove,Mod Type,Index' - Single space clears all objects and advancements."
 							}
 						}
 					},
