@@ -217,114 +217,102 @@ end
 
 function unit_ops.traits ( unit, str )
 	if str ~= unit_ops.get_traits_string ( unit ) then
-		-- returns a list of all mainline traits plus bonus traits
-		-- start with making a table and adding the global traits
-		-- quick, resilient, strong, intelligent
-		local trait_array = {}
-		local trait_t = wesnoth.get_traits()
-		local i = 1
-		for k,v in pairs(trait_t) do
-			trait_array[i] = v
-			i = i + 1
+		-- make a table with all traits the unit can receive
+		-- add global traits: quick, resilient, strong, intelligent
+		local traits = { }
+		local global_traits = wesnoth.get_traits ( )
+		for key, value in pairs ( global_traits ) do
+			table.insert ( traits, value )
 		end
-
-		-- traverse through specified races and units to add more mainline traits
-		-- healthy, dextrous, weak, slow, dim, mechanical, fearless, undead
-		local race_array = { "dwarf", "elf", "goblin", "mechanical", "troll", "undead" }
-		-- feral, elemental, aged, loyal
-		local unit_array = { "Vampire Bat", "Mudcrawler", "Fog Clearer" }
-		for i,v in ipairs(race_array) do
-			for temp_trait in helper.child_range(wesnoth.races[v].__cfg, "trait") do
-				local trait_is_present = false
-				for j = 1, #trait_array do
-					if temp_trait.id == trait_array[j].id then
-						trait_is_present = true; break
+		-- add more mainline traits from select races: healthy, dextrous, weak, slow, dim, mechanical, fearless, undead
+		local select_races = { "dwarf", "elf", "goblin", "mechanical", "troll", "undead" }
+		for index, value in ipairs ( select_races ) do
+			for trait in helper.child_range ( wesnoth.races[value].__cfg, "trait" ) do
+				local present
+				for i = 1, #traits do
+					if trait.id == traits[i].id then
+						present = true ; break
 					end
 				end
-				if trait_is_present == false then
-					table.insert(trait_array, temp_trait)
+				if not present then
+					table.insert ( traits, trait )
 				end
 			end
 		end
-		for i,v  in ipairs(unit_array) do
-			for temp_trait in helper.child_range(wesnoth.unit_types[v].__cfg, "trait") do
-				local trait_is_present = false
-				for j = 1, #trait_array do
-					if temp_trait.id == trait_array[j].id then
-						trait_is_present = true; break
+		-- add more mainline traits from select units: feral, elemental, aged, loyal
+		local select_units = { "Vampire Bat", "Mudcrawler", "Fog Clearer" }
+		for index, value  in ipairs ( select_units ) do
+			for trait in helper.child_range ( wesnoth.unit_types[value].__cfg, "trait" ) do
+				local present
+				for i = 1, #traits do
+					if trait.id == traits[i].id then
+						present = true ; break
 					end
 				end
-				if trait_is_present == false then
-					table.insert(trait_array, temp_trait)
+				if not present then
+					table.insert ( traits, trait )
 				end
 			end
 		end
-
-		-- add bonus traits expert, heroic, & powerful
+		-- bonus - expert, heroic, & powerful
 		-- #textdomain wesnoth-Gui_Debug_Tools
 		local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
-		-- expert trait - from The Great Quest
+		-- expert - from The Great Quest
 		local trait_expert = { id="expert", male_name=_"expert", female_name=_"female^expert",
 			{ "effect", { apply_to="attack", increase_attacks=1 } },
 			{ "effect", { apply_to="attack", increase_damage=-1 } } }
-		-- heroic trait (Props to the World Conquest add-on for the idea.)
+		-- heroic (Props to the World Conquest add-on for the idea.)
 		-- This is The Great Quest version that has strong, resilient, quick & dextrous.
 		local trait_heroic = { id="heroic", male_name=_"heroic", female_name=_"female^heroic",
 			{ "effect", { apply_to="attack", increase_damage=1 } },
 			{ "effect", { apply_to="hitpoints", increase_total=5 } },
 			{ "effect", { apply_to="hitpoints", times="per level", increase_total=1 } },
 			{ "effect", { apply_to="movement", increase=1 } } }
-		-- powerful trait - from Random Campaign
+		-- powerful - from Random Campaign
 		local trait_powerful = { id="powerful", male_name=_"powerful", female_name=_"female^powerful",
 			{ "effect", { apply_to="attack", increase_damage="20%" } } }
-		table.insert(trait_array, trait_expert)
-		table.insert(trait_array, trait_heroic)
-		table.insert(trait_array, trait_powerful)
+		table.insert ( traits, trait_expert )
+		table.insert ( traits, trait_heroic )
+		table.insert ( traits, trait_powerful )
 		_ = nil
 
 		-- add the unit's race, unit_type, and current traits to the array
 		-- overwriting any with same id that are already in the array
-		-- race traits
-		for temp_trait in helper.child_range(wesnoth.races[unit.race].__cfg, "trait") do
-			local trait_is_present = false
-			for j = 1, #trait_array do
-				if temp_trait.id == trait_array[j].id then
-					trait_is_present = true
-					trait_array[j] = temp_trait
-					break
+		-- unit's race traits
+		for trait in helper.child_range ( wesnoth.races[unit.race].__cfg, "trait" ) do
+			local present
+			for i = 1, #traits do
+				if trait.id == traits[i].id then
+					present = true ; traits[i] = trait; break
 				end
 			end
-			if trait_is_present == false then
-				table.insert(trait_array, temp_trait)
+			if not present then
+				table.insert ( traits, trait )
 			end
 		end
-		-- unit_type traits
-		for temp_trait in helper.child_range(wesnoth.unit_types[unit.type].__cfg, "trait") do
-			local trait_is_present = false
-			for j = 1, #trait_array do
-				if temp_trait.id == trait_array[j].id then
-					trait_is_present = true
-					trait_array[j] = temp_trait
-					break
+		-- unit's unit_type traits
+		for trait in helper.child_range ( wesnoth.unit_types[unit.type].__cfg, "trait" ) do
+			local present
+			for i = 1, #traits do
+				if trait.id == traits[i].id then
+					present = true ; traits[i] = trait; break
 				end
 			end
-			if trait_is_present == false then
-				table.insert(trait_array, temp_trait)
+			if not present then
+				table.insert ( traits, trait )
 			end
 		end
 		-- unit's current traits
-		local u_mods = helper.get_child(unit.__cfg, "modifications") or {}
-		for temp_trait in helper.child_range(u_mods, "trait") do
-			local trait_is_present = false
-			for j = 1, #trait_array do
-				if temp_trait.id == trait_array[j].id then
-					trait_is_present = true
-					trait_array[j] = temp_trait
-					break
+		local umods = helper.get_child ( unit.__cfg, "modifications" ) or { }
+		for trait in helper.child_range ( umods, "trait" ) do
+			local present
+			for i = 1, #traits do
+				if trait.id == traits[i].id then
+					present = true ; traits[i] = trait ; break
 				end
 			end
-			if trait_is_present == false then
-				table.insert(trait_array, temp_trait)
+			if not present then
+				table.insert ( traits, trait )
 			end
 		end
 
@@ -336,18 +324,17 @@ function unit_ops.traits ( unit, str )
 		local utype, hitpoints, moves = unit.type, unit.hitpoints, unit.moves
 		unit:transform ( "Fog Clearer" ) -- if removed, replace with low move unit
 		-- remove existing traits
-		unit:remove_modifications( {}, "trait" )
+		unit:remove_modifications( { }, "trait" )
 		-- remove undead status keys, in case undead trait is being removed
 		unit.status.not_living = nil
 		unit.status.undrainable = nil
 		unit.status.unplaugeable = nil
 		unit.status.unpoisonable = nil
 		-- add the user specified traits
-		for i = 1, #new_traits do
-			for j = 1, #trait_array do
-				if new_traits[i] == trait_array[j].id then
-					unit:add_modification ( "trait", trait_array[j] )
-					break
+		for n = 1, #new_traits do
+			for i = 1, #traits do
+				if new_traits[n] == traits[i].id then
+					unit:add_modification ( "trait", traits[i] ) ; break
 				end
 			end
 		end
