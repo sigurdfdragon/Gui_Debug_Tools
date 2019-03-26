@@ -9,12 +9,6 @@ local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
 
-function side_ops.clear_recall ( side, bool )
-	if bool then
-		wml_actions.kill ( { side = side.side, x = "recall", y = "recall" } )
-	end
-end
-
 function side_ops.convert_color ( color )
 	-- if color is a number, convert it to the word form
 	local color_names = { "red", "blue", "green", "purple", "black", "brown", "orange", "white", "teal" }
@@ -58,7 +52,11 @@ function side_ops.recall_units ( side, str )
 end
 
 function side_ops.seed_recall ( side, int )
-	if int ~= 0 then
+	if int == 0 then
+		-- do nothing
+	elseif int == -1 then
+		wml_actions.kill ( { side = side.side, x = "recall", y = "recall" } )
+	elseif int > 0 then
 		-- assemble an array of unit types and their advancements from side.recruit and leader.extra_recruit
 		local utypes = { }
 		-- add the side's recruits

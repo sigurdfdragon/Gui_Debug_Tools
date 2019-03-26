@@ -219,25 +219,6 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									label = _ "Clear Recall"
-								}
-							},
-							T.column {
-								horizontal_alignment = "left",
-								border = "all",
-								border_size = 5,
-								T.toggle_button {
-									id = "clear_recall_checkbutton",
-									tooltip = _ "All units will be removed from the side's recall list."
-								}
-							}
-						},
-						T.row {
-							T.column {
-								horizontal_alignment = "left",
-								border = "all",
-								border_size = 5,
-								T.label {
 									label = _ "Seed Recall"
 								}
 							},
@@ -246,11 +227,12 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.slider {
-									minimum_value = 0,
+									minimum_value = -1,
 									maximum_value = 10,
+									minimum_value_label = _ "Clear",
 									step_size = 1,
 									id = "seed_recall_slider",
-									tooltip = _ "One random unit of every type on the recruit list and any advancements derived from those units will be added to the recall list."
+									tooltip = _ "The recall list will be stocked with sets of recruits and their advancements, or the recall list can be cleared."
 								}
 							}
 						},
@@ -788,7 +770,6 @@ local function side_debug ( )
 			wesnoth.set_dialog_value ( dbg_side.fog, "fog_checkbutton" )
 			wesnoth.set_dialog_value ( dbg_side.shroud, "shroud_checkbutton" )
 			wesnoth.set_dialog_value ( dbg_side.hidden, "hidden_checkbutton" )
-			wesnoth.set_dialog_value ( false, "clear_recall_checkbutton" )
 			wesnoth.set_dialog_value ( false, "heal_checkbutton" )
 			wesnoth.set_dialog_value ( false, "super_heal_checkbutton" )
 			wesnoth.set_dialog_value ( false, "kill_checkbutton" )
@@ -840,7 +821,6 @@ local function side_debug ( )
 				temp_table.fog = wesnoth.get_dialog_value ( "fog_checkbutton" )
 				temp_table.shroud = wesnoth.get_dialog_value ( "shroud_checkbutton" )
 				temp_table.hidden = wesnoth.get_dialog_value ( "hidden_checkbutton" )
-				temp_table.clear_recall = wesnoth.get_dialog_value ( "clear_recall_checkbutton" )
 				temp_table.heal = wesnoth.get_dialog_value ( "heal_checkbutton" )
 				temp_table.super_heal = wesnoth.get_dialog_value ( "super_heal_checkbutton" )
 				temp_table.kill = wesnoth.get_dialog_value ( "kill_checkbutton" )
@@ -875,7 +855,6 @@ local function side_debug ( )
 			dbg_side.recruit = utils.split_to_table ( temp_table.recruit )
 			dbg_side.controller = temp_table.controller
 			side_ops.recall_units ( dbg_side, temp_table.recall_units )
-			side_ops.clear_recall ( dbg_side, temp_table.clear_recall )
 			side_ops.seed_recall ( dbg_side, temp_table.seed_recall )
 			side_ops.heal ( dbg_side, temp_table.heal )
 			side_ops.super_heal ( dbg_side, temp_table.super_heal )
