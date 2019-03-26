@@ -29,11 +29,25 @@ function unit_ops.abilities ( unit, str )
 	end
 end
 
-function unit_ops.amla ( unit, int )
-	if int > 0 and unit.advances_to[1] == nil then
-		for i = 1, int do
-			-- since large values can slow things down, no animation here
-			unit.experience = unit.max_experience ; unit:advance ( false, true )
+function unit_ops.advancement_count ( unit )
+	local umods = helper.get_child ( unit.__cfg, "modifications" )
+	return helper.child_count ( umods, "advancement" )
+end
+
+function unit_ops.advancements ( unit, int )
+	if not unit.advances_to[1] then
+		local count = unit_ops.advancement_count ( unit )
+		if int ~= count then
+			if int > count then -- since increasing, apply the difference
+				for i = 1, int - count do
+					unit.experience = unit.max_experience ; unit:advance ( false, true )
+				end
+			elseif int < count then -- clear current & apply specified amount
+				unit:remove_modifications ( { }, "advancement" )
+				for i = 1, int do
+					unit.experience = unit.max_experience ; unit:advance ( false, true )
+				end
+			end
 		end
 	end
 end

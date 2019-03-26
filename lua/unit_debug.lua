@@ -697,14 +697,14 @@ local function unit_debug ( )
 							}
 						}
 					},
-					-- amla slider
+					-- advancements slider
 					T.row {
 						T.column {
 							horizontal_alignment = "right",
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Amla"
+								label = _ "Advancements"
 							}
 						},
 						T.column {
@@ -713,10 +713,10 @@ local function unit_debug ( )
 							border_size = 5,
 							T.slider {
 								minimum_value = 0,
-								maximum_value = 100,
+								maximum_value = 100 + unit_ops.advancement_count ( dbg_unit ),
 								step_size = 1,
-								id = "unit_amla_slider",
-								tooltip = _ "If the unit is at the maximum level, this number of amlas will be applied."
+								id = "unit_advancements_slider",
+								tooltip = _ "The number of advancements the unit has. This value can be adjusted if the unit is at its highest level."
 							}
 						}
 					},
@@ -1084,7 +1084,7 @@ local function unit_debug ( )
 			wesnoth.set_dialog_value ( dbg_unit.experience, "unit_experience_slider" )
 			wesnoth.set_dialog_value ( dbg_unit.moves, "unit_moves_slider" )
 			wesnoth.set_dialog_value ( dbg_unit.attacks_left, "unit_attacks_slider" )
-			wesnoth.set_dialog_value ( 0, "unit_amla_slider" )
+			wesnoth.set_dialog_value ( unit_ops.advancement_count( dbg_unit ), "unit_advancements_slider" )
 			-- set textboxes
 			wesnoth.set_dialog_value ( dbg_unit.x .. "," .. dbg_unit.y, "textbox_unit_location" )
 			wesnoth.set_dialog_value ( dbg_unit.__cfg.goto_x .. "," .. dbg_unit.__cfg.goto_y, "textbox_unit_goto" )
@@ -1153,7 +1153,7 @@ local function unit_debug ( )
 				temp_table.experience = wesnoth.get_dialog_value ( "unit_experience_slider" )
 				temp_table.moves = wesnoth.get_dialog_value ( "unit_moves_slider" )
 				temp_table.attacks_left = wesnoth.get_dialog_value ( "unit_attacks_slider" )
-				temp_table.amla = wesnoth.get_dialog_value ( "unit_amla_slider" )
+				temp_table.advancements = wesnoth.get_dialog_value ( "unit_advancements_slider" )
 				-- text boxes
 				temp_table.location = wesnoth.get_dialog_value "textbox_unit_location"
 				temp_table.goto_xy = wesnoth.get_dialog_value "textbox_unit_goto"
@@ -1239,7 +1239,7 @@ local function unit_debug ( )
 			unit_ops.variation ( dbg_unit, temp_table.variation )
 			unit_ops.level_type_advances_to_xp ( dbg_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
 			-- misc, these don't need to be anywhere in particular
-			unit_ops.amla (dbg_unit, temp_table.amla)
+			unit_ops.advancements (dbg_unit, temp_table.advancements)
 			dbg_unit.facing = temp_table.facing
 			dbg_unit.extra_recruit = utils.split_to_table ( temp_table.extra_recruit )
 			dbg_unit.role = temp_table.role
