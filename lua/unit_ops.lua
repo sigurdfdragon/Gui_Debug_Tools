@@ -196,8 +196,8 @@ function unit_ops.modifications ( unit, str )
 		else
 			-- copy modification specified by unit id, mod type, & index - ex: Delfador,object,1
 			local id, mtype, index = t[1], t[2], t[3]
-			local u = wesnoth.get_unit( id ) or wesnoth.get_recall_units( { id = id } )[1]
-			local umods = helper.get_child( u.__cfg, "modifications" )
+			local source = wesnoth.get_unit( id ) or wesnoth.get_recall_units( { id = id } )[1]
+			local umods = helper.get_child( source.__cfg, "modifications" )
 			local modification = helper.get_nth_child( umods, mtype, index )
 			if modification then
 				unit:add_modification ( mtype, modification )
