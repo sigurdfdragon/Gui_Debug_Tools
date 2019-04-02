@@ -180,28 +180,27 @@ end
 function unit_ops.modifications ( unit, str )
 	-- modifications - copies any modification or removes objects & advancements
 	if str ~= "" then
-		if str == " " then -- remove all existing objects and advancements
-			unit:remove_modifications( {}, "object" )
-			unit:remove_modifications( {}, "advancement" )
-		else
-			local t = utils.split_to_table ( str )
-			if t[1] == "remove" then
+		local t = utils.split_to_table ( str )
+		if t[1] == "remove" then
+			local mtype, index = t[2], t[3]
+			if index == nil then -- remove all of type
+				unit:remove_modifications ( { }, mtype )
+			else
 				-- remove modification specified by magic word, mod_type, & index - ex: remove,advancement,2
-				local mtype, index = t[2], t[3]
 				local umods = helper.get_child( unit.__cfg, "modifications" )
 				local modification = helper.get_nth_child( umods, mtype, index )
 				if modification then
 					unit:remove_modifications( modification, mtype )
 				end
-			else
-				-- copy modification specified by unit id, mod type, & index - ex: Delfador,object,1
-				local id, mtype, index = t[1], t[2], t[3]
-				local u = wesnoth.get_unit( id ) or wesnoth.get_recall_units( { id = id } )[1]
-				local umods = helper.get_child( u.__cfg, "modifications" )
-				local modification = helper.get_nth_child( umods, mtype, index )
-				if modification then
-					unit:add_modification ( mtype, modification )
-				end
+			end
+		else
+			-- copy modification specified by unit id, mod type, & index - ex: Delfador,object,1
+			local id, mtype, index = t[1], t[2], t[3]
+			local u = wesnoth.get_unit( id ) or wesnoth.get_recall_units( { id = id } )[1]
+			local umods = helper.get_child( u.__cfg, "modifications" )
+			local modification = helper.get_nth_child( umods, mtype, index )
+			if modification then
+				unit:add_modification ( mtype, modification )
 			end
 		end
 	end
