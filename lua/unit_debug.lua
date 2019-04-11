@@ -863,7 +863,7 @@ local function unit_debug ( )
 							T.text_box {
 								id = "textbox_traits",
 								history = "other_traits",
-								tooltip = _ "The unit will be altered by the traits listed. Valid traits are all in mainline, and any the unit could receive or currently has."
+								tooltip = _ "The unit will be altered by the traits listed. Valid traits are all in mainline, all race traits, any trait currently existing, and any the unit could receive or currently has."
 							}
 						}
 					},
