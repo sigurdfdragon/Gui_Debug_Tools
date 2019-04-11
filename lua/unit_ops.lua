@@ -240,7 +240,7 @@ function unit_ops.traits ( unit, str )
 		end
 		-- add more mainline traits from select units: feral, elemental, aged, loyal
 		local select_units = { "Vampire Bat", "Mudcrawler", "Fog Clearer" }
-		for index, value  in ipairs ( select_units ) do
+		for index, value in ipairs ( select_units ) do
 			for trait in helper.child_range ( wesnoth.unit_types[value].__cfg, "trait" ) do
 				local present
 				for i = 1, #traits do
