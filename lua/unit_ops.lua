@@ -274,7 +274,40 @@ function unit_ops.traits ( unit, str )
 		table.insert ( traits, trait_heroic )
 		table.insert ( traits, trait_powerful )
 		_ = nil
-
+		-- add all traits from all known races
+		for key, value in pairs ( wesnoth.races ) do
+			for trait in helper.child_range ( value.__cfg, "trait" ) do
+				local present
+				for i = 1, #traits do
+					if trait.id == traits[i].id then
+						present = true ; break
+					end
+				end
+				if not present then
+					table.insert ( traits, trait )
+				end
+			end
+		end
+		-- add all traits currently held by existing units ( to get things like the void_armor trait )
+		local units = wesnoth.get_units ( { } )
+		local recall = wesnoth.get_recall_units ( { } )
+		for index, value in ipairs ( recall ) do
+			table.insert ( units, value )
+		end
+		for index, value in ipairs ( units ) do
+			local umods = helper.get_child ( value.__cfg, "modifications" ) or { }
+			for trait in helper.child_range ( umods, "trait" ) do
+				local present
+				for i = 1, #traits do
+					if trait.id == traits[i].id then
+						present = true ; break
+					end
+				end
+				if not present then
+					table.insert ( traits, trait )
+				end
+			end
+		end
 		-- add the unit's race, unit_type, and current traits to the array
 		-- overwriting any with same id that are already in the array
 		-- unit's race traits
