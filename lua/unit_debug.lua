@@ -716,7 +716,7 @@ local function unit_debug ( )
 								maximum_value = 100 + unit_ops.advancement_count ( dbg_unit ),
 								step_size = 1,
 								id = "unit_advancements_slider",
-								tooltip = _ "The number of advancements the unit has. This value can be adjusted if the unit is at its highest level."
+								tooltip = _ "The number of advancements the unit has. If the unit is at its highest level, this value may be adjusted, though setting to 0 will always clear."
 							}
 						}
 					},

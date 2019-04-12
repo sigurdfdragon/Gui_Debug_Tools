@@ -35,18 +35,18 @@ function unit_ops.advancement_count ( unit )
 end
 
 function unit_ops.advancements ( unit, int )
-	if not unit.advances_to[1] then
-		local count = unit_ops.advancement_count ( unit )
-		if int ~= count then
-			if int > count then -- since increasing, apply the difference
-				for i = 1, int - count do
-					unit.experience = unit.max_experience ; unit:advance ( false, true )
-				end
-			elseif int < count then -- clear current & apply specified amount
-				unit:remove_modifications ( { }, "advancement" )
-				for i = 1, int do
-					unit.experience = unit.max_experience ; unit:advance ( false, true )
-				end
+	local count = unit_ops.advancement_count ( unit )
+	if ( int ~= count ) and ( int == 0 ) then -- always allow clearing
+		unit:remove_modifications ( { }, "advancement" )
+	elseif ( int ~= count ) and ( not unit.advances_to[1] ) then
+		if int > count then -- since increasing, apply the difference
+			for i = 1, int - count do
+				unit.experience = unit.max_experience ; unit:advance ( false, true )
+			end
+		elseif int < count then -- clear current & apply specified amount to decrease
+			unit:remove_modifications ( { }, "advancement" )
+			for i = 1, int do
+				unit.experience = unit.max_experience ; unit:advance ( false, true )
 			end
 		end
 	end
