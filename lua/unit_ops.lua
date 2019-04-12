@@ -1,7 +1,7 @@
 -- #textdomain wesnoth-Gui_Debug_Tools
 local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
-local unit_ops = {}
+local unit_ops = { }
 
 local helper = wesnoth.require "lua/helper.lua"
 local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
@@ -84,7 +84,7 @@ function unit_ops.copy ( unit, int )
 			local copy = unit.__cfg
 			copy.id, copy.underlying_id = nil, nil -- so custom ids are not duplicated & generic ids will match uid
 			copy.name, copy.generate_name = nil, true --so copies have different names
-			copy = wesnoth.create_unit( copy )
+			copy = wesnoth.create_unit ( copy )
 			if unit.valid == "recall" then
 				copy:to_recall ( )
 			else
