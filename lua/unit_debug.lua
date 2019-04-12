@@ -825,14 +825,14 @@ local function unit_debug ( )
 							}
 						}
 					},
-					-- modifications
+					-- objects
 					T.row {
 						T.column {
 							horizontal_alignment = "right",
 							border = "all",
 							border_size = 5,
 							T.label {
-								label = _ "Modifications"
+								label = _ "Objects"
 							}
 						},
 						T.column {
@@ -840,9 +840,9 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "textbox_modifications",
-								history = "other_modifications",
-								tooltip = _ "Copy: 'Unit Id,Mod Type,Index' - Remove all copies of a mod: 'remove,Mod Type,Index' Omit index to remove all of a Mod Type."
+								id = "textbox_objects",
+								history = "other_objects",
+								tooltip = _ "Copy: 'Unit Id,Index' - Remove all copies of an object: 'remove,Index' Omit index to copy or remove all objects."
 							}
 						}
 					},
@@ -1098,7 +1098,7 @@ local function unit_debug ( )
 			wesnoth.set_dialog_value ( dbg_unit.role, "textbox_role" )
 			wesnoth.set_dialog_value ( "", "textbox_attack" )
 			wesnoth.set_dialog_value ( "", "textbox_abilities" )
-			wesnoth.set_dialog_value ( "", "textbox_modifications" )
+			wesnoth.set_dialog_value ( "", "textbox_objects" )
 			wesnoth.set_dialog_value ( unit_ops.get_traits_string ( dbg_unit ), "textbox_traits" )
 			wesnoth.set_dialog_value ( dbg_unit.__cfg.overlays, "textbox_overlays" )
 			wesnoth.set_dialog_value ( "", "textbox_variables" )
@@ -1167,7 +1167,7 @@ local function unit_debug ( )
 				temp_table.role = wesnoth.get_dialog_value "textbox_role"
 				temp_table.attack = wesnoth.get_dialog_value "textbox_attack"
 				temp_table.abilities = wesnoth.get_dialog_value "textbox_abilities"
-				temp_table.modifications = wesnoth.get_dialog_value "textbox_modifications"
+				temp_table.objects = wesnoth.get_dialog_value "textbox_objects"
 				temp_table.traits = wesnoth.get_dialog_value "textbox_traits"
 				temp_table.overlays = wesnoth.get_dialog_value "textbox_overlays"
 				temp_table.variables = wesnoth.get_dialog_value "textbox_variables"
@@ -1235,7 +1235,7 @@ local function unit_debug ( )
 			unit_ops.abilities ( dbg_unit, temp_table.abilities )
 			unit_ops.gender ( dbg_unit, temp_table.gender )
 			unit_ops.traits ( dbg_unit, temp_table.traits )
-			unit_ops.modifications ( dbg_unit, temp_table.modifications ) -- must be after traits, as it could be adding a trait
+			unit_ops.objects ( dbg_unit, temp_table.objects )
 			unit_ops.variation ( dbg_unit, temp_table.variation )
 			unit_ops.level_type_advances_to_xp ( dbg_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
 			-- misc, these don't need to be anywhere in particular

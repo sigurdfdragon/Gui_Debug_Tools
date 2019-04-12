@@ -177,37 +177,44 @@ function unit_ops.location ( unit, str )
 	end
 end
 
-function unit_ops.modifications ( unit, str )
-	-- modifications - copies any modification or removes objects & advancements
+function unit_ops.name ( unit, str )
+	wml_actions.modify_unit { { "filter", { id = unit.id } }, name = str }
+end
+
+function unit_ops.objects ( unit, str ) -- copies or removes one or all objects
 	if str ~= "" then
 		local t = utils.split_to_table ( str )
 		if t[1] == "remove" then
-			local mtype, index = t[2], t[3]
-			if index == nil then -- remove all of type
-				unit:remove_modifications ( { }, mtype )
-			else
-				-- remove modification specified by magic word, mod_type, & index - ex: remove,advancement,2
+			local index = t[2]
+			if index == nil then -- remove all objects
+				unit:remove_modifications ( { }, "object" )
+			else -- remove object specified by magic word & index - ex: remove,2
 				local umods = helper.get_child( unit.__cfg, "modifications" )
-				local modification = helper.get_nth_child( umods, mtype, index )
-				if modification then
-					unit:remove_modifications( modification, mtype )
+				local object = helper.get_nth_child( umods, "object", index )
+				if object then
+					unit:remove_modifications( object, "object" )
 				end
 			end
 		else
-			-- copy modification specified by unit id, mod type, & index - ex: Delfador,object,1
-			local id, mtype, index = t[1], t[2], t[3]
+			local id, index = t[1], t[2]
 			local source = wesnoth.get_unit( id ) or wesnoth.get_recall_units( { id = id } )[1]
 			local umods = helper.get_child( source.__cfg, "modifications" )
-			local modification = helper.get_nth_child( umods, mtype, index )
-			if modification then
-				unit:add_modification ( mtype, modification )
+			if index == nil then -- copy all objects
+				local count =  helper.child_count ( umods, "object" )
+				for i = 1, count do
+					local object = helper.get_nth_child( umods, "object", i )
+					if object then
+						unit:add_modification ( "object", object )
+					end
+				end
+			else -- copy object specified by unit id & index - ex: Delfador,1
+				local object = helper.get_nth_child( umods, "object", index )
+				if object then
+					unit:add_modification ( "object", object )
+				end
 			end
 		end
 	end
-end
-
-function unit_ops.name ( unit, str )
-	wml_actions.modify_unit { { "filter", { id = unit.id } }, name = str }
 end
 
 function unit_ops.overlays ( unit, str )
