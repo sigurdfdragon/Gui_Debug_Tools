@@ -170,10 +170,10 @@ function unit_ops.location ( unit, str )
 		-- do it this way as wml_action.put_to_recall doesn't cover petrified or unhealable
 		wml_actions.heal_unit { { "filter", { id = unit.id } }, moves = "full", restore_attacks = true }
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = 0, goto_y = 0 }
-		unit:to_recall()
+		unit:to_recall ( )
 	else
 		local loc = utils.split_to_table ( str )
-		unit:to_map( loc[1], loc[2] )
+		unit:to_map ( loc[1], loc[2] )
 	end
 end
 
