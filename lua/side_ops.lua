@@ -65,9 +65,13 @@ function side_ops.seed_recall ( side, int )
 		end
 		-- add each leader's extra recruit
 		local leaders = wesnoth.get_units ( { side = side.side, canrecruit = true } )
-		for i = 1, #leaders do
-			for j = 1, #leaders[i].extra_recruit do
-				table.insert ( utypes, leaders[i].extra_recruit[j] )
+		local recall_leaders = wesnoth.get_recall_units ( { side = side.side, canrecruit = true } )
+		for i, leader in ipairs ( recall_leaders ) do
+			table.insert ( leaders, leader )
+		end
+		for i, leader in ipairs ( leaders ) do
+			for j, recruit in ipairs ( leader.extra_recruit ) do
+				table.insert ( utypes, recruit )
 			end
 		end
 		-- add advancements from each unit type
