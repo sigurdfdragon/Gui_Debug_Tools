@@ -60,17 +60,17 @@ function side_ops.seed_recall ( side, int )
 		-- assemble an array of unit types and their advancements from side.recruit and leader.extra_recruit
 		local utypes = { }
 		-- add the side's recruits
-		for i = 1, #side.recruit do
-			table.insert ( utypes, side.recruit[i] )
+		for r, recruit in ipairs ( side.recruit ) do
+			table.insert ( utypes, recruit )
 		end
 		-- add each leader's extra recruit
 		local leaders = wesnoth.get_units ( { side = side.side, canrecruit = true } )
 		local recall_leaders = wesnoth.get_recall_units ( { side = side.side, canrecruit = true } )
-		for i, leader in ipairs ( recall_leaders ) do
+		for l, leader in ipairs ( recall_leaders ) do
 			table.insert ( leaders, leader )
 		end
-		for i, leader in ipairs ( leaders ) do
-			for j, recruit in ipairs ( leader.extra_recruit ) do
+		for l, leader in ipairs ( leaders ) do
+			for r, recruit in ipairs ( leader.extra_recruit ) do
 				table.insert ( utypes, recruit )
 			end
 		end
@@ -78,8 +78,8 @@ function side_ops.seed_recall ( side, int )
 		-- additions are added to the back of the array and processed when they are reached
 		local i = 1
 		while utypes[i] do
-			for j = 1, #wesnoth.unit_types[utypes[i]].advances_to do
-				table.insert ( utypes, wesnoth.unit_types[utypes[i]].advances_to[j] )
+			for a, advances_to in ipairs ( wesnoth.unit_types[utypes[i]].advances_to ) do
+				table.insert ( utypes, advances_to )
 			end
 			i = i + 1
 		end
@@ -94,8 +94,8 @@ function side_ops.seed_recall ( side, int )
 		utypes = result
 		-- go through array int times, creating one of each unit
 		for i = 1, int do
-			for j = 1, #utypes do
-				local unit = wesnoth.create_unit ( { type = utypes[j], random_gender = true } )
+			for u, utype in ipairs ( utypes ) do
+				local unit = wesnoth.create_unit ( { type = utype, random_gender = true } )
 				unit:to_recall ( side.side )
 			end
 		end
