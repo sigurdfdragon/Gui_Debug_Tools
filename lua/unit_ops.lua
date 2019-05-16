@@ -277,9 +277,18 @@ function unit_ops.traits ( unit, str )
 		-- powerful - from Random Campaign
 		local trait_powerful = { id="powerful", male_name=_"powerful", female_name=_"female^powerful",
 			{ "effect", { apply_to="attack", increase_damage="20%" } } }
+		-- ethereal
+		local trait_ethereal = { id="ethereal", male_name=_"ethereal", female_name=_"female^ethereal", description=_"1 mp & 50% defense on all terrain",
+			{ "effect", { apply_to="movement_costs", replace=true, { "movement_costs",
+				{ deep_water=1, shallow_water=1, reef=1, swamp_water=1, flat=1, rails=1, sand=1, forest=1, hills=1,
+					mountains=1, village=1, castle=1, cave=1, frozen=1, unwalkable=1, fungus=1, impassable=1 } } } },
+			{ "effect", { apply_to="defense", replace=true, { "defense",
+				{ deep_water=50, shallow_water=50, reef=50, swamp_water=50, flat=50, rails=50, sand=50, forest=50, hills=50,
+					mountains=50, village=50, castle=50, cave=50, frozen=50, unwalkable=50, fungus=50, impassable=50 } } } } }
 		table.insert ( traits, trait_expert )
 		table.insert ( traits, trait_heroic )
 		table.insert ( traits, trait_powerful )
+		table.insert ( traits, trait_ethereal )
 		_ = nil
 		-- add all traits from all known races
 		for key, value in pairs ( wesnoth.races ) do
