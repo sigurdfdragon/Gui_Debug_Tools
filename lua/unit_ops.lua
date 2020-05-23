@@ -221,6 +221,15 @@ function unit_ops.overlays ( unit, str )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, overlays = str }
 end
 
+function unit_ops.super_heal ( unit, bool )
+	if bool then
+		wml_actions.heal_unit { { "filter", { id = unit.id } } }
+		unit.hitpoints = math.max(unit.max_hitpoints * 20, 1000)
+		unit.moves = math.max(unit.max_moves * 20, 100)
+		unit.attacks_left = math.max(unit.max_attacks * 20, 20)
+	end
+end
+
 function unit_ops.traits ( unit, str )
 	if str ~= unit_ops.get_traits_string ( unit ) then
 		-- make a table with all traits the unit can receive
