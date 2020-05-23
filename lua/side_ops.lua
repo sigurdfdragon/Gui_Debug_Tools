@@ -106,6 +106,7 @@ function side_ops.super_heal ( side, bool )
 	if bool then
 		local units = wesnoth.get_units { side = side.side }
 		for i = 1, #units do
+			wml_actions.heal_unit { { "filter", { id = units[i].id } } }
 			units[i].hitpoints = math.max(units[i].max_hitpoints * 20, 1000)
 			units[i].moves = math.max(units[i].max_moves * 20, 100)
 			units[i].attacks_left = math.max(units[i].max_attacks * 20, 20)
