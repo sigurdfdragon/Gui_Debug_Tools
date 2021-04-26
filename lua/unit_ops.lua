@@ -62,7 +62,7 @@ function unit_ops.attack ( unit, str )
 			-- copy attack from specified unit_type & attack index
 			local t = utils.split_to_table ( str )
 			local utype, index = t[1], t[2]
-			local attack = helper.get_nth_child ( wesnoth.unit_types[utype].__cfg, "attack", index )
+			local attack = wml.get_nth_child ( wesnoth.unit_types[utype].__cfg, "attack", index )
 			if attack then
 				attack.apply_to = "new_attack"
 				local object = { item_id = "gdt_attack", delayed_variable_substitution = true, { "effect", attack } }
@@ -190,7 +190,7 @@ function unit_ops.objects ( unit, str ) -- copies or removes one or all objects
 				unit:remove_modifications ( { }, "object" )
 			else -- remove object specified by magic word & index - ex: remove,2
 				local umods = wml.get_child( unit.__cfg, "modifications" )
-				local object = helper.get_nth_child( umods, "object", index )
+				local object = wml.get_nth_child( umods, "object", index )
 				if object then
 					unit:remove_modifications( object, "object" )
 				end
@@ -202,13 +202,13 @@ function unit_ops.objects ( unit, str ) -- copies or removes one or all objects
 			if index == nil then -- copy all objects
 				local count =  wml.child_count ( umods, "object" )
 				for i = 1, count do
-					local object = helper.get_nth_child( umods, "object", i )
+					local object = wml.get_nth_child( umods, "object", i )
 					if object then
 						unit:add_modification ( "object", object )
 					end
 				end
 			else -- copy object specified by unit id & index - ex: Delfador,1
-				local object = helper.get_nth_child( umods, "object", index )
+				local object = wml.get_nth_child( umods, "object", index )
 				if object then
 					unit:add_modification ( "object", object )
 				end
