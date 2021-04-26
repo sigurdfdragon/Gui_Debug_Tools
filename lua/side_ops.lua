@@ -95,7 +95,7 @@ function side_ops.seed_recall ( side, int )
 		-- go through array int times, creating one of each unit
 		for i = 1, int do
 			for u, utype in ipairs ( utypes ) do
-				local unit = wesnoth.create_unit ( { type = utype, random_gender = true } )
+				local unit = wesnoth.units.create ( { type = utype, random_gender = true } )
 				unit:to_recall ( side.side )
 			end
 		end

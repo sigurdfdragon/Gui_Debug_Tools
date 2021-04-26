@@ -84,7 +84,7 @@ function unit_ops.copy ( unit, int )
 			local copy = unit.__cfg
 			copy.id, copy.underlying_id = nil, nil -- so custom ids are not duplicated & generic ids will match uid
 			copy.name, copy.generate_name = nil, true --so copies have different names
-			copy = wesnoth.create_unit ( copy )
+			copy = wesnoth.units.create ( copy )
 			if unit.valid == "recall" then
 				copy:to_recall ( )
 			else
