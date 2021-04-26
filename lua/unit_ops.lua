@@ -111,7 +111,7 @@ end
 function unit_ops.get_traits_string ( unit )
 	local unit_modifications = wml.get_child ( unit.__cfg, "modifications" ) or {}
 	local trait_ids = { }
-	for trait in helper.child_range ( unit_modifications, "trait" ) do
+	for trait in wml.child_range ( unit_modifications, "trait" ) do
 			if trait.id ~= nil then
 				table.insert ( trait_ids, trait.id )
 			end
@@ -242,7 +242,7 @@ function unit_ops.traits ( unit, str )
 		-- add more mainline traits from select races: healthy, dextrous, weak, slow, dim, mechanical, fearless, undead
 		local select_races = { "dwarf", "elf", "goblin", "mechanical", "troll", "undead" }
 		for index, value in ipairs ( select_races ) do
-			for trait in helper.child_range ( wesnoth.races[value].__cfg, "trait" ) do
+			for trait in wml.child_range ( wesnoth.races[value].__cfg, "trait" ) do
 				local present
 				for i = 1, #traits do
 					if trait.id == traits[i].id then
@@ -257,7 +257,7 @@ function unit_ops.traits ( unit, str )
 		-- add more mainline traits from select units: feral, elemental, aged, loyal
 		local select_units = { "Vampire Bat", "Mudcrawler", "Fog Clearer" }
 		for index, value in ipairs ( select_units ) do
-			for trait in helper.child_range ( wesnoth.unit_types[value].__cfg, "trait" ) do
+			for trait in wml.child_range ( wesnoth.unit_types[value].__cfg, "trait" ) do
 				local present
 				for i = 1, #traits do
 					if trait.id == traits[i].id then
@@ -301,7 +301,7 @@ function unit_ops.traits ( unit, str )
 		_ = nil
 		-- add all traits from all known races
 		for key, value in pairs ( wesnoth.races ) do
-			for trait in helper.child_range ( value.__cfg, "trait" ) do
+			for trait in wml.child_range ( value.__cfg, "trait" ) do
 				local present
 				for i = 1, #traits do
 					if trait.id == traits[i].id then
@@ -321,7 +321,7 @@ function unit_ops.traits ( unit, str )
 		end
 		for index, value in ipairs ( units ) do
 			local umods = wml.get_child ( value.__cfg, "modifications" ) or { }
-			for trait in helper.child_range ( umods, "trait" ) do
+			for trait in wml.child_range ( umods, "trait" ) do
 				local present
 				for i = 1, #traits do
 					if trait.id == traits[i].id then
@@ -336,7 +336,7 @@ function unit_ops.traits ( unit, str )
 		-- add the unit's race, unit_type, and current traits to the array
 		-- overwriting any with same id that are already in the array
 		-- unit's race traits
-		for trait in helper.child_range ( wesnoth.races[unit.race].__cfg, "trait" ) do
+		for trait in wml.child_range ( wesnoth.races[unit.race].__cfg, "trait" ) do
 			local present
 			for i = 1, #traits do
 				if trait.id == traits[i].id then
@@ -348,7 +348,7 @@ function unit_ops.traits ( unit, str )
 			end
 		end
 		-- unit's unit_type traits
-		for trait in helper.child_range ( wesnoth.unit_types[unit.type].__cfg, "trait" ) do
+		for trait in wml.child_range ( wesnoth.unit_types[unit.type].__cfg, "trait" ) do
 			local present
 			for i = 1, #traits do
 				if trait.id == traits[i].id then
@@ -361,7 +361,7 @@ function unit_ops.traits ( unit, str )
 		end
 		-- unit's current traits
 		local umods = wml.get_child ( unit.__cfg, "modifications" ) or { }
-		for trait in helper.child_range ( umods, "trait" ) do
+		for trait in wml.child_range ( umods, "trait" ) do
 			local present
 			for i = 1, #traits do
 				if trait.id == traits[i].id then
