@@ -197,7 +197,7 @@ function unit_ops.objects ( unit, str ) -- copies or removes one or all objects
 			end
 		else
 			local id, index = t[1], t[2]
-			local source = wesnoth.get_unit( id ) or wesnoth.get_recall_units( { id = id } )[1]
+			local source = wesnoth.units.get( id ) or wesnoth.get_recall_units( { id = id } )[1]
 			local umods = helper.get_child( source.__cfg, "modifications" )
 			if index == nil then -- copy all objects
 				local count =  helper.child_count ( umods, "object" )

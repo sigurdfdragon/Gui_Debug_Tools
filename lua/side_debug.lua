@@ -13,7 +13,7 @@ local T = wml.tag
 
 -- This code is meant for use inside a [set_menu_item], because it gets the unit at x1,y1
 local function side_debug ( )
-	local side_unit = wesnoth.get_unit ( wesnoth.current.event_context.x1, wesnoth.current.event_context.y1 )
+	local side_unit = wesnoth.units.get ( wesnoth.current.event_context.x1, wesnoth.current.event_context.y1 )
 	if side_unit and side_unit.valid then -- to avoid indexing a nil value
 		local dbg_side = wesnoth.sides[side_unit.side]
 		-- experimenting with macrowidgets... sort of

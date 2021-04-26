@@ -13,7 +13,7 @@ local T = wml.tag
 
 -- This code is meant for use inside a [set_menu_item], because it gets the unit at x1,y1
 local function unit_debug ( )
-	local dbg_unit = wesnoth.get_unit ( wesnoth.current.event_context.x1, wesnoth.current.event_context.y1 )
+	local dbg_unit = wesnoth.units.get ( wesnoth.current.event_context.x1, wesnoth.current.event_context.y1 )
 	if dbg_unit and dbg_unit.valid then -- to avoid indexing a nil value
 		local oversize_factor = 10 -- make it possible to increase over unit.max_attacks; no idea what would be a sensible value
 		--creating dialog here
