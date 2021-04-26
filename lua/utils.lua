@@ -3,8 +3,6 @@ local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
 local utils = {}
 
-local helper = wesnoth.require "lua/helper.lua"
-
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
 

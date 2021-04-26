@@ -3,7 +3,6 @@ local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
 local unit_ops = { }
 
-local helper = wesnoth.require "lua/helper.lua"
 local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
 
 -- to make code shorter
