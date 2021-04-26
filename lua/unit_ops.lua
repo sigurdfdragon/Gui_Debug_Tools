@@ -31,7 +31,7 @@ end
 
 function unit_ops.advancement_count ( unit )
 	local umods = wml.get_child ( unit.__cfg, "modifications" )
-	return helper.child_count ( umods, "advancement" )
+	return wml.child_count ( umods, "advancement" )
 end
 
 function unit_ops.advancements ( unit, int )
@@ -200,7 +200,7 @@ function unit_ops.objects ( unit, str ) -- copies or removes one or all objects
 			local source = wesnoth.units.get( id ) or wesnoth.get_recall_units( { id = id } )[1]
 			local umods = wml.get_child( source.__cfg, "modifications" )
 			if index == nil then -- copy all objects
-				local count =  helper.child_count ( umods, "object" )
+				local count =  wml.child_count ( umods, "object" )
 				for i = 1, count do
 					local object = helper.get_nth_child( umods, "object", i )
 					if object then
