@@ -848,7 +848,7 @@ local function side_debug ( )
 			dbg_side.village_support = temp_table.village_support
 			dbg_side.base_income = temp_table.base_income
 			dbg_side.defeat_condition = temp_table.defeat_condition
-			wesnoth.set_side_id(dbg_side.side, temp_table.flag, temp_table.color)
+			wesnoth.sides.set_id(dbg_side.side, temp_table.flag, temp_table.color)
 			dbg_side.flag_icon = temp_table.flag_icon
 			dbg_side.user_team_name = temp_table.user_team_name
 			dbg_side.team_name = temp_table.team_name
