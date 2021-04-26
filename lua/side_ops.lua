@@ -43,7 +43,7 @@ function side_ops.recall_units ( side, str )
 	if str ~= "" then
 		local ids = utils.split_to_table ( str )
 		for i = 1, #ids do
-			local unit = wesnoth.get_recall_units ( { side = side.side, id = ids[i] } )[1]
+			local unit = wesnoth.units.find_on_recall ( { side = side.side, id = ids[i] } )[1]
 			local x, y = wesnoth.current.event_context.x1, wesnoth.current.event_context.y1
 			x, y = wesnoth.find_vacant_tile ( x, y, unit )
 			unit:to_map ( x, y )
@@ -65,7 +65,7 @@ function side_ops.seed_recall ( side, int )
 		end
 		-- add each leader's extra recruit
 		local leaders = wesnoth.get_units ( { side = side.side, canrecruit = true } )
-		local recall_leaders = wesnoth.get_recall_units ( { side = side.side, canrecruit = true } )
+		local recall_leaders = wesnoth.units.find_on_recall ( { side = side.side, canrecruit = true } )
 		for l, leader in ipairs ( recall_leaders ) do
 			table.insert ( leaders, leader )
 		end

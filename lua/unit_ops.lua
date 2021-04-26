@@ -197,7 +197,7 @@ function unit_ops.objects ( unit, str ) -- copies or removes one or all objects
 			end
 		else
 			local id, index = t[1], t[2]
-			local source = wesnoth.units.get( id ) or wesnoth.get_recall_units( { id = id } )[1]
+			local source = wesnoth.units.get( id ) or wesnoth.units.find_on_recall( { id = id } )[1]
 			local umods = wml.get_child( source.__cfg, "modifications" )
 			if index == nil then -- copy all objects
 				local count =  wml.child_count ( umods, "object" )
@@ -315,7 +315,7 @@ function unit_ops.traits ( unit, str )
 		end
 		-- add all traits currently held by existing units ( to get things like the void_armor trait )
 		local units = wesnoth.get_units ( { } )
-		local recall = wesnoth.get_recall_units ( { } )
+		local recall = wesnoth.units.find_on_recall ( { } )
 		for index, value in ipairs ( recall ) do
 			table.insert ( units, value )
 		end
