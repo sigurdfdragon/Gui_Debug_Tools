@@ -993,7 +993,7 @@ local function unit_debug ( )
 					}
 				}
 
-		local debug_dialog = {
+		local dialog = {
 			T.helptip { id="tooltip_large" }, -- mandatory field
 			T.tooltip { id="tooltip_large" }, -- mandatory field
 			maximum_height = 860,
@@ -1088,7 +1088,7 @@ local function unit_debug ( )
 			wesnoth.wml_actions.open_help ( {topic = [[unit_]] .. dbg_unit.type} ) -- Literal string needed here or .po will have an error.
 		end
 		
-		local function preshow()
+		local function preshow ( dialog )
 			-- here set all widget starting values
 			-- set read_only labels
 			wesnoth.set_dialog_value ( string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dbg_unit.__cfg.image or "", wesnoth.sides[dbg_unit.side].color ), "unit_image" )
@@ -1162,7 +1162,7 @@ local function unit_debug ( )
 		local function sync()
 			local temp_table = { } -- to store values before checking if user allowed modifying
 
-			local function postshow()
+			local function postshow ( dialog )
 				-- here get all the widget values in variables; store them in temp variables
 				-- sliders
 				temp_table.level = wesnoth.get_dialog_value "unit_level_slider"
@@ -1220,7 +1220,7 @@ local function unit_debug ( )
 				temp_table.gender = gender[ wesnoth.get_dialog_value ( "gender_listbox" ) ]
 			end
 
-			local return_value = gui.show_dialog( debug_dialog, preshow, postshow )
+			local return_value = gui.show_dialog( dialog, preshow, postshow )
 
 			return { return_value = return_value, { "temp_table", temp_table } }
 		end
