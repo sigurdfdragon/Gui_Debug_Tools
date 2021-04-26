@@ -20,7 +20,7 @@ wml_actions.set_menu_item { id = "_2_lua_console" ,
 		{ "lua", { code=[[return wesnoth.game_config.debug]] } }
 	}},
 	{ "command" , { 
-		{ "lua", { code=[[wesnoth.show_lua_console()]] } }
+		{ "lua", { code=[[gui.show_lua_console()]] } }
 	}}
 }
 
