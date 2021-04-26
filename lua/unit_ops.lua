@@ -19,7 +19,7 @@ function unit_ops.abilities ( unit, str )
 			-- copy abilities from specified unit_types
 			local sources = utils.split_to_table ( str )
 			for i = 1, #sources do
-				local ability = helper.get_child ( wesnoth.unit_types[sources[i]].__cfg, "abilities" )
+				local ability = wml.get_child ( wesnoth.unit_types[sources[i]].__cfg, "abilities" )
 				if ability then
 					local object = { item_id = "gdt_ability", delayed_variable_substitution = true, { "effect", { apply_to = "new_ability", { "abilities", ability } } } }
 					unit:add_modification ( "object", object )
@@ -30,7 +30,7 @@ function unit_ops.abilities ( unit, str )
 end
 
 function unit_ops.advancement_count ( unit )
-	local umods = helper.get_child ( unit.__cfg, "modifications" )
+	local umods = wml.get_child ( unit.__cfg, "modifications" )
 	return helper.child_count ( umods, "advancement" )
 end
 
@@ -109,7 +109,7 @@ function unit_ops.generate_name ( unit, bool )
 end
 
 function unit_ops.get_traits_string ( unit )
-	local unit_modifications = helper.get_child ( unit.__cfg, "modifications" ) or {}
+	local unit_modifications = wml.get_child ( unit.__cfg, "modifications" ) or {}
 	local trait_ids = { }
 	for trait in helper.child_range ( unit_modifications, "trait" ) do
 			if trait.id ~= nil then
@@ -189,7 +189,7 @@ function unit_ops.objects ( unit, str ) -- copies or removes one or all objects
 			if index == nil then -- remove all objects
 				unit:remove_modifications ( { }, "object" )
 			else -- remove object specified by magic word & index - ex: remove,2
-				local umods = helper.get_child( unit.__cfg, "modifications" )
+				local umods = wml.get_child( unit.__cfg, "modifications" )
 				local object = helper.get_nth_child( umods, "object", index )
 				if object then
 					unit:remove_modifications( object, "object" )
@@ -198,7 +198,7 @@ function unit_ops.objects ( unit, str ) -- copies or removes one or all objects
 		else
 			local id, index = t[1], t[2]
 			local source = wesnoth.units.get( id ) or wesnoth.get_recall_units( { id = id } )[1]
-			local umods = helper.get_child( source.__cfg, "modifications" )
+			local umods = wml.get_child( source.__cfg, "modifications" )
 			if index == nil then -- copy all objects
 				local count =  helper.child_count ( umods, "object" )
 				for i = 1, count do
@@ -320,7 +320,7 @@ function unit_ops.traits ( unit, str )
 			table.insert ( units, value )
 		end
 		for index, value in ipairs ( units ) do
-			local umods = helper.get_child ( value.__cfg, "modifications" ) or { }
+			local umods = wml.get_child ( value.__cfg, "modifications" ) or { }
 			for trait in helper.child_range ( umods, "trait" ) do
 				local present
 				for i = 1, #traits do
@@ -360,7 +360,7 @@ function unit_ops.traits ( unit, str )
 			end
 		end
 		-- unit's current traits
-		local umods = helper.get_child ( unit.__cfg, "modifications" ) or { }
+		local umods = wml.get_child ( unit.__cfg, "modifications" ) or { }
 		for trait in helper.child_range ( umods, "trait" ) do
 			local present
 			for i = 1, #traits do

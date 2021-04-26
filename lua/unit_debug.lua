@@ -1228,7 +1228,7 @@ local function unit_debug ( )
 
 		local return_table = wesnoth.synchronize_choice(sync)
 		local return_value = return_table.return_value
-		local temp_table = helper.get_child ( return_table, "temp_table" )
+		local temp_table = wml.get_child ( return_table, "temp_table" )
 
 		if return_value == 1 or return_value == -1 then -- if used pressed OK or Enter, modify unit
 			dbg_unit.side = temp_table.side -- first, for proper look on map with other actions
