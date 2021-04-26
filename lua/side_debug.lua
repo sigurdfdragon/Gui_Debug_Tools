@@ -744,7 +744,7 @@ local function side_debug ( )
 			-- labels
 			wesnoth.set_dialog_value ( string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dbg_side.flag_icon or "", wesnoth.sides[dbg_side.side].color ), "flag_image" )
 			wesnoth.set_dialog_value ( dbg_side.side, "side_label" )
-			wesnoth.set_dialog_value ( table.concat( ( wesnoth.get_starting_location ( dbg_side.side ) or { 0, 0 } ), "," ), "starting_location_label" )
+			wesnoth.set_dialog_value ( table.concat( ( dbg_side.starting_location or { 0, 0 } ), "," ), "starting_location_label" )
 			wesnoth.set_dialog_value ( dbg_side.__cfg.current_player, "current_player_label" )
 			wesnoth.set_dialog_value ( dbg_side.total_income, "total_income_label" )
 			-- sliders
