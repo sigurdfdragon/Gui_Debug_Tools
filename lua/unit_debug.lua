@@ -1221,7 +1221,7 @@ local function unit_debug ( )
 				temp_table.gender = gender[ wesnoth.get_dialog_value ( "gender_listbox" ) ]
 			end
 
-			local return_value = wesnoth.show_dialog( debug_dialog, preshow, postshow )
+			local return_value = gui.show_dialog( debug_dialog, preshow, postshow )
 
 			return { return_value = return_value, { "temp_table", temp_table } }
 		end

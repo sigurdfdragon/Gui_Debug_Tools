@@ -829,7 +829,7 @@ local function side_debug ( )
 				temp_table.controller = controllers[ wesnoth.get_dialog_value ( "controller_listbox" ) ]
 			end
 
-			local return_value = wesnoth.show_dialog( side_dialog, preshow, postshow )
+			local return_value = gui.show_dialog( side_dialog, preshow, postshow )
 
 			return { return_value = return_value, { "temp_table", temp_table } }
 		end
