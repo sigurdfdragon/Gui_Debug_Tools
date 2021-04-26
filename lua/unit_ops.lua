@@ -314,7 +314,7 @@ function unit_ops.traits ( unit, str )
 			end
 		end
 		-- add all traits currently held by existing units ( to get things like the void_armor trait )
-		local units = wesnoth.get_units ( { } )
+		local units = wesnoth.units.find_on_map ( { } )
 		local recall = wesnoth.units.find_on_recall ( { } )
 		for index, value in ipairs ( recall ) do
 			table.insert ( units, value )

@@ -64,7 +64,7 @@ function side_ops.seed_recall ( side, int )
 			table.insert ( utypes, recruit )
 		end
 		-- add each leader's extra recruit
-		local leaders = wesnoth.get_units ( { side = side.side, canrecruit = true } )
+		local leaders = wesnoth.units.find_on_map ( { side = side.side, canrecruit = true } )
 		local recall_leaders = wesnoth.units.find_on_recall ( { side = side.side, canrecruit = true } )
 		for l, leader in ipairs ( recall_leaders ) do
 			table.insert ( leaders, leader )
@@ -104,7 +104,7 @@ end
 
 function side_ops.super_heal ( side, bool )
 	if bool then
-		local units = wesnoth.get_units { side = side.side }
+		local units = wesnoth.units.find_on_map { side = side.side }
 		for i = 1, #units do
 			wml_actions.heal_unit { { "filter", { id = units[i].id } } }
 			units[i].hitpoints = math.max(units[i].max_hitpoints * 20, 1000)
@@ -117,7 +117,7 @@ end
 function side_ops.teleport ( side, str )
 	if str ~= "" then
 		if str == " " then
-			local units = wesnoth.get_units ( { side = side.side, canrecruit = false } )
+			local units = wesnoth.units.find_on_map ( { side = side.side, canrecruit = false } )
 			for i = 1, #units do
 				wml_actions.heal_unit { { "filter", { id = units[i].id } }, moves = "full", restore_attacks = true }
 				wml_actions.modify_unit { { "filter", { id = units[i].id } }, goto_x = 0, goto_y = 0 }
@@ -125,7 +125,7 @@ function side_ops.teleport ( side, str )
 			end
 		else
 			local loc = utils.split_to_table ( str )
-			local units = wesnoth.get_units { side = side.side }
+			local units = wesnoth.units.find_on_map { side = side.side }
 			for i = 1, #units do
 				local x, y = wesnoth.find_vacant_tile ( loc[1], loc[2], units[i] )
 				units[i]:to_map ( x, y )
