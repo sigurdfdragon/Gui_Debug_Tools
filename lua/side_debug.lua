@@ -741,37 +741,37 @@ local function side_debug ( )
 		local function preshow ( dialog )
 			-- set widget values
 			-- labels
-			wesnoth.set_dialog_value ( string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dbg_side.flag_icon or "", wesnoth.sides[dbg_side.side].color ), "flag_image" )
-			wesnoth.set_dialog_value ( dbg_side.side, "side_label" )
-			wesnoth.set_dialog_value ( table.concat( ( dbg_side.starting_location or { 0, 0 } ), "," ), "starting_location_label" )
-			wesnoth.set_dialog_value ( dbg_side.__cfg.current_player, "current_player_label" )
-			wesnoth.set_dialog_value ( dbg_side.total_income, "total_income_label" )
+			dialog.flag_image.label = string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dbg_side.flag_icon or "", wesnoth.sides[dbg_side.side].color )
+			dialog.side_label.label = dbg_side.side
+			dialog.starting_location_label.label = table.concat( ( dbg_side.starting_location or { 0, 0 } ), "," )
+			dialog.current_player_label.label = dbg_side.__cfg.current_player
+			dialog.total_income_label.label = dbg_side.total_income
 			-- sliders
-			wesnoth.set_dialog_value ( 0, "seed_recall_slider" )
-			wesnoth.set_dialog_value ( dbg_side.village_gold, "side_village_gold_slider" )
-			wesnoth.set_dialog_value ( dbg_side.village_support, "side_village_support_slider" )
-			wesnoth.set_dialog_value ( dbg_side.base_income, "side_base_income_slider" )
+			dialog.seed_recall_slider.value = 0
+			dialog.side_village_gold_slider.value = dbg_side.village_gold
+			dialog.side_village_support_slider.value = dbg_side.village_support
+			dialog.side_base_income_slider.value = dbg_side.base_income
 			-- text boxes
-			wesnoth.set_dialog_value ( "", "teleport_textbox" )
-			wesnoth.set_dialog_value ( "", "goto_textbox" )
-			wesnoth.set_dialog_value ( dbg_side.gold, "gold_textbox" )
-			wesnoth.set_dialog_value ( dbg_side.defeat_condition, "defeat_condition_textbox" )
-			wesnoth.set_dialog_value ( side_ops.convert_color( dbg_side.color ), "color_textbox" )
-			wesnoth.set_dialog_value ( dbg_side.flag, "flag_textbox" )
-			wesnoth.set_dialog_value ( dbg_side.flag_icon, "flag_icon_textbox" )
-			wesnoth.set_dialog_value ( tostring(dbg_side.user_team_name), "user_team_name_textbox" )
-			wesnoth.set_dialog_value ( dbg_side.team_name, "team_name_textbox" )
-			wesnoth.set_dialog_value ( table.concat( dbg_side.recruit, "," ), "recruit_textbox" )
-			wesnoth.set_dialog_value ( "", "recall_units_textbox" )
+			dialog.teleport_textbox.text = ""
+			dialog.goto_textbox.text = ""
+			dialog.gold_textbox.text = dbg_side.gold
+			dialog.defeat_condition_textbox.text = dbg_side.defeat_condition
+			dialog.color_textbox.text = side_ops.convert_color( dbg_side.color )
+			dialog.flag_textbox.text = dbg_side.flag
+			dialog.flag_icon_textbox.text = dbg_side.flag_icon
+			dialog.user_team_name_textbox.text = tostring(dbg_side.user_team_name)
+			dialog.team_name_textbox.text = dbg_side.team_name
+			dialog.recruit_textbox.text = table.concat( dbg_side.recruit, "," )
+			dialog.recall_units_textbox.text = ""
 			-- checkbutton
-			wesnoth.set_dialog_value ( dbg_side.__cfg.suppress_end_turn_confirmation, "suppress_end_turn_confirmation_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_side.scroll_to_leader, "scroll_to_leader_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_side.fog, "fog_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_side.shroud, "shroud_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_side.hidden, "hidden_checkbutton" )
-			wesnoth.set_dialog_value ( false, "heal_checkbutton" )
-			wesnoth.set_dialog_value ( false, "super_heal_checkbutton" )
-			wesnoth.set_dialog_value ( false, "kill_checkbutton" )
+			dialog.suppress_end_turn_confirmation_checkbutton.selected = dbg_side.__cfg.suppress_end_turn_confirmation
+			dialog.scroll_to_leader_checkbutton.selected = dbg_side.scroll_to_leader
+			dialog.fog_checkbutton.selected = dbg_side.fog
+			dialog.shroud_checkbutton.selected = dbg_side.shroud
+			dialog.hidden_checkbutton.selected = dbg_side.hidden
+			dialog.heal_checkbutton.selected = false
+			dialog.super_heal_checkbutton.selected = false
+			dialog.kill_checkbutton.selected = false
 
 			-- radiobutton
 			local temp_controller
@@ -789,7 +789,7 @@ local function side_debug ( )
 			elseif dbg_side.controller == "null" then
 				temp_controller = 6
 			end
-			wesnoth.set_dialog_value ( temp_controller, "controller_listbox" )
+			dialog.controller_listbox.selected_index = temp_controller
 		end
 
 		local function sync()
@@ -798,34 +798,34 @@ local function side_debug ( )
 			local function postshow ( dialog )
 				-- get widget values
 				-- sliders
-				temp_table.seed_recall = wesnoth.get_dialog_value ( "seed_recall_slider" )
-				temp_table.village_gold = wesnoth.get_dialog_value ( "side_village_gold_slider" )
-				temp_table.village_support = wesnoth.get_dialog_value ( "side_village_support_slider" )
-				temp_table.base_income = wesnoth.get_dialog_value ( "side_base_income_slider" )
+				temp_table.seed_recall = dialog.seed_recall_slider.value
+				temp_table.village_gold = dialog.side_village_gold_slider.value
+				temp_table.village_support = dialog.side_village_support_slider.value
+				temp_table.base_income = dialog.side_base_income_slider.value
 				-- text boxes
-				temp_table.teleport = wesnoth.get_dialog_value "teleport_textbox"
-				temp_table.goto_xy = wesnoth.get_dialog_value "goto_textbox"
-				temp_table.gold = wesnoth.get_dialog_value ( "gold_textbox" )
-				temp_table.defeat_condition = wesnoth.get_dialog_value ( "defeat_condition_textbox" )
-				temp_table.color = wesnoth.get_dialog_value ( "color_textbox" )
-				temp_table.flag = wesnoth.get_dialog_value ( "flag_textbox" )
-				temp_table.flag_icon = wesnoth.get_dialog_value ( "flag_icon_textbox" )
-				temp_table.user_team_name = wesnoth.get_dialog_value ( "user_team_name_textbox" )
-				temp_table.team_name = wesnoth.get_dialog_value ( "team_name_textbox" )
-				temp_table.recruit = wesnoth.get_dialog_value "recruit_textbox"
-				temp_table.recall_units = wesnoth.get_dialog_value "recall_units_textbox"
+				temp_table.teleport = dialog.teleport_textbox.text
+				temp_table.goto_xy = dialog.goto_textbox.text
+				temp_table.gold = dialog.gold_textbox.text
+				temp_table.defeat_condition = dialog.defeat_condition_textbox.text
+				temp_table.color = dialog.color_textbox.text
+				temp_table.flag = dialog.flag_textbox.text
+				temp_table.flag_icon = dialog.flag_icon_textbox.text
+				temp_table.user_team_name = dialog.user_team_name_textbox.text
+				temp_table.team_name = dialog.team_name_textbox.text
+				temp_table.recruit = dialog.recruit_textbox.text
+				temp_table.recall_units = dialog.recall_units_textbox.text
 				-- checkbutton
-				temp_table.suppress_end_turn_confirmation = wesnoth.get_dialog_value ( "suppress_end_turn_confirmation_checkbutton" )
-				temp_table.scroll_to_leader = wesnoth.get_dialog_value ( "scroll_to_leader_checkbutton" )
-				temp_table.fog = wesnoth.get_dialog_value ( "fog_checkbutton" )
-				temp_table.shroud = wesnoth.get_dialog_value ( "shroud_checkbutton" )
-				temp_table.hidden = wesnoth.get_dialog_value ( "hidden_checkbutton" )
-				temp_table.heal = wesnoth.get_dialog_value ( "heal_checkbutton" )
-				temp_table.super_heal = wesnoth.get_dialog_value ( "super_heal_checkbutton" )
-				temp_table.kill = wesnoth.get_dialog_value ( "kill_checkbutton" )
+				temp_table.suppress_end_turn_confirmation = dialog.suppress_end_turn_confirmation_checkbutton.selected
+				temp_table.scroll_to_leader = dialog.scroll_to_leader_checkbutton.selected
+				temp_table.fog = dialog.fog_checkbutton.selected
+				temp_table.shroud = dialog.shroud_checkbutton.selected
+				temp_table.hidden = dialog.hidden_checkbutton.selected
+				temp_table.heal = dialog.heal_checkbutton.selected
+				temp_table.super_heal = dialog.super_heal_checkbutton.selected
+				temp_table.kill = dialog.kill_checkbutton.selected
 				-- radiobutton
 				local controllers = { "ai", "human", "idle", "network", "network_ai", "null" }
-				temp_table.controller = controllers[ wesnoth.get_dialog_value ( "controller_listbox" ) ]
+				temp_table.controller = controllers[ dialog.controller_listbox.selected_index ]
 			end
 
 			local return_value = gui.show_dialog( dialog, preshow, postshow )
