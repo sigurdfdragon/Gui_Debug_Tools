@@ -1165,59 +1165,58 @@ local function unit_debug ( )
 			local function postshow ( dialog )
 				-- here get all the widget values in variables; store them in temp variables
 				-- sliders
-				temp_table.level = wesnoth.get_dialog_value "unit_level_slider"
-				temp_table.copy = wesnoth.get_dialog_value "unit_copy_slider"
-				temp_table.side = wesnoth.get_dialog_value ( "unit_side_slider" )
-				temp_table.hitpoints = wesnoth.get_dialog_value ( "unit_hitpoints_slider" )
-				temp_table.experience = wesnoth.get_dialog_value ( "unit_experience_slider" )
-				temp_table.moves = wesnoth.get_dialog_value ( "unit_moves_slider" )
-				temp_table.attacks_left = wesnoth.get_dialog_value ( "unit_attacks_slider" )
-				temp_table.advancements = wesnoth.get_dialog_value ( "unit_advancements_slider" )
+				temp_table.level = dialog.unit_level_slider.value
+				temp_table.copy = dialog.unit_copy_slider.value
+				temp_table.side = dialog.unit_side_slider.value
+				temp_table.hitpoints = dialog.unit_hitpoints_slider.value
+				temp_table.experience = dialog.unit_experience_slider.value
+				temp_table.moves = dialog.unit_moves_slider.value
+				temp_table.attacks_left = dialog.unit_attacks_slider.value
+				temp_table.advancements = dialog.unit_advancements_slider.value
 				-- text boxes
-				temp_table.location = wesnoth.get_dialog_value "textbox_unit_location"
-				temp_table.goto_xy = wesnoth.get_dialog_value "textbox_unit_goto"
-				temp_table.upkeep = wesnoth.get_dialog_value "textbox_unit_upkeep"
-				temp_table.id = wesnoth.get_dialog_value "textbox_unit_id"
-				temp_table.type = wesnoth.get_dialog_value "textbox_unit_type"
-				temp_table.variation = wesnoth.get_dialog_value "textbox_unit_variation"
-				temp_table.name = wesnoth.get_dialog_value "textbox_unit_name"
-				temp_table.advances_to = wesnoth.get_dialog_value "textbox_advances_to"
-				temp_table.extra_recruit = wesnoth.get_dialog_value "textbox_extra_recruit"
-				temp_table.role = wesnoth.get_dialog_value "textbox_role"
-				temp_table.attack = wesnoth.get_dialog_value "textbox_attack"
-				temp_table.abilities = wesnoth.get_dialog_value "textbox_abilities"
-				temp_table.objects = wesnoth.get_dialog_value "textbox_objects"
-				temp_table.traits = wesnoth.get_dialog_value "textbox_traits"
-				temp_table.overlays = wesnoth.get_dialog_value "textbox_overlays"
-				temp_table.variables = wesnoth.get_dialog_value "textbox_variables"
+				temp_table.location = dialog.textbox_unit_location.text
+				temp_table.goto_xy = dialog.textbox_unit_goto.text
+				temp_table.upkeep = dialog.textbox_unit_upkeep.text
+				temp_table.id = dialog.textbox_unit_id.text
+				temp_table.type = dialog.textbox_unit_type.text
+				temp_table.variation = dialog.textbox_unit_variation.text
+				temp_table.name = dialog.textbox_unit_name.text
+				temp_table.advances_to = dialog.textbox_advances_to.text
+				temp_table.extra_recruit = dialog.textbox_extra_recruit.text
+				temp_table.role = dialog.textbox_role.text
+				temp_table.attack = dialog.textbox_attack.text
+				temp_table.abilities = dialog.textbox_abilities.text
+				temp_table.objects = dialog.textbox_objects.text
+				temp_table.traits = dialog.textbox_traits.text
+				temp_table.overlays = dialog.textbox_overlays.text
+				temp_table.variables = dialog.textbox_variables.text
 				-- checkbuttons
-				temp_table.unrenamable = wesnoth.get_dialog_value "unrenamable_checkbutton"
-				temp_table.canrecruit = wesnoth.get_dialog_value "canrecruit_checkbutton"
-				temp_table.generate_name = wesnoth.get_dialog_value "generate_name_checkbutton"
-				temp_table.heal = wesnoth.get_dialog_value "heal_unit_checkbutton"
-				temp_table.super_heal = wesnoth.get_dialog_value "super_heal_unit_checkbutton"
-				temp_table.poisoned = wesnoth.get_dialog_value "poisoned_checkbutton"
-				temp_table.slowed = wesnoth.get_dialog_value "slowed_checkbutton"
-				temp_table.petrified = wesnoth.get_dialog_value "petrified_checkbutton"
-				temp_table.invulnerable = wesnoth.get_dialog_value "invulnerable_checkbutton"
-				temp_table.uncovered = wesnoth.get_dialog_value "uncovered_checkbutton"
-				temp_table.guardian = wesnoth.get_dialog_value "guardian_checkbutton"
-				temp_table.unhealable = wesnoth.get_dialog_value "unhealable_checkbutton"
-				temp_table.stunned = wesnoth.get_dialog_value "stunned_checkbutton"
-				temp_table.not_living = wesnoth.get_dialog_value "not_living_checkbutton"
-				temp_table.undrainable = wesnoth.get_dialog_value "undrainable_checkbutton"
-				temp_table.unplagueable = wesnoth.get_dialog_value "unplagueable_checkbutton"
-				temp_table.unpoisonable = wesnoth.get_dialog_value "unpoisonable_checkbutton"
+				temp_table.unrenamable = dialog.unrenamable_checkbutton.selected
+				temp_table.canrecruit = dialog.canrecruit_checkbutton.selected
+				temp_table.generate_name = dialog.generate_name_checkbutton.selected
+				temp_table.heal = dialog.heal_unit_checkbutton.selected
+				temp_table.super_heal = dialog.super_heal_unit_checkbutton.selected
+				temp_table.poisoned = dialog.poisoned_checkbutton.selected
+				temp_table.slowed = dialog.slowed_checkbutton.selected
+				temp_table.petrified = dialog.petrified_checkbutton.selected
+				temp_table.invulnerable = dialog.invulnerable_checkbutton.selected
+				temp_table.uncovered = dialog.uncovered_checkbutton.selected
+				temp_table.guardian = dialog.guardian_checkbutton.selected
+				temp_table.unhealable = dialog.unhealable_checkbutton.selected
+				temp_table.stunned = dialog.stunned_checkbutton.selected
+				temp_table.not_living = dialog.not_living_checkbutton.selected
+				temp_table.undrainable = dialog.undrainable_checkbutton.selected
+				temp_table.unplagueable = dialog.unplagueable_checkbutton.selected
+				temp_table.unpoisonable = dialog.unpoisonable_checkbutton.selected
 				-- put facing here
 				local facings = { "nw", "ne", "n", "sw", "se", "s" }
-				-- wesnoth.get_dialog_value ( "facing_listbox" ) returns a number, that was 2 for the second radiobutton and 5 for the fifth, hence the table above
-				temp_table.facing = facings[ wesnoth.get_dialog_value ( "facing_listbox" ) ] -- it is set correctly, but for some reason it is not shown
+				temp_table.facing = facings[ dialog.facing_listbox.selected_index ] -- returns a number, that was 2 for the second radiobutton and 5 for the fifth, hence the table above
 				-- misc; checkbuttons
-				temp_table.resting = wesnoth.get_dialog_value "resting_checkbutton"
-				temp_table.hidden = wesnoth.get_dialog_value "hidden_checkbutton"
+				temp_table.resting = dialog.resting_checkbutton.selected
+				temp_table.hidden = dialog.hidden_checkbutton.selected
 				-- gender radiobuttons
 				local gender = { "male", "female" }
-				temp_table.gender = gender[ wesnoth.get_dialog_value ( "gender_listbox" ) ]
+				temp_table.gender = gender[ dialog.gender_listbox.selected_index ]
 			end
 
 			local return_value = gui.show_dialog( dialog, preshow, postshow )
