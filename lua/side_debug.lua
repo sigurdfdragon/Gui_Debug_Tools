@@ -666,7 +666,7 @@ local function side_debug ( )
 					}
 				}
 
-		local side_dialog = {
+		local dialog = {
 			T.helptip { id="tooltip_large" }, -- mandatory field
 			T.tooltip { id="tooltip_large" }, -- mandatory field
 			maximum_height = 700,
@@ -738,7 +738,7 @@ local function side_debug ( )
 			}
 		}
 
-		local function preshow()
+		local function preshow ( dialog )
 			-- set widget values
 			-- labels
 			wesnoth.set_dialog_value ( string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dbg_side.flag_icon or "", wesnoth.sides[dbg_side.side].color ), "flag_image" )
@@ -795,7 +795,7 @@ local function side_debug ( )
 		local function sync()
 			local temp_table = { } -- to store values before checking if user allowed modifying
 
-			local function postshow()
+			local function postshow ( dialog )
 				-- get widget values
 				-- sliders
 				temp_table.seed_recall = wesnoth.get_dialog_value ( "seed_recall_slider" )
@@ -828,7 +828,7 @@ local function side_debug ( )
 				temp_table.controller = controllers[ wesnoth.get_dialog_value ( "controller_listbox" ) ]
 			end
 
-			local return_value = gui.show_dialog( side_dialog, preshow, postshow )
+			local return_value = gui.show_dialog( dialog, preshow, postshow )
 
 			return { return_value = return_value, { "temp_table", temp_table } }
 		end
