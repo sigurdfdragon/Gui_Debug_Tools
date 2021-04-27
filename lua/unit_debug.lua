@@ -1091,53 +1091,53 @@ local function unit_debug ( )
 		local function preshow ( dialog )
 			-- here set all widget starting values
 			-- set read_only labels
-			wesnoth.set_dialog_value ( string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dbg_unit.__cfg.image or "", wesnoth.sides[dbg_unit.side].color ), "unit_image" )
+			dialog.unit_image.label = string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dbg_unit.__cfg.image or "", wesnoth.sides[dbg_unit.side].color )
 			wesnoth.set_dialog_callback ( unit_profile, "unit_profile_button" )
-			wesnoth.set_dialog_value ( dbg_unit.__cfg.underlying_id, "underlying_id_label" )
+			dialog.underlying_id_label.label = dbg_unit.__cfg.underlying_id
 			-- set sliders
-			wesnoth.set_dialog_value ( dbg_unit.level, "unit_level_slider" )
-			wesnoth.set_dialog_value ( 0, "unit_copy_slider" )
-			wesnoth.set_dialog_value ( dbg_unit.side, "unit_side_slider" )
-			wesnoth.set_dialog_value ( dbg_unit.hitpoints, "unit_hitpoints_slider" )
-			wesnoth.set_dialog_value ( dbg_unit.experience, "unit_experience_slider" )
-			wesnoth.set_dialog_value ( dbg_unit.moves, "unit_moves_slider" )
-			wesnoth.set_dialog_value ( dbg_unit.attacks_left, "unit_attacks_slider" )
-			wesnoth.set_dialog_value ( unit_ops.advancement_count( dbg_unit ), "unit_advancements_slider" )
+			dialog.unit_level_slider.value = dbg_unit.level
+			dialog.unit_copy_slider.value = 0
+			dialog.unit_side_slider.value = dbg_unit.side
+			dialog.unit_hitpoints_slider.value = dbg_unit.hitpoints
+			dialog.unit_experience_slider.value = dbg_unit.experience
+			dialog.unit_moves_slider.value = dbg_unit.moves
+			dialog.unit_attacks_slider.value = dbg_unit.attacks_left
+			dialog.unit_advancements_slider.value = unit_ops.advancement_count( dbg_unit )
 			-- set textboxes
-			wesnoth.set_dialog_value ( dbg_unit.x .. "," .. dbg_unit.y, "textbox_unit_location" )
-			wesnoth.set_dialog_value ( dbg_unit.__cfg.goto_x .. "," .. dbg_unit.__cfg.goto_y, "textbox_unit_goto" )
-			wesnoth.set_dialog_value ( dbg_unit.upkeep, "textbox_unit_upkeep" )
-			wesnoth.set_dialog_value ( dbg_unit.id, "textbox_unit_id" )
-			wesnoth.set_dialog_value ( dbg_unit.type, "textbox_unit_type" )
-			wesnoth.set_dialog_value ( dbg_unit.__cfg.variation, "textbox_unit_variation" )
-			wesnoth.set_dialog_value ( tostring(dbg_unit.name), "textbox_unit_name" )
-			wesnoth.set_dialog_value ( table.concat( dbg_unit.extra_recruit, "," ), "textbox_extra_recruit" )
-			wesnoth.set_dialog_value ( table.concat( dbg_unit.advances_to, "," ), "textbox_advances_to" )
-			wesnoth.set_dialog_value ( dbg_unit.role, "textbox_role" )
-			wesnoth.set_dialog_value ( "", "textbox_attack" )
-			wesnoth.set_dialog_value ( "", "textbox_abilities" )
-			wesnoth.set_dialog_value ( "", "textbox_objects" )
-			wesnoth.set_dialog_value ( unit_ops.get_traits_string ( dbg_unit ), "textbox_traits" )
-			wesnoth.set_dialog_value ( dbg_unit.__cfg.overlays, "textbox_overlays" )
-			wesnoth.set_dialog_value ( "", "textbox_variables" )
+			dialog.textbox_unit_location.text = dbg_unit.x .. "," .. dbg_unit.y
+			dialog.textbox_unit_goto.text = dbg_unit.__cfg.goto_x .. "," .. dbg_unit.__cfg.goto_y
+			dialog.textbox_unit_upkeep.text = dbg_unit.upkeep
+			dialog.textbox_unit_id.text = dbg_unit.id
+			dialog.textbox_unit_type.text = dbg_unit.type
+			dialog.textbox_unit_variation.text = dbg_unit.__cfg.variation
+			dialog.textbox_unit_name.text = tostring(dbg_unit.name)
+			dialog.textbox_extra_recruit.text = table.concat( dbg_unit.extra_recruit, "," )
+			dialog.textbox_advances_to.text = table.concat( dbg_unit.advances_to, "," )
+			dialog.textbox_role.text = dbg_unit.role
+			dialog.textbox_attack.text = ""
+			dialog.textbox_abilities.text = ""
+			dialog.textbox_objects.text = ""
+			dialog.textbox_traits.text = unit_ops.get_traits_string ( dbg_unit )
+			dialog.textbox_overlays.text = dbg_unit.__cfg.overlays
+			dialog.textbox_variables.text = ""
 			-- set checkbuttons
-			wesnoth.set_dialog_value ( dbg_unit.canrecruit, "canrecruit_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.__cfg.unrenamable, "unrenamable_checkbutton" )
-			wesnoth.set_dialog_value ( false, "generate_name_checkbutton" )
-			wesnoth.set_dialog_value ( false, "heal_unit_checkbutton" )
-			wesnoth.set_dialog_value ( false, "super_heal_unit_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.poisoned, "poisoned_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.slowed, "slowed_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.petrified, "petrified_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.invulnerable, "invulnerable_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.uncovered, "uncovered_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.guardian, "guardian_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.unhealable, "unhealable_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.stunned, "stunned_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.not_living, "not_living_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.undrainable, "undrainable_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.unplagueable, "unplagueable_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.status.unpoisonable, "unpoisonable_checkbutton" )
+			dialog.canrecruit_checkbutton.selected = dbg_unit.canrecruit
+			dialog.unrenamable_checkbutton.selected = dbg_unit.__cfg.unrenamable
+			dialog.generate_name_checkbutton.selected = false
+			dialog.heal_unit_checkbutton.selected = false
+			dialog.super_heal_unit_checkbutton.selected = false
+			dialog.poisoned_checkbutton.selected = dbg_unit.status.poisoned
+			dialog.slowed_checkbutton.selected = dbg_unit.status.slowed
+			dialog.petrified_checkbutton.selected = dbg_unit.status.petrified
+			dialog.invulnerable_checkbutton.selected = dbg_unit.status.invulnerable
+			dialog.uncovered_checkbutton.selected = dbg_unit.status.uncovered
+			dialog.guardian_checkbutton.selected = dbg_unit.status.guardian
+			dialog.unhealable_checkbutton.selected = dbg_unit.status.unhealable
+			dialog.stunned_checkbutton.selected = dbg_unit.status.stunned
+			dialog.not_living_checkbutton.selected = dbg_unit.status.not_living
+			dialog.undrainable_checkbutton.selected = dbg_unit.status.undrainable
+			dialog.unplagueable_checkbutton.selected = dbg_unit.status.unplagueable
+			dialog.unpoisonable_checkbutton.selected = dbg_unit.status.unpoisonable
 			-- set radiobutton for facing
 			local temp_facing
 			if dbg_unit.facing == "nw" then temp_facing = 1
@@ -1147,16 +1147,16 @@ local function unit_debug ( )
 			elseif dbg_unit.facing == "se" then temp_facing = 5
 			elseif dbg_unit.facing == "s" then temp_facing = 6
 			end
-			wesnoth.set_dialog_value ( temp_facing, "facing_listbox" )
+			dialog.facing_listbox.selected_index = temp_facing
 			-- other checkbuttons
-			wesnoth.set_dialog_value ( dbg_unit.resting, "resting_checkbutton" )
-			wesnoth.set_dialog_value ( dbg_unit.hidden, "hidden_checkbutton" )
+			dialog.resting_checkbutton.selected = dbg_unit.resting
+			dialog.hidden_checkbutton.selected = dbg_unit.hidden
 			-- set radiobutton for gender
 			local temp_gender
 			if dbg_unit.__cfg.gender == "male" then temp_gender = 1
 			elseif dbg_unit.__cfg.gender == "female" then temp_gender = 2
 			end
-			wesnoth.set_dialog_value ( temp_gender, "gender_listbox" )
+			dialog.gender_listbox.selected_index = temp_gender
 		end
 
 		local function sync()
