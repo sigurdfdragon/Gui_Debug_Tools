@@ -1092,7 +1092,7 @@ local function unit_debug ( )
 			-- here set all widget starting values
 			-- set read_only labels
 			dialog.unit_image.label = string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dbg_unit.__cfg.image or "", wesnoth.sides[dbg_unit.side].color )
-			wesnoth.set_dialog_callback ( unit_profile, "unit_profile_button" )
+			dialog.unit_profile_button.on_button_click = unit_profile
 			dialog.underlying_id_label.label = dbg_unit.__cfg.underlying_id
 			-- set sliders
 			dialog.unit_level_slider.value = dbg_unit.level
