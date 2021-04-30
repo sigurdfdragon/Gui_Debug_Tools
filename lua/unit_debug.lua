@@ -557,7 +557,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.column {
-									label = _ "Male"
+									label = _ "Male" .. "     " -- added strings are a hack so the buttons aren't too close together 5 spaces each
 								}
 							},
 							T.row {
@@ -565,7 +565,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.column {
-									label = _ "Female"
+									label = _ "Female" .. "     "
 								}
 							}
 						}
