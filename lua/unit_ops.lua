@@ -254,7 +254,7 @@ function unit_ops.traits ( unit, str )
 			end
 		end
 		-- add more mainline traits from select units: feral, elemental, aged, loyal
-		local select_units = { "Vampire Bat", "Mudcrawler", "Fog Clearer" }
+		local select_units = { "Vampire Bat", "Mudcrawler", "GDT Dummy" }
 		for index, value in ipairs ( select_units ) do
 			for trait in wml.child_range ( wesnoth.unit_types[value].__cfg, "trait" ) do
 				local present
