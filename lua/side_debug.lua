@@ -354,7 +354,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.column {
-								label = _ "ai"
+								label = _ "ai" .. "     " -- added strings are a hack so the buttons aren't too close together 5 spaces each
 							}
 						},
 						T.row {
@@ -362,7 +362,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.column {
-								label = _ "human"
+								label = _ "human" .. "     "
 							}
 						},
 						T.row {
@@ -370,7 +370,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.column {
-								label = _ "idle"
+								label = _ "idle" .. "     "
 							}
 						},
 						T.row {
@@ -378,7 +378,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.column {
-								label = _ "network"
+								label = _ "network" .. "     "
 							}
 						},
 						T.row {
@@ -386,7 +386,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.column {
-								label = _ "network_ai"
+								label = _ "network_ai" .. "     "
 							}
 						},
 						T.row {
@@ -394,7 +394,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.column {
-								label = _ "null"
+								label = _ "null" .. "     "
 							}
 						}
 					}
@@ -670,7 +670,7 @@ local function side_debug ( )
 			T.helptip { id="tooltip_large" }, -- mandatory field
 			T.tooltip { id="tooltip_large" }, -- mandatory field
 			maximum_height = 700,
-			maximum_width = 900,
+			maximum_width = 1000,
 			T.grid { -- Title
 				T.row {
 					T.column {

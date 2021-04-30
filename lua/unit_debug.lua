@@ -466,7 +466,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.column {
-									label = _ "nw"
+									label = _ "nw" .. "     " -- added strings are a hack so the buttons aren't too close together 5 spaces each
 								}
 							},
 							T.row {
@@ -474,7 +474,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.column {
-									label = _ "ne"
+									label = _ "ne" .. "     "
 								}
 							},
 							T.row {
@@ -482,7 +482,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.column {
-									label = _ "n"
+									label = _ "n"  .. "     "
 								}
 							},
 							T.row {
@@ -490,7 +490,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.column {
-									label = _ "sw"
+									label = _ "sw" .. "     "
 								}
 							},
 							T.row {
@@ -498,7 +498,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.column {
-									label = _ "se"
+									label = _ "se" .. "     "
 								}
 							},
 							T.row {
@@ -506,7 +506,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.column {
-									label = _ "s"
+									label = _ "s" .. "     "
 								}
 							}
 						}
