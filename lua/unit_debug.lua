@@ -710,7 +710,7 @@ local function unit_debug ( )
 								-- to avoid crashing if unit has max_attacks == 0
 								maximum_value = math.max(1, dbg_unit.max_attacks * oversize_factor, dbg_unit.attacks_left),
 								step_size = 1,
-								id = "unit_attacks_slider", --unit.attacks_left
+								id = "unit_attacks_left_slider", --unit.attacks_left
 								tooltip = _ "The number of attacks the unit can make on the current turn."
 							}
 						}
@@ -1096,7 +1096,7 @@ local function unit_debug ( )
 			dialog.unit_hitpoints_slider.value = dbg_unit.hitpoints
 			dialog.unit_experience_slider.value = dbg_unit.experience
 			dialog.unit_moves_slider.value = dbg_unit.moves
-			dialog.unit_attacks_slider.value = dbg_unit.attacks_left
+			dialog.unit_attacks_left_slider.value = dbg_unit.attacks_left
 			dialog.unit_advancements_slider.value = unit_ops.advancement_count( dbg_unit )
 			-- set textboxes
 			dialog.textbox_unit_location.text = dbg_unit.x .. "," .. dbg_unit.y
@@ -1166,7 +1166,7 @@ local function unit_debug ( )
 				temp_table.hitpoints = dialog.unit_hitpoints_slider.value
 				temp_table.experience = dialog.unit_experience_slider.value
 				temp_table.moves = dialog.unit_moves_slider.value
-				temp_table.attacks_left = dialog.unit_attacks_slider.value
+				temp_table.attacks_left = dialog.unit_attacks_left_slider.value
 				temp_table.advancements = dialog.unit_advancements_slider.value
 				-- text boxes
 				temp_table.location = dialog.textbox_unit_location.text
