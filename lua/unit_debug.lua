@@ -1082,17 +1082,12 @@ local function unit_debug ( )
 		}
 
 		local temp_table = { } -- to store values before checking if user allowed modifying
-
-		--note that the help won't show up if you haven't discovered that unit yet.
-		local unit_profile = function()
-			wesnoth.wml_actions.open_help ( {topic = [[unit_]] .. dbg_unit.type} ) -- Literal string needed here or .po will have an error.
-		end
 		
 		local function preshow ( dialog )
 			-- here set all widget starting values
 			-- set read_only labels
 			dialog.unit_image.label = string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dbg_unit.__cfg.image or "", wesnoth.sides[dbg_unit.side].color )
-			dialog.unit_profile_button.on_button_click = unit_profile
+			dialog.unit_profile_button.on_button_click = function() wesnoth.open_help ( [[unit_]] .. dbg_unit.type ) end -- Literal string needed or .po will error. Help won't show up if you haven't discovered the unit yet.
 			dialog.underlying_id_label.label = dbg_unit.__cfg.underlying_id
 			-- set sliders
 			dialog.unit_level_slider.value = dbg_unit.level
