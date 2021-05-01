@@ -681,7 +681,7 @@ local function side_debug ( )
 						T.label {
 							definition = "title",
 							label = _ "Side Debug",
-							tooltip = _ "GUI Debug Tools" .. " " .. wesnoth.dofile '~add-ons/Gui_Debug_Tools/dist/version'
+							tooltip = _ ""
 						}
 					}
 				},

@@ -1008,7 +1008,7 @@ local function unit_debug ( )
 						T.label {
 							definition = "title",
 							label = _ "Unit Debug",
-							tooltip = _ "GUI Debug Tools" .. " " .. wesnoth.dofile '~add-ons/Gui_Debug_Tools/dist/version'
+							tooltip = _ ""
 						}
 					}
 				},
