@@ -8,8 +8,8 @@ wml_actions.set_menu_item { id = "_1_gamestate_inspector" ,
 	{ "show_if" , {
 		{ "lua", { code=[[return wesnoth.game_config.debug]] } }
 	}},
-	{ "command" , { 
-		{ "inspect", { name="GUI Debug Tools" .. " " .. wesnoth.dofile '~add-ons/Gui_Debug_Tools/dist/version' } }
+	{ "command" , {
+		{ "lua", { code=[[gui.show_inspector({})]] } }
 	}}
 }
 
