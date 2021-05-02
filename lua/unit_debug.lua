@@ -1008,7 +1008,7 @@ local function unit_debug ( )
 						T.label {
 							definition = "title",
 							label = _ "Unit Debug",
-							tooltip = _ ""
+							tooltip = _ "Allows changes to various aspects of a unit."
 						}
 					}
 				},

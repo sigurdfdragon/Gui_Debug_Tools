@@ -681,7 +681,7 @@ local function side_debug ( )
 						T.label {
 							definition = "title",
 							label = _ "Side Debug",
-							tooltip = _ ""
+							tooltip = _ "Allows changes to various aspects of a side."
 						}
 					}
 				},
