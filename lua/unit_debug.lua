@@ -32,7 +32,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.text_box {
-									id = "textbox_unit_name",
+									id = "name",
 									history = "other_names",
 									tooltip = _ "The player visible name of the unit."
 								}
@@ -52,7 +52,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.text_box {
-									id = "textbox_unit_id",
+									id = "id",
 									history = "other_ids",
 									tooltip = _ "The internal WML designation for the unit. Each unit ID needs to be unique."
 								}
@@ -72,7 +72,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									id = "underlying_id_label",
+									id = "underlying_id",
 									tooltip = _ "The internal C++ designation for the unit."
 								}
 							}
@@ -94,7 +94,7 @@ local function unit_debug ( )
 									minimum_value = 0,
 									maximum_value = math.max(10, dbg_unit.level + 5),
 									step_size = 1,
-									id = "unit_level_slider",
+									id = "level",
 									tooltip = _ "The unit will be advanced or declined to the specified level."
 								}
 							}
@@ -113,7 +113,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.text_box {
-									id = "textbox_unit_type",
+									id = "utype",
 									history = "other_types",
 									tooltip = _ "What kind of unit this is."
 								}
@@ -133,7 +133,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.text_box {
-									id = "textbox_unit_variation",
+									id = "variation",
 									history = "other_variations",
 									tooltip = _ "The variation of the unit type that this unit is."
 								}
@@ -153,7 +153,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.text_box { --unit.x
-									id = "textbox_unit_location",
+									id = "location",
 									history = "other_locations",
 									tooltip = _ "The coordinates on the map where the unit is located. Empty string places the unit on the recall list."
 								}
@@ -173,7 +173,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.text_box { --unit.x
-									id = "textbox_unit_goto",
+									id = "goto_xy",
 									history = "other_gotos",
 									tooltip = _ "The unit will move toward the coordinates specified. 0,0 and -999,-999 indicate no destination."
 								}
@@ -193,7 +193,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.text_box {
-									id = "textbox_unit_upkeep",
+									id = "upkeep",
 									history = "other_upkeeps",
 									tooltip = _ "The unit will have the upkeep specified."
 								}
@@ -213,7 +213,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "canrecruit_checkbutton",
+									id = "canrecruit",
 									tooltip = _ "Makes the unit a leader and able to recruit."
 								}
 							}
@@ -232,7 +232,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "unrenamable_checkbutton",
+									id = "unrenamable",
 									tooltip = _ "Prevents changing the unit's name in the right click menu."
 								}
 							}
@@ -251,7 +251,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "generate_name_checkbutton",
+									id = "generate_name",
 									tooltip = _ "If the unit type has random names available, a new name will be generated."
 								}
 							}
@@ -270,7 +270,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "heal_unit_checkbutton",
+									id = "heal",
 									tooltip = _ "The unit will be healed with moves restored, regardless of other settings in this dialog."
 								}
 							}
@@ -289,7 +289,7 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "super_heal_unit_checkbutton",
+									id = "super_heal",
 									tooltip = _ "The unit will be super healed with extra hitpoints, moves, and attacks left."
 								}
 							}
@@ -311,7 +311,7 @@ local function unit_debug ( )
 									minimum_value = 0,
 									maximum_value = 10,
 									step_size = 1,
-									id = "unit_copy_slider",
+									id = "copy",
 									tooltip = _ "Copies of the unit will be created. Will be identical except for id and name."
 								}
 							}
@@ -326,7 +326,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Poisoned",
-									id = "poisoned_checkbutton",
+									id = "poisoned",
 									tooltip = _ "The unit loses HP each turn."
 								}
 							},
@@ -336,7 +336,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Slowed",
-									id = "slowed_checkbutton",
+									id = "slowed",
 									tooltip = _ "The unit has 50% of its normal movement and does half damage."
 								}
 							},
@@ -346,7 +346,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Petrified",
-									id = "petrified_checkbutton",
+									id = "petrified",
 									tooltip = _ "The unit cannot move, attack, or be attacked."
 								}
 							},
@@ -356,7 +356,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Invulnerable",
-									id = "invulnerable_checkbutton",
+									id = "invulnerable",
 									tooltip = _ "Attacks can't hit the unit."
 								}
 							}
@@ -368,7 +368,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Uncovered",
-									id = "uncovered_checkbutton",
+									id = "uncovered",
 									tooltip = _ "The unit has performed an action (e.g. attacking) that causes it to no longer be hidden until the next turn."
 								}
 							},
@@ -378,7 +378,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Guardian",
-									id = "guardian_checkbutton",
+									id = "guardian",
 									tooltip = _ "The unit will not move, except to attack something in immediate range."
 								}
 							},
@@ -388,7 +388,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Unhealable",
-									id = "unhealable_checkbutton",
+									id = "unhealable",
 									tooltip = _ "The unit cannot be healed."
 								}
 							},
@@ -398,7 +398,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Stunned",
-									id = "stunned_checkbutton",
+									id = "stunned",
 									tooltip = _ "The unit has lost its zone of control until next turn. This status is only available in some campaigns and add-ons."
 								}
 							}
@@ -410,7 +410,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Not Living",
-									id = "not_living_checkbutton",
+									id = "not_living",
 									tooltip = _ "If checked, the unit will gain undrainable, unplagueable, and unpoisonable. If those three are checked, the unit will gain not_living"
 								}
 							},
@@ -420,7 +420,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Undrainable",
-									id = "undrainable_checkbutton",
+									id = "undrainable",
 									tooltip = _ "The unit will not give life to another unit if the drain special is used against it."
 								}
 							},
@@ -430,7 +430,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Unplagueable",
-									id = "unplagueable_checkbutton",
+									id = "unplagueable",
 									tooltip = _ "The unit is immune to the plague special."
 								}
 							},
@@ -440,7 +440,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Unpoisonable",
-									id = "unpoisonable_checkbutton",
+									id = "unpoisonable",
 									tooltip = _ "The unit cannot be poisoned."
 								}
 							}
@@ -449,7 +449,7 @@ local function unit_debug ( )
 
 
 		local facing_radiobutton = T.horizontal_listbox {
-						id = "facing_listbox",
+						id = "facing",
 						T.list_definition {
 							T.row {
 								T.column {
@@ -521,7 +521,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Resting",
-									id = "resting_checkbutton", --unit.resting
+									id = "resting", --unit.resting
 									tooltip = _ "If the unit is resting, it will receive rest healing at the start of its next turn."
 								}
 							},
@@ -531,7 +531,7 @@ local function unit_debug ( )
 								border_size = 5,
 								T.toggle_button {
 									label = _ "Hidden",
-									id = "hidden_checkbutton", --unit.hidden
+									id = "hidden", --unit.hidden
 									tooltip = _ "If the unit has been hidden using [hide_unit]. This is not the same as a [hides] ability."
 								}
 							}
@@ -540,7 +540,7 @@ local function unit_debug ( )
 
 
 		local gender_radiobutton = T.horizontal_listbox {
-						id = "gender_listbox",
+						id = "gender",
 						T.list_definition {
 							T.row {
 								T.column {
@@ -613,7 +613,7 @@ local function unit_debug ( )
 								minimum_value = 1,
 								maximum_value = #wesnoth.sides,
 								step_size = 1,
-								id = "unit_side_slider", --unit.side
+								id = "side", --unit.side
 								tooltip = _ "The side the unit belongs to."
 							}
 						}
@@ -638,7 +638,7 @@ local function unit_debug ( )
 								--minimum_value_label = _ "Kill",
 								--maximum_value_label = _ "Full health",
 								step_size = 1,
-								id = "unit_hitpoints_slider", --unit.hitpoints
+								id = "hitpoints", --unit.hitpoints
 								tooltip = _ "The amount of hitpoints the unit has."
 							}
 						}
@@ -662,7 +662,7 @@ local function unit_debug ( )
 								maximum_value = math.max(dbg_unit.max_experience * oversize_factor, dbg_unit.experience),
 								--maximum_value_label = _ "Level up",
 								step_size = 1,
-								id = "unit_experience_slider", --unit.experience
+								id = "experience", --unit.experience
 								tooltip = _ "The amount of experience the unit has. If the value is over the unit's max experience, the unit will level."
 							}
 						}
@@ -686,7 +686,7 @@ local function unit_debug ( )
 								-- to avoid crashing if max_moves == 0
 								maximum_value = math.max(100, dbg_unit.max_moves * oversize_factor, dbg_unit.moves),
 								step_size = 1,
-								id = "unit_moves_slider", --unit.moves
+								id = "moves", --unit.moves
 								tooltip = _ "The amount of move points the unit has."
 							}
 						}
@@ -710,7 +710,7 @@ local function unit_debug ( )
 								-- to avoid crashing if unit has max_attacks == 0
 								maximum_value = math.max(1, dbg_unit.max_attacks * oversize_factor, dbg_unit.attacks_left),
 								step_size = 1,
-								id = "unit_attacks_left_slider", --unit.attacks_left
+								id = "attacks_left", --unit.attacks_left
 								tooltip = _ "The number of attacks the unit can make on the current turn."
 							}
 						}
@@ -733,7 +733,7 @@ local function unit_debug ( )
 								minimum_value = 0,
 								maximum_value = 100 + unit_ops.advancement_count ( dbg_unit ),
 								step_size = 1,
-								id = "unit_advancements_slider",
+								id = "advancements",
 								tooltip = _ "The number of advancements the unit has. If the unit is at its highest level, this value may be adjusted, though setting to 0 will always clear."
 							}
 						}
@@ -753,7 +753,7 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "textbox_extra_recruit", --unit.extra_recruit
+								id = "extra_recruit", --unit.extra_recruit
 								history = "other_recruits",
 								tooltip = _ "Unit types the unit can recruit in addition to the ones its side can recruit, if the unit is a leader."
 							}
@@ -774,7 +774,7 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "textbox_advances_to", --unit.advances_to
+								id = "advances_to", --unit.advances_to
 								history = "other_advancements",
 								tooltip = _ "The unit types that the unit can advance to upon leveling."
 							}
@@ -795,7 +795,7 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "textbox_role", --unit.role
+								id = "role", --unit.role
 								history = "other_roles",
 								tooltip = _ "An additional field that can be used to identify a unit."
 							}
@@ -816,7 +816,7 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "textbox_attack",
+								id = "attack",
 								history = "other_attack",
 								tooltip = _ "The unit will receive the attack indicated. Use form 'Unit Type,Attack Index'. Single space clears added attacks."
 							}
@@ -837,7 +837,7 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "textbox_abilities",
+								id = "abilities",
 								history = "other_abilities",
 								tooltip = _ "The unit will receive the abilities of the unit types entered. Single space clears added abilities."
 							}
@@ -858,7 +858,7 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "textbox_objects",
+								id = "objects",
 								history = "other_objects",
 								tooltip = _ "Copy: 'Unit Id,Index' - Remove all copies of an object: 'remove,Index' Omit index to copy or remove all objects."
 							}
@@ -879,7 +879,7 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "textbox_traits",
+								id = "traits",
 								history = "other_traits",
 								tooltip = _ "The unit will be altered by the traits listed. Valid traits are all in mainline, all race traits, any trait currently existing, and any the unit could receive or currently has."
 							}
@@ -900,7 +900,7 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "textbox_overlays",
+								id = "overlays",
 								history = "other_overlays",
 								tooltip = _ "The unit's image will be altered by overlays listed here."
 							}
@@ -921,7 +921,7 @@ local function unit_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "textbox_variables",
+								id = "variables",
 								history = "other_variables",
 								tooltip = _ "Unit variables and sub-containers can be set/changed using the form 'var=value'"
 							}
@@ -1038,7 +1038,7 @@ local function unit_debug ( )
 												border = "all",
 												border_size = 5,
 												T.image {
-													id = "unit_image", -- unit sprite
+													id = "image", -- unit sprite
 													tooltip = _ "The image of the unit."
 												}
 											}
@@ -1051,7 +1051,7 @@ local function unit_debug ( )
 												border = "all",
 												border_size = 5,
 												T.button {
-													id = "unit_profile_button",
+													id = "help_profile",
 													label = _ "Profile",
 													tooltip = _ "Displays the help entry for the unit."
 												}
@@ -1086,53 +1086,53 @@ local function unit_debug ( )
 		local function preshow ( dialog )
 			-- here set all widget starting values
 			-- set read_only labels
-			dialog.unit_image.label = string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dbg_unit.__cfg.image or "", wesnoth.sides[dbg_unit.side].color )
-			dialog.unit_profile_button.on_button_click = function() wesnoth.open_help ( [[unit_]] .. dbg_unit.type ) end -- Literal string needed or .po will error. Help won't show up if you haven't discovered the unit yet.
-			dialog.underlying_id_label.label = dbg_unit.__cfg.underlying_id
+			dialog.image.label = string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dbg_unit.__cfg.image or "", wesnoth.sides[dbg_unit.side].color )
+			dialog.help_profile.on_button_click = function() wesnoth.open_help ( [[unit_]] .. dbg_unit.type ) end -- Literal string needed or .po will error. Help won't show up if you haven't discovered the unit yet.
+			dialog.underlying_id.label = dbg_unit.__cfg.underlying_id
 			-- set sliders
-			dialog.unit_level_slider.value = dbg_unit.level
-			dialog.unit_copy_slider.value = 0
-			dialog.unit_side_slider.value = dbg_unit.side
-			dialog.unit_hitpoints_slider.value = dbg_unit.hitpoints
-			dialog.unit_experience_slider.value = dbg_unit.experience
-			dialog.unit_moves_slider.value = dbg_unit.moves
-			dialog.unit_attacks_left_slider.value = dbg_unit.attacks_left
-			dialog.unit_advancements_slider.value = unit_ops.advancement_count( dbg_unit )
+			dialog.level.value = dbg_unit.level
+			dialog.copy.value = 0
+			dialog.side.value = dbg_unit.side
+			dialog.hitpoints.value = dbg_unit.hitpoints
+			dialog.experience.value = dbg_unit.experience
+			dialog.moves.value = dbg_unit.moves
+			dialog.attacks_left.value = dbg_unit.attacks_left
+			dialog.advancements.value = unit_ops.advancement_count( dbg_unit )
 			-- set textboxes
-			dialog.textbox_unit_location.text = dbg_unit.x .. "," .. dbg_unit.y
-			dialog.textbox_unit_goto.text = dbg_unit.__cfg.goto_x .. "," .. dbg_unit.__cfg.goto_y
-			dialog.textbox_unit_upkeep.text = dbg_unit.upkeep
-			dialog.textbox_unit_id.text = dbg_unit.id
-			dialog.textbox_unit_type.text = dbg_unit.type
-			dialog.textbox_unit_variation.text = dbg_unit.__cfg.variation
-			dialog.textbox_unit_name.text = tostring(dbg_unit.name)
-			dialog.textbox_extra_recruit.text = table.concat( dbg_unit.extra_recruit, "," )
-			dialog.textbox_advances_to.text = table.concat( dbg_unit.advances_to, "," )
-			dialog.textbox_role.text = dbg_unit.role
-			dialog.textbox_attack.text = ""
-			dialog.textbox_abilities.text = ""
-			dialog.textbox_objects.text = ""
-			dialog.textbox_traits.text = unit_ops.get_traits_string ( dbg_unit )
-			dialog.textbox_overlays.text = dbg_unit.__cfg.overlays
-			dialog.textbox_variables.text = ""
+			dialog.location.text = dbg_unit.x .. "," .. dbg_unit.y
+			dialog.goto_xy.text = dbg_unit.__cfg.goto_x .. "," .. dbg_unit.__cfg.goto_y
+			dialog.upkeep.text = dbg_unit.upkeep
+			dialog.id.text = dbg_unit.id
+			dialog.utype.text = dbg_unit.type
+			dialog.variation.text = dbg_unit.__cfg.variation
+			dialog.name.text = tostring(dbg_unit.name)
+			dialog.extra_recruit.text = table.concat( dbg_unit.extra_recruit, "," )
+			dialog.advances_to.text = table.concat( dbg_unit.advances_to, "," )
+			dialog.role.text = dbg_unit.role
+			dialog.attack.text = ""
+			dialog.abilities.text = ""
+			dialog.objects.text = ""
+			dialog.traits.text = unit_ops.get_traits_string ( dbg_unit )
+			dialog.overlays.text = dbg_unit.__cfg.overlays
+			dialog.variables.text = ""
 			-- set checkbuttons
-			dialog.canrecruit_checkbutton.selected = dbg_unit.canrecruit
-			dialog.unrenamable_checkbutton.selected = dbg_unit.__cfg.unrenamable
-			dialog.generate_name_checkbutton.selected = false
-			dialog.heal_unit_checkbutton.selected = false
-			dialog.super_heal_unit_checkbutton.selected = false
-			dialog.poisoned_checkbutton.selected = dbg_unit.status.poisoned
-			dialog.slowed_checkbutton.selected = dbg_unit.status.slowed
-			dialog.petrified_checkbutton.selected = dbg_unit.status.petrified
-			dialog.invulnerable_checkbutton.selected = dbg_unit.status.invulnerable
-			dialog.uncovered_checkbutton.selected = dbg_unit.status.uncovered
-			dialog.guardian_checkbutton.selected = dbg_unit.status.guardian
-			dialog.unhealable_checkbutton.selected = dbg_unit.status.unhealable
-			dialog.stunned_checkbutton.selected = dbg_unit.status.stunned
-			dialog.not_living_checkbutton.selected = dbg_unit.status.not_living
-			dialog.undrainable_checkbutton.selected = dbg_unit.status.undrainable
-			dialog.unplagueable_checkbutton.selected = dbg_unit.status.unplagueable
-			dialog.unpoisonable_checkbutton.selected = dbg_unit.status.unpoisonable
+			dialog.canrecruit.selected = dbg_unit.canrecruit
+			dialog.unrenamable.selected = dbg_unit.__cfg.unrenamable
+			dialog.generate_name.selected = false
+			dialog.heal.selected = false
+			dialog.super_heal.selected = false
+			dialog.poisoned.selected = dbg_unit.status.poisoned
+			dialog.slowed.selected = dbg_unit.status.slowed
+			dialog.petrified.selected = dbg_unit.status.petrified
+			dialog.invulnerable.selected = dbg_unit.status.invulnerable
+			dialog.uncovered.selected = dbg_unit.status.uncovered
+			dialog.guardian.selected = dbg_unit.status.guardian
+			dialog.unhealable.selected = dbg_unit.status.unhealable
+			dialog.stunned.selected = dbg_unit.status.stunned
+			dialog.not_living.selected = dbg_unit.status.not_living
+			dialog.undrainable.selected = dbg_unit.status.undrainable
+			dialog.unplagueable.selected = dbg_unit.status.unplagueable
+			dialog.unpoisonable.selected = dbg_unit.status.unpoisonable
 			-- set radiobutton for facing
 			local temp_facing
 			if dbg_unit.facing == "nw" then temp_facing = 1
@@ -1142,16 +1142,16 @@ local function unit_debug ( )
 			elseif dbg_unit.facing == "se" then temp_facing = 5
 			elseif dbg_unit.facing == "s" then temp_facing = 6
 			end
-			dialog.facing_listbox.selected_index = temp_facing
+			dialog.facing.selected_index = temp_facing
 			-- other checkbuttons
-			dialog.resting_checkbutton.selected = dbg_unit.resting
-			dialog.hidden_checkbutton.selected = dbg_unit.hidden
+			dialog.resting.selected = dbg_unit.resting
+			dialog.hidden.selected = dbg_unit.hidden
 			-- set radiobutton for gender
 			local temp_gender
 			if dbg_unit.__cfg.gender == "male" then temp_gender = 1
 			elseif dbg_unit.__cfg.gender == "female" then temp_gender = 2
 			end
-			dialog.gender_listbox.selected_index = temp_gender
+			dialog.gender.selected_index = temp_gender
 		end
 
 		local function sync()
@@ -1160,58 +1160,58 @@ local function unit_debug ( )
 			local function postshow ( dialog )
 				-- here get all the widget values in variables; store them in temp variables
 				-- sliders
-				temp_table.level = dialog.unit_level_slider.value
-				temp_table.copy = dialog.unit_copy_slider.value
-				temp_table.side = dialog.unit_side_slider.value
-				temp_table.hitpoints = dialog.unit_hitpoints_slider.value
-				temp_table.experience = dialog.unit_experience_slider.value
-				temp_table.moves = dialog.unit_moves_slider.value
-				temp_table.attacks_left = dialog.unit_attacks_left_slider.value
-				temp_table.advancements = dialog.unit_advancements_slider.value
+				temp_table.level = dialog.level.value
+				temp_table.copy = dialog.copy.value
+				temp_table.side = dialog.side.value
+				temp_table.hitpoints = dialog.hitpoints.value
+				temp_table.experience = dialog.experience.value
+				temp_table.moves = dialog.moves.value
+				temp_table.attacks_left = dialog.attacks_left.value
+				temp_table.advancements = dialog.advancements.value
 				-- text boxes
-				temp_table.location = dialog.textbox_unit_location.text
-				temp_table.goto_xy = dialog.textbox_unit_goto.text
-				temp_table.upkeep = dialog.textbox_unit_upkeep.text
-				temp_table.id = dialog.textbox_unit_id.text
-				temp_table.type = dialog.textbox_unit_type.text
-				temp_table.variation = dialog.textbox_unit_variation.text
-				temp_table.name = dialog.textbox_unit_name.text
-				temp_table.advances_to = dialog.textbox_advances_to.text
-				temp_table.extra_recruit = dialog.textbox_extra_recruit.text
-				temp_table.role = dialog.textbox_role.text
-				temp_table.attack = dialog.textbox_attack.text
-				temp_table.abilities = dialog.textbox_abilities.text
-				temp_table.objects = dialog.textbox_objects.text
-				temp_table.traits = dialog.textbox_traits.text
-				temp_table.overlays = dialog.textbox_overlays.text
-				temp_table.variables = dialog.textbox_variables.text
+				temp_table.location = dialog.location.text
+				temp_table.goto_xy = dialog.goto_xy.text
+				temp_table.upkeep = dialog.upkeep.text
+				temp_table.id = dialog.id.text
+				temp_table.type = dialog.utype.text
+				temp_table.variation = dialog.variation.text
+				temp_table.name = dialog.name.text
+				temp_table.advances_to = dialog.advances_to.text
+				temp_table.extra_recruit = dialog.extra_recruit.text
+				temp_table.role = dialog.role.text
+				temp_table.attack = dialog.attack.text
+				temp_table.abilities = dialog.abilities.text
+				temp_table.objects = dialog.objects.text
+				temp_table.traits = dialog.traits.text
+				temp_table.overlays = dialog.overlays.text
+				temp_table.variables = dialog.variables.text
 				-- checkbuttons
-				temp_table.unrenamable = dialog.unrenamable_checkbutton.selected
-				temp_table.canrecruit = dialog.canrecruit_checkbutton.selected
-				temp_table.generate_name = dialog.generate_name_checkbutton.selected
-				temp_table.heal = dialog.heal_unit_checkbutton.selected
-				temp_table.super_heal = dialog.super_heal_unit_checkbutton.selected
-				temp_table.poisoned = dialog.poisoned_checkbutton.selected
-				temp_table.slowed = dialog.slowed_checkbutton.selected
-				temp_table.petrified = dialog.petrified_checkbutton.selected
-				temp_table.invulnerable = dialog.invulnerable_checkbutton.selected
-				temp_table.uncovered = dialog.uncovered_checkbutton.selected
-				temp_table.guardian = dialog.guardian_checkbutton.selected
-				temp_table.unhealable = dialog.unhealable_checkbutton.selected
-				temp_table.stunned = dialog.stunned_checkbutton.selected
-				temp_table.not_living = dialog.not_living_checkbutton.selected
-				temp_table.undrainable = dialog.undrainable_checkbutton.selected
-				temp_table.unplagueable = dialog.unplagueable_checkbutton.selected
-				temp_table.unpoisonable = dialog.unpoisonable_checkbutton.selected
+				temp_table.unrenamable = dialog.unrenamable.selected
+				temp_table.canrecruit = dialog.canrecruit.selected
+				temp_table.generate_name = dialog.generate_name.selected
+				temp_table.heal = dialog.heal.selected
+				temp_table.super_heal = dialog.super_heal.selected
+				temp_table.poisoned = dialog.poisoned.selected
+				temp_table.slowed = dialog.slowed.selected
+				temp_table.petrified = dialog.petrified.selected
+				temp_table.invulnerable = dialog.invulnerable.selected
+				temp_table.uncovered = dialog.uncovered.selected
+				temp_table.guardian = dialog.guardian.selected
+				temp_table.unhealable = dialog.unhealable.selected
+				temp_table.stunned = dialog.stunned.selected
+				temp_table.not_living = dialog.not_living.selected
+				temp_table.undrainable = dialog.undrainable.selected
+				temp_table.unplagueable = dialog.unplagueable.selected
+				temp_table.unpoisonable = dialog.unpoisonable.selected
 				-- put facing here
 				local facings = { "nw", "ne", "n", "sw", "se", "s" }
-				temp_table.facing = facings[ dialog.facing_listbox.selected_index ] -- returns a number, that was 2 for the second radiobutton and 5 for the fifth, hence the table above
+				temp_table.facing = facings[ dialog.facing.selected_index ] -- returns a number, that was 2 for the second radiobutton and 5 for the fifth, hence the table above
 				-- misc; checkbuttons
-				temp_table.resting = dialog.resting_checkbutton.selected
-				temp_table.hidden = dialog.hidden_checkbutton.selected
+				temp_table.resting = dialog.resting.selected
+				temp_table.hidden = dialog.hidden.selected
 				-- gender radiobuttons
 				local gender = { "male", "female" }
-				temp_table.gender = gender[ dialog.gender_listbox.selected_index ]
+				temp_table.gender = gender[ dialog.gender.selected_index ]
 			end
 
 			local return_value = gui.show_dialog( dialog, preshow, postshow )
