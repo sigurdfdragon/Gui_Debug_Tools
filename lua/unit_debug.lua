@@ -1,7 +1,6 @@
 -- #textdomain wesnoth-Gui_Debug_Tools
 local _ = wesnoth.textdomain "wesnoth-Gui_Debug_Tools"
 
-local utils = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/utils.lua"
 local unit_ops = wesnoth.dofile "~add-ons/Gui_Debug_Tools/lua/unit_ops.lua"
 
 -- to make code shorter
