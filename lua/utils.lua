@@ -6,22 +6,6 @@ local utils = {}
 -- to make code shorter
 local wml_actions = wesnoth.wml_actions
 
---! Function removes the first child with a given name.
---! melinath
-function utils.remove_child(cfg, name)
-	for index = 1, #cfg do
-		local value = cfg[index]
-		if value[1] == name then
-			table.remove(cfg, index)
-			return
-		end
-	end
-end
-
-function utils.add_empty_child( cfg, tag_name )
-	table.insert(cfg, { [1] = tag_name, [2] = {} } )
-end
-
 -- support functions for handling strings
 function utils.split( str, char )
 	local char = char or ","
