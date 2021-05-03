@@ -55,7 +55,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									id = "side_label",
+									id = "side",
 									tooltip = _ "The number of the side."
 								}
 							}
@@ -74,7 +74,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									id = "starting_location_label",
+									id = "starting_location",
 									tooltip = _ "The coordinates for the starting location of the side. 0,0 indicates no starting location."
 								}
 							}
@@ -93,7 +93,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									id = "current_player_label",
+									id = "current_player",
 									tooltip = _ "The name of the entity controlling the side."
 								}
 							}
@@ -112,7 +112,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
-									id = "total_income_label",
+									id = "total_income",
 									tooltip = _ "The total of base + village income that the side receives each turn."
 								}
 							}
@@ -131,7 +131,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "scroll_to_leader_checkbutton",
+									id = "scroll_to_leader",
 									tooltip = _ "Makes the view scroll to the side's leader at start of side turn."
 								}
 							}
@@ -150,7 +150,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "suppress_end_turn_confirmation_checkbutton",
+									id = "suppress_end_turn_confirmation",
 									tooltip = _ "Prevents the side from being asked to confirm ending the turn, even if no action has been taken."
 								}
 							}
@@ -169,7 +169,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "fog_checkbutton",
+									id = "fog",
 									tooltip = _ "Activates fog for the side."
 								}
 							}
@@ -188,7 +188,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "shroud_checkbutton",
+									id = "shroud",
 									tooltip = _ "Activates shroud for the side."
 								}
 							}
@@ -207,7 +207,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "hidden_checkbutton",
+									id = "hidden",
 									tooltip = _ "Prevents the side's details from being shown in the status table."
 								}
 							}
@@ -230,7 +230,7 @@ local function side_debug ( )
 									maximum_value = 10,
 									minimum_value_label = _ "Clear",
 									step_size = 1,
-									id = "seed_recall_slider",
+									id = "seed_recall",
 									tooltip = _ "The recall list will be stocked with sets of recruits and their advancements, or the recall list can be cleared."
 								}
 							}
@@ -249,7 +249,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "heal_checkbutton",
+									id = "heal",
 									tooltip = _ "All the side's units on the map will be healed."
 								}
 							}
@@ -268,7 +268,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "super_heal_checkbutton",
+									id = "super_heal",
 									tooltip = _ "All the side's units on the map will be super healed."
 								}
 							}
@@ -287,7 +287,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.text_box {
-									id = "teleport_textbox",
+									id = "teleport",
 									history = "other_teleports",
 									tooltip = _ "All on map units of the side will be placed at the coordinates specified. Single spaces places all non-leaders on the recall list."
 								}
@@ -307,7 +307,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.text_box {
-									id = "goto_textbox",
+									id = "goto_xy",
 									history = "other_gotos",
 									tooltip = _ "All units of the side will move toward the coordinates specified. 0,0 and -999,-999 indicate no destination."
 								}
@@ -327,7 +327,7 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.toggle_button {
-									id = "kill_checkbutton",
+									id = "kill",
 									tooltip = _ "All the side's units will be killed."
 								}
 							}
@@ -337,7 +337,7 @@ local function side_debug ( )
 		-- controller radio button
 		-- values here: ai, human, idle, null, network, network_ai
 		local radiobutton = T.horizontal_listbox {
-					id = "controller_listbox",
+					id = "controller",
 					T.list_definition {
 						T.row {
 							T.column {
@@ -416,7 +416,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "gold_textbox",
+								id = "gold",
 								tooltip = _ "The amount of gold the side has."
 							}
 						}
@@ -438,7 +438,7 @@ local function side_debug ( )
 								minimum_value = math.min( 0, dbg_side.village_gold ),
 								maximum_value = math.max( 10, dbg_side.village_gold ),
 								step_size = 1,
-								id = "side_village_gold_slider",
+								id = "village_gold",
 								tooltip = _ "Each village controlled by the side will yield this amount of income."
 							}
 						}
@@ -460,7 +460,7 @@ local function side_debug ( )
 								minimum_value = math.min( 0, dbg_side.village_support ),
 								maximum_value = math.max( 10, dbg_side.village_support ),
 								step_size = 1,
-								id = "side_village_support_slider",
+								id = "village_support",
 								tooltip = _ "Each village controlled by the side will support this number of unit levels."
 							}
 						}
@@ -483,7 +483,7 @@ local function side_debug ( )
 								minimum_value = math.min( -2, dbg_side.base_income ),
 								maximum_value = math.max( 98, dbg_side.base_income ),
 								step_size = 1,
-								id = "side_base_income_slider",
+								id = "base_income",
 								tooltip = _ "The amount of income the side receives per turn."
 							}
 						}
@@ -502,7 +502,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "defeat_condition_textbox",
+								id = "defeat_condition",
 								history = "other_defeat_conditions",
 								tooltip = _ "Specifies when the side is considered defeated."
 							}
@@ -522,7 +522,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "color_textbox",
+								id = "color",
 								history = "other_colors",
 								tooltip = _ "The color that is applied to the side's flag and units."
 							}
@@ -542,7 +542,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "flag_textbox",
+								id = "flag",
 								history = "other_flags",
 								tooltip = _ "The flag that flies over villages that the side controls."
 							}
@@ -562,7 +562,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "flag_icon_textbox",
+								id = "flag_icon",
 								history = "other_flag_icons",
 								tooltip = _ "The flag icon that is displayed next to the turn counter for the side."
 							}
@@ -582,7 +582,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "user_team_name_textbox",
+								id = "user_team_name",
 								history = "other_user_team_names",
 								tooltip = _ "The player visible team name for the side in the status table."
 							}
@@ -602,7 +602,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "team_name_textbox",
+								id = "team_name",
 								history = "other_team_names",
 								tooltip = _ "The player team name for the side used internally by the game."
 							}
@@ -622,7 +622,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "recruit_textbox",
+								id = "recruit",
 								history = "other_recruits",
 								tooltip = _ "The unit types that any leader of the side can recruit."
 							}
@@ -642,7 +642,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.text_box {
-								id = "recall_units_textbox",
+								id = "recall_units",
 								history = "other_recall_units",
 								tooltip = _ "The units with the specified IDs will be recalled."
 							}
@@ -710,7 +710,7 @@ local function side_debug ( )
 												border = "all",
 												border_size = 5,
 												T.image {
-													id = "flag_image", -- flag sprite
+													id = "image", -- flag sprite
 													tooltip = _ "The flag of the side."
 												}
 											}
@@ -741,37 +741,37 @@ local function side_debug ( )
 		local function preshow ( dialog )
 			-- set widget values
 			-- labels
-			dialog.flag_image.label = string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dbg_side.flag_icon or "", wesnoth.sides[dbg_side.side].color )
-			dialog.side_label.label = dbg_side.side
-			dialog.starting_location_label.label = table.concat( ( dbg_side.starting_location or { 0, 0 } ), "," )
-			dialog.current_player_label.label = dbg_side.__cfg.current_player
-			dialog.total_income_label.label = dbg_side.total_income
+			dialog.image.label = string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dbg_side.flag_icon or "", wesnoth.sides[dbg_side.side].color )
+			dialog.side.label = dbg_side.side
+			dialog.starting_location.label = table.concat( ( dbg_side.starting_location or { 0, 0 } ), "," )
+			dialog.current_player.label = dbg_side.__cfg.current_player
+			dialog.total_income.label = dbg_side.total_income
 			-- sliders
-			dialog.seed_recall_slider.value = 0
-			dialog.side_village_gold_slider.value = dbg_side.village_gold
-			dialog.side_village_support_slider.value = dbg_side.village_support
-			dialog.side_base_income_slider.value = dbg_side.base_income
+			dialog.seed_recall.value = 0
+			dialog.village_gold.value = dbg_side.village_gold
+			dialog.village_support.value = dbg_side.village_support
+			dialog.base_income.value = dbg_side.base_income
 			-- text boxes
-			dialog.teleport_textbox.text = ""
-			dialog.goto_textbox.text = ""
-			dialog.gold_textbox.text = dbg_side.gold
-			dialog.defeat_condition_textbox.text = dbg_side.defeat_condition
-			dialog.color_textbox.text = side_ops.convert_color( dbg_side.color )
-			dialog.flag_textbox.text = dbg_side.flag
-			dialog.flag_icon_textbox.text = dbg_side.flag_icon
-			dialog.user_team_name_textbox.text = tostring(dbg_side.user_team_name)
-			dialog.team_name_textbox.text = dbg_side.team_name
-			dialog.recruit_textbox.text = table.concat( dbg_side.recruit, "," )
-			dialog.recall_units_textbox.text = ""
+			dialog.teleport.text = ""
+			dialog.goto_xy.text = ""
+			dialog.gold.text = dbg_side.gold
+			dialog.defeat_condition.text = dbg_side.defeat_condition
+			dialog.color.text = side_ops.convert_color( dbg_side.color )
+			dialog.flag.text = dbg_side.flag
+			dialog.flag_icon.text = dbg_side.flag_icon
+			dialog.user_team_name.text = tostring(dbg_side.user_team_name)
+			dialog.team_name.text = dbg_side.team_name
+			dialog.recruit.text = table.concat( dbg_side.recruit, "," )
+			dialog.recall_units.text = ""
 			-- checkbutton
-			dialog.suppress_end_turn_confirmation_checkbutton.selected = dbg_side.__cfg.suppress_end_turn_confirmation
-			dialog.scroll_to_leader_checkbutton.selected = dbg_side.scroll_to_leader
-			dialog.fog_checkbutton.selected = dbg_side.fog
-			dialog.shroud_checkbutton.selected = dbg_side.shroud
-			dialog.hidden_checkbutton.selected = dbg_side.hidden
-			dialog.heal_checkbutton.selected = false
-			dialog.super_heal_checkbutton.selected = false
-			dialog.kill_checkbutton.selected = false
+			dialog.suppress_end_turn_confirmation.selected = dbg_side.__cfg.suppress_end_turn_confirmation
+			dialog.scroll_to_leader.selected = dbg_side.scroll_to_leader
+			dialog.fog.selected = dbg_side.fog
+			dialog.shroud.selected = dbg_side.shroud
+			dialog.hidden.selected = dbg_side.hidden
+			dialog.heal.selected = false
+			dialog.super_heal.selected = false
+			dialog.kill.selected = false
 
 			-- radiobutton
 			local temp_controller
@@ -789,7 +789,7 @@ local function side_debug ( )
 			elseif dbg_side.controller == "null" then
 				temp_controller = 6
 			end
-			dialog.controller_listbox.selected_index = temp_controller
+			dialog.controller.selected_index = temp_controller
 		end
 
 		local function sync()
@@ -798,34 +798,34 @@ local function side_debug ( )
 			local function postshow ( dialog )
 				-- get widget values
 				-- sliders
-				temp_table.seed_recall = dialog.seed_recall_slider.value
-				temp_table.village_gold = dialog.side_village_gold_slider.value
-				temp_table.village_support = dialog.side_village_support_slider.value
-				temp_table.base_income = dialog.side_base_income_slider.value
+				temp_table.seed_recall = dialog.seed_recall.value
+				temp_table.village_gold = dialog.village_gold.value
+				temp_table.village_support = dialog.village_support.value
+				temp_table.base_income = dialog.base_income.value
 				-- text boxes
-				temp_table.teleport = dialog.teleport_textbox.text
-				temp_table.goto_xy = dialog.goto_textbox.text
-				temp_table.gold = dialog.gold_textbox.text
-				temp_table.defeat_condition = dialog.defeat_condition_textbox.text
-				temp_table.color = dialog.color_textbox.text
-				temp_table.flag = dialog.flag_textbox.text
-				temp_table.flag_icon = dialog.flag_icon_textbox.text
-				temp_table.user_team_name = dialog.user_team_name_textbox.text
-				temp_table.team_name = dialog.team_name_textbox.text
-				temp_table.recruit = dialog.recruit_textbox.text
-				temp_table.recall_units = dialog.recall_units_textbox.text
+				temp_table.teleport = dialog.teleport.text
+				temp_table.goto_xy = dialog.goto_xy.text
+				temp_table.gold = dialog.gold.text
+				temp_table.defeat_condition = dialog.defeat_condition.text
+				temp_table.color = dialog.color.text
+				temp_table.flag = dialog.flag.text
+				temp_table.flag_icon = dialog.flag_icon.text
+				temp_table.user_team_name = dialog.user_team_name.text
+				temp_table.team_name = dialog.team_name.text
+				temp_table.recruit = dialog.recruit.text
+				temp_table.recall_units = dialog.recall_units.text
 				-- checkbutton
-				temp_table.suppress_end_turn_confirmation = dialog.suppress_end_turn_confirmation_checkbutton.selected
-				temp_table.scroll_to_leader = dialog.scroll_to_leader_checkbutton.selected
-				temp_table.fog = dialog.fog_checkbutton.selected
-				temp_table.shroud = dialog.shroud_checkbutton.selected
-				temp_table.hidden = dialog.hidden_checkbutton.selected
-				temp_table.heal = dialog.heal_checkbutton.selected
-				temp_table.super_heal = dialog.super_heal_checkbutton.selected
-				temp_table.kill = dialog.kill_checkbutton.selected
+				temp_table.suppress_end_turn_confirmation = dialog.suppress_end_turn_confirmation.selected
+				temp_table.scroll_to_leader = dialog.scroll_to_leader.selected
+				temp_table.fog = dialog.fog.selected
+				temp_table.shroud = dialog.shroud.selected
+				temp_table.hidden = dialog.hidden.selected
+				temp_table.heal = dialog.heal.selected
+				temp_table.super_heal = dialog.super_heal.selected
+				temp_table.kill = dialog.kill.selected
 				-- radiobutton
 				local controllers = { "ai", "human", "idle", "network", "network_ai", "null" }
-				temp_table.controller = controllers[ dialog.controller_listbox.selected_index ]
+				temp_table.controller = controllers[ dialog.controller.selected_index ]
 			end
 
 			local return_value = gui.show_dialog( dialog, preshow, postshow )
