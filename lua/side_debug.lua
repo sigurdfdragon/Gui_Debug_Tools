@@ -742,7 +742,7 @@ local function side_debug ( )
 			-- labels
 			dialog.image.label = string.format("%s~RC(flag_green>%s)~SCALE_INTO_SHARP(48,48)", dbg_side.flag_icon or "", wesnoth.sides[dbg_side.side].color )
 			dialog.side.label = dbg_side.side
-			dialog.starting_location.label = table.concat( ( dbg_side.starting_location or { 0, 0 } ), "," )
+			dialog.starting_location.label = stringx.join( dbg_side.starting_location or { 0, 0 } )
 			dialog.current_player.label = dbg_side.__cfg.current_player
 			dialog.total_income.label = dbg_side.total_income
 			-- sliders
@@ -760,7 +760,7 @@ local function side_debug ( )
 			dialog.flag_icon.text = dbg_side.flag_icon
 			dialog.user_team_name.text = tostring(dbg_side.user_team_name)
 			dialog.team_name.text = dbg_side.team_name
-			dialog.recruit.text = table.concat( dbg_side.recruit, "," )
+			dialog.recruit.text = stringx.join( dbg_side.recruit )
 			dialog.recall_units.text = ""
 			-- checkbutton
 			dialog.suppress_end_turn_confirmation.selected = dbg_side.__cfg.suppress_end_turn_confirmation

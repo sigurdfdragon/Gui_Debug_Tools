@@ -113,7 +113,7 @@ function unit_ops.get_traits_string ( unit )
 				table.insert ( trait_ids, trait.id )
 			end
 	end
-	return table.concat( trait_ids, "," )
+	return stringx.join( trait_ids )
 end
 
 function unit_ops.goto_xy ( unit, str )

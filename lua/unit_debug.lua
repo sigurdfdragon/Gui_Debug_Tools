@@ -1105,8 +1105,8 @@ local function unit_debug ( )
 			dialog.utype.text = dbg_unit.type
 			dialog.variation.text = dbg_unit.__cfg.variation
 			dialog.name.text = tostring(dbg_unit.name)
-			dialog.extra_recruit.text = table.concat( dbg_unit.extra_recruit, "," )
-			dialog.advances_to.text = table.concat( dbg_unit.advances_to, "," )
+			dialog.extra_recruit.text = stringx.join( dbg_unit.extra_recruit )
+			dialog.advances_to.text = stringx.join( dbg_unit.advances_to )
 			dialog.role.text = dbg_unit.role
 			dialog.attack.text = ""
 			dialog.abilities.text = ""
