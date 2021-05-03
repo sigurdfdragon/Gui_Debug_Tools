@@ -19,13 +19,4 @@ function utils.chop( str )
 	return temp
 end
 
-function utils.split_to_table ( str, char )
-	local char = char or ","
-	local t = {}
-	for value in utils.split( str, char ) do
-		table.insert( t, utils.chop( value ) )
-	end
-	return t
-end
-
 return utils

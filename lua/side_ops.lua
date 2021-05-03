@@ -21,7 +21,7 @@ end
 
 function side_ops.goto_xy ( side, str )
 	if str ~= "" then
-		local loc = utils.split_to_table ( str )
+		local loc = stringx.split ( str )
 		wml_actions.modify_unit { { "filter", { side = side.side } }, goto_x = loc[1], goto_y = loc[2]}
 	end
 end
@@ -40,7 +40,7 @@ end
 
 function side_ops.recall_units ( side, str )
 	if str ~= "" then
-		local ids = utils.split_to_table ( str )
+		local ids = stringx.split ( str )
 		for i = 1, #ids do
 			local unit = wesnoth.units.find_on_recall ( { side = side.side, id = ids[i] } )[1]
 			local x, y = wesnoth.current.event_context.x1, wesnoth.current.event_context.y1
@@ -123,7 +123,7 @@ function side_ops.teleport ( side, str )
 				units[i]:to_recall ( )
 			end
 		else
-			local loc = utils.split_to_table ( str )
+			local loc = stringx.split ( str )
 			local units = wesnoth.units.find_on_map { side = side.side }
 			for i = 1, #units do
 				local x, y = wesnoth.find_vacant_tile ( loc[1], loc[2], units[i] )

@@ -16,7 +16,7 @@ function unit_ops.abilities ( unit, str )
 			unit:remove_modifications ( { item_id = "gdt_ability" }, "object" )
 		else
 			-- copy abilities from specified unit_types
-			local sources = utils.split_to_table ( str )
+			local sources = stringx.split ( str )
 			for i = 1, #sources do
 				local ability = wml.get_child ( wesnoth.unit_types[sources[i]].__cfg, "abilities" )
 				if ability then
@@ -59,7 +59,7 @@ function unit_ops.attack ( unit, str )
 			unit:remove_modifications ( { item_id = "gdt_attack" }, "object" )
 		else
 			-- copy attack from specified unit_type & attack index
-			local t = utils.split_to_table ( str )
+			local t = stringx.split ( str )
 			local utype, index = t[1], t[2]
 			local attack = wml.get_nth_child ( wesnoth.unit_types[utype].__cfg, "attack", index )
 			if attack then
@@ -119,7 +119,7 @@ function unit_ops.get_traits_string ( unit )
 end
 
 function unit_ops.goto_xy ( unit, str )
-	local loc = utils.split_to_table ( str )
+	local loc = stringx.split ( str )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = loc[1], goto_y = loc[2]}
 end
 
@@ -139,7 +139,7 @@ function unit_ops.level_type_advances_to_xp ( unit, level, unit_type, advances_t
 		unit:transform ( unit_type )
 		unit.experience = 0
 	else
-		unit.advances_to = utils.split_to_table ( advances_to )
+		unit.advances_to = stringx.split ( advances_to )
 		if unit.level ~= level then
 			-- disregarding experience here to avoid interfering with what player is intending
 			if unit.level < level then -- leveling up
@@ -171,7 +171,7 @@ function unit_ops.location ( unit, str )
 		wml_actions.modify_unit { { "filter", { id = unit.id } }, goto_x = 0, goto_y = 0 }
 		unit:to_recall ( )
 	else
-		local loc = utils.split_to_table ( str )
+		local loc = stringx.split ( str )
 		unit:to_map ( loc[1], loc[2] )
 	end
 end
@@ -182,7 +182,7 @@ end
 
 function unit_ops.objects ( unit, str ) -- copies or removes one or all objects
 	if str ~= "" then
-		local t = utils.split_to_table ( str )
+		local t = stringx.split ( str )
 		if t[1] == "remove" then
 			local index = t[2]
 			if index == nil then -- remove all objects
@@ -374,7 +374,7 @@ function unit_ops.traits ( unit, str )
 
 		-- now that all the traits to pick from have been assembled
 		-- take user entered values and use to set the unit's traits
-		local new_traits = utils.split_to_table ( str )
+		local new_traits = stringx.split ( str )
 		-- since musthaves are automatically reapplied, temporary turn unit
 		-- into one without traits so accidental dupes are avoided and order respected
 		local utype, hitpoints, moves = unit.type, unit.hitpoints, unit.moves
@@ -406,7 +406,7 @@ end
 
 function unit_ops.variables ( unit, str )
 	if str ~= "" then
-		local t = utils.split_to_table ( str, "=" )
+		local t = stringx.split ( str, "=" )
 		key, value = t[1], t[2]
 		unit.variables[key] = value
 	end
