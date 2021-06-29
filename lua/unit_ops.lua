@@ -232,7 +232,7 @@ function unit_ops.traits ( unit, str )
 		-- make a table with all traits the unit can receive
 		-- add global traits: quick, resilient, strong, intelligent
 		local traits = { }
-		local global_traits = wesnoth.get_traits ( )
+		local global_traits = wesnoth.game_config.global_traits
 		for key, value in pairs ( global_traits ) do
 			table.insert ( traits, value )
 		end
