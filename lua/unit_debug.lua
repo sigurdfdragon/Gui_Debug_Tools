@@ -443,6 +443,42 @@ local function unit_debug ( )
 									tooltip = _ "The unit cannot be poisoned."
 								}
 							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Unslowable",
+									id = "unslowable",
+									tooltip = _ "The unit cannot be slowed."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Unpetrifiable",
+									id = "unpetrifiable",
+									tooltip = _ "The unit cannot be petrified."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.spacer {
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.spacer {
+								}
+							}
 						}
 					}
 
@@ -1132,6 +1168,8 @@ local function unit_debug ( )
 			dialog.undrainable.selected = dbg_unit.status.undrainable
 			dialog.unplagueable.selected = dbg_unit.status.unplagueable
 			dialog.unpoisonable.selected = dbg_unit.status.unpoisonable
+			dialog.unslowable.selected = dbg_unit.status.unslowable
+			dialog.unpetrifiable.selected = dbg_unit.status.unpetrifiable
 			-- set radiobutton for facing
 			local temp_facing
 			if dbg_unit.facing == "nw" then temp_facing = 1
@@ -1202,6 +1240,8 @@ local function unit_debug ( )
 				temp_table.undrainable = dialog.undrainable.selected
 				temp_table.unplagueable = dialog.unplagueable.selected
 				temp_table.unpoisonable = dialog.unpoisonable.selected
+				temp_table.unslowable = dialog.unslowable.selected
+				temp_table.unpetrifiable = dialog.unpetrifiable.selected
 				-- put facing here
 				local facings = { "nw", "ne", "n", "sw", "se", "s" }
 				temp_table.facing = facings[ dialog.facing.selected_index ] -- returns a number, that was 2 for the second radiobutton and 5 for the fifth, hence the table above
@@ -1237,6 +1277,8 @@ local function unit_debug ( )
 			dbg_unit.status.undrainable = temp_table.undrainable
 			dbg_unit.status.unplagueable = temp_table.unplagueable
 			dbg_unit.status.unpoisonable = temp_table.unpoisonable
+			dbg_unit.status.unslowable =	temp_table.unslowable
+			dbg_unit.status.unpetrifiable =	temp_table.unpetrifiable
 			dbg_unit.upkeep = temp_table.upkeep -- upkeep must be before traits, so adding a loyal trait can override this value
 			-- these values need to before transforms so level/type changes work better
 			dbg_unit.attacks_left = temp_table.attacks_left
