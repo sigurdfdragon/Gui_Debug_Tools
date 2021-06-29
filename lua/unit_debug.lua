@@ -1086,7 +1086,7 @@ local function unit_debug ( )
 			-- here set all widget starting values
 			-- set read_only labels
 			dialog.image.label = string.format("%s~RC(magenta>%s)~SCALE_INTO_SHARP(144,144)", dbg_unit.__cfg.image or "", wesnoth.sides[dbg_unit.side].color )
-			dialog.help_profile.on_button_click = function() wesnoth.open_help ( [[unit_]] .. dbg_unit.type ) end -- Literal string needed or .po will error. Help won't show up if you haven't discovered the unit yet.
+			dialog.help_profile.on_button_click = function() gui.show_help ( [[unit_]] .. dbg_unit.type ) end -- Literal string needed or .po will error. Help won't show up if you haven't discovered the unit yet.
 			dialog.underlying_id.label = dbg_unit.__cfg.underlying_id
 			-- set sliders
 			dialog.level.value = dbg_unit.level
