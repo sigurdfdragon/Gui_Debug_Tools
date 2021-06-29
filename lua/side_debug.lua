@@ -863,7 +863,7 @@ local function side_debug ( )
 			wml_actions.print ( { text = _ "side debug was used during turn of " .. wesnoth.sides[wesnoth.current.side].__cfg.current_player,
 				size = 24, duration = 200, color = "255,255,255" } )
 		elseif return_value == 2 or return_value == -2 then -- if user pressed Cancel or Esc, nothing happens
-		else wesnoth.message( tostring( _ "Side Debug" ), tostring( _ "Error, return value :" ) .. return_value ) end -- any unhandled case is handled here
+		else wesnoth.interface.add_chat_message ( tostring( _ "Side Debug" ), tostring( _ "Error, return value :" ) .. return_value ) end -- any unhandled case is handled here
 		-- if user clicks on empty hex, do nothing
 	end
 end
