@@ -831,7 +831,7 @@ local function side_debug ( )
 
 			return { return_value = return_value, { "temp_table", temp_table } }
 		end
-		local return_table = wesnoth.synchronize_choice(sync)
+		local return_table = wesnoth.sync.evaluate_single(sync)
 		local return_value = return_table.return_value
 		local temp_table = wml.get_child(return_table, "temp_table")
 
