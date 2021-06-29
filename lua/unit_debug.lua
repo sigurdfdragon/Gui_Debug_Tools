@@ -1031,7 +1031,7 @@ local function unit_debug ( )
 		local dialog = {
 			T.helptip { id="tooltip_large" }, -- mandatory field
 			T.tooltip { id="tooltip_large" }, -- mandatory field
-			maximum_height = 860,
+			maximum_height = 940,
 			maximum_width = 1000,
 			T.grid { -- Title
 				T.row {
