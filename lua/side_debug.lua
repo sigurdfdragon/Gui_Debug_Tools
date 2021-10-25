@@ -288,7 +288,7 @@ local function side_debug ( )
 								T.text_box {
 									id = "teleport",
 									history = "other_teleports",
-									tooltip = _ "All on map units of the side will be placed at the coordinates specified. Single spaces places all non-leaders on the recall list."
+									tooltip = _ "All on map units of the side will be placed at the coordinates specified. Single space places all non-leaders on the recall list."
 								}
 							}
 						},
