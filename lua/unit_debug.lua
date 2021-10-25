@@ -773,6 +773,29 @@ local function unit_debug ( )
 							}
 						}
 					},
+					-- recall cost slider
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
+								label = _ "Recall Cost"
+							}
+						},
+						T.column {
+							horizontal_grow = true,
+							border = "all",
+							border_size = 5,
+							T.slider {
+								minimum_value = -1,
+								maximum_value = 100,
+								step_size = 1,
+								id = "recall_cost",
+								tooltip = _ "The amount of gold needed to recall this unit. -1 indicates the side default amount."
+							}
+						}
+					},
 					-- extra recruit
 					T.row {
 						T.column {
@@ -1133,6 +1156,7 @@ local function unit_debug ( )
 			dialog.moves.value = dbg_unit.moves
 			dialog.attacks_left.value = dbg_unit.attacks_left
 			dialog.advancements.value = unit_ops.advancement_count( dbg_unit )
+			dialog.recall_cost.value = dbg_unit.recall_cost
 			-- set textboxes
 			dialog.location.text = dbg_unit.x .. "," .. dbg_unit.y
 			dialog.goto_xy.text = dbg_unit.__cfg.goto_x .. "," .. dbg_unit.__cfg.goto_y
@@ -1205,6 +1229,7 @@ local function unit_debug ( )
 				temp_table.moves = dialog.moves.value
 				temp_table.attacks_left = dialog.attacks_left.value
 				temp_table.advancements = dialog.advancements.value
+				temp_table.recall_cost = dialog.recall_cost.value
 				-- text boxes
 				temp_table.location = dialog.location.text
 				temp_table.goto_xy = dialog.goto_xy.text
@@ -1295,6 +1320,7 @@ local function unit_debug ( )
 			unit_ops.level_type_advances_to_xp ( dbg_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
 			-- misc, these don't need to be anywhere in particular
 			unit_ops.advancements (dbg_unit, temp_table.advancements)
+			dbg_unit.recall_cost = temp_table.recall_cost
 			dbg_unit.facing = temp_table.facing
 			dbg_unit.extra_recruit = stringx.split ( temp_table.extra_recruit )
 			dbg_unit.role = temp_table.role
