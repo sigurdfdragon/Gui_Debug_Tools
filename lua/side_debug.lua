@@ -334,7 +334,7 @@ local function side_debug ( )
 					}
 
 		-- controller radio button
-		-- values here: ai, human, idle, null, network, network_ai
+		-- values here: human, ai, null
 		local radiobutton = T.horizontal_listbox {
 					id = "controller",
 					T.list_definition {
@@ -353,7 +353,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.column {
-								label = _ "ai" .. "     " -- added strings are a hack so the buttons aren't too close together 5 spaces each
+								label = _ "human" .. "     " -- added strings are a hack so the buttons aren't too close together 5 spaces each
 							}
 						},
 						T.row {
@@ -361,31 +361,7 @@ local function side_debug ( )
 							border = "all",
 							border_size = 5,
 							T.column {
-								label = _ "human" .. "     "
-							}
-						},
-						T.row {
-							horizontal_alignment = "left",
-							border = "all",
-							border_size = 5,
-							T.column {
-								label = _ "idle" .. "     "
-							}
-						},
-						T.row {
-							horizontal_alignment = "left",
-							border = "all",
-							border_size = 5,
-							T.column {
-								label = _ "network" .. "     "
-							}
-						},
-						T.row {
-							horizontal_alignment = "left",
-							border = "all",
-							border_size = 5,
-							T.column {
-								label = _ "network_ai" .. "     "
+								label = _ "ai" .. "     "
 							}
 						},
 						T.row {
@@ -799,18 +775,12 @@ local function side_debug ( )
 			-- radiobutton
 			local temp_controller
 
-			if dbg_side.controller == "ai" then
+			if dbg_side.controller == "human" then
 				temp_controller = 1
-			elseif dbg_side.controller == "human" then
+			elseif dbg_side.controller == "ai" then
 				temp_controller = 2
-			elseif dbg_side.controller == "idle" then
-				temp_controller = 3
-			elseif dbg_side.controller == "network" then
-				temp_controller = 4
-			elseif dbg_side.controller == "network_ai" then
-				temp_controller = 5
 			elseif dbg_side.controller == "null" then
-				temp_controller = 6
+				temp_controller = 3
 			end
 			dialog.controller.selected_index = temp_controller
 		end
@@ -848,7 +818,7 @@ local function side_debug ( )
 				temp_table.super_heal = dialog.super_heal.selected
 				temp_table.kill = dialog.kill.selected
 				-- radiobutton
-				local controllers = { "ai", "human", "idle", "network", "network_ai", "null" }
+				local controllers = { "human", "ai", "null" }
 				temp_table.controller = controllers[ dialog.controller.selected_index ]
 			end
 
