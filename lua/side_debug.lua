@@ -489,6 +489,29 @@ local function side_debug ( )
 					},
 					T.row {
 						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
+								label = _ "Recall Cost"
+							}
+						},
+						T.column {
+							-- vertical_grow = true,
+							horizontal_grow = true,
+							border = "all",
+							border_size = 5,
+							T.slider {
+								minimum_value = 0,
+								maximum_value = 100,
+								step_size = 1,
+								id = "recall_cost",
+								tooltip = _ "The amount of gold needed to recall units of this side."
+							}
+						}
+					},
+					T.row {
+						T.column {
 							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
@@ -750,6 +773,7 @@ local function side_debug ( )
 			dialog.village_gold.value = dbg_side.village_gold
 			dialog.village_support.value = dbg_side.village_support
 			dialog.base_income.value = dbg_side.base_income
+			dialog.recall_cost.value = dbg_side.recall_cost
 			-- text boxes
 			dialog.teleport.text = ""
 			dialog.goto_xy.text = ""
@@ -801,6 +825,7 @@ local function side_debug ( )
 				temp_table.village_gold = dialog.village_gold.value
 				temp_table.village_support = dialog.village_support.value
 				temp_table.base_income = dialog.base_income.value
+				temp_table.recall_cost = dialog.recall_cost.value
 				-- text boxes
 				temp_table.teleport = dialog.teleport.text
 				temp_table.goto_xy = dialog.goto_xy.text
@@ -845,6 +870,7 @@ local function side_debug ( )
 			dbg_side.village_gold = temp_table.village_gold
 			dbg_side.village_support = temp_table.village_support
 			dbg_side.base_income = temp_table.base_income
+			dbg_side.recall_cost = temp_table.recall_cost
 			dbg_side.defeat_condition = temp_table.defeat_condition
 			wesnoth.sides.set_id(dbg_side.side, temp_table.flag, temp_table.color)
 			dbg_side.flag_icon = temp_table.flag_icon
