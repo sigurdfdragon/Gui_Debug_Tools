@@ -103,6 +103,25 @@ local function side_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Is Local"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
+									id = "is_local",
+									tooltip = _ "Indicates if the current instance of Wesnoth owns the side."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Total Income"
 								}
 							},
@@ -743,6 +762,7 @@ local function side_debug ( )
 			dialog.side.label = dbg_side.side
 			dialog.starting_location.label = stringx.join( dbg_side.starting_location or { 0, 0 } )
 			dialog.current_player.label = dbg_side.__cfg.current_player
+			dialog.is_local.label = dbg_side.is_local
 			dialog.total_income.label = dbg_side.total_income
 			-- sliders
 			dialog.seed_recall.value = 0
