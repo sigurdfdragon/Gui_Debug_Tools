@@ -352,9 +352,59 @@ local function side_debug ( )
 						}
 					}
 
+		-- defeat condition radio button
+		-- values here: no_leader_left, no_units_left, never, always
+		local defeat_condition_radiobutton = T.horizontal_listbox {
+					id = "defeat_condition",
+					T.list_definition {
+						T.row {
+							T.column {
+								T.toggle_button {
+									id = "defeat_condition_radiobutton",
+									tooltip = _ "When the side is considered defeated."
+								}
+							}
+						}
+					},
+					T.list_data {
+						T.row {
+							horizontal_alignment = "left",
+							border = "all",
+							border_size = 5,
+							T.column {
+								label = _ "no_leader_left" .. "     " -- added strings are a hack so the buttons aren't too close together 5 spaces each
+							}
+						},
+						T.row {
+							horizontal_alignment = "left",
+							border = "all",
+							border_size = 5,
+							T.column {
+								label = _ "no_units_left" .. "     "
+							}
+						},
+						T.row {
+							horizontal_alignment = "left",
+							border = "all",
+							border_size = 5,
+							T.column {
+								label = _ "never" .. "     "
+							}
+						},
+						T.row {
+							horizontal_alignment = "left",
+							border = "all",
+							border_size = 5,
+							T.column {
+								label = _ "always" .. "     "
+							}
+						}
+					}
+				}
+
 		-- controller radio button
 		-- values here: human, ai, null
-		local radiobutton = T.horizontal_listbox {
+		local controller_radiobutton = T.horizontal_listbox {
 					id = "controller",
 					T.list_definition {
 						T.row {
@@ -502,26 +552,6 @@ local function side_debug ( )
 								step_size = 1,
 								id = "recall_cost",
 								tooltip = _ "The amount of gold needed to recall units of this side."
-							}
-						}
-					},
-					T.row {
-						T.column {
-							horizontal_alignment = "left",
-							border = "all",
-							border_size = 5,
-							T.label {
-								label = _ "Defeat Condition"
-							}
-						},
-						T.column {
-							horizontal_grow = true,
-							border = "all",
-							border_size = 5,
-							T.text_box {
-								id = "defeat_condition",
-								history = "other_defeat_conditions",
-								tooltip = _ "Specifies when the side is considered defeated."
 							}
 						}
 					},
@@ -678,7 +708,23 @@ local function side_debug ( )
 							horizontal_alignment = "left",
 							border = "all",
 							border_size = 5,
-							radiobutton
+							controller_radiobutton
+						}
+					},
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
+								label = _ "Defeat Condition"
+							}
+						},
+						T.column {
+							horizontal_alignment = "left",
+							border = "all",
+							border_size = 5,
+							defeat_condition_radiobutton
 						}
 					}
 				}
@@ -774,7 +820,6 @@ local function side_debug ( )
 			dialog.teleport.text = ""
 			dialog.goto_xy.text = ""
 			dialog.gold.text = dbg_side.gold
-			dialog.defeat_condition.text = dbg_side.defeat_condition
 			dialog.color.text = side_ops.convert_color( dbg_side.color )
 			dialog.flag.text = dbg_side.flag
 			dialog.flag_icon.text = dbg_side.flag_icon
@@ -792,9 +837,8 @@ local function side_debug ( )
 			dialog.super_heal.selected = false
 			dialog.kill.selected = false
 
-			-- radiobutton
+			-- radiobuttons
 			local temp_controller
-
 			if dbg_side.controller == "human" then
 				temp_controller = 1
 			elseif dbg_side.controller == "ai" then
@@ -803,6 +847,18 @@ local function side_debug ( )
 				temp_controller = 3
 			end
 			dialog.controller.selected_index = temp_controller
+
+			local temp_defeat_condition
+			if dbg_side.defeat_condition == "no_leader_left" then
+				temp_defeat_condition = 1
+			elseif dbg_side.defeat_condition == "no_units_left" then
+				temp_defeat_condition = 2
+			elseif dbg_side.defeat_condition == "never" then
+				temp_defeat_condition = 3
+			elseif dbg_side.defeat_condition == "always" then
+				temp_defeat_condition = 4
+			end
+			dialog.defeat_condition.selected_index = temp_defeat_condition
 		end
 
 		local function sync()
@@ -820,7 +876,6 @@ local function side_debug ( )
 				temp_table.teleport = dialog.teleport.text
 				temp_table.goto_xy = dialog.goto_xy.text
 				temp_table.gold = dialog.gold.text
-				temp_table.defeat_condition = dialog.defeat_condition.text
 				temp_table.color = dialog.color.text
 				temp_table.flag = dialog.flag.text
 				temp_table.flag_icon = dialog.flag_icon.text
@@ -840,6 +895,8 @@ local function side_debug ( )
 				-- radiobutton
 				local controllers = { "human", "ai", "null" }
 				temp_table.controller = controllers[ dialog.controller.selected_index ]
+				local defeat_conditions = { "no_leader_left", "no_units_left", "never", "always" }
+				temp_table.defeat_condition = defeat_conditions[ dialog.defeat_condition.selected_index ]
 			end
 
 			local return_value = gui.show_dialog( dialog, preshow, postshow )
