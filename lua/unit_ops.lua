@@ -376,7 +376,7 @@ function unit_ops.traits ( unit, str )
 		-- since musthaves are automatically reapplied, temporary turn unit
 		-- into one without traits so accidental dupes are avoided and order respected
 		local utype, hitpoints, moves = unit.type, unit.hitpoints, unit.moves
-		unit:transform ( "Fog Clearer" ) -- if removed, replace with low move unit
+		unit:transform ( "GDT Dummy" )
 		-- remove existing traits
 		unit:remove_modifications( { }, "trait" )
 		-- remove undead status keys, in case undead trait is being removed
