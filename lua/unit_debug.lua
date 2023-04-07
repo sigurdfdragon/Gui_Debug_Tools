@@ -94,7 +94,7 @@ local function unit_debug ( )
 									maximum_value = math.max(10, dbg_unit.level + 5),
 									step_size = 1,
 									id = "level",
-									tooltip = _ "The unit will be advanced or declined to the specified level."
+									tooltip = _ "The unit will be advanced or declined to the specified level. This does not add amlas."
 								}
 							}
 						},
@@ -766,10 +766,10 @@ local function unit_debug ( )
 							border_size = 5,
 							T.slider {
 								minimum_value = 0,
-								maximum_value = 100 + unit_ops.advancement_count ( dbg_unit ),
+								maximum_value = 100 + unit_ops.advancement_count ( dbg_unit ), -- uise oversize_factor ?
 								step_size = 1,
 								id = "advancements",
-								tooltip = _ "The number of advancements the unit has. If the unit is at its highest level, this value may be adjusted, though setting to 0 will always clear."
+								tooltip = _ "The number of amlas the unit has. If the unit is at its highest level, this value may be adjusted, though setting to 0 will always clear."
 							}
 						}
 					},
