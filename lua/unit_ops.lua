@@ -134,8 +134,8 @@ end
 function unit_ops.level_type_advances_to_xp ( unit, level, unit_type, advances_to, experience )
 	if unit.type ~= unit_type then
 		-- disregard what is entered for level, advances_to, & experience
-		unit:transform ( unit_type )
 		unit.experience = 0
+		unit:transform ( unit_type )
 	else
 		unit.advances_to = stringx.split ( advances_to )
 		if unit.level ~= level then
