@@ -1319,7 +1319,7 @@ local function unit_debug ( )
 			unit_ops.variation ( dbg_unit, temp_table.variation )
 			unit_ops.level_type_advances_to_xp ( dbg_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
 			-- misc, these don't need to be anywhere in particular
-			unit_ops.advancements (dbg_unit, temp_table.advancements)
+			unit_ops.advancements ( dbg_unit, temp_table.advancements )
 			dbg_unit.recall_cost = temp_table.recall_cost
 			dbg_unit.facing = temp_table.facing
 			dbg_unit.extra_recruit = stringx.split ( temp_table.extra_recruit )
