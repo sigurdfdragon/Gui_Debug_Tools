@@ -90,8 +90,8 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.slider {
-									minimum_value = 0,
-									maximum_value = math.max(10, dbg_unit.level + 5),
+									minimum_value = unit_ops.get_level_min ( dbg_unit ),
+									maximum_value = unit_ops.get_level_max ( dbg_unit ),
 									step_size = 1,
 									id = "level",
 									tooltip = _ "The unit will be advanced or declined to the specified level. This does not add amlas."

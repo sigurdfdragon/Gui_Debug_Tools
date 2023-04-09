@@ -112,6 +112,53 @@ function unit_ops.generate_name ( unit, bool )
 	end
 end
 
+function unit_ops.get_level_max ( unit )
+	-- assemble list of the unit and all possible advance_to, recursively
+	local types = { }
+	table.insert ( types, unit.type ) -- add itself
+	local advances_to = unit.advances_to -- current advances_to, may be different than wesnoth.unit_types[unit.type].advances_to
+	for a = 1, #advances_to do
+		table.insert ( types, advances_to[a] )
+	end
+	local i = 1
+	while types[i] do
+		local advances_to = wesnoth.unit_types[types[i]].advances_to
+		for a = 1, #advances_to do
+			table.insert ( types, advances_to[a] )
+		end
+		i = i + 1
+	end
+	-- go through the types list and mark what is the highest level
+	local max_level = unit.level
+	for i = 1, #types do
+		max_level = math.max ( max_level, wesnoth.unit_types[types[i]].level )
+	end
+	return max_level
+end
+
+function unit_ops.get_level_min ( unit )
+ -- assemble list of the unit and all possible advances_from, recursively
+	local types = { }
+	-- add itself
+	table.insert ( types, unit.type )
+	local i = 1
+	while types[i] do
+    local advances_from = wesnoth.unit_types[types[i]].advances_from
+		for a = 1, #advances_from do
+			-- if advances_from[a] ~= nil then
+				table.insert ( types, advances_from[a] )
+			-- end
+		end
+		i = i + 1
+	end
+	-- go through the types list and mark what is the lowest level
+	local min_level = unit.level
+	for i = 1, #types do
+		min_level = math.min ( min_level, wesnoth.unit_types[types[i]].level )
+	end
+	return min_level
+end
+
 function unit_ops.get_traits_string ( unit )
 	local unit_modifications = wml.get_child ( unit.__cfg, "modifications" ) or {}
 	local trait_ids = { }
