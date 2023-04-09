@@ -694,11 +694,11 @@ local function unit_debug ( )
 							border_size = 5,
 							T.slider {
 								minimum_value = math.min(0, dbg_unit.experience),
-								maximum_value = math.max(dbg_unit.max_experience * oversize_factor, dbg_unit.experience),
+								maximum_value = math.max(dbg_unit.max_experience -1, dbg_unit.experience),
 								--maximum_value_label = _ "Level up",
 								step_size = 1,
 								id = "experience", --unit.experience
-								tooltip = _ "The amount of experience the unit has. If the value is over the unit's max experience, the unit will level."
+								tooltip = _ "The amount of experience the unit has. If somehow above max_experience, it will be set to max - 1."
 							}
 						}
 					},
@@ -1313,13 +1313,15 @@ local function unit_debug ( )
 			-- level_type_advances_to_xp must be after all other transforms, to handle the values as expected
 			unit_ops.attack ( dbg_unit, temp_table.attack )
 			unit_ops.abilities ( dbg_unit, temp_table.abilities )
+			dbg_unit.experience = 0 -- to avoid conflicts with some unit_ops, restored later to player specified value
 			unit_ops.gender ( dbg_unit, temp_table.gender )
 			unit_ops.traits ( dbg_unit, temp_table.traits )
 			unit_ops.objects ( dbg_unit, temp_table.objects )
 			unit_ops.variation ( dbg_unit, temp_table.variation )
-			unit_ops.level_type_advances_to_xp ( dbg_unit, temp_table.level, temp_table.type, temp_table.advances_to, temp_table.experience)
+			unit_ops.level_type_advances_to ( dbg_unit, temp_table.level, temp_table.type, temp_table.advances_to )
+			unit_ops.advancements ( dbg_unit, temp_table.advancements ) -- must be after level_type_advances_to
+			unit_ops.experience ( dbg_unit, temp_table.experience ) -- restore unit xp here
 			-- misc, these don't need to be anywhere in particular
-			unit_ops.advancements ( dbg_unit, temp_table.advancements )
 			dbg_unit.recall_cost = temp_table.recall_cost
 			dbg_unit.facing = temp_table.facing
 			dbg_unit.extra_recruit = stringx.split ( temp_table.extra_recruit )

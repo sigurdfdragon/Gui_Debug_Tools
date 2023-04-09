@@ -92,6 +92,13 @@ function unit_ops.copy ( unit, int )
 	end
 end
 
+function unit_ops.experience ( unit, experience )
+	-- other functions done before this may have changed max_experience,
+	-- so this takes that into account. ie, changing unit type or applying intelligent trait.
+	-- lower slider value if it would cause leveling, otherwise keep it. Set to 0 if it somehow would be negative.
+	unit.experience = math.max ( 0, math.min ( experience, unit.max_experience - 1 ) )
+end
+
 function unit_ops.gender ( unit, gender )
 		if gender ~= unit.__cfg.gender then -- if there are custom portraits, they are lost.
 			wml_actions.modify_unit { { "filter", { id = unit.id } }, profile = "", small_profile = "", gender = gender }
@@ -131,15 +138,13 @@ function unit_ops.id ( unit, str )
 	wml_actions.modify_unit { { "filter", { id = unit.id } }, id = str }
 end
 
-function unit_ops.level_type_advances_to_xp ( unit, level, unit_type, advances_to, experience )
+function unit_ops.level_type_advances_to ( unit, level, unit_type, advances_to )
 	if unit.type ~= unit_type then
-		-- disregard what is entered for level, advances_to, & experience
-		unit.experience = 0
+		-- disregard what is entered for level & advances_to
 		unit:transform ( unit_type )
 	else
 		unit.advances_to = stringx.split ( advances_to )
 		if unit.level ~= level then
-			-- disregarding experience here to avoid interfering with what player is intending
 			if unit.level < level then -- leveling up
 				local count = level - unit.level
 				for i = 1, count do
@@ -156,8 +161,6 @@ function unit_ops.level_type_advances_to_xp ( unit, level, unit_type, advances_t
 					end
 				end
 			end
-		else -- since unit type & level wasn't adjusted, make xp adjustment
-			unit.experience = experience ; unit:advance ( true, true )
 		end
 	end
 end
