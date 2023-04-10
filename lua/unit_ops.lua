@@ -35,15 +35,28 @@ function unit_ops.advancements ( unit, int )
 	local count = unit_ops.advancement_count ( unit )
 	if ( int ~= count ) and ( int == 0 ) then -- always allow clearing
 		unit:remove_modifications ( { }, "advancement" )
+		-- if we are clearing amlas from a unit at max level, give a heal for consistency, as that happens when increasing or decreasing as well.
+		if unit.advances_to[1] == nil then
+			wml_actions.heal_unit { { "filter", { id = unit.id } }}
+		end
 	elseif ( int ~= count ) and ( not unit.advances_to[1] ) then
 		if int > count then -- since increasing, apply the difference
 			for i = 1, int - count do
 				unit.experience = unit.max_experience ; unit:advance ( false, true )
 			end
-		elseif int < count then -- clear current & apply specified amount to decrease
+		elseif int < count then -- clear all current & reapply specified amount to decrease
+		-- make copy table of all adavancements on unit,
+		-- decrease to desired number by removing last in, first out from copy
+		-- purge all advancements from unit, then reapply the copy's remaining advancements.
+			local config = unit.__cfg
+			local modifications = wml.get_child ( config, "modifications" )
+			local advancement = wml.child_array ( modifications, "advancement" )
+			for i = 1, count - int do
+				table.remove ( advancement )
+			end
 			unit:remove_modifications ( { }, "advancement" )
-			for i = 1, int do
-				unit.experience = unit.max_experience ; unit:advance ( false, true )
+			for i = 1, #advancement do
+				unit:add_modification ( "advancement", advancement[i] )
 			end
 		end
 	end

@@ -766,7 +766,7 @@ local function unit_debug ( )
 							border_size = 5,
 							T.slider {
 								minimum_value = 0,
-								maximum_value = 100 + unit_ops.advancement_count ( dbg_unit ), -- uise oversize_factor ?
+								maximum_value = math.max(100, unit_ops.advancement_count (dbg_unit)), -- uise oversize_factor ?
 								step_size = 1,
 								id = "advancements",
 								tooltip = _ "The number of amlas the unit has. If the unit is at its highest level, this value may be adjusted, though setting to 0 will always clear."
