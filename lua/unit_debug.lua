@@ -94,7 +94,7 @@ local function unit_debug ( )
 									maximum_value = unit_ops.get_level_max ( dbg_unit ),
 									step_size = 1,
 									id = "level",
-									tooltip = _ "The unit will be advanced or declined to the specified level. This does not add amlas."
+									tooltip = _ "The unit will be advanced or declined to the specified level."
 								}
 							}
 						},
