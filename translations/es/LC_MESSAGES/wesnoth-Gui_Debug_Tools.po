@@ -1,0 +1,1165 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
+"POT-Creation-Date: 2023-05-14 01:01 UTC\n"
+"PO-Revision-Date: 2023-05-21 18:38+0200\n"
+"Last-Translator: Toranks <toranksmervat@gmail.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#. [modification]: id=Gui Debug Tools, type=hybrid
+#: Gui_Debug_Tools/_main.cfg:17
+msgid "Gui Debug Tools"
+msgstr "Gui Debug Tools"
+
+#. [modification]: id=Gui Debug Tools, type=hybrid
+#: Gui_Debug_Tools/_main.cfg:19
+msgid ""
+"Provides debug tools in Wesnoth through a graphical user interface. The "
+"tools are available in the right-click menu when debug mode is active. \n"
+"\n"
+"Based on code from the Wesnoth Lua Pack."
+msgstr ""
+"Proporciona herramientas de depuración en Wesnoth a través de una interfaz "
+"gráfica de usuario. Las herramientas están disponibles en el menú contextual "
+"cuando el modo de depuración está activo.\n"
+"\n"
+"Basado en código de Wesnoth Lua Pack."
+
+#. [modification]: id=Gui Debug Tools, type=hybrid
+#: Gui_Debug_Tools/_main.cfg:23
+msgid "Version:"
+msgstr "Versión:"
+
+#. [modification]: id=Gui Debug Tools, type=hybrid
+#: Gui_Debug_Tools/_main.cfg:24
+msgid "Author:"
+msgstr "Autor:"
+
+#: Gui_Debug_Tools/lua/commands.lua:6
+msgid "Gamestate Inspector"
+msgstr "Inspector de estado"
+
+#: Gui_Debug_Tools/lua/commands.lua:17
+msgid "Lua Console"
+msgstr "Consola de Lua"
+
+#. [lua]: unit_debug
+#. [lua]: postshow
+#: Gui_Debug_Tools/lua/commands.lua:28 Gui_Debug_Tools/lua/unit_debug.lua:1068
+#: Gui_Debug_Tools/lua/unit_debug.lua:1348
+msgid "Unit Debug"
+msgstr "Depuración unidad"
+
+#. [lua]: side_debug
+#. [lua]: postshow
+#: Gui_Debug_Tools/lua/commands.lua:40 Gui_Debug_Tools/lua/side_debug.lua:746
+#: Gui_Debug_Tools/lua/side_debug.lua:939
+msgid "Side Debug"
+msgstr "Depuración bando"
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:23 Gui_Debug_Tools/lua/unit_debug.lua:614
+msgid "OK"
+msgstr "Aceptar"
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:34 Gui_Debug_Tools/lua/unit_debug.lua:625
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:49 Gui_Debug_Tools/lua/unit_debug.lua:640
+msgid "Side"
+msgstr "Bando"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:58
+msgid "The number of the side."
+msgstr "Número del bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:68
+msgid "Starting Location"
+msgstr "Casilla de inicio"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:77
+msgid ""
+"The coordinates for the starting location of the side. 0,0 indicates no "
+"starting location."
+msgstr ""
+"Coordenadas de la casilla de inicio del bando. 0,0 indica que no hay casilla "
+"de inicio."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:87
+msgid "Current Player"
+msgstr "Jugador actual"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:96
+msgid "The name of the entity controlling the side."
+msgstr "Nombre de la entidad que controla el bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:106
+msgid "Is Local"
+msgstr "Es local"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:115
+msgid "Indicates if the current instance of Wesnoth owns the side."
+msgstr "Indica si la instancia actual de Wesnoth posee el bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:125
+msgid "Total Income"
+msgstr "Ingreso total"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:134
+msgid "The total of base + village income that the side receives each turn."
+msgstr "El total de ingresos base + aldea que el bando recibe en cada turno."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:144
+msgid "Scroll to Leader"
+msgstr "Desplazarse hasta el líder"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:153
+msgid "Makes the view scroll to the side's leader at start of side turn."
+msgstr ""
+"Hace que la vista se desplace al líder del bando al comienzo del turno del "
+"bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:163
+msgid "S.E.T.C."
+msgstr "S.C.F.T."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:172
+msgid ""
+"Prevents the side from being asked to confirm ending the turn, even if no "
+"action has been taken."
+msgstr ""
+"Evita que se pida al bando que confirme la finalización del turno, incluso "
+"si no se ha realizado ninguna acción."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:182
+msgid "Fog"
+msgstr "Niebla"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:191
+msgid "Activates fog for the side."
+msgstr "Activa niebla para el bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:201
+msgid "Shroud"
+msgstr "Oscuridad"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:210
+msgid "Activates shroud for the side."
+msgstr "Activa oscuridad para el bando."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:220
+#: Gui_Debug_Tools/lua/unit_debug.lua:568
+msgid "Hidden"
+msgstr "Oculto"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:229
+msgid "Prevents the side's details from being shown in the status table."
+msgstr "Evita que los detalles del bando se muestren en la tabla de estado."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:239
+msgid "Seed Recall"
+msgstr "Reincorporación"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:249
+msgid "Clear"
+msgstr "Limpiar"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:252
+msgid ""
+"The recall list will be stocked with sets of recruits and their "
+"advancements, or the recall list can be cleared."
+msgstr ""
+"La lista de reincorporación se rellenará con conjuntos de reclutas y sus "
+"avances, o se puede borrar la lista de reincorporación."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:262
+#: Gui_Debug_Tools/lua/unit_debug.lua:264
+msgid "Heal"
+msgstr "Sanar"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:271
+msgid "All the side's units on the map will be healed."
+msgstr "Todas las unidades del bando en el mapa serán sanadas."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:281
+#: Gui_Debug_Tools/lua/unit_debug.lua:283
+msgid "Super Heal"
+msgstr "Súper sanación"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:290
+msgid "All the side's units on the map will be super healed."
+msgstr "Todas las unidades del bando en el mapa serán súper sanadas."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:300
+msgid "Teleport"
+msgstr "Teletransportar"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:310
+msgid ""
+"All on map units of the side will be placed at the coordinates specified. "
+"Single space places all non-leaders on the recall list."
+msgstr ""
+"Todas las unidades en el mapa del bando se colocarán en las coordenadas "
+"especificadas. Si es un solo espacio se coloca a todos los que no son "
+"líderes en la lista de recuperación."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:320
+#: Gui_Debug_Tools/lua/unit_debug.lua:167
+msgid "Goto"
+msgstr "Ir a"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:330
+msgid ""
+"All units of the side will move toward the coordinates specified. 0,0 and "
+"-999,-999 indicate no destination."
+msgstr ""
+"Todas las unidades del bando se moverán hacia las coordenadas especificadas. "
+"0,0 y -999,-999 indican que no hay destino."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:340
+msgid "Kill"
+msgstr "Matar"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:349
+msgid "All the side's units will be killed."
+msgstr "Todas las unidades del bando morirán."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:364
+msgid "When the side is considered defeated."
+msgstr "Cuando el bando se considera derrotado."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:375
+msgid "no_leader_left"
+msgstr "Sin líder"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:383
+msgid "no_units_left"
+msgstr "Sin unidades"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:391
+msgid "never"
+msgstr "Nunca"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:399
+msgid "always"
+msgstr "Siempre"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:414
+msgid "The type of entity that enters moves for the side."
+msgstr "El tipo de entidad que realiza los movimientos del bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:425
+msgid "human"
+msgstr "Humano"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:433
+msgid "ai"
+msgstr "IA"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:441
+msgid "null"
+msgstr "Nulo"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:455
+msgid "Gold"
+msgstr "Oro"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:464
+msgid "The amount of gold the side has."
+msgstr "Cantidad de oro que tiene el bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:474
+msgid "Village Gold"
+msgstr "Oro por aldea"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:486
+msgid "Each village controlled by the side will yield this amount of income."
+msgstr "Cada aldea controlada por el bando produce esta cantidad de ingresos."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:496
+msgid "Village Support"
+msgstr "Mantenimiento por aldea"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:508
+msgid ""
+"Each village controlled by the side will support this number of unit levels."
+msgstr ""
+"Cada aldea controlada por el bando mantendrá este número de niveles de "
+"unidades."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:518
+msgid "Base Income"
+msgstr "Ingresos base"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:531
+msgid "The amount of income the side receives per turn."
+msgstr "Cantidad de ingresos que el bando recibe por turno."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:541
+#: Gui_Debug_Tools/lua/unit_debug.lua:783
+msgid "Recall Cost"
+msgstr "Reincorporación"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:554
+msgid "The amount of gold needed to recall units of this side."
+msgstr "Cantidad de oro necesaria para reincorporar unidades de este bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:564
+msgid "Color"
+msgstr "Color"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:574
+msgid "The color that is applied to the side's flag and units."
+msgstr "Color que se aplica a la bandera y unidades del bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:584
+msgid "Flag"
+msgstr "Bandera"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:594
+msgid "The flag that flies over villages that the side controls."
+msgstr "La bandera que ondea sobre los pueblos que controla el bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:604
+msgid "Flag Icon"
+msgstr "Icono de bandera"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:614
+msgid "The flag icon that is displayed next to the turn counter for the side."
+msgstr ""
+"El icono de la bandera que se muestra junto al contador de turnos del bando."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:624
+msgid "User Team Name"
+msgstr "Nombre del equipo"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:634
+msgid "The player visible team name for the side in the status table."
+msgstr ""
+"Nombre visible del equipo del jugador para el bando en la tabla de estado."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:644
+msgid "Team Name"
+msgstr "ID de equipo"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:654
+msgid "The player team name for the side used internally by the game."
+msgstr ""
+"Nombre del equipo del jugador para el bando utilizado internamente por el "
+"juego."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:664
+msgid "Recruit"
+msgstr "Reclutar"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:674
+msgid "The unit types that any leader of the side can recruit."
+msgstr "Tipos de unidad que cualquier líder del bando puede reclutar."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:684
+msgid "Recall Units"
+msgstr "Reincorporar unidades"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:694
+msgid "The units with the specified IDs will be recalled."
+msgstr "Las unidades con la ID especificada serán reincorporadas."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:704
+msgid "Controller"
+msgstr "Controlador"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:720
+msgid "Defeat Condition"
+msgstr "Condición de derrota"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:747
+msgid "Allows changes to various aspects of a side."
+msgstr "Permitir cambios en varios aspectos del bando."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:758
+#: Gui_Debug_Tools/lua/unit_debug.lua:1080
+msgid "Set the desired parameters, then press OK to confirm or Cancel to exit"
+msgstr ""
+"Establece los parámetros deseados y pulsa Aceptar para confirmar, o Cancelar "
+"para salir sin aplicar los cambios"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:777
+msgid "The flag of the side."
+msgstr "Bandera del bando."
+
+#. [lua]: postshow
+#: Gui_Debug_Tools/lua/side_debug.lua:936
+msgid "side debug was used during turn of "
+msgstr "Se utilizó depuración de bando durante el turno de "
+
+#. [lua]: postshow
+#: Gui_Debug_Tools/lua/side_debug.lua:939
+#: Gui_Debug_Tools/lua/unit_debug.lua:1348
+msgid "Error, return value :"
+msgstr "Error, valor de retorno :"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:26
+msgid "Name"
+msgstr "Nombre"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:36
+msgid "The player visible name of the unit."
+msgstr "Nombre visible al jugador de la unidad."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:46
+msgid "ID"
+msgstr "ID"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:56
+msgid ""
+"The internal WML designation for the unit. Each unit ID needs to be unique."
+msgstr ""
+"La designación WML interna para la unidad. Cada ID de unidad debe ser única."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:66
+msgid "Underlying ID"
+msgstr "ID subyacente"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:75
+msgid "The internal C++ designation for the unit."
+msgstr "La designación interna en C++ para la unidad."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:85
+msgid "Level"
+msgstr "Nivel"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:97
+msgid "The unit will be advanced or declined to the specified level."
+msgstr "La unidad avanzará o retrocederá hasta el nivel especificado."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:107
+msgid "Type"
+msgstr "Tipo"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:117
+msgid "What kind of unit this is."
+msgstr "El tipo de unidad que es."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:127
+msgid "Variation"
+msgstr "Variación"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:137
+msgid "The variation of the unit type that this unit is."
+msgstr "Variación del tipo de unidad que es."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:147
+msgid "Location"
+msgstr "Ubicación"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:157
+msgid ""
+"The coordinates on the map where the unit is located. Empty string places "
+"the unit on the recall list."
+msgstr ""
+"Las coordenadas del mapa donde se encuentra la unidad. Un valor vacío "
+"colocará la unidad en la lista de reincorporación."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:177
+msgid ""
+"The unit will move toward the coordinates specified. 0,0 and -999,-999 "
+"indicate no destination."
+msgstr ""
+"La unidad se moverá hacia las coordenadas especificadas. 0,0 y -999,-999 "
+"indican que no hay destino."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:187
+msgid "Upkeep"
+msgstr "Mantenimiento"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:197
+msgid "The unit will have the upkeep specified."
+msgstr "La unidad tendrá el mantenimiento especificado."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:207
+msgid "Can Recruit"
+msgstr "Puede reclutar"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:216
+msgid "Makes the unit a leader and able to recruit."
+msgstr "Hacer esta unidad líder y permitirle reclutar."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:226
+msgid "Unrenamable"
+msgstr "No renombrable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:235
+msgid "Prevents changing the unit's name in the right click menu."
+msgstr "Previene cambiar el nombre de la unidad con el menú en clic derecho."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:245
+msgid "Generate Name"
+msgstr "Generar nombre"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:254
+msgid ""
+"If the unit type has random names available, a new name will be generated."
+msgstr ""
+"Si el tipo de unidad tiene nombres aleatorios disponibles, se generará un "
+"nuevo nombre."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:273
+msgid ""
+"The unit will be healed with moves restored, regardless of other settings in "
+"this dialog."
+msgstr ""
+"La unidad se curará con sus movimientos restaurados, independientemente de "
+"otras configuraciones en este cuadro de diálogo."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:292
+msgid ""
+"The unit will be super healed with extra hitpoints, moves, and attacks left."
+msgstr ""
+"La unidad será súper curada y tendrá puntos de vida, movimientos y ataques "
+"extra."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:302
+msgid "Copy"
+msgstr "Copiar"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:314
+msgid ""
+"Copies of the unit will be created. Will be identical except for id and name."
+msgstr ""
+"Se crearán copias de la unidad. Serán idénticas a excepción de la ID y el "
+"nombre."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:327
+msgid "Poisoned"
+msgstr "Envenenado"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:329
+msgid "The unit loses HP each turn."
+msgstr "La unidad perderá PV cada turno."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:337
+msgid "Slowed"
+msgstr "Ralentizado"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:339
+msgid "The unit has 50% of its normal movement and does half damage."
+msgstr ""
+"La unidad tendrá el 50% de su movimiento normal y hará la mitad de daño."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:347
+msgid "Petrified"
+msgstr "Petrificado"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:349
+msgid "The unit cannot move, attack, or be attacked."
+msgstr "La unidad no podrá moverse, atacar, o ser atacada."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:357
+msgid "Invulnerable"
+msgstr "Invulnerable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:359
+msgid "Attacks can't hit the unit."
+msgstr "Los ataques no podrán acertar a la unidad."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:369
+msgid "Uncovered"
+msgstr "Descubierto"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:371
+msgid ""
+"The unit has performed an action (e.g. attacking) that causes it to no "
+"longer be hidden until the next turn."
+msgstr ""
+"La unidad ha realizado una acción (por ejemplo, atacar) que hace que ya no "
+"esté oculta hasta el próximo turno."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:379
+msgid "Guardian"
+msgstr "Guardián"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:381
+msgid "The unit will not move, except to attack something in immediate range."
+msgstr ""
+"La unidad no se moverá, excepto para atacar algo en el rango inmediato."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:389
+msgid "Unhealable"
+msgstr "No sanable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:391
+msgid "The unit cannot be healed."
+msgstr "La unidad no podrá ser sanada."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:399
+msgid "Stunned"
+msgstr "Aturdido"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:401
+msgid ""
+"The unit has lost its zone of control until next turn. This status is only "
+"available in some campaigns and add-ons."
+msgstr ""
+"La unidad ha perdido su zona de control hasta el próximo turno. Este estado "
+"solo está disponible en algunas campañas y complementos."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:411
+msgid "Not Living"
+msgstr "No muerto"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:413
+msgid ""
+"If checked, the unit will gain undrainable, unplagueable, and unpoisonable. "
+"If those three are checked, the unit will gain not_living"
+msgstr ""
+"Si se marca, la unidad ganará no drenable, no plagable y no envenenable. Si "
+"estos tres están marcados, la unidad obtendrá no muerto."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:421
+msgid "Undrainable"
+msgstr "No drenable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:423
+msgid ""
+"The unit will not give life to another unit if the drain special is used "
+"against it."
+msgstr ""
+"La unidad no dará vida a otra unidad si el drenaje especial se usa en su "
+"contra."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:431
+msgid "Unplagueable"
+msgstr "No plagable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:433
+msgid "The unit is immune to the plague special."
+msgstr "La unidad será inmune al especial de plaga."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:441
+msgid "Unpoisonable"
+msgstr "No envenenable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:443
+msgid "The unit cannot be poisoned."
+msgstr "La unidad no podrá ser envenenada."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:453
+msgid "Unslowable"
+msgstr "No ralentizable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:455
+msgid "The unit cannot be slowed."
+msgstr "La unidad no podrá ser ralentizada."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:463
+msgid "Unpetrifiable"
+msgstr "No petrificable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:465
+msgid "The unit cannot be petrified."
+msgstr "La unidad no podrá ser petrificada."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:493
+msgid "Which way the unit is looking."
+msgstr "En qué dirección mira la unidad."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:504
+msgid "nw"
+msgstr "no"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:512
+msgid "ne"
+msgstr "ne"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:520
+msgid "n"
+msgstr "n"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:528
+msgid "sw"
+msgstr "so"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:536
+msgid "se"
+msgstr "se"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:544
+msgid "s"
+msgstr "s"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:558
+msgid "Resting"
+msgstr "Descansando"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:560
+msgid ""
+"If the unit is resting, it will receive rest healing at the start of its "
+"next turn."
+msgstr ""
+"Si la unidad está descansando, recibirá sanación por descanso al comienzo de "
+"su siguiente turno."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:570
+msgid ""
+"If the unit has been hidden using [hide_unit]. This is not the same as a "
+"[hides] ability."
+msgstr ""
+"Si la unidad se ha ocultado usando [hide_unit]. Esto no es lo mismo que una "
+"habilidad [hides]."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:584
+msgid ""
+"The gender of the unit. Note that changing gender will cause any custom "
+"profile portraits to be lost."
+msgstr ""
+"El género de la unidad. Ten en cuenta que cambiar el género hará que se "
+"pierdan los retratos de perfil personalizados."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:595
+msgid "Male"
+msgstr "Masculino"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:603
+msgid "Female"
+msgstr "Femenino"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:652
+msgid "The side the unit belongs to."
+msgstr "Bando al que pertenece la unidad."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:663
+msgid "Hitpoints"
+msgstr "Puntos de vida"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:677
+msgid "The amount of hitpoints the unit has."
+msgstr "Cantidad de puntos de vida que tiene la unidad."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:688
+msgid "Experience"
+msgstr "Experiencia"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:701
+msgid ""
+"The amount of experience the unit has. If somehow above max_experience, it "
+"will be set to max - 1."
+msgstr ""
+"La cantidad de experiencia que tiene la unidad. Si se supera el máximo de "
+"experiencia, se establecerá en máximo - 1."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:712
+msgid "Moves"
+msgstr "Movimientos"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:725
+msgid "The amount of move points the unit has."
+msgstr "Cantidad de puntos de movimiento que tiene la unidad."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:736
+msgid "Attacks Left"
+msgstr "Ataques restantes"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:749
+msgid "The number of attacks the unit can make on the current turn."
+msgstr "Número de ataques que la unidad puede realizar en el turno actual."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:760
+msgid "Advancements"
+msgstr "Promociones"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:772
+msgid ""
+"The number of amlas the unit has. If the unit is at its highest level, this "
+"value may be adjusted, though setting to 0 will always clear."
+msgstr ""
+"El número de AMLAS que tiene la unidad. Si la unidad está en su nivel más "
+"alto, este valor se puede ajustar, aunque ajustar a 0 siempre se borrará."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:795
+msgid ""
+"The amount of gold needed to recall this unit. -1 indicates the side default "
+"amount."
+msgstr ""
+"La cantidad de oro necesaria para reincorporar esta unidad. -1 indica la "
+"cantidad predeterminada del bando."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:806
+msgid "Extra Recruit"
+msgstr "Reclutamientos"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:816
+msgid ""
+"Unit types the unit can recruit in addition to the ones its side can "
+"recruit, if the unit is a leader."
+msgstr ""
+"Tipos de unidad que la unidad puede reclutar además de los que su bando "
+"puede reclutar, si la unidad es líder."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:827
+msgid "Advances To"
+msgstr "Promociona a"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:837
+msgid "The unit types that the unit can advance to upon leveling."
+msgstr ""
+"Los tipos de unidad a los que la unidad puede avanzar al subir de nivel."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:848
+msgid "Role"
+msgstr "Rol"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:858
+msgid "An additional field that can be used to identify a unit."
+msgstr "Un campo adicional que se puede utilizar para identificar una unidad."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:869
+msgid "Attack"
+msgstr "Atacar"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:879
+msgid ""
+"The unit will receive the attack indicated. Use form 'Unit Type,Attack "
+"Index'. Single space clears added attacks."
+msgstr ""
+"La unidad recibirá el ataque indicado. Utiliza la forma 'Tipo de unidad, "
+"Índice de ataque'. Un solo espacio borra los ataques añadidos."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:890
+msgid "Abilities"
+msgstr "Habilidades"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:900
+msgid ""
+"The unit will receive the abilities of the unit types entered. Single space "
+"clears added abilities."
+msgstr ""
+"La unidad recibirá todas las habilidades del tipo de unidad especificado. Un "
+"solo espacio borra las habilidades añadidas."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:911
+msgid "Objects"
+msgstr "Objetos"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:921
+msgid ""
+"Copy: 'Unit Id,Index' - Remove all copies of an object: 'remove,Index' Omit "
+"index to copy or remove all objects."
+msgstr ""
+"Copiar: 'ID de unidad, Índice' - Elimina todas las copias de un objeto: "
+"'remove,Índice'. Omitir índice para copiar o eliminar todos los objetos."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:932
+msgid "Traits"
+msgstr "Rasgos"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:942
+msgid ""
+"The unit will be altered by the traits listed. Valid traits are all in "
+"mainline, all race traits, any trait currently existing, and any the unit "
+"could receive or currently has."
+msgstr ""
+"La unidad tendrá los rasgos listados. Los rasgos válidos son todos los de la "
+"línea principal, los rasgos de raza, cualquier rasgo existente y cualquiera "
+"que la unidad pueda recibir o ya tenga."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:953
+msgid "Overlays"
+msgstr "Superposiciones"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:963
+msgid "The unit's image will be altered by overlays listed here."
+msgstr "La imagen de la unidad se verá con las superposiciones listadas aquí."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:974
+msgid "Variables"
+msgstr "Variables"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:984
+msgid ""
+"Unit variables and sub-containers can be set/changed using the form "
+"'var=value'"
+msgstr ""
+"Las variables de unidad y sus subcontenedores se pueden configurar/cambiar "
+"usando la forma 'var=valor'"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:995
+msgid "Gender"
+msgstr "Género"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1012
+msgid "Status"
+msgstr "Estado"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1027
+msgid "Facing"
+msgstr "Orientación"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1044
+msgid "Misc"
+msgstr "Misc"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1069
+msgid "Allows changes to various aspects of a unit."
+msgstr "Permitir cambios a varias características de una unidad."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1100
+msgid "The image of the unit."
+msgstr "La imagen de la unidad."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1113
+msgid "Profile"
+msgstr "Perfil"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1114
+msgid "Displays the help entry for the unit."
+msgstr "Mostrar la entrada de ayuda de la unidad"
+
+#. [lua]: postshow
+#: Gui_Debug_Tools/lua/unit_debug.lua:1345
+msgid "unit debug was used during turn of "
+msgstr "se usó depuración de unidad durante el turno de "
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:336
+msgid "expert"
+msgstr "experto"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:336
+msgid "female^expert"
+msgstr "experta"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:341
+msgid "heroic"
+msgstr "heroico"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:341
+msgid "female^heroic"
+msgstr "heroica"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:347
+msgid "powerful"
+msgstr "poderoso"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:347
+msgid "female^powerful"
+msgstr "poderosa"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:350
+msgid "ethereal"
+msgstr "etéreo"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:350
+msgid "female^ethereal"
+msgstr "etérea"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:350
+msgid "1 mp & 50% defense on all terrain"
+msgstr "1 pm y 50% defensa en todos los terrenos"
+
+#. [unit_type]: id=GDT Dummy, race=monster
+#: Gui_Debug_Tools/units/Dummy.cfg:11
+msgid "dummy_unit^GDT Dummy"
+msgstr "Maniquí"
