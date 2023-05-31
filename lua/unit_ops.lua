@@ -137,7 +137,16 @@ function unit_ops.get_level_max ( unit )
 	while types[i] do
 		local advances_to = wesnoth.unit_types[types[i]].advances_to
 		for a = 1, #advances_to do
-			table.insert ( types, advances_to[a] )
+			-- check that current type is not already on the list to avoid recursion
+			local present = false
+			for t = 1, #types do
+				if advances_to[a] == types[t] then
+					present = true
+				end
+			end
+			if not present then
+				table.insert ( types, advances_to[a] )
+			end
 		end
 		i = i + 1
 	end
@@ -158,9 +167,16 @@ function unit_ops.get_level_min ( unit )
 	while types[i] do
     local advances_from = wesnoth.unit_types[types[i]].advances_from
 		for a = 1, #advances_from do
-			-- if advances_from[a] ~= nil then
+			-- check that current type is not already on the list to avoid recursion
+			local present = false
+			for t = 1, #types do
+				if advances_from[a] == types[t] then
+					present = true
+				end
+			end
+			if not present then
 				table.insert ( types, advances_from[a] )
-			-- end
+			end
 		end
 		i = i + 1
 	end
