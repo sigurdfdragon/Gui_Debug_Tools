@@ -15,7 +15,7 @@ local function unit_debug ( )
 	if dbg_unit and dbg_unit.valid then -- to avoid indexing a nil value
 		local oversize_factor = 10 -- make it possible to increase over unit.max_attacks; no idea what would be a sensible value
 		--creating dialog here
-		-- right side entries
+		-- left side entries
 		local read_only_panel = T.grid {
 						T.row {
 							T.column {
