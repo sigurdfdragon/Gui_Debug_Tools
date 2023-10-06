@@ -482,7 +482,6 @@ local function unit_debug ( )
 						}
 					}
 
-
 		local facing_radiobutton = T.horizontal_listbox {
 						id = "facing",
 						T.list_definition {
@@ -547,6 +546,62 @@ local function unit_debug ( )
 						}
 					}
 
+		local alignment_radiobutton = T.horizontal_listbox {
+						id = "alignment",
+						T.list_definition {
+							T.row {
+								T.column {
+									T.toggle_button {
+										id = "alignment_radiobutton",
+										-- tooltip = _ "Default indcates the alignment the unit type has. Select any other option to set alignment so it will persist, even through unit type changes."
+										tooltip = _ "'Default' indicates alignment set by unit type or outside of GDT. Any other box will set the alignment specified."
+									}
+								}
+							}
+						},
+						T.list_data {
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "default" .. "     " -- added strings are a hack so the buttons aren't too close together 5 spaces each
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "lawful" .. "     "
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "chaotic"  .. "     "
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "neutral" .. "     "
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "liminal" .. "     "
+								}
+							}
+						}
+					}
 
 		local misc_checkbuttons = T.grid {
 						T.row {
@@ -1017,6 +1072,23 @@ local function unit_debug ( )
 							status_checkbuttons
 						}
 					},
+					-- alignment
+					T.row {
+						T.column {
+							horizontal_alignment = "right",
+							border = "all",
+							border_size = 5,
+							T.label {
+								label = _ "Alignment"
+							}
+						},
+						T.column {
+							horizontal_alignment = "left",
+							border = "all",
+							border_size = 5,
+							alignment_radiobutton
+						}
+					},
 					-- facing
 					T.row {
 						T.column {
@@ -1194,6 +1266,16 @@ local function unit_debug ( )
 			dialog.unpoisonable.selected = dbg_unit.status.unpoisonable
 			dialog.unslowable.selected = dbg_unit.status.unslowable
 			dialog.unpetrifiable.selected = dbg_unit.status.unpetrifiable
+			-- set radiobutton for alignment
+			local temp_alignment
+			local alignment_check = unit_ops.alignment_check ( dbg_unit )
+			if alignment_check == "default" then temp_alignment = 1
+			elseif alignment_check == "lawful" then temp_alignment = 2
+			elseif alignment_check == "chaotic" then temp_alignment = 3
+			elseif alignment_check == "neutral" then temp_alignment = 4
+			elseif alignment_check == "liminal" then temp_alignment = 5
+			end
+			dialog.alignment.selected_index = temp_alignment
 			-- set radiobutton for facing
 			local temp_facing
 			if dbg_unit.facing == "nw" then temp_facing = 1
@@ -1267,6 +1349,9 @@ local function unit_debug ( )
 				temp_table.unpoisonable = dialog.unpoisonable.selected
 				temp_table.unslowable = dialog.unslowable.selected
 				temp_table.unpetrifiable = dialog.unpetrifiable.selected
+				-- alignment radiobuttons
+				local alignment = { "default", "lawful", "chaotic", "neutral", "liminal" }
+				temp_table.alignment = alignment[ dialog.alignment.selected_index ] -- returns a number, that was 2 for the second radiobutton and 5 for the fifth, hence the table above
 				-- put facing here
 				local facings = { "nw", "ne", "n", "sw", "se", "s" }
 				temp_table.facing = facings[ dialog.facing.selected_index ] -- returns a number, that was 2 for the second radiobutton and 5 for the fifth, hence the table above
@@ -1323,6 +1408,7 @@ local function unit_debug ( )
 			unit_ops.experience ( dbg_unit, temp_table.experience ) -- restore unit xp here
 			-- misc, these don't need to be anywhere in particular
 			dbg_unit.recall_cost = temp_table.recall_cost
+			unit_ops.alignment ( dbg_unit, temp_table.alignment )
 			dbg_unit.facing = temp_table.facing
 			dbg_unit.extra_recruit = stringx.split ( temp_table.extra_recruit )
 			dbg_unit.role = temp_table.role

@@ -62,6 +62,38 @@ function unit_ops.advancements ( unit, int )
 	end
 end
 
+function unit_ops.alignment_check ( unit )
+	-- determine if the unit has a GDT alignment object.
+	-- If not, report 'default' - unit has alignment of unit type, or a non-gdt change.
+	-- If so, report what alignment the object is setting.
+	-- might not be sufficent handling if a non-gdt alignment object is added after a gdt object.
+	local umods = wml.get_child ( unit.__cfg, "modifications" )
+	local gdt_alignment_present = wml.find_child ( umods, "object", { item_id = "gdt_alignment" } )
+	local str = ""
+	if gdt_alignment_present ~= nil then
+		str = unit.alignment
+	else
+		str = "default"
+	end
+	return str
+end
+
+function unit_ops.alignment ( unit, str )
+-- create, replace or remove alignment object as specified by user choice.
+		if str == "default" then
+			-- alignment is set by unit type or non-gdt object
+			-- remove any existing gdt alignment objects
+			unit:remove_modifications ( { item_id = "gdt_alignment" }, "object" )
+		elseif unit.alignment == str and unit_ops.alignment_check ( unit ) == str then
+			-- do nothing, unit alignment is the same as what's currently being applied by a gdt_alignment object
+		else
+			-- a change was made, and not to default, so remove any existing gdt alignement objects & then apply one.
+			unit:remove_modifications ( { item_id = "gdt_alignment" }, "object" )
+			local object = { item_id = "gdt_alignment", { "effect", { apply_to = "alignment", set = str } } }
+			unit:add_modification ( "object", object )
+		end
+end
+
 function unit_ops.attack ( unit, str )
 	-- adds or removes new attacks via objects, does not affect attacks that come with the unit type
 	if str ~= "" then
