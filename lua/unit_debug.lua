@@ -529,6 +529,26 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Role"
+								}
+							},
+							T.column {
+								horizontal_grow = true,
+								border = "all",
+								border_size = 5,
+								T.text_box {
+									id = "role", --unit.role
+									history = "other_roles",
+									tooltip = _ "An additional field that can be used to identify a unit."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Location"
 								}
 							},
@@ -908,27 +928,6 @@ local function unit_debug ( )
 								id = "advances_to", --unit.advances_to
 								history = "other_advancements",
 								tooltip = _ "The unit types that the unit can advance to upon leveling."
-							}
-						}
-					},
-					-- role
-					T.row {
-						T.column {
-							horizontal_alignment = "right",
-							border = "all",
-							border_size = 5,
-							T.label {
-								label = _ "Role"
-							}
-						},
-						T.column {
-							horizontal_grow = true,
-							border = "all",
-							border_size = 5,
-							T.text_box {
-								id = "role", --unit.role
-								history = "other_roles",
-								tooltip = _ "An additional field that can be used to identify a unit."
 							}
 						}
 					},
