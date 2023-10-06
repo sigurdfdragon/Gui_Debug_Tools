@@ -15,6 +15,375 @@ local function unit_debug ( )
 	if dbg_unit and dbg_unit.valid then -- to avoid indexing a nil value
 		local oversize_factor = 10 -- make it possible to increase over unit.max_attacks; no idea what would be a sensible value
 		--creating dialog here
+
+		-- checkbuttons, radiobuttons, & button boxes defined here so they can be moved as needed between panels
+		local status_checkbuttons = T.grid {
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Poisoned",
+									id = "poisoned",
+									tooltip = _ "The unit loses HP each turn."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Slowed",
+									id = "slowed",
+									tooltip = _ "The unit has 50% of its normal movement and does half damage."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Petrified",
+									id = "petrified",
+									tooltip = _ "The unit cannot move, attack, or be attacked."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Invulnerable",
+									id = "invulnerable",
+									tooltip = _ "Attacks can't hit the unit."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Uncovered",
+									id = "uncovered",
+									tooltip = _ "The unit has performed an action (e.g. attacking) that causes it to no longer be hidden until the next turn."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Guardian",
+									id = "guardian",
+									tooltip = _ "The unit will not move, except to attack something in immediate range."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Unhealable",
+									id = "unhealable",
+									tooltip = _ "The unit cannot be healed."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Stunned",
+									id = "stunned",
+									tooltip = _ "The unit has lost its zone of control until next turn. This status is only available in some campaigns and add-ons."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Not Living",
+									id = "not_living",
+									tooltip = _ "If checked, the unit will gain undrainable, unplagueable, and unpoisonable. If those three are checked, the unit will gain not_living"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Undrainable",
+									id = "undrainable",
+									tooltip = _ "The unit will not give life to another unit if the drain special is used against it."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Unplagueable",
+									id = "unplagueable",
+									tooltip = _ "The unit is immune to the plague special."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Unpoisonable",
+									id = "unpoisonable",
+									tooltip = _ "The unit cannot be poisoned."
+								}
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Unslowable",
+									id = "unslowable",
+									tooltip = _ "The unit cannot be slowed."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Unpetrifiable",
+									id = "unpetrifiable",
+									tooltip = _ "The unit cannot be petrified."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.spacer {
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.spacer {
+								}
+							}
+						}
+					}
+
+		local facing_radiobutton = T.horizontal_listbox {
+						id = "facing",
+						T.list_definition {
+							T.row {
+								T.column {
+									T.toggle_button {
+										id = "facing_radiobutton",
+										tooltip = _ "Which way the unit is looking."
+									}
+								}
+							}
+						},
+						T.list_data {
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "nw" .. "     " -- added strings are a hack so the buttons aren't too close together 5 spaces each
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "ne" .. "     "
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "n"  .. "     "
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "sw" .. "     "
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "se" .. "     "
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "s" .. "     "
+								}
+							}
+						}
+					}
+
+		local alignment_radiobutton = T.horizontal_listbox {
+						id = "alignment",
+						T.list_definition {
+							T.row {
+								T.column {
+									T.toggle_button {
+										id = "alignment_radiobutton",
+										-- tooltip = _ "Default indcates the alignment the unit type has. Select any other option to set alignment so it will persist, even through unit type changes."
+										tooltip = _ "'Default' indicates alignment set by unit type or outside of GDT. Any other box will set the alignment specified."
+									}
+								}
+							}
+						},
+						T.list_data {
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "default" .. "     " -- added strings are a hack so the buttons aren't too close together 5 spaces each
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "lawful" .. "     "
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "chaotic"  .. "     "
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "neutral" .. "     "
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "liminal" .. "     "
+								}
+							}
+						}
+					}
+
+		local misc_checkbuttons = T.grid {
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Resting",
+									id = "resting", --unit.resting
+									tooltip = _ "If the unit is resting, it will receive rest healing at the start of its next turn."
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.toggle_button {
+									label = _ "Hidden",
+									id = "hidden", --unit.hidden
+									tooltip = _ "If the unit has been hidden using [hide_unit]. This is not the same as a [hides] ability."
+								}
+							}
+						}
+					}
+
+
+		local gender_radiobutton = T.horizontal_listbox {
+						id = "gender",
+						T.list_definition {
+							T.row {
+								T.column {
+									T.toggle_button {
+										id = "gender_radiobutton",
+										tooltip = _ "The gender of the unit. Note that changing gender will cause any custom profile portraits to be lost."
+									}
+								}
+							}
+						},
+						T.list_data {
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "Male" .. "     " -- added strings are a hack so the buttons aren't too close together 5 spaces each
+								}
+							},
+							T.row {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.column {
+									label = _ "Female" .. "     "
+								}
+							}
+						}
+					}
+
+		-- buttonbox
+		local buttonbox = T.grid {
+					T.row {
+						T.column {
+							T.button {
+								label = _ "OK",
+								return_value = 1
+							}
+						},
+						T.column {
+							T.spacer {
+								width = 10
+							}
+						},
+						T.column {
+							T.button {
+								label = _ "Cancel",
+								return_value = 2
+							}
+						}
+					}
+				}
+
 		-- left side entries
 		local read_only_panel = T.grid {
 						T.row {
