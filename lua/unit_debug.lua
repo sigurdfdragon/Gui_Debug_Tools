@@ -513,6 +513,22 @@ local function unit_debug ( )
 								border = "all",
 								border_size = 5,
 								T.label {
+									label = _ "Gender"
+								}
+							},
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								gender_radiobutton
+							}
+						},
+						T.row {
+							T.column {
+								horizontal_alignment = "left",
+								border = "all",
+								border_size = 5,
+								T.label {
 									label = _ "Location"
 								}
 							},
@@ -1040,23 +1056,6 @@ local function unit_debug ( )
 								history = "other_variables",
 								tooltip = _ "Unit variables and sub-containers can be set/changed using the form 'var=value'"
 							}
-						}
-					},
-					-- gender
-					T.row {
-						T.column {
-							horizontal_alignment = "right",
-							border = "all",
-							border_size = 5,
-							T.label {
-								label = _ "Gender"
-							}
-						},
-						T.column {
-							horizontal_alignment = "left",
-							border = "all",
-							border_size = 5,
-							gender_radiobutton
 						}
 					},
 					-- statuses
