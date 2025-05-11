@@ -1,0 +1,1195 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
+"POT-Creation-Date: 2025-05-08 13:03 UTC\n"
+"PO-Revision-Date: 2025-05-09 02:52+0300\n"
+"Last-Translator: Oleksii Okhrimenko(lexa04) <e-mail: ohrimale@gmail.com "
+"discord: amakri>\n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#. [modification]: id=Gui Debug Tools, type=hybrid
+#: Gui_Debug_Tools/_main.cfg:17
+msgid "Gui Debug Tools"
+msgstr "Графічна відладка"
+
+#. [modification]: id=Gui Debug Tools, type=hybrid
+#: Gui_Debug_Tools/_main.cfg:19
+msgid ""
+"Provides debug tools in Wesnoth through a graphical user interface. The "
+"tools are available in the right-click menu when debug mode is active. \n"
+"\n"
+"Based on code from the Wesnoth Lua Pack."
+msgstr ""
+"Додає розширені інструменти відладки Wesnoth, використовуючи графічний "
+"інтерфейс користувача. Інструменти доступні через меню правою кнопкою миші, "
+"якщо цю модифікацію було активовано. \n"
+"\n"
+"Засновано на коді з Wesnoth Lua Pack."
+
+#. [modification]: id=Gui Debug Tools, type=hybrid
+#: Gui_Debug_Tools/_main.cfg:23
+msgid "Version:"
+msgstr "Версія:"
+
+#. [modification]: id=Gui Debug Tools, type=hybrid
+#: Gui_Debug_Tools/_main.cfg:24
+msgid "Author:"
+msgstr "Автор:"
+
+#: Gui_Debug_Tools/lua/commands.lua:6
+msgid "Gamestate Inspector"
+msgstr "Інспектор стану гри"
+
+#: Gui_Debug_Tools/lua/commands.lua:17
+msgid "Lua Console"
+msgstr "Консоль Lua"
+
+#. [lua]: unit_debug
+#. [lua]: postshow
+#: Gui_Debug_Tools/lua/commands.lua:28 Gui_Debug_Tools/lua/unit_debug.lua:1140
+#: Gui_Debug_Tools/lua/unit_debug.lua:1434
+msgid "Unit Debug"
+msgstr "Відладка бійця"
+
+#. [lua]: side_debug
+#. [lua]: postshow
+#: Gui_Debug_Tools/lua/commands.lua:40 Gui_Debug_Tools/lua/side_debug.lua:746
+#: Gui_Debug_Tools/lua/side_debug.lua:939
+msgid "Side Debug"
+msgstr "Відладка сторони"
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:23 Gui_Debug_Tools/lua/unit_debug.lua:369
+msgid "OK"
+msgstr "Підтвердити"
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:34 Gui_Debug_Tools/lua/unit_debug.lua:380
+msgid "Cancel"
+msgstr "Скасувати"
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:49 Gui_Debug_Tools/lua/unit_debug.lua:733
+msgid "Side"
+msgstr "Сторона"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:58
+msgid "The number of the side."
+msgstr "Номер сторони бійця."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:68
+msgid "Starting Location"
+msgstr "Початкова позиція"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:77
+msgid ""
+"The coordinates for the starting location of the side. 0,0 indicates no "
+"starting location."
+msgstr ""
+"Координати для початкової позиції сторони. 0,0 вказує на відсутність "
+"початкової позиції."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:87
+msgid "Current Player"
+msgstr "Поточний гравець"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:96
+msgid "The name of the entity controlling the side."
+msgstr "Ім'я того, хто контролює цю сторону."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:106
+msgid "Is Local"
+msgstr "Чи локальна"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:115
+msgid "Indicates if the current instance of Wesnoth owns the side."
+msgstr "Вказує, чи є ви власником цієї сторони."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:125
+msgid "Total Income"
+msgstr "Прибуток сторони"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:134
+msgid "The total of base + village income that the side receives each turn."
+msgstr ""
+"Сума базового прибутку та прибутку з сіл, що сторона отримує кожного ходу."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:144
+msgid "Scroll to Leader"
+msgstr "Показати лідера"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:153
+msgid "Makes the view scroll to the side's leader at start of side turn."
+msgstr "Змушує гру показувати лідера сторони на початку ходу сторони."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:163
+msgid "S.E.T.C."
+msgstr "S.E.T.C."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:172
+msgid ""
+"Prevents the side from being asked to confirm ending the turn, even if no "
+"action has been taken."
+msgstr ""
+"Прибирає попередження, що просить підтвердити кінець ходу, якщо сторона не "
+"вчинила жодної дії."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:182
+msgid "Fog"
+msgstr "Туман"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:191
+msgid "Activates fog for the side."
+msgstr "Вмикає туман для сторони."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:201
+msgid "Shroud"
+msgstr "Пелена"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:210
+msgid "Activates shroud for the side."
+msgstr "Вмикає пелену для сторони."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:220
+#: Gui_Debug_Tools/lua/unit_debug.lua:323
+msgid "Hidden"
+msgstr "Приховано"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:229
+msgid "Prevents the side's details from being shown in the status table."
+msgstr "Прибирає інформацію про сторону з панелі статусу."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:239
+msgid "Seed Recall"
+msgstr "Генерувати заклик"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:249
+msgid "Clear"
+msgstr "Очистити"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:252
+msgid ""
+"The recall list will be stocked with sets of recruits and their "
+"advancements, or the recall list can be cleared."
+msgstr ""
+"Список заклику буде наповнено бійцями та їхніми просуваннями, або його буде "
+"очищено."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:262
+#: Gui_Debug_Tools/lua/unit_debug.lua:669
+msgid "Heal"
+msgstr "Вилікувати"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:271
+msgid "All the side's units on the map will be healed."
+msgstr "Всіх бійців сторони на мапі буде вилікувано."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:281
+#: Gui_Debug_Tools/lua/unit_debug.lua:688
+msgid "Super Heal"
+msgstr "Вилікувати++"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:290
+msgid "All the side's units on the map will be super healed."
+msgstr "Всіх бійців сторони на мапі буде потужно вилікувано."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:300
+msgid "Teleport"
+msgstr "Телепортувати"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:310
+msgid ""
+"All on map units of the side will be placed at the coordinates specified. "
+"Single space places all non-leaders on the recall list."
+msgstr ""
+"Всіх бійців сторони на мапі буде миттєво переміщено до вказаних координат. "
+"Єдиний пробіл поміщає всіх бійців, що не є лідерами, до списку заклику."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:320
+#: Gui_Debug_Tools/lua/unit_debug.lua:572
+msgid "Goto"
+msgstr "Йти до"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:330
+msgid ""
+"All units of the side will move toward the coordinates specified. 0,0 and "
+"-999,-999 indicate no destination."
+msgstr ""
+"Всі бійці сторони матимуть за мету рух до зазначених координат. 0,0 та "
+"-999,-999 вказують на відсутність мети."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:340
+msgid "Kill"
+msgstr "Вбити"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:349
+msgid "All the side's units will be killed."
+msgstr "Всі бійці сторони будуть вбиті."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:364
+msgid "When the side is considered defeated."
+msgstr "Коли сторона вважається переможеною."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:375
+msgid "no_leader_left"
+msgstr "no_leader_left"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:383
+msgid "no_units_left"
+msgstr "no_units_left"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:391
+msgid "never"
+msgstr "never"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:399
+msgid "always"
+msgstr "always"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:414
+msgid "The type of entity that enters moves for the side."
+msgstr "Той, хто керує діями сторони."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:425
+msgid "human"
+msgstr "людина"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:433
+msgid "ai"
+msgstr "комп'ютер"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:441
+msgid "null"
+msgstr "ніхто"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:455
+msgid "Gold"
+msgstr "Золото"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:464
+msgid "The amount of gold the side has."
+msgstr "Кількість золота сторони."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:474
+msgid "Village Gold"
+msgstr "Прибуток з села"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:486
+msgid "Each village controlled by the side will yield this amount of income."
+msgstr ""
+"Кожне село, що контролюється стороною, зможе приносити цю кількість прибутку."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:496
+msgid "Village Support"
+msgstr "Утримання з села"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:508
+msgid ""
+"Each village controlled by the side will support this number of unit levels."
+msgstr ""
+"Кожне село, що контролюється стороною, зможе утримувати вказану кількість "
+"рівнів бійців."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:518
+msgid "Base Income"
+msgstr "Базовий прибуток"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:531
+msgid "The amount of income the side receives per turn."
+msgstr "Прибуток, який сторона отримує кожного ходу."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:541
+#: Gui_Debug_Tools/lua/unit_debug.lua:876
+msgid "Recall Cost"
+msgstr "Ціна заклику"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:554
+msgid "The amount of gold needed to recall units of this side."
+msgstr "Кількість золота, що необхідна цій стороні для заклику бійців."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:564
+msgid "Color"
+msgstr "Колір"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:574
+msgid "The color that is applied to the side's flag and units."
+msgstr "Колір, яким опозначені бійці та прапори сторони."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:584
+msgid "Flag"
+msgstr "Прапор"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:594
+msgid "The flag that flies over villages that the side controls."
+msgstr "Прапор, що майорить над селами, що контролює сторона."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:604
+msgid "Flag Icon"
+msgstr "Вигляд прапору"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:614
+msgid "The flag icon that is displayed next to the turn counter for the side."
+msgstr ""
+"Зображення прапору сторони, що відображається поряд з лічильником ходів."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:624
+msgid "User Team Name"
+msgstr "Назва команди"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:634
+msgid "The player visible team name for the side in the status table."
+msgstr "Назва команди сторони, що вказується в панелі статусу."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:644
+msgid "Team Name"
+msgstr "ID команди"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:654
+msgid "The player team name for the side used internally by the game."
+msgstr "Назва команди сторони, що використовується грою."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:664
+msgid "Recruit"
+msgstr "Вербування"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:674
+msgid "The unit types that any leader of the side can recruit."
+msgstr "Типи бійців, яких може вербувати будь-який лідер цієї сторони."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:684
+msgid "Recall Units"
+msgstr "Бійці заклику"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:694
+msgid "The units with the specified IDs will be recalled."
+msgstr "Бійців з вказаними ID буде закликано."
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:704
+msgid "Controller"
+msgstr "Керування"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:720
+msgid "Defeat Condition"
+msgstr "Поразка"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:747
+msgid "Allows changes to various aspects of a side."
+msgstr "Дозволяє змінювати різноманітни параметри сторони."
+
+#. [lua]: side_debug
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:758
+#: Gui_Debug_Tools/lua/unit_debug.lua:1152
+msgid "Set the desired parameters, then press OK to confirm or Cancel to exit"
+msgstr ""
+"Встановіть бажані параметри, після чого натисність \"Підтвердити\" або "
+"\"Скасувати\", щоб вийти"
+
+#. [lua]: side_debug
+#: Gui_Debug_Tools/lua/side_debug.lua:777
+msgid "The flag of the side."
+msgstr "Прапор сторони."
+
+#. [lua]: postshow
+#: Gui_Debug_Tools/lua/side_debug.lua:936
+msgid "side debug was used during turn of "
+msgstr "відладку сторони було використано під час ходу "
+
+#. [lua]: postshow
+#: Gui_Debug_Tools/lua/side_debug.lua:939
+#: Gui_Debug_Tools/lua/unit_debug.lua:1434
+msgid "Error, return value :"
+msgstr "Помилка, повернено значення :"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:27
+msgid "Poisoned"
+msgstr "Poisoned"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:29
+msgid "The unit loses HP each turn."
+msgstr "Боєць втрачає ЗД кожного ходу."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:37
+msgid "Slowed"
+msgstr "Slowed"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:39
+msgid "The unit has 50% of its normal movement and does half damage."
+msgstr "Боєць має 50% від свого руху та завдає лише половину шкоди."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:47
+msgid "Petrified"
+msgstr "Petrified"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:49
+msgid "The unit cannot move, attack, or be attacked."
+msgstr "Боєць не може рухатися, атакувати чи бути атакованим."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:57
+msgid "Invulnerable"
+msgstr "Invulnerable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:59
+msgid "Attacks can't hit the unit."
+msgstr "Атаки не можуть вразити бійця."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:69
+msgid "Uncovered"
+msgstr "Uncovered"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:71
+msgid ""
+"The unit has performed an action (e.g. attacking) that causes it to no "
+"longer be hidden until the next turn."
+msgstr ""
+"Боєць виконав дію(наприклад, атаку), яка викриває його до наступного ходу."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:79
+msgid "Guardian"
+msgstr "Guardian"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:81
+msgid "The unit will not move, except to attack something in immediate range."
+msgstr "Боєць не рухатиметься, якщо не бачитиме цілі в своєму полі зору."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:89
+msgid "Unhealable"
+msgstr "Unhealable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:91
+msgid "The unit cannot be healed."
+msgstr "Бійця неможливо вилікувати."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:99
+msgid "Stunned"
+msgstr "Stunned"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:101
+msgid ""
+"The unit has lost its zone of control until next turn. This status is only "
+"available in some campaigns and add-ons."
+msgstr ""
+"Боєць втрачає свою зону контролю до наступного ходу. Цей статус доступний "
+"лише в деяких кампаніях та аддонах."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:111
+msgid "Not Living"
+msgstr "Not Living"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:113
+msgid ""
+"If checked, the unit will gain undrainable, unplagueable, and unpoisonable. "
+"If those three are checked, the unit will gain not_living"
+msgstr ""
+"Якщо обрано, боєць отримає статуси undrainable, unplagueable та "
+"unpoisonable. Якщо ж, натомість, обрано вищезгадані три статуси, боєць "
+"отримає статус not_living"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:121
+msgid "Undrainable"
+msgstr "Undrainable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:123
+msgid ""
+"The unit will not give life to another unit if the drain special is used "
+"against it."
+msgstr ""
+"Боєць не віддасть своїх життєвих сил іншому бійцю, якщо той матиме атаку з "
+"висмоктуванням."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:131
+msgid "Unplagueable"
+msgstr "Unplagueable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:133
+msgid "The unit is immune to the plague special."
+msgstr "Боєць має імунітет до чуми."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:141
+msgid "Unpoisonable"
+msgstr "Unpoisonable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:143
+msgid "The unit cannot be poisoned."
+msgstr "Бійця неможливо отруїти."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:153
+msgid "Unslowable"
+msgstr "Unslowable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:155
+msgid "The unit cannot be slowed."
+msgstr "Бійця неможливо сповільнити."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:163
+msgid "Unpetrifiable"
+msgstr "Unpetrifiable"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:165
+msgid "The unit cannot be petrified."
+msgstr "Бійця неможливо скам'янити."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:192
+msgid "Which way the unit is looking."
+msgstr "Сторона, в яку дивиться боєць."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:203
+msgid "nw"
+msgstr "nw"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:211
+msgid "ne"
+msgstr "nw"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:219
+msgid "n"
+msgstr "n"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:227
+msgid "sw"
+msgstr "sw"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:235
+msgid "se"
+msgstr "se"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:243
+msgid "s"
+msgstr "s"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:257
+msgid ""
+"'Default' indicates alignment set by unit type or outside of GDT. Any other "
+"box will set the alignment specified."
+msgstr ""
+"'Default' вказує на світогляд, встановлений типом бійця або поза цією "
+"графічною відладкою. Інші опції встановлять відповідний світогляд."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:268
+msgid "default"
+msgstr "default"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:276
+msgid "lawful"
+msgstr "lawful"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:284
+msgid "chaotic"
+msgstr "chaotic"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:292
+msgid "neutral"
+msgstr "neutral"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:300
+msgid "liminal"
+msgstr "liminal"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:313
+msgid "Resting"
+msgstr "Відпочиває"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:315
+msgid ""
+"If the unit is resting, it will receive rest healing at the start of its "
+"next turn."
+msgstr ""
+"Якщо боєць відпочиває, він отримає лікування відпочинком на початку свого "
+"наступного ходу."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:325
+msgid ""
+"If the unit has been hidden using [hide_unit]. This is not the same as a "
+"[hides] ability."
+msgstr ""
+"Якщо юніта було прихованого за допомогою [hide_unit]. Це не те ж саме, що "
+"збідність [hides]."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:339
+msgid ""
+"The gender of the unit. Note that changing gender will cause any custom "
+"profile portraits to be lost."
+msgstr ""
+"Стать бійця. Зауважте, що зміна статі призведе до втрати будь-яких "
+"користувацьких портретів."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:350
+msgid "Male"
+msgstr "Ч"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:358
+msgid "Female"
+msgstr "Ж"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:395
+msgid "Name"
+msgstr "Ім'я"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:405
+msgid "The player visible name of the unit."
+msgstr "Ім'я бійця, що відображується для гравця."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:415
+msgid "ID"
+msgstr "ID"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:425
+msgid ""
+"The internal WML designation for the unit. Each unit ID needs to be unique."
+msgstr ""
+"Внутрішнє ім'я бійця, що розпізнається WML. Кожне ID бійця має бути "
+"унікальним."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:435
+msgid "Underlying ID"
+msgstr "Внутрішнє ID"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:444
+msgid "The internal C++ designation for the unit."
+msgstr "Внутрішнє ім'я бійця, що розпізнається C++."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:454
+msgid "Level"
+msgstr "Рівень"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:466
+msgid "The unit will be advanced or declined to the specified level."
+msgstr "Бійця буде просунуто або повернено до вказаного рівня."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:476
+msgid "Type"
+msgstr "Тип"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:486
+msgid "What kind of unit this is."
+msgstr "До якого типу належить цей боєць."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:496
+msgid "Variation"
+msgstr "Різновид"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:506
+msgid "The variation of the unit type that this unit is."
+msgstr "Різновид типу бійця, до якого належить цей боєць."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:516
+msgid "Gender"
+msgstr "Стать"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:532
+msgid "Role"
+msgstr "Роль"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:542
+msgid "An additional field that can be used to identify a unit."
+msgstr "Додаткове поле, що може використовуватися для розпізнавання бійця."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:552
+msgid "Location"
+msgstr "Позиція"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:562
+msgid ""
+"The coordinates on the map where the unit is located. Empty string places "
+"the unit on the recall list."
+msgstr ""
+"Координати клітинки, на якій знаходиться боєць. Якщо задати пусте значення, "
+"боєць потрапить до списку заклику."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:582
+msgid ""
+"The unit will move toward the coordinates specified. 0,0 and -999,-999 "
+"indicate no destination."
+msgstr ""
+"Боєць матиме за мету рух до зазначених координат. 0,0 та -999,-999 вказують "
+"на відсутність мети."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:592
+msgid "Upkeep"
+msgstr "Утримання"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:602
+msgid "The unit will have the upkeep specified."
+msgstr "Боєць матиме зазначену ціну утримування."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:612
+msgid "Can Recruit"
+msgstr "Може вербувати"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:621
+msgid "Makes the unit a leader and able to recruit."
+msgstr "Робить бійця лідером та надає здатність вербувати."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:631
+msgid "Unrenamable"
+msgstr "Незмінне ім'я"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:640
+msgid "Prevents changing the unit's name in the right click menu."
+msgstr ""
+"Забороняє змінювати ім'я бійця, використовуючи меню правої кнопки миші."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:650
+msgid "Generate Name"
+msgstr "Генерувати ім'я"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:659
+msgid ""
+"If the unit type has random names available, a new name will be generated."
+msgstr "Якщо тип бійця має список випадкових імен, буде згенероване нове ім'я."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:678
+msgid ""
+"The unit will be healed with moves restored, regardless of other settings in "
+"this dialog."
+msgstr ""
+"Бійця буде вилікувано з відновленими очками руху, незалежно від інших "
+"налаштувань в цьому вікні."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:697
+msgid ""
+"The unit will be super healed with extra hitpoints, moves, and attacks left."
+msgstr ""
+"Бійця буде потужно вилікувано з додатковими очками здоров'я, руху та атак."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:707
+msgid "Copy"
+msgstr "Копіювати"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:719
+msgid ""
+"Copies of the unit will be created. Will be identical except for id and name."
+msgstr ""
+"Буде створено копії бійця, що будуть ідентичними, за винятком id та імені."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:745
+msgid "The side the unit belongs to."
+msgstr "Сторона, до якої належить боєць."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:756
+msgid "Hitpoints"
+msgstr "Здоров'я"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:770
+msgid "The amount of hitpoints the unit has."
+msgstr "Кількість очків здоров'я, яку має боєць."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:781
+msgid "Experience"
+msgstr "Досвід"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:794
+msgid ""
+"The amount of experience the unit has. If somehow above max_experience, it "
+"will be set to max - 1."
+msgstr ""
+"Кількість очків досвіду, яку має боєць. Якщо значення більше max_experience, "
+"воно буде встановлено на 1 менше від максимуму."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:805
+msgid "Moves"
+msgstr "Очки руху"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:818
+msgid "The amount of move points the unit has."
+msgstr "Кількість очків руху, що має боєць."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:829
+msgid "Attacks Left"
+msgstr "Лишилось атак"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:842
+msgid "The number of attacks the unit can make on the current turn."
+msgstr "Кількість атак, які може зробити боєць протягом поточного ходу."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:853
+msgid "Advancements"
+msgstr "Просування"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:865
+msgid ""
+"The number of amlas the unit has. If the unit is at its highest level, this "
+"value may be adjusted, though setting to 0 will always clear."
+msgstr ""
+"Кількість AMLA, що має боєць. Якщо боєць досяг найвищого рівня, це значення "
+"може бути змінено, проте встановлення його на 0 здійснює очищення."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:888
+msgid ""
+"The amount of gold needed to recall this unit. -1 indicates the side default "
+"amount."
+msgstr ""
+"Кількість золота, що необхідна, щоб закликати цього бійця. -1 встановлює "
+"типове для сторони бійця значення."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:899
+msgid "Extra Recruit"
+msgstr "Вербування+"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:909
+msgid ""
+"Unit types the unit can recruit in addition to the ones its side can "
+"recruit, if the unit is a leader."
+msgstr ""
+"Типи бійців, яких може вербувати боєць на додачу до тих, яких може вербувати "
+"сторона, якщо боєць є лідером."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:920
+msgid "Advances To"
+msgstr "Просувається до"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:930
+msgid "The unit types that the unit can advance to upon leveling."
+msgstr "Типи бійців, у які може просунутися боєць після підвищення рівня."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:941
+msgid "Attack"
+msgstr "Атака"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:951
+msgid ""
+"The unit will receive the attack indicated. Use form 'Unit Type,Attack "
+"Index'. Single space clears added attacks."
+msgstr ""
+"Боєць отримає зазначену атаку. Використуйте формат 'Unit Type,Attack Index'. "
+"Пробіл очищає додані атаки."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:962
+msgid "Abilities"
+msgstr "Здібності"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:972
+msgid ""
+"The unit will receive the abilities of the unit types entered. Single space "
+"clears added abilities."
+msgstr ""
+"Боєць отримає здібності зазначених типів бійців. Пробіл очищає додані "
+"здібності."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:983
+msgid "Objects"
+msgstr "Об'єкти"
+
+# дуже дивне речення, я не можу зрозуміти, що воно означає
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:993
+msgid ""
+"Copy: 'Unit Id,Index' - Remove all copies of an object: 'remove,Index' Omit "
+"index to copy or remove all objects."
+msgstr ""
+"Копіювати: 'Unit Id,Index' — видаляє всі копії об'єкта: 'remove,Index'. "
+"Опустіть індекс, щоб скопіювати або видалити всі об'єкти."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1004
+msgid "Traits"
+msgstr "Риси"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1014
+msgid ""
+"The unit will be altered by the traits listed. Valid traits are all in "
+"mainline, all race traits, any trait currently existing, and any the unit "
+"could receive or currently has."
+msgstr ""
+"Бійця буде змінено відповідно до зазначених рис. Приймаються лише ті риси, "
+"що були включені в базову гру."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1025
+msgid "Overlays"
+msgstr "Накладення"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1035
+msgid "The unit's image will be altered by overlays listed here."
+msgstr "На зображення бійця буде накладено зазначені зображення."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1046
+msgid "Variables"
+msgstr "Змінні"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1056
+msgid ""
+"Unit variables and sub-containers can be set/changed using the form "
+"'var=value'"
+msgstr ""
+"Змінні бійця та контейнери можуть бути встановлені чи змінені, "
+"використовуючи формат 'var=value'"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1067
+msgid "Status"
+msgstr "Статус"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1082
+msgid "Alignment"
+msgstr "Світогляд"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1099
+msgid "Facing"
+msgstr "Дивиться на"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1116
+msgid "Misc"
+msgstr "Різне"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1141
+msgid "Allows changes to various aspects of a unit."
+msgstr "Дозволяє змінювати різноманітні параметри бійця."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1172
+msgid "The image of the unit."
+msgstr "Зображення бійця."
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1185
+msgid "Profile"
+msgstr "Довідка бійця"
+
+#. [lua]: unit_debug
+#: Gui_Debug_Tools/lua/unit_debug.lua:1186
+msgid "Displays the help entry for the unit."
+msgstr "Відображає сторінку довідки для цього бійця."
+
+#. [lua]: postshow
+#: Gui_Debug_Tools/lua/unit_debug.lua:1431
+msgid "unit debug was used during turn of "
+msgstr "відладку бійця було використану під час ходу "
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:384
+msgid "expert"
+msgstr "експертний"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:384
+msgid "female^expert"
+msgstr "експертна"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:389
+msgid "heroic"
+msgstr "героїчний"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:389
+msgid "female^heroic"
+msgstr "героїчна"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:395
+msgid "powerful"
+msgstr "потужний"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:395
+msgid "female^powerful"
+msgstr "потужна"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:398
+msgid "ethereal"
+msgstr "безтілесний"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:398
+msgid "female^ethereal"
+msgstr "безтілесна"
+
+#. [lua]: unit_ops.traits
+#: Gui_Debug_Tools/lua/unit_ops.lua:398
+msgid "1 mp & 50% defense on all terrain"
+msgstr "1 очко руху та 50% захисту на усій місцевості"
+
+#. [unit_type]: id=GDT Dummy, race=monster
+#: Gui_Debug_Tools/units/Dummy.cfg:11
+msgid "dummy_unit^GDT Dummy"
+msgstr "Манекен GDT"
