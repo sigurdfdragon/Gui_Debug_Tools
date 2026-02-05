@@ -9,7 +9,7 @@ wml_actions.set_menu_item { id = "_1_gamestate_inspector" ,
 		{ "lua", { code=[[return wesnoth.game_config.debug]] } }
 	}},
 	{ "command" , {
-		{ "lua", { code=[[gui.show_inspector({})]] } }
+		{ "lua", { code=[[gui.show_inspector("")]] } }
 	}}
 }
 
